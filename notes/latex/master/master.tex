@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+% Page geometry
+\usepackage[margin=1in]{geometry}
+
+% Math packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Other useful packages
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{subfiles}
+
+% Baby blue summary box
+\definecolor{babyblue}{RGB}{173, 216, 230}
+\newtcolorbox{summarybox}{
+    colback=babyblue!30,
+    colframe=babyblue!80,
+    boxrule=1pt,
+    arc=3pt,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt
+}
+
+% Colored bold for definitions
+\newcommand{\defn}[1]{\textcolor{red}{\textbf{#1}}}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Common shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+% Course info
+\newcommand{\coursetitle}{Math 104: Introduction to Real Analysis}
+\newcommand{\courseterm}{Spring 2026}
+
+% Lecture info placeholders (overwritten by each lecture via \renewcommand)
+\newcommand{\lecturenum}{}
+\newcommand{\lecturedate}{}
+\newcommand{\lecturetopic}{}
+
+\title{\coursetitle \\ \large Lecture Notes}
+\author{Noam Michael}
+\date{\courseterm}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------
+% LECTURES - Add new lectures here
+%----------------------------------------------------------------------
+
+% Lecture 1
+\subfile{../lec01/lec01}
+
+% Lecture 2
+% \subfile{../lec02/lec02}
+
+% Lecture 3
+% \subfile{../lec03/lec03}
+
+% Add more lectures as needed...
+
+\end{document}

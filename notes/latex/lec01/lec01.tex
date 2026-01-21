@@ -1,0 +1,261 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 1: Ordered sets, least-upper-bound property; fields.
+% Date: January 20, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{1}
+\renewcommand{\lecturedate}{January 20, 2026}
+\renewcommand{\lecturetopic}{Ordered sets, least-upper-bound property; fields.}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\subsection{Ordered sets and the least-upper-bound property}
+
+\begin{summarybox}
+\textbf{Section Overview:} This section motivates the need for the real numbers by showing that $\Q$ has ``gaps''---$\sqrt{2}$ is irrational, yet we can get arbitrarily close to it with rationals. We develop the machinery of \textbf{ordered sets}: partial orders, total orders, upper/lower bounds, and the supremum/infimum. The central concept is the \textbf{Least Upper Bound Property (LUBP)}: every non-empty bounded-above subset has a supremum. This property distinguishes $\R$ from $\Q$ and is the foundation for all of real analysis. We prove that LUBP implies GLBP.
+\end{summarybox}
+
+Consider the ancient problem from Greek times: can we write $\sqrt{2}$ as a quotient of two natural numbers?
+
+\begin{theorem}
+$\sqrt{2}$ is irrational; that is, there do not exist $p, q \in \N$ such that $\sqrt{2} = \frac{p}{q}$.
+\end{theorem}
+
+\begin{proof}
+Suppose, for contradiction, that $\sqrt{2} = \frac{p}{q}$ for some $p, q \in \N$ with $\gcd(p, q) = 1$ (i.e., the fraction is in lowest terms).
+
+Then $2 = \frac{p^2}{q^2}$, so $p^2 = 2q^2$.
+
+This means $p^2$ is even, so $p$ is even. Write $p = 2k$ for some $k \in \N$.
+
+Then $(2k)^2 = 2q^2$, so $4k^2 = 2q^2$, hence $q^2 = 2k^2$.
+
+This means $q^2$ is even, so $q$ is even.
+
+But then both $p$ and $q$ are even, contradicting $\gcd(p, q) = 1$.
+\end{proof}
+
+Now consider two sets:
+\[
+A = \{p \in \Q : p > 0 \text{ and } p^2 < 2\}, \quad B = \{p \in \Q : p > 0 \text{ and } p^2 > 2\}.
+\]
+
+\begin{proposition}
+$A$ contains no largest element and $B$ contains no smallest element.
+\end{proposition}
+
+\begin{proof}
+Let $p_0 \in A$. Define
+\[
+q = p_0 + \frac{2 - p_0^2}{p_0^2 + 2}.
+\]
+Since $p_0 \in A$, we have $p_0^2 < 2$, so $2 - p_0^2 > 0$. Thus $q > p_0$.
+
+We claim $q \in A$, i.e., $q^2 < 2$. One can verify that
+\[
+q^2 - 2 = \frac{(p_0^2 - 2)^2 \cdot (\text{positive})}{(p_0^2 + 2)^2}
+\]
+which shows $q^2 < 2$ when $p_0^2 < 2$.
+
+Hence $A$ has no largest element.
+
+A similar argument shows $B$ has no smallest element.
+\end{proof}
+
+\begin{definition}[1.3]
+If $A$ is any set, we write $x \in A$ to say that $x$ is a \defn{member} of $A$. Otherwise, $x \notin A$. The set that contains no elements is called the \defn{empty set}, denoted $\emptyset$. If $A \neq \emptyset$, we say that $A$ is \defn{non-empty}.
+
+If $A, B$ are sets and $\forall x \in A$ we have $x \in B$, we say that $A \subset B$, or $A$ is a \defn{subset} of $B$. If there exists an element $x \in B$ with $x \notin A$, then $A$ is a \defn{proper subset} of $B$, denoted $A \subsetneq B$.
+\end{definition}
+
+\begin{example}
+$3 \in \N$, but $-1 \notin \N$. We have $\N \subset \Z$ and $\N \subsetneq \Z$ (since $-1 \in \Z$ but $-1 \notin \N$).
+\end{example}
+
+\begin{definition}
+A \defn{binary relation} on a set $S$ is a set of ordered pairs $\langle x, y \rangle$ with $x, y \in S$.
+\end{definition}
+
+\begin{example}
+On $\Z$, the relation $\leq$ is the set $\{\langle x, y \rangle : x, y \in \Z, x \leq y\}$, e.g., $\langle 2, 5 \rangle$ is in the relation.
+\end{example}
+
+\begin{definition}
+A \defn{partial order} is a binary relation $\leq$ on $S$ such that:
+\begin{enumerate}
+    \item \textbf{Reflexive:} $\forall x \in S$, $x \leq x$.
+    \item \textbf{Anti-symmetric:} $\forall x, y \in S$, if $x \leq y$ and $y \leq x$, then $x = y$.
+    \item \textbf{Transitive:} $\forall x, y, z \in S$, if $x \leq y$ and $y \leq z$, then $x \leq z$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+On the power set $\mathcal{P}(\{1,2\}) = \{\emptyset, \{1\}, \{2\}, \{1,2\}\}$, the subset relation $\subseteq$ is a partial order (but not a total order, since $\{1\} \not\subseteq \{2\}$ and $\{2\} \not\subseteq \{1\}$).
+\end{example}
+
+\begin{definition}
+A \defn{total order} is a partial order with the additional axiom that any two elements are comparable. That is, for any $x, y \in S$, either $x \leq y$ or $y \leq x$ (non-exclusive).
+\end{definition}
+
+\begin{example}
+The usual $\leq$ on $\R$ is a total order: for any $x, y \in \R$, either $x \leq y$ or $y \leq x$.
+\end{example}
+
+\begin{definition}
+An \defn{ordered set} is a set equipped with a total order.
+\end{definition}
+
+\begin{example}
+$(\Q, \leq)$ and $(\R, \leq)$ are ordered sets.
+\end{example}
+
+\begin{definition}
+Suppose $S$ is an ordered set and $E \subset S$. If there exists $\beta \in S$ such that $x \leq \beta$ for all $x \in E$, we say $\beta$ is an \defn{upper bound} of $E$. Similarly, if there exists $\alpha \in S$ such that $\alpha \leq x$ for all $x \in E$, we say $\alpha$ is a \defn{lower bound} of $E$.
+\end{definition}
+
+\begin{example}
+Let $E = (0, 1) \subset \R$. Then $1, 2, 100$ are all upper bounds of $E$, and $0, -5$ are lower bounds of $E$.
+\end{example}
+
+\begin{definition}
+Suppose $S$ is an ordered set and $E \subset S$ is bounded above. If there exists $\alpha \in S$ such that:
+\begin{enumerate}
+    \item $\alpha$ is an upper bound of $E$, and
+    \item if $\gamma < \alpha$, then $\gamma$ is not an upper bound of $E$,
+\end{enumerate}
+then $\alpha$ is called the \defn{least upper bound} of $E$ (or \defn{supremum}), denoted $\sup E$.
+\end{definition}
+
+\begin{example}
+$\sup(0,1) = 1$ and $\sup[0,1] = 1$ in $\R$.
+\end{example}
+
+\begin{definition}
+Suppose $S$ is an ordered set and $E \subset S$ is bounded below. If there exists $\alpha \in S$ such that:
+\begin{enumerate}
+    \item $\alpha$ is a lower bound of $E$, and
+    \item if $\gamma > \alpha$, then $\gamma$ is not a lower bound of $E$,
+\end{enumerate}
+then $\alpha$ is called the \defn{greatest lower bound} of $E$ (or \defn{infimum}), denoted $\inf E$.
+\end{definition}
+
+\begin{example}
+$\inf(0,1) = 0$ and $\inf[0,1] = 0$ in $\R$.
+\end{example}
+
+\begin{remark}
+If $\sup E$ or $\inf E$ exists, it need not be an element of $E$. For example, the set $A = \{p \in \Q : p > 0, p^2 < 2\}$ has $\sup A = \sqrt{2}$ (in $\R$), but $\sqrt{2} \notin A$ since $\sqrt{2} \notin \Q$.
+\end{remark}
+
+\begin{definition}
+Let $S$ be an ordered set.
+\begin{enumerate}
+    \item $S$ has the \defn{least upper bound property} if for any non-empty $E \subset S$ that is bounded above, $\sup E$ exists in $S$.
+    \item $S$ has the \defn{greatest lower bound property} if for any non-empty $E \subset S$ that is bounded below, $\inf E$ exists in $S$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+$\R$ has the LUBP (and hence GLBP). However, $\Q$ does not: the set $A = \{p \in \Q : p > 0, p^2 < 2\}$ is bounded above in $\Q$, but $\sup A = \sqrt{2} \notin \Q$.
+\end{example}
+
+\begin{theorem}[LUBP implies GLBP]
+Suppose $S$ is an ordered set with the least upper bound property. Let $B \subset S$, $B \neq \emptyset$, and suppose $B$ is bounded below. Let $L$ be the set of all lower bounds of $B$. Then $\alpha = \sup L$ exists in $S$, and $\alpha = \inf B$.
+\end{theorem}
+
+\begin{proof}
+First, $L \neq \emptyset$ since $B$ is bounded below.
+
+Second, $L$ is bounded above: every $b \in B$ is an upper bound for $L$ (since if $\ell \in L$, then $\ell \leq b$ by definition of lower bound).
+
+By the LUBP, $\alpha = \sup L$ exists in $S$.
+
+We claim $\alpha = \inf B$:
+\begin{enumerate}
+    \item $\alpha$ is a lower bound of $B$: For any $b \in B$, $b$ is an upper bound of $L$, so $\alpha \leq b$ (since $\alpha$ is the \emph{least} upper bound of $L$).
+    \item $\alpha$ is the greatest lower bound: If $\gamma > \alpha$ and $\gamma$ were a lower bound of $B$, then $\gamma \in L$, so $\gamma \leq \sup L = \alpha$, contradicting $\gamma > \alpha$. Thus $\gamma$ is not a lower bound of $B$.
+\end{enumerate}
+Thus $\alpha = \inf B$.
+\end{proof}
+
+\subsection{Fields}
+
+\begin{summarybox}
+\textbf{Section Overview:} This section introduces the algebraic structure underlying $\R$. We define \textbf{groups} (sets with an operation having identity, inverses, and associativity) and \textbf{fields} (sets with addition and multiplication that behave like we expect from $\Q$ or $\R$). We sketch how to construct $\N \to \Z \to \Q$ using equivalence relations. The key definition is an \textbf{ordered field}: a field that is also an ordered set, allowing us to combine algebraic operations with comparison. $\R$ is the unique complete ordered field.
+\end{summarybox}
+
+\begin{definition}
+A \defn{binary operation} on $S$ is a map $S \times S \to S$.
+\end{definition}
+
+\begin{definition}
+A \defn{group} is a set $G$ with a binary operation $+$ satisfying the following axioms:
+\begin{enumerate}
+    \item \textbf{Identity:} There exists $0 \in G$ such that $a + 0 = 0 + a = a$ for all $a \in G$.
+    \item \textbf{Existence of inverse:} For every $a \in G$, there exists $-a \in G$ such that $a + (-a) = 0$.
+    \item \textbf{Associativity:} For all $a, b, c \in G$, $(a + b) + c = a + (b + c)$.
+\end{enumerate}
+If we add a fourth axiom:
+\begin{enumerate}
+    \item[4.] \textbf{Commutativity:} For all $a, b \in G$, $a + b = b + a$,
+\end{enumerate}
+then $G$ is called an \defn{abelian group}.
+\end{definition}
+
+\begin{definition}
+A \defn{field} is a set $F$ with two binary operations, addition ($+$) and multiplication ($\cdot$), such that:
+\begin{enumerate}
+    \item $(F, +)$ is an abelian group with identity $0$.
+    \item $(F \setminus \{0\}, \cdot)$ is an abelian group with identity $1$.
+    \item \textbf{Distributivity:} For all $a, b, c \in F$, $a \cdot (b + c) = a \cdot b + a \cdot c$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+$\Q$, $\R$, and $\C$ are fields. $\Z$ is not a field (e.g., $2$ has no multiplicative inverse in $\Z$).
+\end{example}
+
+Zooming out, we can construct the number systems as follows:
+
+The \defn{natural numbers} $\N$ can be defined by the cardinality of iterated power sets of $\emptyset$:
+\[
+0 = |\emptyset|, \quad 1 = |\mathcal{P}(\emptyset)|, \quad 2 = |\mathcal{P}(\mathcal{P}(\emptyset))|, \quad \ldots
+\]
+
+The \defn{integers} are defined as:
+\[
+\Z = \{a - b : a, b \in \N\}.
+\]
+
+\begin{definition}
+An \defn{equivalence relation} $\sim$ on a set $S$ has the following properties:
+\begin{enumerate}
+    \item \textbf{Reflexive:} $x \sim x$ for all $x \in S$.
+    \item \textbf{Symmetric:} If $x \sim y$, then $y \sim x$.
+    \item \textbf{Transitive:} If $x \sim y$ and $y \sim z$, then $x \sim z$.
+\end{enumerate}
+\end{definition}
+
+The \defn{rational numbers} are defined as:
+\[
+\Q = \left\{ \frac{p}{q} : p \in \Z, \, q \in \N, \, q \neq 0 \right\} / \sim
+\]
+
+We can verify this is an equivalence relation: $\frac{p}{q} \sim \frac{r}{s}$ if and only if $ps = rq$.
+
+\begin{definition}
+An \defn{ordered field} is a field which is also an ordered set.
+\end{definition}
+
+\begin{proposition}
+If $x > 0$ and $y < z$, then $xy < xz$.
+\end{proposition}
+
+\begin{proof}
+Since $y < z$, we have $z - y > 0$. Since $x > 0$ and $z - y > 0$, we have $x(z - y) > 0$. Thus $xz - xy > 0$, so $xy < xz$.
+\end{proof}
+
+\end{document}
