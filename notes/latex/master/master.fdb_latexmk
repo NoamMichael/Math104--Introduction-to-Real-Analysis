@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1768983732.97045 "/home/noam_michael/classes/math104/notes/latex/master/master.tex" "master.pdf" "master" 1768983734.28973 0
-  "../lec01/../lec01/lec01.tex" 1768983716.54524 11292 f1d07d8ba3190ac567c00d139162f667 ""
-  "../lec01/lec01.tex" 1768983716.54524 11292 f1d07d8ba3190ac567c00d139162f667 ""
+["pdflatex"] 1768984561.89145 "/home/noam_michael/classes/math104/notes/latex/master/master.tex" "master.pdf" "master" 1768984563.06249 0
+  "../lec01/../lec01/lec01.tex" 1768984561.52523 11823 a618185a7a565c77d7f53784350ef52d ""
+  "../lec01/lec01.tex" 1768984561.52523 11823 a618185a7a565c77d7f53784350ef52d ""
   "/etc/texmf/web2c/texmf.cnf" 1768933707.44963 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/noam_michael/classes/math104/notes/latex/master/master.tex" 1768983356.55333 1947 4ed8723e372efd954abb3d01c3518079 ""
+  "/home/noam_michael/classes/math104/notes/latex/master/master.tex" 1768984547.60114 2214 bc0765048ad39305554c98bb1b4099c5 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -162,10 +162,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1768933733.31056 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1768933804 8215064 408edf8bb3e1ba6739c8b68298b7a42a ""
-  "master.aux" 1768983734.16523 553 147bdf2fcdf433b8c7fa18c794303b14 "pdflatex"
-  "master.out" 1768983734.16523 584 c9040eb15986e03e7f9c36a2b536c93c "pdflatex"
-  "master.tex" 1768983356.55333 1947 4ed8723e372efd954abb3d01c3518079 ""
-  "master.toc" 1768983734.16923 268 df1e31b3e9e147446d214ef299371461 "pdflatex"
+  "master.aux" 1768984562.96924 553 147bdf2fcdf433b8c7fa18c794303b14 "pdflatex"
+  "master.out" 1768984562.96924 584 c9040eb15986e03e7f9c36a2b536c93c "pdflatex"
+  "master.tex" 1768984547.60114 2214 bc0765048ad39305554c98bb1b4099c5 ""
+  "master.toc" 1768984562.96924 268 df1e31b3e9e147446d214ef299371461 "pdflatex"
   (generated)
   "master.aux"
   "master.log"

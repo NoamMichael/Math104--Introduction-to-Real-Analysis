@@ -63,7 +63,8 @@ math104/
 | `\R`, `\N`, `\Z`, `\Q`, `\C` | Blackboard bold | Number sets |
 | `\eps` | ε | Epsilon |
 | `\defn{text}` | **red bold** | Highlight definitions |
-| `summarybox` environment | Baby blue box | Section summaries |
+| `lecturesummary` environment | Orange box | Lecture overview (one per lecture) |
+| `summarybox` environment | Baby blue box | Section summaries (one per subsection) |
 
 ### Theorem Environments
 

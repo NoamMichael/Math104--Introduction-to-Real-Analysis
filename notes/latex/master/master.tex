@@ -14,11 +14,24 @@
 \usepackage{tcolorbox}
 \usepackage{subfiles}
 
-% Baby blue summary box
+% Baby blue section summary box
 \definecolor{babyblue}{RGB}{173, 216, 230}
 \newtcolorbox{summarybox}{
     colback=babyblue!30,
     colframe=babyblue!80,
+    boxrule=1pt,
+    arc=3pt,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt
+}
+
+% Orange lecture summary box
+\definecolor{lectureorange}{RGB}{255, 200, 120}
+\newtcolorbox{lecturesummary}{
+    colback=lectureorange!30,
+    colframe=lectureorange!80,
     boxrule=1pt,
     arc=3pt,
     left=8pt,
