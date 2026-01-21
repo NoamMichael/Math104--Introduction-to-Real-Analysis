@@ -56,7 +56,6 @@ Real analysis is the rigorous study of calculus. Topics include:
 ## Resources
 
 - **Textbook**: Rudin, *Principles of Mathematical Analysis* (3rd ed.)
-- **Course Website**: [TBD]
 
 ## License
 
