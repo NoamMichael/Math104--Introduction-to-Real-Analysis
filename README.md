@@ -39,7 +39,8 @@ make clean
 
 Each lecture file can be compiled standalone or as part of the master document. The notes use:
 
-- **Baby blue summary boxes** at the start of each section highlighting key concepts
+- **Orange lecture summary boxes** at the start of each lecture (high-level overview)
+- **Baby blue section summary boxes** at the start of each section (detailed key concepts)
 - **Red bold text** for definitions of new terms
 - Standard theorem environments (theorem, lemma, proposition, definition, example, etc.)
 

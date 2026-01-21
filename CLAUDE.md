@@ -50,7 +50,8 @@ math104/
    - Update `\renewcommand{\lecturenum}{X}` with lecture number
    - Update `\renewcommand{\lecturedate}{...}` with date
    - Update `\renewcommand{\lecturetopic}{...}` with topic (this appears in TOC)
-   - Fill in the `summarybox` with section overview
+   - Fill in the `lecturesummary` (orange) with high-level lecture overview
+   - Fill in the `summarybox` (baby blue) for each subsection
    - Add content
 3. Add to master: uncomment/add `\subfile{../lecXX/lecXX}` in `master.tex`
 
@@ -107,6 +108,25 @@ The Makefile runs pdflatex twice (for TOC) and copies the output to `Math104-Not
 ## Conventions
 
 - Each lecture is one `\section{}` with subsections as needed
-- Every section/subsection gets a baby blue `summarybox` at the top
+- **Orange `lecturesummary`** at the start of each lecture (high-level overview of entire lecture)
+- **Baby blue `summarybox`** at the start of each subsection (detailed section overview)
 - Definitions use `\defn{}` for key terms (renders red bold)
 - Theorem numbering: X.Y where X = section, Y = counter
+
+### Lecture Structure
+
+```latex
+\section{Lecture X : Date}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:} [High-level summary of entire lecture...]
+\end{lecturesummary}
+
+\subsection{Topic Name}
+
+\begin{summarybox}
+\textbf{Section Overview:} [Detailed section summary...]
+\end{summarybox}
+
+% Content...
+```
