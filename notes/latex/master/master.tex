@@ -12,6 +12,7 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+\usepackage{tikz}
 \usepackage{subfiles}
 
 % Baby blue section summary box
@@ -32,6 +33,19 @@
 \newtcolorbox{lecturesummary}{
     colback=lectureorange!30,
     colframe=lectureorange!80,
+    boxrule=1pt,
+    arc=3pt,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt
+}
+
+% Light red note box
+\definecolor{lightred}{RGB}{255, 180, 180}
+\newtcolorbox{notebox}{
+    colback=lightred!30,
+    colframe=lightred!80,
     boxrule=1pt,
     arc=3pt,
     left=8pt,
@@ -90,9 +104,10 @@
 
 % Lecture 1
 \subfile{../lec01/lec01}
+\newpage
 
 % Lecture 2
-% \subfile{../lec02/lec02}
+\subfile{../lec02/lec02}
 
 % Lecture 3
 % \subfile{../lec03/lec03}
