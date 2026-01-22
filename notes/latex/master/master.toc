@@ -1,3 +1,0 @@
-\contentsline {section}{\numberline {1}Lecture 1: January 20, 2026}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Ordered sets and the least-upper-bound property}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Fields}{4}{subsection.1.2}%
