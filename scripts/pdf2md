@@ -1,0 +1,38 @@
+#!/bin/bash
+# Wrapper script for pdf_to_markdown.py
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check for dependencies
+check_deps() {
+    local missing=()
+
+    if ! command -v tesseract &> /dev/null; then
+        missing+=("tesseract-ocr")
+    fi
+
+    if ! command -v pdftoppm &> /dev/null; then
+        missing+=("poppler-utils")
+    fi
+
+    if [ ${#missing[@]} -ne 0 ]; then
+        echo "Missing system dependencies: ${missing[*]}"
+        echo "Install with: sudo apt install ${missing[*]}"
+        exit 1
+    fi
+}
+
+# Check Python dependencies
+check_python_deps() {
+    python3 -c "import fitz, pdf2image, pytesseract, PIL" 2>/dev/null
+    if [ $? -ne 0 ]; then
+        echo "Missing Python dependencies."
+        echo "Install with: pip install -r $SCRIPT_DIR/requirements.txt"
+        exit 1
+    fi
+}
+
+check_deps
+check_python_deps
+
+python3 "$SCRIPT_DIR/pdf_to_markdown.py" "$@"

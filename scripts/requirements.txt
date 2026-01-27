@@ -1,0 +1,5 @@
+# PDF to Markdown converter dependencies
+pdf2image>=1.16.0
+pytesseract>=0.3.10
+pymupdf>=1.23.0
+Pillow>=10.0.0
