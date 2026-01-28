@@ -17,3 +17,4 @@
 \contentsline {subsection}{\numberline {3.3}Cardinality}{13}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Unions and Intersections of Sets}{14}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}The (Un)countability of Number Systems}{15}{subsection.3.5}%
+\contentsline {section}{Index of Definitions}{18}{theorem.3.18}%

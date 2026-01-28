@@ -14,6 +14,8 @@
 \usepackage{tcolorbox}
 \usepackage{tikz}
 \usepackage{subfiles}
+\usepackage{makeidx}
+\makeindex
 
 % Baby blue section summary box
 \definecolor{babyblue}{RGB}{173, 216, 230}
@@ -54,8 +56,8 @@
     bottom=6pt
 }
 
-% Colored bold for definitions
-\newcommand{\defn}[1]{\textcolor{red}{\textbf{#1}}}
+% Colored bold for definitions (also adds to index)
+\newcommand{\defn}[1]{\textcolor{red}{\textbf{#1}}\index{#1}}
 
 % Theorem environments
 \theoremstyle{plain}
@@ -114,5 +116,9 @@
 \subfile{../lec03/lec03}
 
 % Add more lectures as needed...
+
+\newpage
+\addcontentsline{toc}{section}{Index of Definitions}
+\printindex
 
 \end{document}

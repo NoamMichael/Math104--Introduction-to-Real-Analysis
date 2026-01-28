@@ -6,6 +6,7 @@ all: master
 # Build master.pdf and copy to root directory
 master:
 	cd notes/latex/master && pdflatex -interaction=nonstopmode master.tex
+	cd notes/latex/master && makeindex master.idx
 	cd notes/latex/master && pdflatex -interaction=nonstopmode master.tex
 	cp notes/latex/master/master.pdf ./Math104-Notes.pdf
 
@@ -22,3 +23,6 @@ clean:
 	find notes/latex -name "*.fls" -delete
 	find notes/latex -name "*.fdb_latexmk" -delete
 	find notes/latex -name "*.synctex.gz" -delete
+	find notes/latex -name "*.idx" -delete
+	find notes/latex -name "*.ind" -delete
+	find notes/latex -name "*.ilg" -delete

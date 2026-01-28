@@ -1,10 +1,17 @@
 # Fdb version 4
-["pdflatex"] 1769549685.01171 "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.tex" "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.pdf" "lec03" 1769549685.80526 0
+["makeindex /home/noam_michael/classes/math104/notes/latex/lec03/lec03.idx"] 1769576826.34012 "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.idx" "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.ind" "/home/noam_michael/classes/math104/notes/latex/lec03/lec03" 1769576828.21904 0
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.idx" 1769576828.12398 947 852fefbf5829c4242530a124c07205dd "pdflatex"
+  (generated)
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.ilg"
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.ind"
+  (rewritten before read)
+["pdflatex"] 1769576826.59076 "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.tex" "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.pdf" "lec03" 1769576828.21927 0
   "/etc/texmf/web2c/texmf.cnf" 1768933707.44963 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/noam_michael/classes/math104/notes/latex/lec03/../master/master.tex" 1769547153.36787 2475 fddb9adb220196b8fb8527fba4013654 ""
-  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.aux" 1769549685.74534 932 efcc4a4be1aa83bc6e641a704d6e23c8 "pdflatex"
-  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.out" 1769549685.74534 1063 41a9295611734e4f0a17e4b2a2fdb009 "pdflatex"
-  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.tex" 1769549684.46832 16706 b14e41037a6c53cb6ceb092fbb76d06f ""
+  "/home/noam_michael/classes/math104/notes/latex/lec03/../master/master.tex" 1769576664.26142 2613 7f2b61f152ce79cdddd03cd330d69ebc ""
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.aux" 1769576828.12398 932 efcc4a4be1aa83bc6e641a704d6e23c8 "pdflatex"
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.ind" 1769576826.57534 1098 e500c3151b86025ed38405e7148ec082 "makeindex /home/noam_michael/classes/math104/notes/latex/lec03/lec03.idx"
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.out" 1769576828.12398 1063 41a9295611734e4f0a17e4b2a2fdb009 "pdflatex"
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.tex" 1769550514.32477 18843 9830e622fbe5772bf12d3642a1d8f3c8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -34,6 +41,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
@@ -120,6 +128,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls" 1705352648 20144 147463a6a579f4597269ef9565205cfe ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty" 1705352648 3045 273c666a54e60b9f730964f431a56c1b ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty" 1705352648 2462 6bc53756156dbd71c1ad550d30a3b93f ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/makeidx.sty" 1705352648 1939 3225e20a81cec31e51c1e216d6385103 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo" 1705352648 8464 59874a3b0776c73e2a138b025d8473dd ""
   "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty" 1399239813 4378 f429f0da968c278653359293040a8f52 ""
@@ -175,6 +184,7 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1768933804 8215064 408edf8bb3e1ba6739c8b68298b7a42a ""
   (generated)
   "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.aux"
+  "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.idx"
   "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.log"
   "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.out"
   "/home/noam_michael/classes/math104/notes/latex/lec03/lec03.pdf"
