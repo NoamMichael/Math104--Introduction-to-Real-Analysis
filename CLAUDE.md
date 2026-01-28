@@ -10,13 +10,16 @@ math104/
 ├── Math104-Notes.pdf      # Compiled master notes (after running make)
 ├── hw/                    # Homework assignments
 ├── notes/
+│   ├── CLAUDE.md          # Dictation workflow guide
 │   ├── latex/             # LaTeX lecture notes (primary)
 │   │   ├── master/        # Master document that combines all lectures
 │   │   │   └── master.tex
 │   │   ├── lec01/         # Lecture 1: Ordered sets, LUB property, fields
 │   │   │   └── lec01.tex
-│   │   ├── lec02/         # Lecture 2: (empty)
+│   │   ├── lec02/         # Lecture 2: Construction of R, properties, C, Euclidean spaces
 │   │   │   └── lec02.tex
+│   │   ├── lec03/         # Lecture 3: Set theory, countability
+│   │   │   └── lec03.tex
 │   │   └── temp/          # Template for new lectures
 │   │       └── temp.tex
 │   └── markdown/          # Markdown notes (if any)
@@ -63,9 +66,10 @@ math104/
 |---------|--------|-------|
 | `\R`, `\N`, `\Z`, `\Q`, `\C` | Blackboard bold | Number sets |
 | `\eps` | ε | Epsilon |
-| `\defn{text}` | **red bold** | Highlight definitions |
+| `\defn{text}` | **red bold** + index entry | Highlight definitions (auto-adds to index) |
 | `lecturesummary` environment | Orange box | Lecture overview (one per lecture) |
 | `summarybox` environment | Baby blue box | Section summaries (one per subsection) |
+| `notebox` environment | Light red box | Notes to reader about techniques |
 
 ### Theorem Environments
 
@@ -86,24 +90,43 @@ make lec01
 make clean
 ```
 
-The Makefile runs pdflatex twice (for TOC) and copies the output to `Math104-Notes.pdf` in the repo root.
+The Makefile runs pdflatex, makeindex (for auto-generated index), then pdflatex again. Output goes to `Math104-Notes.pdf` in the repo root.
 
-## Course Content (Lecture 1)
+## Course Content
 
-**Section 1: Ordered Sets & LUB Property**
+### Lecture 1: Ordered Sets, LUB Property, Fields
 - Irrationality of √2 (motivation for gaps in Q)
 - Sets, subsets, binary relations
 - Partial orders, total orders, ordered sets
 - Upper/lower bounds, supremum/infimum
 - Least Upper Bound Property (LUBP) - key property of R
 - Theorem: LUBP implies GLBP
-
-**Section 1.1: Fields**
-- Groups, abelian groups
-- Fields (Q, R, C are fields; Z is not)
+- Groups, abelian groups, fields
 - Construction of N → Z → Q
-- Equivalence relations
 - Ordered fields
+
+### Lecture 2: Construction of R
+- Dedekind cuts
+- Field operations on cuts, LUBP for cuts
+- Embedding Q into R
+- Archimedean property, density of Q in R
+- Existence of nth roots
+- Decimals, ternary expansions, Cantor set
+- Complex numbers (C is not an ordered field)
+- Euclidean spaces, inner products, norms, Cauchy-Schwarz
+
+### Lecture 3: Set Theory & Countability
+- Functions, images, preimages
+- Injective, surjective, bijective
+- Cardinality, finite, infinite, countable sets
+- Z is countable, sequences
+- Infinite subsets of countable sets are countable
+- Unions/intersections, De Morgan's laws, distributive law
+- Countable unions of countable sets are countable
+- Q is countable (corollary)
+- Cantor's diagonal argument: R is uncountable
+- Algebraic vs transcendental numbers
+- Cantor set is uncountable
 
 ## Conventions
 

@@ -39,6 +39,11 @@
 - **Remarks**: `\begin{remark}...\end{remark}`
 - **Notes**: `\begin{notebox}...\end{notebox}` (for proof techniques, reader guidance)
 
+### Auto-Generated Index
+- Every `\defn{term}` automatically adds the term to the index with its page number
+- No manual glossary maintenance needed
+- Index appears at end of document as "Index of Definitions"
+
 ### Diagrams
 - Use TikZ for diagrams (Venn diagrams, grids, number lines)
 - Follow style from lec02 (Cantor set, Archimedean property diagrams)
