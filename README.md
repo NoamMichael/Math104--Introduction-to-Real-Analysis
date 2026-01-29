@@ -33,6 +33,9 @@ make clean
 | Lecture | Date | Topic |
 |---------|------|-------|
 | 1 | Jan 20 | Ordered sets, least-upper-bound property, fields |
+| 2 | Jan 22 | Construction of R, Archimedean property, Euclidean spaces |
+| 3 | Jan 24 | Set theory, countability, Cantor's diagonal argument |
+| 4 | Jan 29 | Topological spaces, metric topology, closed sets |
 
 
 ## Notes Structure
