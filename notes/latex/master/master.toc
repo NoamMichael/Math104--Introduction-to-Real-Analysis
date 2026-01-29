@@ -17,4 +17,8 @@
 \contentsline {subsection}{\numberline {3.3}Cardinality}{13}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Unions and Intersections of Sets}{14}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}The (Un)countability of Number Systems}{15}{subsection.3.5}%
-\contentsline {section}{Index of Definitions}{18}{theorem.3.18}%
+\contentsline {section}{\numberline {4}Lecture 4: January 29, 2026}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Topological Spaces}{18}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Metric Topology}{20}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Closed Sets}{22}{subsection.4.3}%
+\contentsline {section}{Index of Definitions}{26}{theorem.4.22}%
