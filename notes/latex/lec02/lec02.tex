@@ -359,29 +359,25 @@ The \defn{norm} of a vector $\vec{x}$ is defined as
     \item \defn{Positive definite:} $\|\vec{x}\| \geq 0$, with equality if and only if $\vec{x} = \vec{0}$
 \end{itemize}
 
-\begin{theorem}[Cauchy-Schwarz Inequality]
-For all $\vec{x}, \vec{y} \in \R^n$:
+\begin{theorem}[Schwarz Inequality]
+If $a_1, \ldots, a_n$ and $b_1, \ldots, b_n$ are complex numbers, then
 \[
-|\langle \vec{x}, \vec{y} \rangle| \leq \|\vec{x}\| \|\vec{y}\|
+\left| \sum_{j=1}^{n} a_j \bar{b}_j \right|^2 \leq \sum_{j=1}^{n} |a_j|^2 \sum_{j=1}^{n} |b_j|^2.
 \]
 \end{theorem}
 
 \begin{proof}
-Consider the function $f(t) = \|\vec{x} + t\vec{y}\|^2$ for $t \in \R$. By positive definiteness, $f(t) \geq 0$ for all $t$.
-
-Expanding:
+Put $A = \sum |a_j|^2$, $B = \sum |b_j|^2$, $C = \sum a_j \bar{b}_j$ (all sums run over $j = 1, \ldots, n$). If $B = 0$, then $b_1 = \cdots = b_n = 0$ and the conclusion is trivial. Assume therefore that $B > 0$. We have
+\begin{align*}
+\sum |Ba_j - Cb_j|^2 &= \sum (Ba_j - Cb_j)\overline{(Ba_j - Cb_j)} \\
+    &= B^2 \sum |a_j|^2 - B\bar{C} \sum a_j \bar{b}_j - BC \sum \bar{a}_j b_j + |C|^2 \sum |b_j|^2 \\
+    &= B^2 A - B|C|^2 \\
+    &= B(AB - |C|^2).
+\end{align*}
+Since the left side is a sum of non-negative terms, $B(AB - |C|^2) \geq 0$. Since $B > 0$, we conclude $AB - |C|^2 \geq 0$, i.e.,
 \[
-f(t) = \langle \vec{x} + t\vec{y}, \vec{x} + t\vec{y} \rangle = \|\vec{x}\|^2 + 2t\langle \vec{x}, \vec{y} \rangle + t^2\|\vec{y}\|^2
+\left| \sum a_j \bar{b}_j \right|^2 \leq \sum |a_j|^2 \sum |b_j|^2. \qedhere
 \]
-
-This is a quadratic in $t$ that is always non-negative. For a quadratic $at^2 + bt + c \geq 0$ for all $t$, the discriminant must satisfy $b^2 - 4ac \leq 0$.
-
-Here $a = \|\vec{y}\|^2$, $b = 2\langle \vec{x}, \vec{y} \rangle$, $c = \|\vec{x}\|^2$, so:
-\[
-4\langle \vec{x}, \vec{y} \rangle^2 - 4\|\vec{x}\|^2\|\vec{y}\|^2 \leq 0
-\]
-
-Therefore $\langle \vec{x}, \vec{y} \rangle^2 \leq \|\vec{x}\|^2\|\vec{y}\|^2$, and taking square roots gives the result.
 \end{proof}
 
 \end{document}

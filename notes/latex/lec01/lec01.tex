@@ -251,7 +251,11 @@ The \defn{rational numbers} are defined as:
 We can verify this is an equivalence relation: $\frac{p}{q} \sim \frac{r}{s}$ if and only if $ps = rq$.
 
 \begin{definition}
-An \defn{ordered field} is a field which is also an ordered set.
+An \defn{ordered field} is a field $F$ which is also an ordered set such that:
+\begin{enumerate}
+    \item If $x, y, z \in F$ and $y < z$, then $x + y < x + z$.
+    \item If $x, y \in F$, $x > 0$, and $y > 0$, then $xy > 0$.
+\end{enumerate}
 \end{definition}
 
 \begin{proposition}

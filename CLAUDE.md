@@ -115,7 +115,7 @@ The Makefile runs pdflatex, makeindex (for auto-generated index), then pdflatex 
 - Existence of nth roots
 - Decimals, ternary expansions, Cantor set
 - Complex numbers (C is not an ordered field)
-- Euclidean spaces, inner products, norms, Cauchy-Schwarz
+- Euclidean spaces, inner products, norms, Schwarz inequality
 
 ### Lecture 3: Set Theory & Countability
 - Functions, images, preimages
