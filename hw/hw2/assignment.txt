@@ -1,0 +1,7 @@
+Rudin Chapter 2: 6, 22, 27, 29
+
+Bonus: Kuratowski
+
+Consider the collection of all subsets of a topological space.
+The operations of taking closure and complement produce at most 14 sets.
+Show this and give an example of a subset of the reals that produces exactly 14 sets.

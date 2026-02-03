@@ -38,6 +38,37 @@ make clean
 | 4 | Jan 29 | Topological spaces, metric topology, closed sets |
 
 
+## Homework Structure
+
+```
+hw/
+├── CLAUDE.md           # AI assistant guidelines for homework help
+├── temp/               # Templates
+│   └── hw_template.tex
+├── hw1/
+│   ├── assignment.txt  # Problem numbers (Rudin 1.1, 1.5, 1.9, 1.18)
+│   ├── book_probs/     # Problem statements from textbook
+│   ├── submission/     # Completed homework (hw1.tex, hw1.pdf)
+│   └── explainers/     # Visual concept guides
+│       ├── p1/         # Rationals + irrationals
+│       ├── p2/         # Infimum/supremum duality
+│       ├── p3/         # Lexicographic order on C
+│       └── p4/         # Orthogonal vectors in R^k
+└── hw2/
+    ├── assignment.txt  # Problem numbers (Rudin 2.6, 2.22, 2.27, 2.29)
+    ├── book_probs/
+    ├── submission/
+    └── explainers/
+        ├── p1/         # Limit points, E' is closed
+        ├── p2/         # Separable metric spaces
+        ├── p3/         # Condensation points
+        └── p4/         # Open sets as disjoint segments
+```
+
+### Explainers
+
+Each problem has an optional **explainer** document with visual diagrams explaining the key concepts at an accessible level. These are study aids, not solutions.
+
 ## Notes Structure
 
 Each lecture file can be compiled standalone or as part of the master document. The notes use:

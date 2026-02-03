@@ -1,0 +1,137 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 - Homework 2}\\
+\end{center}
+
+\begin{prob}[Rudin 2.6]
+Let $E'$ be the set of all limit points of a set $E$. Prove that $E'$ is closed. Prove that $E$ and $\bar{E}$ have the same limit points. (Recall that $\bar{E} = E \cup E'$.) Do $E$ and $E'$ always have the same limit points?
+\end{prob}
+\begin{proof}
+\textbf{Part 1:} We show $E'$ is closed by showing $(E')' \subseteq E'$.
+
+Let $p \in (E')'$ and let $U$ be any neighborhood of $p$. Since $p$ is a limit point of $E'$, there exists $q \in U \cap E'$ with $q \neq p$. Since $q \neq p$, we have $d(p,q) > 0$. Let $V = U \cap B(q, d(p,q))$. Then $V$ is a neighborhood of $q$ contained in $U$, and $p \notin V$.
+
+Since $q \in E'$, the neighborhood $V$ contains some $r \in E$ with $r \neq q$. Since $r \in V$ and $p \notin V$, we have $r \neq p$. Thus $r \in U \cap E$ with $r \neq p$.
+
+Since $U$ was an arbitrary neighborhood of $p$, every neighborhood of $p$ contains a point of $E$ different from $p$. Therefore $p \in E'$, and so $(E')' \subseteq E'$. Hence $E'$ is closed.
+
+\textbf{Part 2:} We show $E' = (\bar{E})'$ by proving both inclusions.
+
+$(\subseteq)$ Let $p \in E'$. Then every neighborhood $U$ of $p$ contains some $q \in E$ with $q \neq p$. Since $E \subseteq \bar{E}$, we have $q \in \bar{E}$. Thus every neighborhood of $p$ contains a point of $\bar{E}$ different from $p$, so $p \in (\bar{E})'$.
+
+$(\supseteq)$ Let $p \in (\bar{E})'$ and let $U$ be any neighborhood of $p$. Then $U$ contains some $q \in \bar{E} = E \cup E'$ with $q \neq p$. We consider two cases.
+
+\textit{Case 1:} $q \in E$. Then $U$ contains a point of $E$ different from $p$.
+
+\textit{Case 2:} $q \in E' \setminus E$. Since $q$ is a limit point of $E$ and $q \neq p$, we have $d(p,q) > 0$. Let $V = U \cap B(q, d(p,q))$. Then $V$ is a neighborhood of $q$, so $V$ contains some $x \in E$ with $x \neq q$. Since $x \in V$ and $p \notin V$, we have $x \neq p$. Thus $x \in U \cap E$ with $x \neq p$.
+
+In either case, $U$ contains a point of $E$ different from $p$. Since $U$ was arbitrary, $p \in E'$.
+
+\textbf{Part 3:} No, $E$ and $E'$ do not always have the same limit points.
+
+Counterexample: Let $E = \{1/n : n \in \mathbb{N}\}$. Then $E' = \{0\}$, since $0$ is the only limit point of $E$. But $(E')' = \varnothing$, since a single point has no limit points. Thus $E' \neq (E')'$.
+\end{proof}
+
+\begin{prob}[Rudin 2.22]
+A metric space is called \emph{separable} if it contains a countable dense subset. Show that $\mathbb{R}^k$ is separable. \textit{Hint: Consider the set of points which have only rational coordinates.}
+\end{prob}
+\begin{proof}
+Let $\mathbb{Q}^k = \{(x_1, \ldots, x_k) : x_i \in \mathbb{Q} \text{ for all } i\}$ be the set of points in $\mathbb{R}^k$ with rational coordinates. We show $\mathbb{Q}^k$ is countable and dense in $\mathbb{R}^k$.
+
+\textbf{Countable:} $\mathbb{Q}$ is countable, and the finite Cartesian product of countable sets is countable. Thus $\mathbb{Q}^k$ is countable.
+
+\textbf{Dense:} Let $U$ be a nonempty open set in $\mathbb{R}^k$. Then $U$ contains an open ball $B(\mathbf{x}, \varepsilon)$ for some $\mathbf{x} = (x_1, \ldots, x_k) \in \mathbb{R}^k$ and $\varepsilon > 0$. By the density of $\mathbb{Q}$ in $\mathbb{R}$ (Theorem 1.20), for each $i$ there exists $q_i \in \mathbb{Q}$ with $|q_i - x_i| < \varepsilon / \sqrt{k}$. Then $\mathbf{q} = (q_1, \ldots, q_k) \in \mathbb{Q}^k$ and
+\[
+|\mathbf{q} - \mathbf{x}| = \sqrt{\sum_{i=1}^{k} (q_i - x_i)^2} < \sqrt{k \cdot \frac{\varepsilon^2}{k}} = \varepsilon.
+\]
+Thus $\mathbf{q} \in B(\mathbf{x}, \varepsilon) \subseteq U$, so $U \cap \mathbb{Q}^k \neq \varnothing$. Since every nonempty open set intersects $\mathbb{Q}^k$, we have $\overline{\mathbb{Q}^k} = \mathbb{R}^k$, so $\mathbb{Q}^k$ is dense.
+
+Therefore $\mathbb{R}^k$ is separable.
+\end{proof}
+
+\begin{prob}[Rudin 2.27]
+Define a point $p$ in a metric space $X$ to be a \emph{condensation point} of a set $E \subset X$ if every neighborhood of $p$ contains uncountably many points of $E$.
+
+Suppose $E \subset \mathbb{R}^k$, $E$ is uncountable, and let $P$ be the set of all condensation points of $E$. Prove that $P$ is perfect and that at most countably many points of $E$ are not in $P$. In other words, show that $P^c \cap E$ is at most countable. \textit{Hint: Let $\{V_n\}$ be a countable base of $\mathbb{R}^k$, let $W$ be the union of those $V_n$ for which $E \cap V_n$ is at most countable, and show that $P = W^c$.}
+\end{prob}
+\begin{proof}
+Let $\{V_n\}_{n=1}^{\infty}$ be the collection of all open balls in $\mathbb{R}^k$ with rational centers and rational radii. This collection is countable since it is indexed by $\mathbb{Q}^k \times \mathbb{Q}^+$, a finite product of countable sets. It forms a base for $\mathbb{R}^k$: every neighborhood of a point contains some $V_n$.
+
+Define
+\[
+W = \bigcup \{V_n : E \cap V_n \text{ is at most countable}\}.
+\]
+We show that $P = W^c$.
+
+$(\subseteq)$ Let $p \in P$. Then every neighborhood of $p$ contains uncountably many points of $E$. In particular, for any $V_n$ containing $p$, the set $E \cap V_n$ is uncountable, so $V_n$ does not contribute to $W$. Thus $p \notin W$, i.e., $p \in W^c$.
+
+$(\supseteq)$ Let $p \in W^c$. Then $p$ is not in any $V_n$ with $E \cap V_n$ countable, so for every $V_n$ containing $p$, the set $E \cap V_n$ is uncountable. Now let $U$ be any neighborhood of $p$. There exists $V_n$ with $p \in V_n \subseteq U$, and $E \cap V_n$ is uncountable. Since $V_n \subseteq U$, we have $E \cap U$ is uncountable. Thus $p \in P$.
+
+Therefore $P = W^c$.
+
+Now we show $P$ is perfect.
+
+\textit{$P$ is closed:} $W$ is a union of open sets, so $W$ is open. Thus $P = W^c$ is closed.
+
+\textit{$P$ has no isolated points:} Let $p \in P$ and let $U$ be a neighborhood of $p$. Since $p$ is a condensation point, $E \cap U$ is uncountable. We can write
+\[
+E \cap U = (E \cap U \cap W) \cup (E \cap U \cap P).
+\]
+Now $E \cap U \cap W \subseteq E \cap W$, and $E \cap W = \bigcup\{E \cap V_n : E \cap V_n \text{ is countable}\}$ is a countable union of countable sets, hence countable. So $E \cap U \cap W$ is countable.
+
+Since $E \cap U$ is uncountable and $E \cap U \cap W$ is countable, the set $E \cap U \cap P$ must be uncountable. In particular, it contains a point different from $p$. This point is in $P$ and in $U$, so $p$ is a limit point of $P$.
+
+Since every point of $P$ is a limit point of $P$, the set $P$ has no isolated points. Combined with $P$ being closed, $P$ is perfect.
+
+Finally, $E \setminus P = E \cap W$ is countable (as shown above), so at most countably many points of $E$ are not in $P$.
+\end{proof}
+
+\begin{prob}[Rudin 2.29]
+Prove that every open set in $\mathbb{R}^1$ is the union of an at most countable collection of disjoint segments. \textit{Hint: Use Exercise 22.}
+\end{prob}
+\begin{proof}
+Let $G \subseteq \mathbb{R}$ be open. For each $x \in G$, define the maximal interval containing $x$ as $I_x = (a_x, b_x)$, where
+\[
+a_x = \inf\{a : (a, x) \subseteq G\} \quad \text{and} \quad b_x = \sup\{b : (x, b) \subseteq G\}.
+\]
+
+\textbf{The inf and sup exist:} Since $G$ is open and $x \in G$, there exists $\varepsilon > 0$ such that $(x - \varepsilon, x + \varepsilon) \subseteq G$. Thus $(x - \varepsilon, x) \subseteq G$ and $(x, x + \varepsilon) \subseteq G$, so both sets above are non-empty. By the least upper bound property, $a_x$ and $b_x$ exist.
+
+\textbf{$I_x \subseteq G$:} Let $y \in (a_x, b_x)$. Since $y > a_x$, there exists $a < y$ with $(a, x) \subseteq G$. Since $y < b_x$, there exists $b > y$ with $(x, b) \subseteq G$. Then $(a, x) \cup \{x\} \cup (x, b) = (a, b) \subseteq G$, and since $a < y < b$, we have $y \in G$. Thus $I_x \subseteq G$.
+
+\textbf{Maximal intervals are equal or disjoint:} Suppose $I_x \cap I_y \neq \varnothing$. Then $I_x \cup I_y$ is an interval (the union of overlapping intervals is an interval) contained in $G$. Since $I_x$ is maximal and $I_x \cup I_y$ contains $x$, we have $I_x \cup I_y \subseteq I_x$, so $I_y \subseteq I_x$. By symmetry, $I_x \subseteq I_y$. Thus $I_x = I_y$.
+
+\textbf{At most countably many:} Each maximal interval is non-empty and open, so by density of $\mathbb{Q}$ in $\mathbb{R}$ (Exercise 22 shows $\mathbb{R}$ is separable), each contains a rational. Distinct maximal intervals are disjoint, so they contain distinct rationals. This defines an injection from the set of maximal intervals into $\mathbb{Q}$. Since $\mathbb{Q}$ is countable, there are at most countably many maximal intervals.
+
+\textbf{Conclusion:} The distinct maximal intervals $\{I_\alpha\}$ are disjoint, and $G = \bigcup_\alpha I_\alpha$ since every $x \in G$ is in its maximal interval $I_x$. Thus $G$ is a union of at most countably many disjoint segments.
+\end{proof}
+
+\vspace{1em}
+\newpage
+\begin{center}
+    \textbf{\Large Bonus Problem}
+\end{center}
+
+\begin{prob}[Bonus: Kuratowski's Closure-Complement Theorem]
+Consider the collection of all subsets of a topological space. The operations of taking closure and complement produce at most 14 sets. Show this and give an example of a subset of the reals that produces exactly 14 sets.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

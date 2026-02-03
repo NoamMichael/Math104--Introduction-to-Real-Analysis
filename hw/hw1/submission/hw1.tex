@@ -1,0 +1,123 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 - Homework 1}\\
+\end{center}
+
+\begin{prob}[Rudin 1.1]
+If $r$ is rational ($r \neq 0$) and $x$ is irrational, prove that $r+x$ and $rx$ are irrational.
+\end{prob}
+\begin{proof}
+\textbf{Part 1:} We show $r + x$ is irrational. Suppose for contradiction that $r + x = s$ for some $s \in \mathbb{Q}$. Then $x = s - r = s + (-r)$. Since $r \in \mathbb{Q}$, we have $-r \in \mathbb{Q}$, and since $\mathbb{Q}$ is closed under addition, $x = s + (-r) \in \mathbb{Q}$. This contradicts the assumption that $x$ is irrational.
+
+\textbf{Part 2:} We show $rx$ is irrational. Suppose for contradiction that $rx = s$ for some $s \in \mathbb{Q}$. Since $r \neq 0$ and $r \in \mathbb{Q}$, the multiplicative inverse $1/r$ exists and $1/r \in \mathbb{Q}$. Then $x = s \cdot (1/r)$, and since $\mathbb{Q}$ is closed under multiplication, $x \in \mathbb{Q}$. This contradicts the assumption that $x$ is irrational.
+\end{proof}
+
+\begin{prob}[Rudin 1.5]
+Let $A$ be a nonempty set of real numbers which is bounded below. Let $-A$ be the set of all numbers $-x$, where $x \in A$. Prove that
+\[
+\inf A = -\sup(-A).
+\]
+\end{prob}
+\begin{proof}
+Let $A \subseteq \mathbb{R}$ be nonempty and bounded below, and define $-A = \{-x : x \in A\}$. Since $A$ is nonempty and bounded below, and $\mathbb{R}$ has the GLBP, we know $b := \inf A$ exists.
+
+\textbf{Claim:} $-b = \sup(-A)$.
+
+First, we show $-b$ is an upper bound of $-A$. Since $b = \inf A$, we have $b \leq a$ for all $a \in A$. By properties of ordered fields, $-b \geq -a$ for all $a \in A$. Thus $-b \geq x$ for all $x \in -A$, so $-b$ is an upper bound of $-A$.
+
+Next, we show $-b$ is the least upper bound. Let $f$ be any lower bound of $A$. Then $-f$ is an upper bound of $-A$. Since $b = \inf A$ is the greatest lower bound, $f \leq b$, which implies $-f \geq -b$. Thus $-b$ is less than or equal to every upper bound of $-A$, so $-b = \sup(-A)$.
+
+Therefore, $\inf A = b = -(-b) = -\sup(-A)$.
+\end{proof}
+
+\begin{prob}[Rudin 1.9]
+Suppose $z = a + bi$, $w = c + di$. Define $z < w$ if $a < c$, and also if $a = c$ but $b < d$. Prove that this turns the set of all complex numbers into an ordered set. (This type of order relation is called a dictionary order, or lexicographic order, for obvious reasons.) Does this ordered set have the least-upper-bound property?
+\end{prob}
+\begin{proof}
+Let $z = a + bi$, $w = c + di$, and $u = f + gi$. Define $z \leq w$ as ``$z < w$ or $z = w$.'' We show this is a total order.
+
+\textit{Reflexive:} $z \leq z$ since $z = z$.
+
+\textit{Anti-symmetric:} Suppose $z \leq w$ and $w \leq z$. Then $a \leq c$ and $c \leq a$, so $a = c$. Since $a = c$, if $b < d$ then $z < w$, contradicting $w \leq z$. If $b > d$ then $w < z$, contradicting $z \leq w$. Therefore $b = d$, so $z = w$.
+
+\textit{Transitive:} Suppose $z \leq w$ and $w \leq u$. Then $a \leq c$ and $c \leq f$, so $a \leq f$. If $a < f$, then $z < u$, so $z \leq u$. If $a = f$, then $a = c = f$. Since $a = c$ and $z \leq w$, we have $b \leq d$. Since $c = f$ and $w \leq u$, we have $d \leq g$. Thus $b \leq g$, so $z \leq u$.
+
+\textit{Comparable:} Let $z, w$ be any two complex numbers. Since $\mathbb{R}$ is ordered, either $a \leq c$ or $a \geq c$. If $a < c$, then $z < w$, so $z \leq w$. If $a > c$, then $w < z$, so $w \leq z$. If $a = c$, then since $\mathbb{R}$ is ordered, either $b \leq d$ or $b > d$. If $b \leq d$, then $z \leq w$. If $b > d$, then $w < z$, so $w \leq z$.
+
+Thus $\mathbb{C}$ with the lexicographic order is an ordered set.
+
+\textbf{Least-upper-bound property:} No. Consider $A = \{a + bi : a \in [0,1)\}$. Then $1 + 0i$ is an upper bound of $A$, but so is $1 - i$, $1 - 2i$, and so on. Any upper bound must have real part $\geq 1$, but among those with real part exactly $1$, there is no least element (since $1 + ci > 1 + (c-1)i$ for all $c$). Thus $A$ has no least upper bound.
+\end{proof}
+
+\begin{prob}[Rudin 1.18]
+If $k \geq 2$ and $\mathbf{x} \in \mathbb{R}^k$, prove that there exists $\mathbf{y} \in \mathbb{R}^k$ such that $\mathbf{y} \neq \mathbf{0}$ but $\mathbf{x} \cdot \mathbf{y} = 0$. Is this also true if $k = 1$?
+\end{prob}
+\begin{proof}
+Let $\mathbf{x} = (x_1, x_2, \ldots, x_k)$ with $k \geq 2$. We construct $\mathbf{y} \neq \mathbf{0}$ such that $\mathbf{x} \cdot \mathbf{y} = 0$.
+
+\textbf{Case 1:} If $x_2 \neq 0$, let $\mathbf{y} = (1, -x_1/x_2, 0, \ldots, 0)$. Then $\mathbf{y} \neq \mathbf{0}$ and
+\[
+\mathbf{x} \cdot \mathbf{y} = x_1 \cdot 1 + x_2 \cdot (-x_1/x_2) + 0 + \cdots + 0 = x_1 - x_1 = 0.
+\]
+
+\textbf{Case 2:} If $x_2 = 0$, let $\mathbf{y} = (0, 1, 0, \ldots, 0)$. Then $\mathbf{y} \neq \mathbf{0}$ and
+\[
+\mathbf{x} \cdot \mathbf{y} = x_1 \cdot 0 + x_2 \cdot 1 + 0 + \cdots + 0 = 0 + 0 = 0.
+\]
+
+\textbf{For $k = 1$:} No. If $x \neq 0$ and $xy = 0$, we can divide both sides by $x$ to get $y = 0$. Thus no nonzero $y$ exists.
+\end{proof}
+
+\vspace{1em}
+\newpage
+\begin{center}
+    \textbf{\Large Bonus Problems}
+\end{center}
+
+\begin{prob}[Bonus, Rudin 1.7]
+Fix $b > 1$, $y > 0$, and prove that there is a unique real $x$ such that $b^x = y$, by completing the following outline. (This $x$ is called the logarithm of $y$ to the base $b$.)
+
+\begin{enumerate}
+    \item[(a)] For any positive integer $n$, $b^n - 1 \geq n(b-1)$.
+    \item[(b)] Hence $b - 1 \geq n(b^{1/n} - 1)$.
+    \item[(c)] If $t > 1$ and $n > (b-1)/(t-1)$, then $b^{1/n} < t$.
+    \item[(d)] If $w$ is such that $b^w < y$, then $b^{w + (1/n)} < y$ for sufficiently large $n$; to see this, apply part (c) with $t = y \cdot b^{-w}$.
+    \item[(e)] If $b^w > y$, then $b^{w - (1/n)} > y$ for sufficiently large $n$.
+    \item[(f)] Let $A$ be the set of all $w$ such that $b^w < y$, and show that $x = \sup A$ satisfies $b^x = y$.
+    \item[(g)] Prove that this $x$ is unique.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Bonus, Rudin 1.8]
+Prove that no order can be defined in the complex field that turns it into an ordered field. \textit{Hint: $-1$ is a square.}
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Bonus, Rudin 1.20]
+With reference to the Appendix, suppose that property (III) were omitted from the definition of a cut. Keep the same definitions of order and addition. Show that the resulting ordered set has the least-upper-bound property, that addition satisfies axioms (A1) to (A4) (with a slightly different zero-element!) but that (A5) fails.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}
