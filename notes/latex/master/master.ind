@@ -26,6 +26,7 @@
   \item closed, \hyperpage{22}
   \item closure, \hyperpage{22}
   \item codomain, \hyperpage{12}
+  \item compact, \hyperpage{26}
   \item complex numbers, \hyperpage{9}
   \item converges, \hyperpage{25}
   \item convex, \hyperpage{24}
@@ -61,6 +62,7 @@
 
   \indexspace
 
+  \item Heine-Borel, \hyperpage{29}
   \item Hermitian:, \hyperpage{10}
 
   \indexspace
@@ -102,6 +104,7 @@
 
   \item one-to-one, \hyperpage{12}
   \item onto, \hyperpage{12}
+  \item open cover, \hyperpage{26}
   \item open sets, \hyperpage{18}
   \item order topology, \hyperpage{19}
   \item ordered field, \hyperpage{5}
@@ -110,6 +113,7 @@
   \indexspace
 
   \item partial order, \hyperpage{3}
+  \item perfect, \hyperpage{29}
   \item Positive definite:, \hyperpage{10, 11}
   \item preimage, \hyperpage{12}
   \item product topology, \hyperpage{20}
@@ -142,5 +146,9 @@
 
   \item union, \hyperpage{14}
   \item upper bound, \hyperpage{3}
+
+  \indexspace
+
+  \item Weierstrass, \hyperpage{29}
 
 \end{theindex}

@@ -21,4 +21,8 @@
 \contentsline {subsection}{\numberline {4.1}Topological Spaces}{18}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Metric Topology}{20}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Closed Sets}{22}{subsection.4.3}%
-\contentsline {section}{Index of Definitions}{26}{theorem.4.22}%
+\contentsline {section}{\numberline {5}Lecture 5: February 3, 2026}{26}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Compactness}{26}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Subspace Topology}{26}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Perfect Sets}{29}{subsection.5.3}%
+\contentsline {section}{Index of Definitions}{31}{theorem.5.15}%

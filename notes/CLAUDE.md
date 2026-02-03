@@ -1,9 +1,18 @@
 # Lecture Dictation Guide
 
+## CRITICAL RULE
+
+**ONLY transcribe what the user dictates.** Do NOT invent content, add theorems, fill in proofs, or generate material beyond what the user provides. Wait for dictation. The only exceptions are:
+- When the user explicitly says "fill in" or "clean up my logic"
+- When the user asks for a diagram or reader's note
+- Formatting/LaTeX conversion of dictated content
+
+If the user says "New Lecture: Topic", create the lecture file structure but DO NOT fill in any content. Wait for dictation.
+
 ## Workflow
 
 1. **User provides rough notes** - markdown, shorthand, or verbal dictation
-2. **Claude converts to LaTeX** - following the style in existing lectures (lec01, lec02)
+2. **Claude converts to LaTeX** - transcribing only what is dictated, following the style in existing lectures
 
 ## Input Formats Accepted
 

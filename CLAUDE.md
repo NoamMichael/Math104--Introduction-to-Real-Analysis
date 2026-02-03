@@ -22,6 +22,8 @@ math104/
 │   │   │   └── lec03.tex
 │   │   ├── lec04/         # Lecture 4: Topological spaces, metric topology
 │   │   │   └── lec04.tex
+│   │   ├── lec05/         # Lecture 5: Compactness, Perfect Sets
+│   │   │   └── lec05.tex
 │   │   └── temp/          # Template for new lectures
 │   │       └── temp.tex
 │   └── markdown/          # Markdown notes (if any)
@@ -145,6 +147,23 @@ The Makefile runs pdflatex, makeindex (for auto-generated index), then pdflatex 
 - Boundedness (metric-dependent), convexity, convergence of sequences
 - Product topology equals metric topology on $\R^n$
 - Limit points yield infinitely many nearby points
+
+### Lecture 5: Compactness, Perfect Sets
+- Open covers, definition of compactness
+- Subspace topology
+- Compact relative to subspace iff compact relative to whole space
+- Compact subsets of metric spaces are closed
+- Closed subsets of compact sets are compact
+- Finite intersection property for compact sets
+- Nested compact sets have nonempty intersection
+- Infinite subsets of compact sets have limit points
+- Nested intervals theorem
+- Closed intervals (and boxes) are compact
+- Heine-Borel: closed and bounded $\Leftrightarrow$ compact $\Leftrightarrow$ every infinite subset has limit point (in $\R^n$)
+- Weierstrass: bounded infinite subsets have limit points
+- Perfect sets: closed with no isolated points
+- Nonempty perfect subsets of $\R^n$ are uncountable
+- Cantor set is perfect
 
 ## Conventions
 
