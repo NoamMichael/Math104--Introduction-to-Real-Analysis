@@ -1,154 +1,160 @@
 \begin{theindex}
 
-  \item $\varepsilon $-open ball, \hyperpage{20}
+  \item $\varepsilon $-open ball, \hyperpage{21}
 
   \indexspace
 
-  \item abelian group, \hyperpage{5}
-  \item Absolute homogeneity:, \hyperpage{11}
-  \item algebraic number, \hyperpage{17}
-  \item arranged in a sequence, \hyperpage{13}
+  \item abelian group, \hyperpage{6}
+  \item Absolute homogeneity:, \hyperpage{12}
+  \item algebraic number, \hyperpage{18}
+  \item arranged in a sequence, \hyperpage{14}
 
   \indexspace
 
-  \item basis, \hyperpage{19}
-  \item bijective, \hyperpage{12}
-  \item Bilinear:, \hyperpage{10}
-  \item binary operation, \hyperpage{4}
-  \item binary relation, \hyperpage{3}
-  \item bounded, \hyperpage{24}
+  \item basis, \hyperpage{20}
+  \item bijective, \hyperpage{13}
+  \item Bilinear:, \hyperpage{11}
+  \item binary operation, \hyperpage{5}
+  \item binary relation, \hyperpage{4}
+  \item bounded, \hyperpage{25}
 
   \indexspace
 
-  \item Cantor set, \hyperpage{9}
-  \item Cantor's diagonal argument, \hyperpage{17}
-  \item cardinality, \hyperpage{13}
-  \item closed, \hyperpage{22}
-  \item closure, \hyperpage{22}
-  \item codomain, \hyperpage{12}
-  \item compact, \hyperpage{26}
-  \item complex numbers, \hyperpage{9}
-  \item converges, \hyperpage{25}
-  \item convex, \hyperpage{24}
-  \item countable, \hyperpage{13}
-  \item cut, \hyperpage{6}
+  \item Cantor set, \hyperpage{10}
+  \item Cantor's diagonal argument, \hyperpage{18}
+  \item cardinality, \hyperpage{14}
+  \item closed, \hyperpage{23}
+  \item closure, \hyperpage{23}
+  \item codomain, \hyperpage{13}
+  \item compact, \hyperpage{27}
+  \item complex numbers, \hyperpage{10}
+  \item connected, \hyperpage{32}
+  \item continuous, \hyperpage{33}
+  \item continuous at $\alpha $, \hyperpage{33}
+  \item converges, \hyperpage{26}
+  \item convex, \hyperpage{25}
+  \item countable, \hyperpage{14}
+  \item cut, \hyperpage{7}
 
   \indexspace
 
-  \item diagonal argument, \hyperpage{15}
-  \item discrete topology, \hyperpage{18}
-  \item domain, \hyperpage{12}
+  \item diagonal argument, \hyperpage{16}
+  \item discrete topology, \hyperpage{19}
+  \item domain, \hyperpage{13}
 
   \indexspace
 
-  \item empty set, \hyperpage{3}
-  \item equivalence relation, \hyperpage{5}
-  \item Euclidean metric, \hyperpage{20}
-  \item Euclidean space, \hyperpage{10}
-  \item Euclidean topology, \hyperpage{20}
+  \item empty set, \hyperpage{4}
+  \item equivalence relation, \hyperpage{6}
+  \item Euclidean metric, \hyperpage{21}
+  \item Euclidean space, \hyperpage{11}
+  \item Euclidean topology, \hyperpage{21}
 
   \indexspace
 
-  \item field, \hyperpage{5}
-  \item finite, \hyperpage{13}
-  \item finite-complement topology, \hyperpage{19}
-  \item function, \hyperpage{12}
+  \item field, \hyperpage{6}
+  \item finite, \hyperpage{14}
+  \item finite-complement topology, \hyperpage{20}
+  \item function, \hyperpage{13}
 
   \indexspace
 
-  \item greatest lower bound, \hyperpage{4}
-  \item greatest lower bound property, \hyperpage{4}
-  \item group, \hyperpage{4}
+  \item greatest lower bound, \hyperpage{5}
+  \item greatest lower bound property, \hyperpage{5}
+  \item group, \hyperpage{5}
 
   \indexspace
 
-  \item Heine-Borel, \hyperpage{29}
-  \item Hermitian:, \hyperpage{10}
+  \item Heine-Borel, \hyperpage{30}
+  \item Hermitian:, \hyperpage{11}
+  \item homeomorphism, \hyperpage{34}
 
   \indexspace
 
-  \item image, \hyperpage{12}
-  \item infimum, \hyperpage{4}
-  \item infinite, \hyperpage{13}
-  \item infinitely large, \hyperpage{7}
-  \item infinitesimals, \hyperpage{7}
-  \item injective, \hyperpage{12}
-  \item inner product, \hyperpage{10}
-  \item integers, \hyperpage{5}
-  \item intersection, \hyperpage{14}
-  \item isolated points, \hyperpage{24}
+  \item image, \hyperpage{13}
+  \item infimum, \hyperpage{5}
+  \item infinite, \hyperpage{14}
+  \item infinitely large, \hyperpage{8}
+  \item infinitesimals, \hyperpage{8}
+  \item injective, \hyperpage{13}
+  \item inner product, \hyperpage{11}
+  \item integers, \hyperpage{6}
+  \item intersection, \hyperpage{15}
+  \item isolated points, \hyperpage{25}
 
   \indexspace
 
-  \item least upper bound, \hyperpage{3}
-  \item least upper bound property, \hyperpage{4}
-  \item limit point, \hyperpage{23}
-  \item limit points, \hyperpage{23}
-  \item lower bound, \hyperpage{3}
+  \item least upper bound, \hyperpage{4}
+  \item least upper bound property, \hyperpage{5}
+  \item limit point, \hyperpage{24}
+  \item limit points, \hyperpage{24}
+  \item lower bound, \hyperpage{4}
 
   \indexspace
 
-  \item member, \hyperpage{3}
-  \item metric, \hyperpage{20}
-  \item metric topology, \hyperpage{20}
-  \item mutual subset argument, \hyperpage{14}
+  \item member, \hyperpage{4}
+  \item metric, \hyperpage{21}
+  \item metric topology, \hyperpage{21}
+  \item mutual subset argument, \hyperpage{15}
 
   \indexspace
 
-  \item natural numbers, \hyperpage{5}
-  \item neighborhood, \hyperpage{22}
-  \item non-empty, \hyperpage{3}
-  \item norm, \hyperpage{11}
+  \item natural numbers, \hyperpage{6}
+  \item neighborhood, \hyperpage{23}
+  \item non-empty, \hyperpage{4}
+  \item norm, \hyperpage{12}
 
   \indexspace
 
-  \item one-to-one, \hyperpage{12}
-  \item onto, \hyperpage{12}
-  \item open cover, \hyperpage{26}
-  \item open sets, \hyperpage{18}
-  \item order topology, \hyperpage{19}
-  \item ordered field, \hyperpage{5}
-  \item ordered set, \hyperpage{3}
+  \item one-to-one, \hyperpage{13}
+  \item onto, \hyperpage{13}
+  \item open cover, \hyperpage{27}
+  \item open sets, \hyperpage{19}
+  \item order topology, \hyperpage{20}
+  \item ordered field, \hyperpage{6}
+  \item ordered set, \hyperpage{4}
 
   \indexspace
 
-  \item partial order, \hyperpage{3}
-  \item perfect, \hyperpage{29}
-  \item Positive definite:, \hyperpage{10, 11}
-  \item preimage, \hyperpage{12}
-  \item product topology, \hyperpage{20}
-  \item proper subset, \hyperpage{3}
+  \item partial order, \hyperpage{4}
+  \item perfect, \hyperpage{30}
+  \item Positive definite:, \hyperpage{11, 12}
+  \item preimage, \hyperpage{13}
+  \item product topology, \hyperpage{21}
+  \item proper subset, \hyperpage{4}
 
   \indexspace
 
-  \item range, \hyperpage{12}
-  \item rational numbers, \hyperpage{5}
+  \item range, \hyperpage{13}
+  \item rational numbers, \hyperpage{6}
 
   \indexspace
 
-  \item sequence, \hyperpage{13}
-  \item Sesquilinear:, \hyperpage{10}
-  \item set difference, \hyperpage{13}
-  \item subset, \hyperpage{3}
-  \item supremum, \hyperpage{3}
-  \item surjective, \hyperpage{12}
-  \item Symmetric:, \hyperpage{10}
+  \item separated, \hyperpage{32}
+  \item sequence, \hyperpage{14}
+  \item Sesquilinear:, \hyperpage{11}
+  \item set difference, \hyperpage{14}
+  \item subset, \hyperpage{4}
+  \item supremum, \hyperpage{4}
+  \item surjective, \hyperpage{13}
+  \item Symmetric:, \hyperpage{11}
 
   \indexspace
 
-  \item topology, \hyperpage{18}
-  \item topology generated by $\mathcal  {B}$, \hyperpage{19}
-  \item total order, \hyperpage{3}
-  \item transcendental, \hyperpage{17}
-  \item Triangle inequality:, \hyperpage{11}
+  \item topology, \hyperpage{19}
+  \item topology generated by $\mathcal  {B}$, \hyperpage{20}
+  \item total order, \hyperpage{4}
+  \item transcendental, \hyperpage{18}
+  \item Triangle inequality:, \hyperpage{12}
 
   \indexspace
 
-  \item union, \hyperpage{14}
-  \item upper bound, \hyperpage{3}
+  \item uniformly continuous, \hyperpage{35}
+  \item union, \hyperpage{15}
+  \item upper bound, \hyperpage{4}
 
   \indexspace
 
-  \item Weierstrass, \hyperpage{29}
+  \item Weierstrass, \hyperpage{30}
 
 \end{theindex}

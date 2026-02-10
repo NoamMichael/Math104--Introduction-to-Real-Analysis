@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex master.idx"] 1770155530.30951 "master.idx" "master.ind" "master" 1770155532.48376 0
-  "master.idx" 1770155532.39176 3757 ed02b9f2c6f064582412ffbd1c471905 "pdflatex"
+["makeindex master.idx"] 1770759604.75926 "master.idx" "master.ind" "master" 1770759606.59172 0
+  "master.idx" 1770759606.51787 3963 21a1b39add93463d4eb59be4c4016005 "pdflatex"
   (generated)
   "master.ilg"
   "master.ind"
   (rewritten before read)
-["pdflatex"] 1770155530.39695 "/home/noam_michael/classes/math104/notes/latex/master/master.tex" "master.pdf" "master" 1770155532.48391 0
+["pdflatex"] 1770759604.862 "/home/noam_michael/classes/math104/notes/latex/master/master.tex" "master.pdf" "master" 1770759606.59186 0
   "../lec01/../lec01/lec01.tex" 1769795811.18731 11999 33667f869c8f9f5c8cfdeb387643c929 ""
   "../lec01/lec01.tex" 1769795811.18731 11999 33667f869c8f9f5c8cfdeb387643c929 ""
   "../lec02/../lec02/lec02.tex" 1769796167.65532 15262 966a75b8f5f296e2ed9cbaaca0b81bd3 ""
@@ -14,10 +14,12 @@
   "../lec03/lec03.tex" 1769795810.99131 18843 6a30377cb2b3d746de18891c8b12f8a2 ""
   "../lec04/../lec04/lec04.tex" 1769796389.60054 25978 168329154d34d6c57f2ff349dfa0dcf0 ""
   "../lec04/lec04.tex" 1769796389.60054 25978 168329154d34d6c57f2ff349dfa0dcf0 ""
-  "../lec05/../lec05/lec05.tex" 1770155286.39695 16575 4ec1e0da4a333a3b7777a0b9b21df584 ""
-  "../lec05/lec05.tex" 1770155286.39695 16575 4ec1e0da4a333a3b7777a0b9b21df584 ""
+  "../lec05/../lec05/lec05.tex" 1770156018.68614 17708 f8902df1caed4819f5fec5145c56494a ""
+  "../lec05/lec05.tex" 1770156018.68614 17708 f8902df1caed4819f5fec5145c56494a ""
+  "../lec06/../lec06/lec06.tex" 1770759499.54183 10366 b6c92e0ad172d38a2f5e871b366aea72 ""
+  "../lec06/lec06.tex" 1770759499.54183 10366 b6c92e0ad172d38a2f5e871b366aea72 ""
   "/etc/texmf/web2c/texmf.cnf" 1768933707.44963 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/noam_michael/classes/math104/notes/latex/master/master.tex" 1770151520.73335 2684 30856a13c05d17b57794c749563880ca ""
+  "/home/noam_michael/classes/math104/notes/latex/master/master.tex" 1770757216.1205 2733 cb93e5628a7b7ac6490e80fb1c58a948 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -198,11 +200,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1768933733.31056 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1768933804 8215064 408edf8bb3e1ba6739c8b68298b7a42a ""
-  "master.aux" 1770155532.39176 3720 9a1084740b95a1c139954174294e9b53 "pdflatex"
-  "master.ind" 1770155530.39021 3774 8d33d32f06c23d5f1da29a9e41e4521f "makeindex master.idx"
-  "master.out" 1770155532.39176 4636 b2ac58c82ecb27797c2635bf8474a7b4 "pdflatex"
-  "master.tex" 1770151520.73335 2684 30856a13c05d17b57794c749563880ca ""
-  "master.toc" 1770155532.39176 2406 b016e2160b31cf6f58abde0f3e528239 "pdflatex"
+  "master.aux" 1770759606.51787 4256 e38dae623dea6efef4024d617870f0f9 "pdflatex"
+  "master.ind" 1770759604.8537 3965 49d3aef7c4f8ec057d187cfd203bb9ea "makeindex master.idx"
+  "master.out" 1770759606.51787 5431 1599e020ee68abac0eba0d36df2b7b10 "pdflatex"
+  "master.tex" 1770757216.1205 2733 cb93e5628a7b7ac6490e80fb1c58a948 ""
+  "master.toc" 1770759606.51787 2778 626f657b23482ff2a8b6867c604c970c "pdflatex"
   (generated)
   "master.aux"
   "master.idx"

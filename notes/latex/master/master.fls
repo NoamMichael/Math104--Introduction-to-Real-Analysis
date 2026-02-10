@@ -288,8 +288,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-OUTPUT master.toc
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+OUTPUT master.toc
 INPUT ../lec01/lec01.tex
 INPUT ../lec01/lec01.tex
 INPUT ../lec01/../lec01/lec01.tex
@@ -333,6 +333,12 @@ INPUT ../lec05/../lec05/lec05.tex
 INPUT ../lec05/lec05.tex
 INPUT ../lec05/lec05.tex
 INPUT ../lec05/../lec05/lec05.tex
+INPUT ../lec06/lec06.tex
+INPUT ../lec06/lec06.tex
+INPUT ../lec06/../lec06/lec06.tex
+INPUT ../lec06/lec06.tex
+INPUT ../lec06/lec06.tex
+INPUT ../lec06/../lec06/lec06.tex
 INPUT ./master.ind
 INPUT ./master.ind
 INPUT master.ind
