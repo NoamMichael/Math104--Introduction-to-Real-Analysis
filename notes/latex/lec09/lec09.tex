@@ -13,10 +13,14 @@
 \section{Lecture \lecturenum : \lecturedate}
 
 \begin{lecturesummary}
-\textbf{Lecture Overview:} [High-level summary of the entire lecture. What are the main goals? What key concepts are introduced? How do they connect to the bigger picture of the course?]
+\textbf{Lecture Overview:} This lecture introduces series as a special type of sequence (partial sums) and develops the main convergence tests. We review the Cauchy criterion and monotonic sequences, then establish the comparison test and Cauchy condensation test. We study key examples: the geometric series, $p$-series, and the harmonic series. We define the number $e = \sum 1/n!$, prove it converges, and show $e$ is irrational. Finally, we develop the root and ratio tests for convergence.
 \end{lecturesummary}
 
 \subsection{Series}
+
+\begin{summarybox}
+\textbf{Section Overview:} A series is defined as the sequence of partial sums of a given sequence. Convergence of a series means convergence of its partial sums.
+\end{summarybox}
 
 Given a sequence $\{a_n\}$, we can consider the \defn{partial sums} $\{s_n\}$ where
 \[
@@ -29,6 +33,10 @@ s = \sum_{n=1}^{\infty} a_n,
 that is, if $s_n \to s$, i.e.\ the partial sums converge. This means that many of the same properties of sequences apply to series.
 
 \subsection{Review: Cauchy Sequences}
+
+\begin{summarybox}
+\textbf{Section Overview:} The Cauchy criterion lets us test convergence without knowing the limit. For series, the Cauchy condition on partial sums reduces to bounding tail sums $\left|\sum_{k=n+1}^{m} a_k\right| < \eps$.
+\end{summarybox}
 
 Last time we discussed Cauchy sequences: a sequence $\{s_n\}$ converges if and only if for every $\eps > 0$ there exists $N \in \N$ such that for all $m, n \geq N$,
 \[
@@ -45,6 +53,10 @@ Without loss of generality we can assume $m > n$. Then
 \]
 
 \subsection{Monotonic Sequences}
+
+\begin{summarybox}
+\textbf{Section Overview:} Monotonic sequences converge if and only if they are bounded. For series with non-negative terms, the partial sums are monotonically increasing, so convergence reduces to showing boundedness. A key corollary: if a series converges, its terms must tend to zero.
+\end{summarybox}
 
 \begin{definition}
 A monotonic sequence converges if and only if it is bounded.
@@ -68,6 +80,10 @@ The \defn{harmonic series}
 \end{example}
 
 \subsection{Comparison Tests for Convergence}
+
+\begin{summarybox}
+\textbf{Section Overview:} The comparison test establishes convergence or divergence by comparing a series term-by-term against a known series. The Cauchy condensation test is a powerful refinement: for decreasing non-negative sequences, $\sum a_n$ converges iff $\sum 2^k a_{2^k}$ converges, reducing many problems to geometric series.
+\end{summarybox}
 
 \begin{theorem}
 Given two sequences $\{a_n\}$ and $\{c_n\}$:
@@ -117,6 +133,10 @@ So if $\sum a_n$ converges (i.e.\ the partial sums are bounded), then $\sum 2^k 
 \end{proof}
 
 \subsection{Special Series}
+
+\begin{summarybox}
+\textbf{Section Overview:} Three important families of series: the geometric series $\sum x^n$ (converges iff $|x| < 1$ to $1/(1-x)$), the $p$-series $\sum 1/n^p$ (converges iff $p > 1$), and the series $\sum 1/(n(\log n)^p)$ (converges iff $p > 1$). The latter two are proved elegantly via Cauchy condensation.
+\end{summarybox}
 
 \begin{definition}
 The \defn{geometric series} is
@@ -179,6 +199,10 @@ converges. Since $p > 1$, the $p$-series $\sum \frac{1}{k^p}$ converges, so the 
 
 \subsection{The Number $e$}
 
+\begin{summarybox}
+\textbf{Section Overview:} We define $e = \sum 1/n!$, prove the series converges by comparison with the geometric series, and show $e$ is irrational via a clever argument: assuming $e = p/q$ leads to a positive integer strictly less than 1, a contradiction.
+\end{summarybox}
+
 \begin{definition}
 We define the number $\defn{$e$}$ by
 \[
@@ -221,6 +245,10 @@ So $q!(e - s_q)$ is a positive integer that is at most $\frac{1}{q} \leq 1$. Sin
 \end{proof}
 
 \subsection{Root and Ratio Tests}
+
+\begin{summarybox}
+\textbf{Section Overview:} The root test uses $\limsup \sqrt[n]{|a_n|}$ and the ratio test uses $\limsup |a_{n+1}/a_n|$ to determine convergence by comparison with geometric series. Both are inconclusive when the limit is 1. The root test is at least as powerful as the ratio test.
+\end{summarybox}
 
 \begin{theorem}[Root Test]
 Given $\sum a_n$, let $\alpha = \limsup_{n \to \infty} \sqrt[n]{|a_n|}$. Then:
