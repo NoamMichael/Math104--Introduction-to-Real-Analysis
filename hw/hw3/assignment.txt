@@ -1,0 +1,9 @@
+Rudin p. 98 - 99
+
+2, 3, 7
+
+Bonus: 5
+
+Bonus: Prove that the two definitions of connectedness are equivalent.
+
+(E is NOT a union of two nonempty separated sets v.s. E is NOT a union of two nonempty disjoint sets open relative to E)

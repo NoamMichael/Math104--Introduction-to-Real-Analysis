@@ -1,0 +1,148 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 - Homework 3}\\
+\end{center}
+
+\begin{prob}[Rudin 4.2]
+If $f$ is a continuous mapping of a metric space $X$ into a metric space $Y$, prove that
+\[
+f(\overline{E}) \subset \overline{f(E)}
+\]
+for every set $E \subset X$. ($\overline{E}$ denotes the closure of $E$.) Show, by an example, that the converse is not necessarily true.
+\end{prob}
+\begin{proof}
+Let $p \in \overline{E}$. We show $f(p) \in \overline{f(E)}$ by showing every neighborhood of $f(p)$ intersects $f(E)$.
+
+Let $V$ be any neighborhood of $f(p)$ in $Y$. Since $f$ is continuous, $f^{-1}(V)$ is open in $X$ and contains $p$. Since $p \in \overline{E}$, every open set containing $p$ intersects $E$. Thus there exists $q \in E \cap f^{-1}(V)$. Then $f(q) \in f(E) \cap V$, so $V$ intersects $f(E)$.
+
+Since every neighborhood of $f(p)$ intersects $f(E)$, we have $f(p) \in \overline{f(E)}$. Since $p \in \overline{E}$ was arbitrary, $f(\overline{E}) \subset \overline{f(E)}$.
+
+\textbf{Counterexample for the converse:} Let $X = Y = \mathbb{R}$ with the standard metric, and define $f(x) = \frac{1}{1 + x^2}$. Let $E = \mathbb{Z}$. Then $\overline{E} = \mathbb{Z}$ (since $\mathbb{Z}$ is closed), so
+\[
+f(\overline{E}) = f(\mathbb{Z}) = \left\{\frac{1}{1+n^2} : n \in \mathbb{Z}\right\}.
+\]
+Since $\frac{1}{1+n^2} \to 0$ as $|n| \to \infty$, we have $0 \in \overline{f(E)}$. But $f(x) = \frac{1}{1+x^2} > 0$ for all $x \in \mathbb{R}$, so $0 \notin f(\mathbb{R}) \supset f(\overline{E})$. Therefore $\overline{f(E)} \not\subset f(\overline{E})$.
+\end{proof}
+
+\begin{prob}[Rudin 4.3]
+Let $f$ be a continuous real function on a metric space $X$. Let $Z(f)$ (the \textit{zero set} of $f$) be the set of all $p \in X$ at which $f(p) = 0$. Prove that $Z(f)$ is closed.
+\end{prob}
+\begin{proof}
+We show $Z(f)^c$ is open. Let $p \notin Z(f)$, so $f(p) \neq 0$. Let $\varepsilon = |f(p)| > 0$. Since $f$ is continuous, there exists $\delta > 0$ such that $d_X(x, p) < \delta$ implies $|f(x) - f(p)| < \varepsilon$.
+
+For any $x \in B(p, \delta)$, the triangle inequality gives
+\[
+|f(x)| \geq |f(p)| - |f(x) - f(p)| > \varepsilon - \varepsilon = 0,
+\]
+so $f(x) \neq 0$, meaning $x \notin Z(f)$. Thus $B(p, \delta) \subset Z(f)^c$.
+
+Since every point of $Z(f)^c$ has a neighborhood contained in $Z(f)^c$, the set $Z(f)^c$ is open, and therefore $Z(f)$ is closed.
+\end{proof}
+
+\begin{prob}[Rudin 4.7]
+Define $f$ and $g$ on $\mathbb{R}^2$ by: $f(0,0) = g(0,0) = 0$, and
+\[
+f(x,y) = \frac{xy^2}{x^2 + y^4}, \quad g(x,y) = \frac{xy^2}{x^2 + y^6} \quad \text{if } (x,y) \neq (0,0).
+\]
+Prove that $f$ is bounded on $\mathbb{R}^2$, that $g$ is unbounded in every neighborhood of $(0,0)$, and that $f$ is not continuous at $(0,0)$; nevertheless, the restrictions of both $f$ and $g$ to every straight line in $\mathbb{R}^2$ are continuous.
+\end{prob}
+\begin{proof}
+\textbf{$f$ is bounded.} At $(0,0)$, $f = 0$. For $(x,y) \neq (0,0)$: if $xy = 0$, then $f(x,y) = 0$. If $xy \neq 0$, by AM-GM,
+\[
+x^2 + y^4 \geq 2\sqrt{x^2 \cdot y^4} = 2|x|y^2,
+\]
+so
+\[
+|f(x,y)| = \frac{|x|y^2}{x^2 + y^4} \leq \frac{|x|y^2}{2|x|y^2} = \frac{1}{2}.
+\]
+Thus $|f(x,y)| \leq \frac{1}{2}$ for all $(x,y) \in \mathbb{R}^2$.
+
+\textbf{$g$ is unbounded in every neighborhood of $(0,0)$.} Along the curve $x = y^3$ with $y > 0$:
+\[
+g(y^3, y) = \frac{y^3 \cdot y^2}{y^6 + y^6} = \frac{y^5}{2y^6} = \frac{1}{2y}.
+\]
+For any $\delta > 0$, choose $y > 0$ small enough that $|(y^3, y)| = \sqrt{y^6 + y^2} < \delta$. Then $g(y^3, y) = \frac{1}{2y}$, which can be made arbitrarily large by taking $y$ small. Thus $g$ is unbounded in every neighborhood of $(0,0)$.
+
+\textbf{$f$ is not continuous at $(0,0)$.} Along the parabola $x = y^2$:
+\[
+f(y^2, y) = \frac{y^2 \cdot y^2}{y^4 + y^4} = \frac{y^4}{2y^4} = \frac{1}{2} \quad \text{for all } y \neq 0.
+\]
+So along this path, $f \to \frac{1}{2}$ as $(x,y) \to (0,0)$, but $f(0,0) = 0 \neq \frac{1}{2}$. Hence $f$ is not continuous at $(0,0)$.
+
+\textbf{Restrictions to straight lines are continuous.} Any line that does not pass through the origin avoids $(0,0)$, and both $f$ and $g$ are rational functions with nonzero denominators away from the origin, hence continuous there.
+
+For lines through the origin, there are three cases:
+
+\textit{Case 1: The $x$-axis ($y = 0$).} $f(x, 0) = 0$ and $g(x, 0) = 0$ for all $x$, so both restrictions are identically zero, hence continuous.
+
+\textit{Case 2: The $y$-axis ($x = 0$).} $f(0, y) = 0$ and $g(0, y) = 0$ for all $y$. Continuous.
+
+\textit{Case 3: $y = mx$ for $m \neq 0$.} For $x \neq 0$:
+\[
+f(x, mx) = \frac{x \cdot m^2 x^2}{x^2 + m^4 x^4} = \frac{m^2 x}{1 + m^4 x^2}.
+\]
+This is a continuous function of $x$ for all $x$, and as $x \to 0$ it tends to $0 = f(0,0)$. So the restriction of $f$ to $y = mx$ is continuous everywhere.
+
+Similarly:
+\[
+g(x, mx) = \frac{x \cdot m^2 x^2}{x^2 + m^6 x^6} = \frac{m^2 x}{1 + m^6 x^4}.
+\]
+This also tends to $0 = g(0,0)$ as $x \to 0$ and is continuous for all $x$. So the restriction of $g$ to $y = mx$ is continuous everywhere.
+\end{proof}
+
+\vspace{1em}
+\newpage
+\begin{center}
+    \textbf{\Large Bonus Problems}
+\end{center}
+
+
+\begin{prob}[Bonus: Equivalence of Connectedness Definitions]
+Prove that the following two definitions of connectedness are equivalent for a subset $E$ of a metric space $X$:
+\begin{enumerate}
+    \item[(i)] $E$ is \emph{not} the union of two nonempty separated sets (i.e., sets $A, B$ with $\overline{A} \cap B = \varnothing$ and $A \cap \overline{B} = \varnothing$).
+    \item[(ii)] $E$ is \emph{not} the union of two nonempty disjoint sets that are both open relative to $E$.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+We prove the contrapositive in both directions: $E$ is disconnected in sense (i) if and only if $E$ is disconnected in sense (ii).
+
+$(\text{i} \Rightarrow \text{ii})$: Suppose $E = A \cup B$ where $A, B$ are nonempty and separated, i.e., $\overline{A} \cap B = \varnothing$ and $A \cap \overline{B} = \varnothing$. Since $A \cap B \subset A \cap \overline{B} = \varnothing$, the sets $A$ and $B$ are disjoint.
+
+We show $A$ is open relative to $E$. Let $p \in A$. Since $A \cap \overline{B} = \varnothing$, we have $p \notin \overline{B}$, so there exists $\delta > 0$ such that $B(p, \delta) \cap B = \varnothing$. Then for any $x \in B(p, \delta) \cap E$, since $x \in E = A \cup B$ and $x \notin B$, we have $x \in A$. Thus $B(p, \delta) \cap E \subset A$, so $A$ is open relative to $E$.
+
+By symmetry (using $\overline{A} \cap B = \varnothing$), $B$ is open relative to $E$.
+
+$(\text{ii} \Rightarrow \text{i})$: Suppose $E = A \cup B$ where $A, B$ are nonempty, disjoint, and both open relative to $E$.
+
+Since $A$ is open relative to $E$, the set $B = E \setminus A$ is closed relative to $E$, meaning $\overline{B} \cap E \subset B$. Then
+\[
+A \cap \overline{B} \subset E \cap \overline{B} = (\overline{B} \cap E) \subset B,
+\]
+so $A \cap \overline{B} \subset A \cap B = \varnothing$.
+
+By symmetry, since $B$ is open relative to $E$, the set $A = E \setminus B$ is closed relative to $E$, so $\overline{A} \cap E \subset A$. Then
+\[
+\overline{A} \cap B \subset \overline{A} \cap E \subset A,
+\]
+so $\overline{A} \cap B \subset A \cap B = \varnothing$.
+
+Thus $A$ and $B$ are separated.
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

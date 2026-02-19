@@ -24,6 +24,8 @@ math104/
 │   │   │   └── lec04.tex
 │   │   ├── lec05/         # Lecture 5: Compactness, Perfect Sets
 │   │   │   └── lec05.tex
+│   │   ├── lec06/         # Lecture 6: Connectedness, Continuity, Uniform Continuity
+│   │   │   └── lec06.tex
 │   │   └── temp/          # Template for new lectures
 │   │       └── temp.tex
 │   └── markdown/          # Markdown notes (if any)
@@ -164,6 +166,20 @@ The Makefile runs pdflatex, makeindex (for auto-generated index), then pdflatex 
 - Perfect sets: closed with no isolated points
 - Nonempty perfect subsets of $\R^n$ are uncountable
 - Cantor set is perfect
+
+### Lecture 6: Connectedness, Continuity, Uniform Continuity
+- Separated sets: $\overline{A} \cap B = \emptyset$ and $A \cap \overline{B} = \emptyset$
+- Connected sets: cannot be split into nonempty separated parts
+- Characterization: $E \subset \R$ is connected iff it has no gaps
+- Continuity via preimages of open sets
+- Three equivalent formulations: basis, locality, $\eps$-$\delta$
+- Projection mappings, continuity of $f+g$, $f \circ g$, $f/g$
+- Homeomorphisms
+- Continuous functions preserve compactness and connectedness
+- Extreme value theorem: continuous functions on compact sets attain max and min
+- Intermediate value theorem
+- Uniform continuity, continuous functions on compact sets are uniformly continuous
+- Non-compact sets admit continuous functions that are unbounded, miss their sup, or fail uniform continuity
 
 ## Conventions
 

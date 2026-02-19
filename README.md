@@ -37,6 +37,7 @@ make clean
 | 3 | Jan 24 | Set theory, countability, Cantor's diagonal argument |
 | 4 | Jan 29 | Topological spaces, metric topology, closed sets |
 | 5 | Feb 3 | Compactness, Heine-Borel, perfect sets |
+| 6 | Feb 10 | Connectedness, continuity, uniform continuity |
 
 
 ## Homework Structure
