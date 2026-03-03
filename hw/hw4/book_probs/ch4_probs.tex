@@ -1,0 +1,65 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+
+\begin{document}
+3.55 Theorem If $\Sigma a_{n}$ is a series of complex numbers which converges absolutely, then every rearrangement of $\Sigma a_{n}$ converges, and they all converge to the same sum.
+
+Proof Let $\Sigma a_{n}^{\prime}$ be a rearrangement, with partial sums $s_{n}^{\prime}$. Given $\varepsilon>0$, there exists an integer $N$ such that $m \geq n \geq N$ implies
+
+
+\begin{equation*}
+\sum_{i=n}^{m}\left|a_{i}\right| \leq \varepsilon . \tag{26}
+\end{equation*}
+
+
+Now choose $p$ such that the integers $1,2, \ldots, N$ are all contained in the set $k_{1}, k_{2}, \ldots, k_{p}$ (we use the notation of Definition 3.52). Then if $n>p$, the numbers $a_{1}, \ldots, a_{N}$ will cancel in the difference $s_{n}-s_{n}^{\prime}$, so that $\left|s_{n}-s_{n}^{\prime}\right| \leq \varepsilon$, by (26). Hence $\left\{s_{n}^{\prime}\right\}$ converges to the same sum as $\left\{s_{n}\right\}$.
+
+\section*{EXERCISES}
+\begin{enumerate}
+  \item Prove that convergence of $\left\{s_{n}\right\}$ implies convergence of $\left\{\left|s_{n}\right|\right\}$. Is the converse true ?
+  \item Calculate $\lim _{n \rightarrow \infty}\left(\sqrt{n^{2}+n}-n\right)$.
+  \item If $s_{1}=\sqrt{2}$, and
+\end{enumerate}
+
+$$
+s_{n+1}=\sqrt{2+\sqrt{s_{n}}} \quad(n=1,2,3, \ldots)
+$$
+
+prove that $\left\{s_{n}\right\}$ converges, and that $s_{n}<2$ for $n=1,2,3 \ldots$.\\
+4. Find the upper and lower limits of the sequence $\left\{s_{n}\right\}$ defined by
+
+$$
+s_{1}=0 ; \quad s_{2 m}=\frac{s_{2 m-1}}{2} ; \quad s_{2 m+1}=\frac{1}{2}+s_{2 m}
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item For any two real sequences $\left\{a_{n}\right\},\left\{b_{n}\right\}$, prove that
+\end{enumerate}
+
+$$
+\limsup _{n \rightarrow \infty}\left(a_{n}+b_{n}\right) \leq \limsup _{n \rightarrow \infty} a_{n}+\limsup _{n \rightarrow \infty} b_{n},
+$$
+
+provided the sum on the right is not of the form $\infty-\infty$.\\
+6. Investigate the behavior (convergence or divergence) of $\Sigma a_{n}$ if\\
+(a) $a_{n}=\sqrt{n+1}-\sqrt{n}$;\\
+(b) $a_{n}=\frac{\sqrt{n+1}-\sqrt{n}}{n}$;\\
+(c) $a_{n}=(\sqrt[n]{n}-1)^{n}$;\\
+(d) $a_{n}=\frac{1}{1+z^{n}}, \quad$ for complex values of $z$.\\
+7. Prove that the convergence of $\Sigma a_{n}$ implies the convergence of
+
+$$
+\sum \frac{\sqrt{a_{n}}}{n},
+$$
+
+if $a_{n} \geq 0$.
+
+
+\end{document}

@@ -29,4 +29,12 @@
 \contentsline {subsection}{\numberline {6.1}Separated and Connected Sets}{32}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Continuous Functions}{33}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Topology of Continuous Functions}{34}{subsection.6.3}%
-\contentsline {section}{Index of Definitions}{37}{Item.72}%
+\contentsline {section}{\numberline {7}Lecture 9: February 19, 2026}{37}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Series}{37}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Review: Cauchy Sequences}{37}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Monotonic Sequences}{38}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Comparison Tests for Convergence}{38}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Special Series}{39}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}The Number $e$}{40}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Root and Ratio Tests}{41}{subsection.7.7}%
+\contentsline {section}{Index of Definitions}{43}{theorem.7.13}%

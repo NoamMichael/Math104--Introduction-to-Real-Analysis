@@ -1,0 +1,470 @@
+\documentclass[9pt,landscape]{extarticle}
+
+% Page geometry: landscape, tight margins
+\usepackage[landscape, margin=0.4in, top=0.35in, bottom=0.35in]{geometry}
+
+% Multi-column
+\usepackage{multicol}
+\setlength{\columnsep}{10pt}
+\setlength{\columnseprule}{0.4pt}
+
+% Math
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Formatting
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% Hyperref (no colored links for BW)
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\setlist{nosep, leftmargin=14pt, itemsep=2pt, parsep=1.5pt, topsep=3pt}
+
+% Sections
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt plus 1pt}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+% Theorem-like environments
+\newtheoremstyle{compact}{3.5pt}{3.5pt}{\itshape}{}{\bfseries}{.}{4pt}{}
+\theoremstyle{compact}
+\newtheorem*{thm}{Thm}
+\newtheorem*{defn}{Def}
+\newtheorem*{lem}{Lem}
+\newtheorem*{cor}{Cor}
+\newtheorem*{prop}{Prop}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textbf{Math 104 -- Midterm Cheat Sheet}}
+\rhead{Lectures 1--6}
+\cfoot{\thepage}
+
+\begin{document}
+\begin{multicols}{4}
+\raggedcolumns
+
+%==============================================================
+\section{L1: Ordered Sets, LUBP, Fields}
+%==============================================================
+
+\subsection{Orders}
+\begin{defn}
+A \textbf{partial order} $\leq$ on $S$: reflexive ($x \leq x$), anti-symmetric ($x \leq y, y \leq x \Rightarrow x = y$), transitive.
+\end{defn}
+
+\begin{defn}
+A \textbf{total order}: partial order where $\forall x,y$, $x \leq y$ or $y \leq x$. An \textbf{ordered set}: set with a total order.
+\end{defn}
+
+\subsection{Bounds \& Sup/Inf}
+\begin{defn}
+$\beta$ is an \textbf{upper bound} of $E \subset S$ if $x \leq \beta\;\forall x \in E$. \textbf{Lower bound}: $\alpha \leq x\;\forall x \in E$.
+\end{defn}
+
+\begin{defn}
+$\alpha = \sup E$ (\textbf{least upper bound}) if: (i) $\alpha$ is an upper bound of $E$, and (ii) $\gamma < \alpha \Rightarrow \gamma$ is not an upper bound. Similarly $\inf E$ (\textbf{greatest lower bound}).
+\end{defn}
+
+\textit{Key:} $\sup E$, $\inf E$ need not be in $E$. E.g.\ $\sup(0,1)=1$, $\inf(0,1)=0$.
+
+\subsection{LUBP}
+\begin{defn}
+$S$ has the \textbf{Least Upper Bound Property (LUBP)} if every nonempty subset bounded above has a supremum in $S$.
+\end{defn}
+
+$\R$ has LUBP; $\Q$ does not ($\{p \in \Q : p^2 < 2\}$ has $\sup = \sqrt{2} \notin \Q$).
+
+\begin{thm}[LUBP $\Rightarrow$ GLBP]
+If $S$ has LUBP, $B \neq \emptyset$ bounded below, $L = \{\text{lower bounds of } B\}$, then $\sup L = \inf B$.
+\end{thm}
+\textit{Proof idea:} $L \neq \emptyset$ (bounded below), $L$ bounded above by any $b \in B$. LUBP $\Rightarrow \alpha = \sup L$ exists. Show $\alpha$ is a lower bound of $B$ (since $b$ is u.b.\ of $L$, $\alpha \leq b$), and greatest (if $\gamma > \alpha$, $\gamma \notin L$).
+
+\subsection{Fields}
+\begin{defn}
+\textbf{Group} $(G,+)$: identity, inverses, associativity. \textbf{Abelian}: also commutative.
+\end{defn}
+
+\begin{defn}
+\textbf{Field}: $(F,+,\cdot)$ where $(F,+)$ abelian group (id $0$), $(F\setminus\{0\},\cdot)$ abelian group (id $1$), distributive law.
+\end{defn}
+
+\begin{defn}
+\textbf{Ordered field}: field + total order with: (i) $y < z \Rightarrow x+y < x+z$; (ii) $x>0, y>0 \Rightarrow xy > 0$.
+\end{defn}
+
+$\R$ is the unique complete ordered field. $\Q$ is an ordered field without LUBP.
+
+%==============================================================
+\section{L2: Construction of $\R$}
+%==============================================================
+
+\subsection{Dedekind Cuts}
+\begin{defn}
+A \textbf{cut} $\alpha \subset \Q$: nonempty, proper, downward closed, no max element. Ordered by $\alpha \leq \beta \Leftrightarrow \alpha \subseteq \beta$.
+\end{defn}
+
+$\alpha + \beta = \{r+s : r \in \alpha, s \in \beta\}$. $\;0^* = \{p \in \Q : p < 0\}$. Embedding: $p \mapsto p^* = \{q \in \Q : q < p\}$. $\;\sup E = \bigcup_{\alpha \in E} \alpha$.
+
+\subsection{Key Properties of $\R$}
+
+\begin{thm}[Archimedean Property]
+$\forall x,y \in \R$ with $x > 0$, $\exists n \in \N$ s.t.\ $nx > y$.
+\end{thm}
+\textit{Proof:} Contradiction. If $nx \leq y\;\forall n$, then $A = \{nx\}$ bounded above. $\alpha = \sup A$ exists. $\alpha - x < \alpha$ so $\exists mx > \alpha - x$, giving $(m+1)x > \alpha$, contradiction.
+
+\textit{Consequences:} No infinitesimals, no infinitely large elements.
+
+\begin{thm}[Density of $\Q$ in $\R$]
+$\forall a < b \in \R$, $\exists q \in \Q$ with $a < q < b$.
+\end{thm}
+\textit{Proof:} Archimedean $\Rightarrow \exists n$ with $n(b-a) > 1$. Then $\exists m \in \Z$ with $na < m < nb$, so $q = m/n$.
+
+\begin{thm}[Existence of $n$th Roots]
+$\forall x > 0$, $\forall n \in \Z_{>0}$, $\exists!\; y > 0$ with $y^n = x$.
+\end{thm}
+\textit{Proof:} Let $E = \{t > 0 : t^n < x\}$, $y = \sup E$. Show $y^n < x$ and $y^n > x$ both lead to contradictions (``supremum argument'').
+
+\subsection{Euclidean Spaces}
+$\R^n$: $n$-tuples. Inner product: $\langle \vec{x}, \vec{y}\rangle = \sum x_i y_i$. Norm: $\|\vec{x}\| = \sqrt{\sum x_i^2}$.
+
+\begin{thm}[Cauchy--Schwarz]
+$|\langle \vec{x}, \vec{y}\rangle| \leq \|\vec{x}\| \cdot \|\vec{y}\|$. Equivalently: $\left|\sum a_j \bar b_j\right|^2 \leq \sum |a_j|^2 \sum |b_j|^2$.
+\end{thm}
+
+Triangle inequality: $\|\vec{x}+\vec{y}\| \leq \|\vec{x}\| + \|\vec{y}\|$.
+
+$\C$ is \textbf{not} an ordered field ($i > 0 \Rightarrow i^2 = -1 > 0$, contradiction; similarly $i < 0$).
+
+%==============================================================
+\section{L3: Set Theory, Countability}
+%==============================================================
+
+\subsection{Functions}
+\begin{defn}
+$f: A \to B$.
+\textbf{Injective}: $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
+\textbf{Surjective}: $f(A) = B$.
+\textbf{Bijective}: both.
+\end{defn}
+
+\textbf{Image}: $f(E) = \{f(x) : x \in E\}$. \textbf{Preimage}: $f^{-1}(F) = \{x : f(x) \in F\}$.
+
+\subsection{Cardinality}
+\begin{defn}
+$A \sim B$ (same \textbf{cardinality}) $\Leftrightarrow \exists$ bijection $A \to B$.
+\textbf{Finite}: $A \sim [n]$. \textbf{Countable}: $A \sim \N$. \textbf{Uncountable}: infinite, not countable.
+\end{defn}
+
+\begin{thm}
+Every infinite subset of a countable set is countable.
+\end{thm}
+
+\begin{thm}
+Countable union of countable sets is countable.
+\end{thm}
+\textit{Proof:} Arrange in grid, enumerate along diagonals.
+
+\begin{thm}
+$A$ countable $\Rightarrow A^n$ countable $\forall n$.
+\end{thm}
+
+\begin{cor}
+$\Q$ is countable. ($\Q = \bigcup_{n \geq 1} \{m/n : m \in \Z\}$.)
+\end{cor}
+
+\begin{thm}[$\R$ is uncountable]
+$\{0,1\}^\N$ is uncountable (Cantor's diagonal argument).
+\end{thm}
+\textit{Proof:} List all binary sequences. Construct $d$ by flipping diagonal: $d_n = 1 - s_{n,n}$. Then $d \neq s_n\;\forall n$, contradiction.
+
+\textbf{Algebraic numbers}: countable (countable union by degree). \textbf{Transcendental numbers}: uncountable (complement).
+
+\textbf{Cantor set} $C$: ternary digits $\{0,2\}$ only. $C \sim \{0,1\}^\N$, so $C$ is uncountable.
+
+\subsection{Set Operations}
+\textbf{De Morgan's Laws}: $(A \cup B)^c = A^c \cap B^c$;\; $(A \cap B)^c = A^c \cup B^c$.
+
+\textbf{Distributive}: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+
+%==============================================================
+\section{L4: Topology, Metric Spaces}
+%==============================================================
+
+\subsection{Topological Spaces}
+\begin{defn}
+\textbf{Topology} $\mathcal{T}$ on $X$: (i) $\emptyset, X \in \mathcal{T}$; (ii) arbitrary unions in $\mathcal{T}$; (iii) finite intersections in $\mathcal{T}$. Members of $\mathcal{T}$ are \textbf{open sets}.
+\end{defn}
+
+\begin{defn}
+\textbf{Basis} $\mathcal{B}$: (i) $\forall x \in X$, $\exists B \ni x$; (ii) $\forall B_1, B_2$ and $x \in B_1 \cap B_2$, $\exists B_3 \subseteq B_1 \cap B_2$ with $x \in B_3$.
+\end{defn}
+
+\begin{lem}
+Open sets = all unions of basis elements.
+\end{lem}
+
+\textbf{Product topology} on $X \times Y$: basis $\{U \times V : U$ open in $X$, $V$ open in $Y\}$.
+
+\subsection{Metric Spaces}
+\begin{defn}
+\textbf{Metric} $d: X \times X \to \R$: (i) $d(x,y) \geq 0$, $= 0 \Leftrightarrow x = y$; (ii) $d(x,y) = d(y,x)$; (iii) $d(x,z) \leq d(x,y) + d(y,z)$.
+\end{defn}
+
+\begin{defn}
+\textbf{Open ball}: $B(x,\eps) = \{y : d(x,y) < \eps\}$.
+\end{defn}
+
+\begin{thm}
+Open balls form a basis for the \textbf{metric topology}.
+\end{thm}
+
+\begin{lem}
+$y \in B(x,\eps) \Rightarrow \exists \delta > 0$ s.t.\ $B(y,\delta) \subseteq B(x,\eps)$.
+\end{lem}
+\textit{Proof:} $\delta = \eps - d(x,y)$. Triangle inequality: $d(x,z) \leq d(x,y) + d(y,z) < d(x,y) + \delta = \eps$.
+
+\begin{thm}
+$U$ open in metric topology $\Leftrightarrow \forall y \in U$, $\exists \delta > 0$ s.t.\ $B(y,\delta) \subseteq U$.
+\end{thm}
+
+\begin{thm}
+Product topology on $\R^n$ $=$ Euclidean metric topology.
+\end{thm}
+
+\subsection{Closed Sets, Closure, Limit Points}
+\begin{defn}
+$C$ is \textbf{closed} if $X \setminus C$ is open. Equiv: $C$ contains all its limit points.
+\end{defn}
+
+\textbf{Closed set properties}: (i) $\emptyset, X$ closed; (ii) arbitrary intersections closed; (iii) finite unions closed.
+
+\begin{defn}
+\textbf{Closure}: $\overline{E} = \bigcap\{C \supseteq E : C$ closed$\}$ (smallest closed set $\supseteq E$).
+\end{defn}
+
+\begin{defn}
+$x$ is a \textbf{limit point} of $E$ if every nbhd of $x$ contains $y \neq x$ with $y \in E$. $E'$ = set of all limit points.
+\end{defn}
+
+\begin{thm}
+$\overline{E} = E \cup E'$.
+\end{thm}
+
+\begin{cor}
+$E$ is closed $\Leftrightarrow E' \subseteq E$.
+\end{cor}
+
+\textbf{Isolated point}: $x \in E \setminus E'$ (in $E$ but not a limit point).
+
+\begin{thm}
+$p \in E' \Rightarrow$ every nbhd of $p$ contains \textbf{infinitely many} points of $E$.
+\end{thm}
+\textit{Proof:} If only finitely many $q_1, \ldots, q_n$ in $U \cap E$, let $r = \min d(p,q_i)$. Then $B(p,r) \cap (E \setminus \{p\}) = \emptyset$, contradicting $p \in E'$.
+
+\begin{defn}
+$E$ is \textbf{bounded} if $E \subseteq B(x,M)$ for some $x, M$. (Metric-dependent, not topological!)
+\end{defn}
+
+\begin{defn}
+\textbf{Convergence}: $(x_n) \to y$ if $\forall$ nbhd $U$ of $y$, $\exists N$ s.t.\ $n \geq N \Rightarrow x_n \in U$. In metric space: $\forall \eps > 0$, $\exists N$ s.t.\ $n \geq N \Rightarrow d(x_n, y) < \eps$.
+\end{defn}
+
+%==============================================================
+\section{L5: Compactness, Perfect Sets}
+%==============================================================
+
+\subsection{Compactness}
+\begin{defn}
+\textbf{Open cover} of $E$: collection $\{G_\alpha\}$ of open sets with $E \subseteq \bigcup G_\alpha$.
+\end{defn}
+
+\begin{defn}
+$K$ is \textbf{compact} if every open cover has a finite subcover.
+\end{defn}
+
+\textit{Example:} $[a,b]$ is compact. $(0,1)$ is not ($\{(1/n,1)\}$ has no finite subcover).
+
+\begin{thm}
+$K \subseteq Y \subseteq X$: $K$ compact in $X \Leftrightarrow K$ compact in $Y$.
+\end{thm}
+
+\begin{thm}
+Compact subsets of metric spaces are closed.
+\end{thm}
+\textit{Proof:} Show $K^c$ open. For $p \in K^c$, for each $q \in K$ use balls of radius $\frac{1}{2}d(p,q)$. Cover $K$, extract finite subcover, take $\eps = \min$ of radii.
+
+\begin{thm}
+Closed subsets of compact sets are compact.
+\end{thm}
+\textit{Proof:} Given open cover of $F \subseteq K$, add $F^c$ (open) to get cover of $K$. Extract finite subcover, remove $F^c$.
+
+\begin{cor}
+Closed $\cap$ compact $=$ compact (in metric space).
+\end{cor}
+
+\begin{thm}[Finite Intersection Property]
+If $\{K_\alpha\}$ compact with every finite intersection nonempty, then $\bigcap K_\alpha \neq \emptyset$.
+\end{thm}
+
+\begin{cor}
+Nested compact sets: $K_1 \supseteq K_2 \supseteq \cdots \Rightarrow \bigcap K_n \neq \emptyset$.
+\end{cor}
+
+\begin{thm}
+Infinite subset of compact set has a limit point in the compact set.
+\end{thm}
+\textit{Proof:} If no limit point, cover $K$ by nbhds each containing $\leq 1$ point of $E$. Finite subcover $\Rightarrow E$ finite, contradiction.
+
+\begin{thm}[Nested Intervals]
+$I_1 \supseteq I_2 \supseteq \cdots$ closed intervals $\Rightarrow \bigcap I_n \neq \emptyset$.
+\end{thm}
+\textit{Proof:} $x = \sup\{a_n\}$. Then $a_n \leq x \leq b_n\;\forall n$.
+
+\begin{thm}
+Closed intervals $[a,b]$ are compact.
+\end{thm}
+\textit{Proof:} Bisection argument. Assume no finite subcover. Bisect, choose half with no finite subcover. Nested intervals $\Rightarrow \exists x \in \bigcap I_n$. Some $G_\alpha \ni x$ is open, so $(x-\eps,x+\eps) \subseteq G_\alpha$. For large $n$, $I_n \subseteq G_\alpha$, contradiction.
+
+\subsection{Heine--Borel \& Weierstrass}
+
+\begin{thm}[Heine--Borel ($\R^n$ only)]
+TFAE: (1) $E$ is closed and bounded; (2) $E$ is compact; (3) every infinite subset of $E$ has a limit point in $E$.
+\end{thm}
+
+\textit{Proof sketch:} $(1 \Rightarrow 2)$: Bounded $\Rightarrow E \subseteq [-M,M]^n$ compact. Closed subset of compact is compact. $(2 \Rightarrow 3)$: Theorem above. $(3 \Rightarrow 1)$: Closed: limit points must be in $E$. Bounded: if not, $\exists x_n$ with $|x_n| > n$, but $\{x_n\}$ has no limit point.
+
+\textbf{Warning:} Heine--Borel holds in $\R^n$ only, NOT general metric spaces.
+
+\begin{thm}[Weierstrass]
+Every bounded infinite subset of $\R^n$ has a limit point.
+\end{thm}
+
+\subsection{Perfect Sets}
+\begin{defn}
+$E$ is \textbf{perfect} if $E$ is closed and $E' = E$ (no isolated points).
+\end{defn}
+
+\begin{thm}
+Nonempty perfect subsets of $\R^n$ are uncountable.
+\end{thm}
+\textit{Proof:} Suppose $P = \{x_1, x_2, \ldots\}$. Build nested closed sets $V_n$ with $V_n \cap P \neq \emptyset$ but $x_n \notin V_n$. FIP $\Rightarrow \exists x \in \bigcap V_n \cap P$, but $x \neq x_n\;\forall n$, contradiction.
+
+\textbf{Cantor set}: closed, no isolated points $\Rightarrow$ perfect $\Rightarrow$ uncountable.
+
+%==============================================================
+\section{L6: Connectedness \& Continuity}
+%==============================================================
+
+\subsection{Connectedness}
+\begin{defn}
+$A, B$ are \textbf{separated} if $\overline{A} \cap B = \emptyset$ and $A \cap \overline{B} = \emptyset$.
+\end{defn}
+
+\begin{defn}
+$E$ is \textbf{connected} if $E \neq A \cup B$ for any nonempty separated $A, B$.
+\end{defn}
+
+\begin{thm}
+$E \subset \R$ is connected $\Leftrightarrow$ $E$ has no gaps: $x,y \in E$, $x < z < y \Rightarrow z \in E$.
+\end{thm}
+Connected subsets of $\R$: intervals (open, closed, half-open, rays, $\R$, singletons).
+
+\subsection{Continuity}
+\begin{defn}
+$f: X \to Y$ is \textbf{continuous} if $V$ open in $Y \Rightarrow f^{-1}(V)$ open in $X$.
+\end{defn}
+
+Equivalent ($\R^n$): $\forall \eps > 0$, $\exists \delta > 0$ s.t.\ $|x-y| < \delta \Rightarrow |f(x)-f(y)| < \eps$.
+
+$f,g$ continuous $\Rightarrow f+g$, $f \circ g$, $f/g$ (where $g \neq 0$) continuous.
+
+\begin{defn}
+\textbf{Homeomorphism}: continuous bijection with continuous inverse.
+\end{defn}
+
+\subsection{Preservation Theorems}
+\begin{thm}
+Continuous image of a compact set is compact.
+\end{thm}
+\textit{Proof:} Open cover of $f(K) \to$ pull back to open cover of $K \to$ finite subcover $\to$ push forward.
+
+\begin{thm}
+Continuous image of a connected set is connected.
+\end{thm}
+\textit{Proof:} If $f(E) = A \cup B$ separated, let $G = f^{-1}(A) \cap E$, $H = f^{-1}(B) \cap E$. Show $G, H$ separated, contradicting $E$ connected.
+
+\subsection{Major Consequences}
+
+\begin{thm}[Extreme Value Theorem]
+$f$ continuous on compact $K \Rightarrow f$ attains its max and min on $K$.
+\end{thm}
+\textit{Proof:} $f(K)$ compact $\Rightarrow$ closed and bounded (Heine--Borel). $\sup f(K), \inf f(K) \in f(K)$ since $f(K)$ closed.
+
+\begin{thm}[Intermediate Value Theorem]
+$f$ continuous on $[a,b]$, $f(a) < c < f(b) \Rightarrow \exists p \in (a,b)$ with $f(p) = c$.
+\end{thm}
+\textit{Proof:} $[a,b]$ connected $\Rightarrow f([a,b])$ connected (no gaps) $\Rightarrow c \in f([a,b])$.
+
+\subsection{Uniform Continuity}
+\begin{defn}
+$f: X \to Y$ is \textbf{uniformly continuous} if $\forall \eps > 0$, $\exists \delta > 0$ s.t.\ $\forall p,q \in X$: $d(p,q) < \delta \Rightarrow d(f(p),f(q)) < \eps$.
+\end{defn}
+
+\textit{Key difference:} In (ordinary) continuity, $\delta$ depends on $\eps$ \textbf{and} the point. In uniform continuity, $\delta$ depends on $\eps$ \textbf{only} (works for all points simultaneously).
+
+\begin{thm}
+$f$ continuous on compact $K \Rightarrow f$ is uniformly continuous.
+\end{thm}
+\textit{Proof:} For each $p \in K$, get $\delta_p$ for $\eps/2$. Cover $K$ by $B(p, \delta_p/2)$. Finite subcover $\{p_1, \ldots, p_n\}$. Set $\delta = \frac{1}{2}\min \delta_{p_i}$. For $d(p,q) < \delta$: find $p_i$ with $p \in B(p_i, \delta_{p_i}/2)$, then $d(q,p_i) < \delta_{p_i}$, so $d(f(p),f(q)) \leq d(f(p),f(p_i)) + d(f(p_i),f(q)) < \eps$.
+
+\begin{thm}
+$E \subset \R$ non-compact $\Rightarrow \exists$ continuous $f$ on $E$ that is: (1) unbounded; (2) bounded but misses its sup; (3) not uniformly continuous.
+\end{thm}
+
+%==============================================================
+\section{Proof Techniques}
+%==============================================================
+
+\textbf{Supremum argument}: Define $E = \{t : t$ ``too small''$\}$. LUBP $\Rightarrow y = \sup E$ exists. Trichotomy: show $y$ too small and $y$ too big both give contradictions.
+
+\textbf{Epsilon-delta}: Find $\delta > 0$ (in terms of $\eps$ and givens) so property holds within $\delta$. Use triangle inequality to chain distances.
+
+\textbf{Contradiction}: Assume negation, derive impossibility. Especially useful for: compactness (assume no finite subcover), uncountability (assume enumeration exists).
+
+\textbf{Contrapositive}: To prove $P \Rightarrow Q$, prove $\neg Q \Rightarrow \neg P$. Useful when $\neg Q$ gives a concrete object to work with.
+
+\textbf{Mutual inclusion}: To prove $A = B$, show $A \subseteq B$ and $B \subseteq A$.
+
+\textbf{Diagonal argument}: Arrange countable collection in grid, construct element differing from each row.
+
+\textbf{Bisection}: Split interval in half, choose half lacking desired property. Nested intervals $\Rightarrow$ limit point $\Rightarrow$ contradiction.
+
+\textbf{Compactness trick}: Need a global property? Get local version at each point, cover, extract finite subcover, take $\min/\max$ over finitely many parameters.
+
+\subsection{Cantor Set Summary}
+$C = \bigcap C_n$, remove middle thirds. $C = \{x \in [0,1] :$ ternary expansion uses only $0,2\}$.
+
+Properties: closed, bounded $\Rightarrow$ compact. Perfect ($C' = C$) $\Rightarrow$ uncountable. $C \sim \{0,1\}^\N$. Contains no intervals (``nowhere dense'').
+
+\end{multicols}
+\end{document}

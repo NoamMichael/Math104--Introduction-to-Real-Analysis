@@ -1,0 +1,132 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 - Homework 4}\\
+\end{center}
+
+\begin{prob}[Rudin 3.2]
+Calculate $\displaystyle\lim_{n \to \infty}\left(\sqrt{n^2 + n} - n\right)$.
+\end{prob}
+\begin{proof}
+Multiply by the conjugate:
+\[
+\sqrt{n^2 + n} - n = \frac{(\sqrt{n^2+n} - n)(\sqrt{n^2+n} + n)}{\sqrt{n^2+n} + n} = \frac{n^2 + n - n^2}{\sqrt{n^2+n} + n} = \frac{n}{\sqrt{n^2+n} + n}.
+\]
+Dividing numerator and denominator by $n$:
+\[
+\frac{n}{\sqrt{n^2+n} + n} = \frac{1}{\sqrt{1 + \frac{1}{n}} + 1}.
+\]
+As $n \to \infty$, $\frac{1}{n} \to 0$, so
+\[
+\lim_{n \to \infty} \left(\sqrt{n^2+n} - n\right) = \frac{1}{\sqrt{1+0} + 1} = \frac{1}{2}.
+\]
+\end{proof}
+
+\begin{prob}[Rudin 3.4]
+Find the upper and lower limits of the sequence $\{s_n\}$ defined by
+\[
+s_1 = 0; \quad s_{2m} = \frac{s_{2m-1}}{2}; \quad s_{2m+1} = \frac{1}{2} + s_{2m}.
+\]
+\end{prob}
+\begin{proof}
+We compute the first several terms. Starting with $s_1 = 0$:
+\begin{align*}
+s_1 &= 0, \\
+s_2 &= \frac{s_1}{2} = 0, \\
+s_3 &= \frac{1}{2} + s_2 = \frac{1}{2}, \\
+s_4 &= \frac{s_3}{2} = \frac{1}{4}, \\
+s_5 &= \frac{1}{2} + s_4 = \frac{3}{4}, \\
+s_6 &= \frac{s_5}{2} = \frac{3}{8}, \\
+s_7 &= \frac{1}{2} + s_6 = \frac{7}{8}, \\
+s_8 &= \frac{s_7}{2} = \frac{7}{16}.
+\end{align*}
+The odd-indexed terms are $s_1 = 0,\; s_3 = \frac{1}{2},\; s_5 = \frac{3}{4},\; s_7 = \frac{7}{8}, \ldots$ which follow the pattern $s_{2m+1} = 1 - \frac{1}{2^m}$.
+
+The even-indexed terms are $s_2 = 0,\; s_4 = \frac{1}{4},\; s_6 = \frac{3}{8},\; s_8 = \frac{7}{16}, \ldots$ which follow the pattern $s_{2m} = \frac{1}{2} - \frac{1}{2^m}$.
+
+We verify by induction. For $m = 1$: $s_3 = \frac{1}{2} = 1 - \frac{1}{2}$. If $s_{2m+1} = 1 - \frac{1}{2^m}$, then
+\[
+s_{2m+2} = \frac{s_{2m+1}}{2} = \frac{1}{2} - \frac{1}{2^{m+1}}, \quad s_{2m+3} = \frac{1}{2} + s_{2m+2} = 1 - \frac{1}{2^{m+1}},
+\]
+confirming the pattern.
+
+As $m \to \infty$, the odd subsequence $s_{2m+1} = 1 - \frac{1}{2^m} \to 1$ and the even subsequence $s_{2m} = \frac{1}{2} - \frac{1}{2^m} \to \frac{1}{2}$. Since the odd terms increase to $1$ and the even terms increase to $\frac{1}{2}$, we have
+\[
+\limsup_{n \to \infty} s_n = 1, \quad \liminf_{n \to \infty} s_n = \frac{1}{2}.
+\]
+\end{proof}
+
+\begin{prob}[Rudin 3.6]
+Investigate the behavior (convergence or divergence) of $\sum a_n$ if
+
+\begin{enumerate}
+    \item[(a)] $a_n = \sqrt{n+1} - \sqrt{n}$;
+    \item[(b)] $\displaystyle a_n = \frac{\sqrt{n+1} - \sqrt{n}}{n}$;
+    \item[(c)] $a_n = (\sqrt[n]{n} - 1)^n$;
+    \item[(d)] $\displaystyle a_n = \frac{1}{1 + z^n}$, for complex values of $z$.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+\textbf{(a)} $a_n = \sqrt{n+1} - \sqrt{n}$. Rationalizing:
+\[
+a_n = \frac{(n+1) - n}{\sqrt{n+1} + \sqrt{n}} = \frac{1}{\sqrt{n+1} + \sqrt{n}} \geq \frac{1}{2\sqrt{n+1}}.
+\]
+Since $\sum \frac{1}{\sqrt{n}}$ diverges (it is a $p$-series with $p = \frac{1}{2} < 1$), the comparison test gives that $\sum a_n$ \textbf{diverges}.
+
+\textbf{(b)} $\displaystyle a_n = \frac{\sqrt{n+1} - \sqrt{n}}{n}$. From part (a), $\sqrt{n+1} - \sqrt{n} = \frac{1}{\sqrt{n+1}+\sqrt{n}}$, so
+\[
+a_n = \frac{1}{n(\sqrt{n+1} + \sqrt{n})}.
+\]
+For $n \geq 1$, $\sqrt{n+1} + \sqrt{n} \geq \sqrt{n}$, so $a_n \leq \frac{1}{n\sqrt{n}} = \frac{1}{n^{3/2}}$. Since $\sum \frac{1}{n^{3/2}}$ converges ($p$-series with $p = \frac{3}{2} > 1$), the comparison test gives that $\sum a_n$ \textbf{converges}.
+
+\textbf{(c)} $a_n = (\sqrt[n]{n} - 1)^n$. We use the root test:
+\[
+\sqrt[n]{a_n} = \sqrt[n]{n} - 1.
+\]
+Since $\sqrt[n]{n} \to 1$ as $n \to \infty$, we have $\sqrt[n]{a_n} \to 0 < 1$. By the root test, $\sum a_n$ \textbf{converges}.
+
+\textbf{(d)} $\displaystyle a_n = \frac{1}{1 + z^n}$ for complex $z$.
+
+\textit{Case $|z| > 1$:} Then $|z^n| \to \infty$, so $a_n \to 0$. More precisely, $|1 + z^n| \geq |z|^n - 1$, so $|a_n| \leq \frac{1}{|z|^n - 1}$. For large $n$, $|z|^n - 1 \geq \frac{1}{2}|z|^n$, so $|a_n| \leq \frac{2}{|z|^n}$. Since $|z| > 1$, $\sum \frac{1}{|z|^n}$ is a convergent geometric series, so $\sum a_n$ \textbf{converges absolutely}.
+
+\textit{Case $|z| < 1$:} Then $z^n \to 0$, so $a_n \to \frac{1}{1+0} = 1 \neq 0$. The series \textbf{diverges}.
+
+\textit{Case $|z| = 1$, $z \neq -1$:} Then $|1 + z^n|$ does not tend to infinity, and $a_n \not\to 0$ (since $|a_n| = \frac{1}{|1+z^n|}$ and $z^n$ cycles or stays away from $-1$). In particular, if $z = 1$, then $a_n = \frac{1}{2}$ for all $n$. The series \textbf{diverges}.
+
+\textit{Case $z = -1$:} Then $1 + z^n = 1 + (-1)^n$, which equals $0$ when $n$ is odd. The terms $a_n$ are \textbf{undefined} for odd $n$.
+\end{proof}
+
+\begin{prob}[Rudin 3.7]
+Prove that the convergence of $\sum a_n$ implies the convergence of
+\[
+\sum \frac{\sqrt{a_n}}{n},
+\]
+if $a_n \geq 0$.
+\end{prob}
+\begin{proof}
+Suppose $\sum a_n$ converges with $a_n \geq 0$. By the Cauchy--Schwarz inequality applied to the finite sums,
+\[
+\sum_{n=1}^{N} \frac{\sqrt{a_n}}{n} = \sum_{n=1}^{N} \sqrt{a_n} \cdot \frac{1}{n} \leq \left(\sum_{n=1}^{N} a_n\right)^{1/2} \left(\sum_{n=1}^{N} \frac{1}{n^2}\right)^{1/2},
+\]
+by the Cauchy--Schwarz inequality for sums. Since $\sum a_n$ converges, $\sum_{n=1}^{N} a_n \leq \sum_{n=1}^{\infty} a_n < \infty$. Since $\sum \frac{1}{n^2}$ converges ($p$-series with $p = 2 > 1$), $\sum_{n=1}^{N} \frac{1}{n^2} \leq \sum_{n=1}^{\infty} \frac{1}{n^2} < \infty$. Therefore the partial sums satisfy
+\[
+\sum_{n=1}^{N} \frac{\sqrt{a_n}}{n} \leq \left(\sum_{n=1}^{\infty} a_n\right)^{1/2} \left(\sum_{n=1}^{\infty} \frac{1}{n^2}\right)^{1/2} < \infty
+\]
+for all $N$. Since the partial sums of $\sum \frac{\sqrt{a_n}}{n}$ are nonneg and bounded above, the series converges.
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

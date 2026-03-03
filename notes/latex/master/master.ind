@@ -1,6 +1,8 @@
 \begin{theindex}
 
   \item $\varepsilon $-open ball, \hyperpage{21}
+  \item $e$, \hyperpage{40}
+  \item $p$-series, \hyperpage{40}
 
   \indexspace
 
@@ -31,7 +33,7 @@
   \item connected, \hyperpage{32}
   \item continuous, \hyperpage{33}
   \item continuous at $\alpha $, \hyperpage{33}
-  \item converges, \hyperpage{26}
+  \item converges, \hyperpage{26}, \hyperpage{37}
   \item convex, \hyperpage{25}
   \item countable, \hyperpage{14}
   \item cut, \hyperpage{7}
@@ -59,12 +61,14 @@
 
   \indexspace
 
+  \item geometric series, \hyperpage{39}
   \item greatest lower bound, \hyperpage{5}
   \item greatest lower bound property, \hyperpage{5}
   \item group, \hyperpage{5}
 
   \indexspace
 
+  \item harmonic series, \hyperpage{38}
   \item Heine-Borel, \hyperpage{30}
   \item Hermitian:, \hyperpage{11}
   \item homeomorphism, \hyperpage{34}
@@ -95,6 +99,7 @@
   \item member, \hyperpage{4}
   \item metric, \hyperpage{21}
   \item metric topology, \hyperpage{21}
+  \item monotonically increasing, \hyperpage{38}
   \item mutual subset argument, \hyperpage{15}
 
   \indexspace
@@ -117,6 +122,7 @@
   \indexspace
 
   \item partial order, \hyperpage{4}
+  \item partial sums, \hyperpage{37}
   \item perfect, \hyperpage{30}
   \item Positive definite:, \hyperpage{11, 12}
   \item preimage, \hyperpage{13}
