@@ -1,0 +1,298 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 11: Differentiation and the Mean Value Theorem
+% Date: March 10, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{11}
+\renewcommand{\lecturedate}{March 10, 2026}
+\renewcommand{\lecturetopic}{Differentiation and the Mean Value Theorem}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:} We define the derivative and prove that differentiability implies continuity (but not conversely). We establish the arithmetic rules (sum, product, quotient, chain rule) and then turn to the Mean Value Theorem: first proving that interior extrema have zero derivative, then the Generalized MVT, from which the classical MVT and L'H\^opital's Rule follow. We also show that derivatives satisfy the Intermediate Value Theorem.
+\end{lecturesummary}
+
+\subsection{The Derivative}
+
+\begin{summarybox}
+\textbf{Section Overview:} We define the derivative as a limit of difference quotients, show that differentiability implies continuity ($C^1 \subset C^0$), and give a counterexample (ReLU) showing the converse fails.
+\end{summarybox}
+
+\begin{definition}
+Let $f: [a,b] \to \R$. For $x \in [a,b]$, define
+\[
+f'(x) = \lim_{t \to x} \frac{f(t) - f(x)}{t - x}
+\]
+provided this limit exists.
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.4]
+  % Axes
+  \draw[->] (-0.3,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-0.3) -- (0,6.5) node[above] {$y$};
+
+  % Curve (steeper)
+  \draw[thick, domain=0.5:6, smooth, samples=100] plot (\x, {0.18*(\x)*(\x-2)+1.5});
+
+  % Points
+  \coordinate (P) at (1.5, {0.18*(1.5)*(1.5-2)+1.5});
+  \coordinate (Q) at (5, {0.18*(5)*(5-2)+1.5});
+
+  % Dots
+  \fill (P) circle (2pt);
+  \fill (Q) circle (2pt);
+
+  % Secant line
+  \draw[dashed, blue, thick] (P) -- (Q);
+
+  % Dashed lines to axes
+  \draw[dotted] (P) -- (1.5, 0) node[below] {$x$};
+  \draw[dotted] (Q) -- (5, 0) node[below] {$t$};
+  \draw[dotted] (P) -- (0, {0.18*(1.5)*(1.5-2)+1.5}) node[left] {$f(x)$};
+  \draw[dotted] (Q) -- (0, {0.18*(5)*(5-2)+1.5}) node[left] {$f(t)$};
+
+  % Labels
+  \node[above left] at (P) {$(x, f(x))$};
+  \node[above right] at (Q) {$(t, f(t))$};
+
+  % Slope label
+  \node[blue] at (5.5, 1.5) {slope $= \dfrac{f(t)-f(x)}{t-x}$};
+
+  % Curve label
+  \node at (6.2, 5.5) {$y = f(x)$};
+\end{tikzpicture}
+\end{center}
+
+If $f'$ exists at $x$, we say $f$ is \defn{differentiable} at $x$, and we call $f'(x)$ the \defn{derivative} of $f$ at $x$.
+
+\begin{theorem}[$C^1 \subset C^0$]
+If $f$ is differentiable at $x$, then $f$ is continuous at $x$.
+\end{theorem}
+
+\begin{proof}
+We want to show that for all $\eps > 0$, there exists $\delta > 0$ such that $|t - x| < \delta \implies |f(t) - f(x)| < \eps$. Since $f$ is differentiable at $x$, we have
+\[
+\lim_{t \to x} \frac{f(t) - f(x)}{t - x} = f'(x).
+\]
+Then
+\[
+|f(t) - f(x)| = \left|\frac{f(t) - f(x)}{t - x}\right| \cdot |t - x|.
+\]
+Since the quotient converges to $f'(x)$, for $t$ sufficiently close to $x$ the quotient is bounded (say by $|f'(x)| + 1$). So take $\delta = \dfrac{\eps}{|f'(x)| + 1}$.
+\end{proof}
+
+\begin{example}
+The converse is false. Consider the ReLU function $f(x) = \max(0, x)$. This function is continuous at $x = 0$, but not differentiable there: from the left, $f'(0^-) = 0$, and from the right, $f'(0^+) = 1$. Since the one-sided limits disagree, $f'(0)$ does not exist.
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  % Axes
+  \draw[->] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};
+
+  % ReLU
+  \draw[thick, blue] (-3,0) -- (0,0);
+  \draw[thick, blue] (0,0) -- (3,3);
+
+  % Dot at origin
+  \fill (0,0) circle (2pt);
+
+  % Labels
+  \node[below left] at (-1.5, 0) {slope $= 0$};
+  \node[above left] at (2, 2) {slope $= 1$};
+  \node[below right] at (0,0) {$0$};
+  \node[above] at (1.5, 3.3) {$f(x) = \max(0, x)$};
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+\subsection{Arithmetic Properties of the Derivative}
+
+\begin{summarybox}
+\textbf{Section Overview:} We prove the sum, product, and quotient rules for derivatives, followed by the chain rule. We also examine $x\sin(1/x)$ as an example of a continuous function that is not differentiable.
+\end{summarybox}
+
+\begin{theorem}
+Let $f, g: [a,b] \to \R$ be differentiable at $x \in [a,b]$. Then:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Sum Rule:} $(f + g)'(x) = f'(x) + g'(x)$.
+  \item \textbf{Product Rule:} $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$.
+  \item \textbf{Quotient Rule:} If $g(x) \neq 0$, then $\displaystyle\left(\frac{f}{g}\right)'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{(a) Sum Rule.}
+\[
+(f+g)'(x) = \lim_{t \to x} \frac{(f+g)(t) - (f+g)(x)}{t - x} = \lim_{t \to x} \frac{f(t) - f(x)}{t-x} + \lim_{t \to x} \frac{g(t) - g(x)}{t - x} = f'(x) + g'(x).
+\]
+
+\textbf{(b) Product Rule.} We use the trick of adding and subtracting $f(x)g(t)$:
+\begin{align*}
+(fg)'(x) &= \lim_{t \to x} \frac{f(t)g(t) - f(x)g(x)}{t - x} \\
+&= \lim_{t \to x} \frac{f(t)g(t) - f(x)g(t) + f(x)g(t) - f(x)g(x)}{t - x} \\
+&= \lim_{t \to x} \left[ g(t) \cdot \frac{f(t) - f(x)}{t - x} + f(x) \cdot \frac{g(t) - g(x)}{t - x} \right] \\
+&= g(x) f'(x) + f(x) g'(x).
+\end{align*}
+Here we used that $g(t) \to g(x)$ since $g$ is differentiable (hence continuous) at $x$.
+
+\textbf{(c) Quotient Rule.} It suffices to show that $(1/g)'(x) = -g'(x)/g(x)^2$, then apply the product rule. We have:
+\begin{align*}
+\left(\frac{1}{g}\right)'(x) &= \lim_{t \to x} \frac{\frac{1}{g(t)} - \frac{1}{g(x)}}{t - x} = \lim_{t \to x} \frac{g(x) - g(t)}{g(t)g(x)(t - x)} \\
+&= \frac{-1}{g(x)^2} \lim_{t \to x} \frac{g(t) - g(x)}{t - x} = \frac{-g'(x)}{g(x)^2}.
+\end{align*}
+Here we used $g(t) \to g(x)$ since $g$ is continuous at $x$. The quotient rule follows by applying the product rule to $f \cdot (1/g)$.
+\end{proof}
+
+\begin{theorem}[Chain Rule]
+Let $f: [a,b] \to \R$ be differentiable at $x$, and let $g: f([a,b]) \to \R$ be differentiable at $f(x)$. Define $h(t) = g(f(t))$. Then $h$ is differentiable at $x$ and
+\[
+h'(x) = g'(f(x)) \cdot f'(x).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $y = f(x)$. Since $g$ is differentiable at $y$, we can write
+\[
+g(s) - g(y) = (s - y)[g'(y) + u(s)]
+\]
+where $u(s) \to 0$ as $s \to y$. Similarly, since $f$ is differentiable at $x$,
+\[
+f(t) - f(x) = (t - x)[f'(x) + v(t)]
+\]
+where $v(t) \to 0$ as $t \to x$. Setting $s = f(t)$, we get
+\begin{align*}
+h(t) - h(x) &= g(f(t)) - g(f(x)) \\
+&= (f(t) - f(x))[g'(y) + u(f(t))] \\
+&= (t - x)[f'(x) + v(t)][g'(y) + u(f(t))].
+\end{align*}
+Dividing by $t - x$:
+\[
+\frac{h(t) - h(x)}{t - x} = [f'(x) + v(t)][g'(f(x)) + u(f(t))].
+\]
+As $t \to x$, we have $v(t) \to 0$ and $f(t) \to f(x) = y$ (since $f$ is continuous), so $u(f(t)) \to 0$. Therefore
+\[
+h'(x) = f'(x) \cdot g'(f(x)). \qedhere
+\]
+\end{proof}
+
+\begin{example}
+Consider $f(x) = x\sin(1/x)$ for $x \neq 0$, with $f(0) = 0$. Is $f$ differentiable at $0$? We check:
+\[
+f'(0) = \lim_{t \to 0} \frac{t\sin(1/t) - 0}{t - 0} = \lim_{t \to 0} \sin(1/t).
+\]
+This limit does not exist, since $\sin(1/t)$ oscillates between $-1$ and $1$ as $t \to 0$. Therefore $f$ is not differentiable at $0$ (even though it is continuous there).
+
+\end{example}
+
+\subsection{Mean Value Theorem}
+
+\begin{summarybox}
+\textbf{Section Overview:} We define local extrema and prove that interior extrema of differentiable functions have zero derivative. We then prove the Generalized Mean Value Theorem (which yields the classical MVT as a special case) and show that derivatives satisfy the Intermediate Value Theorem.
+\end{summarybox}
+
+\begin{definition}
+Let $f: X \to \R$. We say $f$ has a \defn{local maximum} at $p \in X$ if there exists $\delta > 0$ such that for all $q \in B(\delta, p)$, $f(q) \leq f(p)$.
+\end{definition}
+
+\begin{theorem}
+If $f: [a,b] \to \R$ has a local maximum or local minimum at $x \in (a,b)$, and if $f'(x)$ exists, then $f'(x) = 0$.
+\end{theorem}
+
+\begin{proof}
+Suppose $f$ has a local maximum at $x$. Then there exists $\delta > 0$ such that $f(t) \leq f(x)$ for all $t \in (x - \delta, x + \delta)$. For $t \in (x, x + \delta)$:
+\[
+\frac{f(t) - f(x)}{t - x} \leq 0
+\]
+so taking $t \to x^+$ gives $f'(x) \leq 0$. For $t \in (x - \delta, x)$:
+\[
+\frac{f(t) - f(x)}{t - x} \geq 0
+\]
+so taking $t \to x^-$ gives $f'(x) \geq 0$. Therefore $f'(x) = 0$. The case of a local minimum is analogous.
+\end{proof}
+
+\begin{theorem}[Generalized Mean Value Theorem]
+Let $f, g: [a,b] \to \R$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then there exists $x \in (a,b)$ such that
+\[
+[f(b) - f(a)]\, g'(x) = [g(b) - g(a)]\, f'(x).
+\]
+\end{theorem}
+
+\begin{remark}
+If $g(x) = x$, then $g'(x) = 1$ and $g(b) - g(a) = b - a$, so we recover the classical Mean Value Theorem:
+\[
+f'(x) = \frac{f(b) - f(a)}{b - a}.
+\]
+\end{remark}
+
+\begin{proof}
+Define $h(t) = [f(b) - f(a)]\, g(t) - [g(b) - g(a)]\, f(t)$. We want to show there exists $x \in (a,b)$ such that $h'(x) = 0$.
+
+Note that
+\[
+h(a) = [f(b) - f(a)]\, g(a) - [g(b) - g(a)]\, f(a) = f(b)g(a) - g(b)f(a)
+\]
+and
+\[
+h(b) = [f(b) - f(a)]\, g(b) - [g(b) - g(a)]\, f(b) = f(b)g(a) - g(b)f(a),
+\]
+so $h(a) = h(b)$. Since $h$ is continuous on $[a,b]$, by the Extreme Value Theorem $h$ attains its maximum and minimum on $[a,b]$. If both the maximum and minimum occur at the endpoints, then since $h(a) = h(b)$, $h$ is constant, so $h'(x) = 0$ for all $x \in (a,b)$. Otherwise, $h$ attains its maximum or minimum at some $x \in (a,b)$. Since $h$ is differentiable on $(a,b)$, by Theorem 1.6 we have $h'(x) = 0$.
+\end{proof}
+
+\begin{theorem}
+Let $f: [a,b] \to \R$ be differentiable. Then $f'$ satisfies the Intermediate Value Theorem. That is, if $f'(a) < \lambda < f'(b)$, then there exists $x \in (a,b)$ such that $f'(x) = \lambda$.
+\end{theorem}
+
+\begin{proof}
+Define $h(t) = f(t) - \lambda t$. Then $h$ is differentiable and
+\[
+h'(t) = f'(t) - \lambda.
+\]
+We have $h'(a) = f'(a) - \lambda < 0$ and $h'(b) = f'(b) - \lambda > 0$. Since $h'(a) < 0$, $h$ is decreasing near $a$, so $h$ does not attain its minimum at $a$. Since $h'(b) > 0$, $h$ is decreasing as we approach $b$ from the left, so $h$ does not attain its minimum at $b$. But $h$ is continuous on $[a,b]$, so by the Extreme Value Theorem $h$ attains its minimum at some $x \in (a,b)$. Since $x$ is an interior local minimum and $h'(x)$ exists, by Theorem 1.6 we have $h'(x) = 0$, i.e., $f'(x) = \lambda$.
+\end{proof}
+
+\subsection{L'H\^opital's Rule}
+
+\begin{summarybox}
+\textbf{Section Overview:} We state and prove L'H\^opital's Rule for $0/0$ indeterminate forms using the Generalized Mean Value Theorem.
+\end{summarybox}
+
+\begin{theorem}[L'H\^opital's Rule]
+Let $f, g: (a,b) \to \R$ be differentiable, with $g'(x) \neq 0$ for all $x \in (a,b)$. Suppose that
+\[
+f(x) \to 0 \quad \text{and} \quad g(x) \to 0 \quad \text{as } x \to a,
+\]
+and that
+\[
+\lim_{x \to a} \frac{f'(x)}{g'(x)} = A.
+\]
+Then
+\[
+\lim_{x \to a} \frac{f(x)}{g(x)} = A.
+\]
+\end{theorem}
+
+\begin{proof}
+Define $f(a) = g(a) = 0$ so that $f$ and $g$ are continuous on $[a,b)$. For any $x \in (a,b)$, apply the Generalized Mean Value Theorem to $f$ and $g$ on $[a,x]$: there exists $c \in (a,x)$ such that
+\[
+[f(x) - f(a)]\, g'(c) = [g(x) - g(a)]\, f'(c).
+\]
+Since $f(a) = g(a) = 0$, this gives
+\[
+f(x)\, g'(c) = g(x)\, f'(c),
+\]
+so
+\[
+\frac{f(x)}{g(x)} = \frac{f'(c)}{g'(c)}.
+\]
+As $x \to a$, we have $c \to a$ (since $a < c < x$), so
+\[
+\lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{c \to a} \frac{f'(c)}{g'(c)} = A. \qedhere
+\]
+\end{proof}
+
+\end{document}

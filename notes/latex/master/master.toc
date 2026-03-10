@@ -37,4 +37,9 @@
 \contentsline {subsection}{\numberline {7.5}Special Series}{39}{subsection.7.5}%
 \contentsline {subsection}{\numberline {7.6}The Number $e$}{40}{subsection.7.6}%
 \contentsline {subsection}{\numberline {7.7}Root and Ratio Tests}{41}{subsection.7.7}%
-\contentsline {section}{Index of Definitions}{43}{theorem.7.13}%
+\contentsline {section}{\numberline {8}Lecture 11: March 10, 2026}{43}{section.8}%
+\contentsline {subsection}{\numberline {8.1}The Derivative}{43}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Arithmetic Properties of the Derivative}{44}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Mean Value Theorem}{45}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}L'H\^opital's Rule}{46}{subsection.8.4}%
+\contentsline {section}{Index of Definitions}{48}{theorem.8.10}%
