@@ -1,0 +1,179 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 - Homework 5}\\
+\end{center}
+
+\begin{prob}[Rudin 3.9]
+Find the radius of convergence of each of the following power series:
+\begin{enumerate}
+    \item[(a)] $\sum n^3 z^n$,
+    \item[(b)] $\displaystyle\sum \frac{2^n}{n!} z^n$,
+    \item[(c)] $\displaystyle\sum \frac{2^n}{n^2} z^n$,
+    \item[(d)] $\displaystyle\sum \frac{n^3}{3^n} z^n$.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+We use the root test (Theorem 3.39). The radius of convergence is $R = 1/\alpha$ where $\alpha = \limsup_{n \to \infty} \sqrt[n]{|c_n|}$.
+
+\textbf{(a)} $c_n = n^3$. Then $\sqrt[n]{|c_n|} = \sqrt[n]{n^3} = (\sqrt[n]{n})^3 \to 1^3 = 1$. So $\alpha = 1$ and $R = 1$.
+
+\textbf{(b)} $c_n = \frac{2^n}{n!}$. Then $\sqrt[n]{|c_n|} = \frac{2}{\sqrt[n]{n!}}$. Since $\sqrt[n]{n!} \to \infty$ (as $n! \geq (n/e)^n$ by Stirling), we get $\alpha = 0$ and $R = \infty$.
+
+\textbf{(c)} $c_n = \frac{2^n}{n^2}$. Then $\sqrt[n]{|c_n|} = \frac{2}{(\sqrt[n]{n})^2} \to \frac{2}{1} = 2$. So $\alpha = 2$ and $R = \frac{1}{2}$.
+
+\textbf{(d)} $c_n = \frac{n^3}{3^n}$. Then $\sqrt[n]{|c_n|} = \frac{(\sqrt[n]{n})^3}{3} \to \frac{1}{3}$. So $\alpha = \frac{1}{3}$ and $R = 3$.
+\end{proof}
+
+\begin{prob}[Rudin 3.10]
+Suppose that the coefficients of the power series $\sum a_n z^n$ are integers, infinitely many of which are distinct from zero. Prove that the radius of convergence is at most $1$.
+\end{prob}
+\begin{proof}
+Since the $a_n$ are integers and infinitely many are nonzero, we have $|a_n| \geq 1$ for infinitely many $n$. If $|z| > 1$, then for each such $n$,
+\[
+|a_n z^n| \geq |z|^n.
+\]
+Since $|z| > 1$, $|z|^n \to \infty$, so $a_n z^n \not\to 0$. Therefore the series $\sum a_n z^n$ diverges for $|z| > 1$, which means the radius of convergence is at most $1$.
+\end{proof}
+
+\begin{prob}[Rudin 3.12]
+Suppose $a_n > 0$ and $\sum a_n$ converges. Put
+\[
+r_n = \sum_{m=n}^{\infty} a_m.
+\]
+\begin{enumerate}
+    \item[(a)] Prove that
+    \[
+    \frac{a_m}{r_m} + \cdots + \frac{a_n}{r_n} > 1 - \frac{r_n}{r_m}
+    \]
+    if $m < n$, and deduce that $\displaystyle\sum \frac{a_n}{r_n}$ diverges.
+    \item[(b)] Prove that
+    \[
+    \frac{a_n}{\sqrt{r_n}} < 2\left(\sqrt{r_n} - \sqrt{r_{n+1}}\right)
+    \]
+    and deduce that $\displaystyle\sum \frac{a_n}{\sqrt{r_n}}$ converges.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+\textbf{(a)} Since $a_k > 0$ and $r_k = \sum_{m=k}^{\infty} a_m$, the sequence $\{r_k\}$ is decreasing, so $r_k \leq r_m$ for $k \geq m$. Therefore $\frac{a_k}{r_k} \geq \frac{a_k}{r_m}$, and
+\[
+\frac{a_m}{r_m} + \cdots + \frac{a_n}{r_n} \geq \frac{1}{r_m} \sum_{k=m}^{n} a_k = \frac{r_m - r_{n+1}}{r_m} = 1 - \frac{r_{n+1}}{r_m}.
+\]
+Since $a_n > 0$, $r_{n+1} = r_n - a_n < r_n$, so $1 - \frac{r_{n+1}}{r_m} > 1 - \frac{r_n}{r_m}$, giving the desired inequality.
+
+To show divergence: since $\sum a_n$ converges, $r_n \to 0$ as $n \to \infty$. Fixing $m$ and letting $n \to \infty$, the right side $1 - \frac{r_n}{r_m} \to 1$. So the partial sums of $\sum \frac{a_n}{r_n}$ are unbounded, hence the series diverges.
+
+\textbf{(b)} Since $a_n = r_n - r_{n+1}$, factor as a difference of squares:
+\[
+a_n = (\sqrt{r_n} - \sqrt{r_{n+1}})(\sqrt{r_n} + \sqrt{r_{n+1}}).
+\]
+Since $r_{n+1} < r_n$, we have $\sqrt{r_{n+1}} < \sqrt{r_n}$, so $\sqrt{r_n} + \sqrt{r_{n+1}} < 2\sqrt{r_n}$. Therefore
+\[
+\frac{a_n}{\sqrt{r_n}} = \frac{(\sqrt{r_n} - \sqrt{r_{n+1}})(\sqrt{r_n} + \sqrt{r_{n+1}})}{\sqrt{r_n}} < \frac{2\sqrt{r_n}(\sqrt{r_n} - \sqrt{r_{n+1}})}{\sqrt{r_n}} = 2(\sqrt{r_n} - \sqrt{r_{n+1}}).
+\]
+Summing from $n = 1$ to $N$:
+\[
+\sum_{n=1}^{N} \frac{a_n}{\sqrt{r_n}} < 2\sum_{n=1}^{N} (\sqrt{r_n} - \sqrt{r_{n+1}}) = 2(\sqrt{r_1} - \sqrt{r_{N+1}}) < 2\sqrt{r_1}.
+\]
+The partial sums are bounded above and all terms are positive, so $\sum \frac{a_n}{\sqrt{r_n}}$ converges.
+\end{proof}
+
+\begin{prob}[Rudin 3.14]
+If $\{s_n\}$ is a complex sequence, define its arithmetic means $\sigma_n$ by
+\[
+\sigma_n = \frac{s_0 + s_1 + \cdots + s_n}{n+1} \quad (n = 0, 1, 2, \ldots).
+\]
+\begin{enumerate}
+    \item[(a)] If $\lim s_n = s$, prove that $\lim \sigma_n = s$.
+    \item[(b)] Construct a sequence $\{s_n\}$ which does not converge, although $\lim \sigma_n = 0$.
+    \item[(c)] Can it happen that $s_n > 0$ for all $n$ and that $\limsup s_n = \infty$, although $\lim \sigma_n = 0$?
+\end{enumerate}
+\end{prob}
+\begin{proof}
+\textbf{(a)} Let $\varepsilon > 0$. Since $s_n \to s$, there exists $N$ such that $|s_n - s| < \varepsilon$ for all $n > N$. Then
+\[
+\sigma_n - s = \frac{1}{n+1}\sum_{k=0}^{n}(s_k - s) = \frac{1}{n+1}\sum_{k=0}^{N}(s_k - s) + \frac{1}{n+1}\sum_{k=N+1}^{n}(s_k - s).
+\]
+The first sum is a fixed quantity (depending on $N$ but not $n$), so
+\[
+\left|\frac{1}{n+1}\sum_{k=0}^{N}(s_k - s)\right| \leq \frac{(N+1)M}{n+1},
+\]
+where $M = \max_{0 \leq k \leq N}|s_k - s|$. For $n$ large enough, this is less than $\varepsilon$. The second sum satisfies
+\[
+\left|\frac{1}{n+1}\sum_{k=N+1}^{n}(s_k - s)\right| \leq \frac{n - N}{n+1}\varepsilon < \varepsilon.
+\]
+Therefore $|\sigma_n - s| < 2\varepsilon$ for all sufficiently large $n$, so $\lim \sigma_n = s$.
+
+\textbf{(b)} Let $s_n = (-1)^n$. This sequence does not converge. However,
+\[
+\sigma_n = \frac{1}{n+1}\sum_{k=0}^{n}(-1)^k = \begin{cases} \frac{1}{n+1} & \text{if } n \text{ is even,} \\ 0 & \text{if } n \text{ is odd.} \end{cases}
+\]
+In either case $|\sigma_n| \leq \frac{1}{n+1} \to 0$, so $\lim \sigma_n = 0$.
+
+\textbf{(c)} Yes, this can happen. Define
+\[
+s_n = \begin{cases} k & \text{if } n = k! \text{ for some } k \geq 1, \\ \frac{1}{n+1} & \text{otherwise.} \end{cases}
+\]
+Then $s_n > 0$ for all $n$, and $\limsup s_n = \infty$ since $s_{k!} = k \to \infty$. For the arithmetic means, the total spike contribution up to $n = K!$ is $\sum_{k=1}^{K} k = \frac{K(K+1)}{2}$, and the small terms contribute at most $\sum_{j=1}^{n}\frac{1}{j+1} \leq \ln(n+1)$. So
+\[
+S_n \leq \frac{K(K+1)}{2} + \ln(n+1)
+\]
+for $n$ between $K!$ and $(K+1)!$. Since $K!$ grows much faster than $K^2$ or $\ln(K!)$, we have
+\[
+\sigma_n = \frac{S_n}{n+1} \leq \frac{K^2/2 + \ln((K+1)!)}{K!} \to 0
+\]
+as $K \to \infty$. Therefore $\lim \sigma_n = 0$.
+\end{proof}
+
+\begin{prob}[Rudin 3.17]
+Fix $\alpha > 1$. Take $x_1 > \sqrt{\alpha}$, and define
+\[
+x_{n+1} = \frac{\alpha + x_n}{1 + x_n} = x_n + \frac{\alpha - x_n^2}{1 + x_n}.
+\]
+\begin{enumerate}
+    \item[(a)] Prove that $x_1 > x_3 > x_5 > \cdots$.
+    \item[(b)] Prove that $x_2 < x_4 < x_6 < \cdots$.
+    \item[(c)] Prove that $\lim x_n = \sqrt{\alpha}$.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+First, we establish that odd-indexed terms lie above $\sqrt{\alpha}$ and even-indexed terms lie below. Since $x_1 > \sqrt{\alpha}$, note that
+\[
+x_{n+1} - \sqrt{\alpha} = \frac{\alpha + x_n}{1 + x_n} - \sqrt{\alpha} = \frac{(\sqrt{\alpha} - 1)(\sqrt{\alpha} - x_n)}{1 + x_n}.
+\]
+Since $\alpha > 1$, $\sqrt{\alpha} - 1 > 0$, so $x_{n+1} - \sqrt{\alpha}$ has the opposite sign of $x_n - \sqrt{\alpha}$. By induction, the odd-indexed terms satisfy $x_n > \sqrt{\alpha}$ and the even-indexed terms satisfy $x_n < \sqrt{\alpha}$.
+
+\textbf{(a) and (b):} A direct computation gives
+\[
+x_{n+2} - x_n = \frac{2(\alpha - x_n^2)}{1 + \alpha + 2x_n}.
+\]
+For odd-indexed $x_n > \sqrt{\alpha}$, we have $\alpha - x_n^2 < 0$, so $x_{n+2} < x_n$. Thus $x_1 > x_3 > x_5 > \cdots$.
+
+For even-indexed $x_n < \sqrt{\alpha}$, we have $\alpha - x_n^2 > 0$, so $x_{n+2} > x_n$. Thus $x_2 < x_4 < x_6 < \cdots$.
+
+\textbf{(c)} The odd subsequence is decreasing and bounded below (by $\sqrt{\alpha}$), so it converges to some limit $L_1$. The even subsequence is increasing and bounded above (by $\sqrt{\alpha}$), so it converges to some limit $L_2$. Since $x_{n+1} = \frac{\alpha + x_n}{1 + x_n}$ and the map $f(x) = \frac{\alpha + x}{1+x}$ is continuous, taking limits along the odd subsequence gives
+\[
+L_2 = \frac{\alpha + L_1}{1 + L_1},
+\]
+and along the even subsequence gives
+\[
+L_1 = \frac{\alpha + L_2}{1 + L_2}.
+\]
+At a fixed point $L = \frac{\alpha + L}{1 + L}$, we get $L + L^2 = \alpha + L$, so $L^2 = \alpha$, hence $L = \sqrt{\alpha}$. Since $L_1 \geq \sqrt{\alpha}$ and $L_2 \leq \sqrt{\alpha}$, substituting into either equation forces $L_1 = L_2 = \sqrt{\alpha}$. Therefore $\lim x_n = \sqrt{\alpha}$.
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

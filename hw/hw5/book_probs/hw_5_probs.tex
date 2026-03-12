@@ -1,0 +1,334 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+
+\begin{document}
+Then $p_{n}-q_{n}=a_{n}, p_{n}+q_{n}=\left|a_{n}\right|, p_{n} \geq 0, q_{n} \geq 0$. The series $\Sigma p_{n}, \Sigma q_{n}$ must both diverge.
+
+For if both were convergent, then
+
+$$
+\Sigma\left(p_{n}+q_{n}\right)=\Sigma\left|a_{n}\right|
+$$
+
+would converge, contrary to hypothesis. Since
+
+$$
+\sum_{n=1}^{N} a_{n}=\sum_{n=1}^{N}\left(p_{n}-q_{n}\right)=\sum_{n=1}^{N} p_{n}-\sum_{n=1}^{N} q_{n},
+$$
+
+divergence of $\Sigma p_{n}$ and convergence of $\Sigma q_{n}$ (or vice versa) implies divergence of $\Sigma a_{n}$, again contrary to hypothesis.
+
+Now let $P_{1}, P_{2}, P_{3}, \ldots$ denote the nonnegative terms of $\Sigma a_{n}$, in the order in which they occur, and let $Q_{1}, Q_{2}, Q_{3}, \ldots$ be the absolute values of the negative terms of $\Sigma a_{n}$, also in their original order.
+
+The series $\Sigma P_{n}, \Sigma Q_{n}$ differ from $\Sigma p_{n}, \Sigma q_{n}$ only by zero terms, and are therefore divergent.
+
+We shall construct sequences $\left\{m_{n}\right\},\left\{k_{n}\right\}$, such that the series
+
+
+\begin{align*}
+P_{1}+\cdots+P_{m_{1}}-Q_{1}-\cdots-Q_{k_{1}}+ & P_{m_{1}+1}+\cdots  \tag{25}\\
+& +P_{m_{2}}-Q_{k_{1}+1}-\cdots-Q_{k_{2}}+\cdots
+\end{align*}
+
+
+which clearly is a rearrangement of $\Sigma a_{n}$, satisfies (24).\\
+Choose real-valued sequences $\left\{\alpha_{n}\right\},\left\{\beta_{n}\right\}$ such that $\alpha_{n} \rightarrow \alpha, \beta_{n} \rightarrow \beta$, $\alpha_{n}<\beta_{n}, \beta_{1}>0$.
+
+Let $m_{1}, k_{1}$ be the smallest integers such that
+
+$$
+\begin{gathered}
+P_{1}+\cdots+P_{m_{1}}>\beta_{1} \\
+P_{1}+\cdots+P_{m_{1}}-Q_{1}-\cdots-Q_{k_{1}}<\alpha_{1} ;
+\end{gathered}
+$$
+
+let $m_{2}, k_{2}$ be the smallest integers such that
+
+$$
+\begin{aligned}
+P_{1}+\cdots+P_{m_{1}}-Q_{1}-\cdots-Q_{k_{1}}+P_{m_{1}+1}+\cdots+ & P_{m_{2}}>\beta_{2}, \\
+P_{1}+\cdots+P_{m_{1}}-Q_{1}-\cdots-Q_{k_{1}}+P_{m_{1}+1}+\cdots+P_{m_{2}}-Q_{k_{1}+1} & -\cdots-Q_{k_{2}}<\alpha_{2} ;
+\end{aligned}
+$$
+
+and continue in this way. This is possible since $\Sigma P_{n}$ and $\Sigma Q_{n}$ diverge.\\
+If $x_{n}, y_{n}$ denote the partial sums of (25) whose last terms are $P_{m_{n}}$, $-Q_{k_{n}}$, then
+
+$$
+\left|x_{n}-\beta_{n}\right| \leq P_{m_{n}}, \quad\left|y_{n}-\alpha_{n}\right| \leq Q_{k_{n}} .
+$$
+
+Since $P_{n} \rightarrow 0$ and $Q_{n} \rightarrow 0$ as $n \rightarrow \infty$, we see that $x_{n} \rightarrow \beta, y_{n} \rightarrow \alpha$.\\
+Finally, it is clear that no number less than $\alpha$ or greater than $\beta$ can be a subsequential limit of the partial sums of (25).\\
+3.55 Theorem If $\Sigma a_{n}$ is a series of complex numbers which converges absolutely, then every rearrangement of $\Sigma a_{n}$ converges, and they all converge to the same sum.
+
+Proof Let $\Sigma a_{n}^{\prime}$ be a rearrangement, with partial sums $s_{n}^{\prime}$. Given $\varepsilon>0$, there exists an integer $N$ such that $m \geq n \geq N$ implies
+
+
+\begin{equation*}
+\sum_{i=n}^{m}\left|a_{i}\right| \leq \varepsilon . \tag{26}
+\end{equation*}
+
+
+Now choose $p$ such that the integers $1,2, \ldots, N$ are all contained in the set $k_{1}, k_{2}, \ldots, k_{p}$ (we use the notation of Definition 3.52). Then if $n>p$, the numbers $a_{1}, \ldots, a_{N}$ will cancel in the difference $s_{n}-s_{n}^{\prime}$, so that $\left|s_{n}-s_{n}^{\prime}\right| \leq \varepsilon$, by (26). Hence $\left\{s_{n}^{\prime}\right\}$ converges to the same sum as $\left\{s_{n}\right\}$.
+
+\section*{EXERCISES}
+\begin{enumerate}
+  \item Prove that convergence of $\left\{s_{n}\right\}$ implies convergence of $\left\{\left|s_{n}\right|\right\}$. Is the converse true ?
+  \item Calculate $\lim _{n \rightarrow \infty}\left(\sqrt{n^{2}+n}-n\right)$.
+  \item If $s_{1}=\sqrt{2}$, and
+\end{enumerate}
+
+$$
+s_{n+1}=\sqrt{2+\sqrt{s_{n}}} \quad(n=1,2,3, \ldots)
+$$
+
+prove that $\left\{s_{n}\right\}$ converges, and that $s_{n}<2$ for $n=1,2,3 \ldots$.\\
+4. Find the upper and lower limits of the sequence $\left\{s_{n}\right\}$ defined by
+
+$$
+s_{1}=0 ; \quad s_{2 m}=\frac{s_{2 m-1}}{2} ; \quad s_{2 m+1}=\frac{1}{2}+s_{2 m}
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item For any two real sequences $\left\{a_{n}\right\},\left\{b_{n}\right\}$, prove that
+\end{enumerate}
+
+$$
+\limsup _{n \rightarrow \infty}\left(a_{n}+b_{n}\right) \leq \limsup _{n \rightarrow \infty} a_{n}+\limsup _{n \rightarrow \infty} b_{n},
+$$
+
+provided the sum on the right is not of the form $\infty-\infty$.\\
+6. Investigate the behavior (convergence or divergence) of $\Sigma a_{n}$ if\\
+(a) $a_{n}=\sqrt{n+1}-\sqrt{n}$;\\
+(b) $a_{n}=\frac{\sqrt{n+1}-\sqrt{n}}{n}$;\\
+(c) $a_{n}=(\sqrt[n]{n}-1)^{n}$;\\
+(d) $a_{n}=\frac{1}{1+z^{n}}, \quad$ for complex values of $z$.\\
+7. Prove that the convergence of $\Sigma a_{n}$ implies the convergence of
+
+$$
+\sum \frac{\sqrt{a_{n}}}{n},
+$$
+
+if $a_{n} \geq 0$.\\
+8. If $\Sigma a_{n}$ converges, and if $\left\{b_{n}\right\}$ is monotonic and bounded, prove that $\Sigma a_{n} b_{n}$ converges.\\
+9. Find the radius of convergence of each of the following power series:\\
+(a) $\sum n^{3} z^{n}$,\\
+(b) $\sum \frac{2^{n}}{n!} z^{n}$,\\
+(c) $\sum \frac{2^{n}}{n^{2}} z^{n}$,\\
+(d) $\sum \frac{n^{3}}{3^{n}} z^{n}$.\\
+10. Suppose that the coefficients of the power series $\sum a_{n} z^{n}$ are integers, infinitely many of which are distinct from zero. Prove that the radius of convergence is at most 1 .\\
+11. Suppose $a_{n}>0, s_{n}=a_{1}+\cdots+a_{n}$, and $\Sigma a_{n}$ diverges.\\
+(a) Prove that $\sum \frac{a_{n}}{1+a_{n}}$ diverges.\\
+(b) Prove that
+
+$$
+\frac{a_{N+1}}{s_{N+1}}+\cdots+\frac{a_{N+k}}{s_{N+k}} \geq 1-\frac{s_{N}}{s_{N+k}}
+$$
+
+and deduce that $\sum \frac{a_{n}}{s_{n}}$ diverges.\\
+(c) Prove that
+
+$$
+\frac{a_{n}}{s_{n}^{2}} \leq \frac{1}{s_{n-1}}-\frac{1}{s_{n}}
+$$
+
+and deduce that $\sum \frac{a_{n}}{s_{n}^{2}}$ converges.\\
+(d) What can be said about
+
+$$
+\sum \frac{a_{n}}{1+n a_{n}} \quad \text { and } \quad \sum \frac{a_{n}}{1+n^{2} a_{n}} ?
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{11}
+  \item Suppose $a_{n}>0$ and $\Sigma a_{n}$ converges. Put
+\end{enumerate}
+
+$$
+r_{n}=\sum_{m=n}^{\infty} a_{m} .
+$$
+
+(a) Prove that
+
+$$
+\frac{a_{m}}{r_{m}}+\cdots+\frac{a_{n}}{r_{n}}>1-\frac{r_{n}}{r_{m}}
+$$
+
+if $m<n$, and deduce that $\sum \frac{a_{n}}{r_{n}}$ diverges.\\
+(b) Prove that
+
+$$
+\frac{a_{n}}{\sqrt{r_{n}}}<2\left(\sqrt{r_{n}}-\sqrt{r_{n+1}}\right)
+$$
+
+and deduce that $\sum \frac{a_{n}}{\sqrt{r_{n}}}$ converges.\\
+13. Prove that the Cauchy product of two absolutely convergent series converges absolutely.\\
+14. If $\left\{s_{n}\right\}$ is a complex sequence, define its arithmetic means $\sigma_{n}$ by
+
+$$
+\sigma_{n}=\frac{s_{0}+s_{1}+\cdots+s_{n}}{n+1} \quad(n=0,1,2, \ldots)
+$$
+
+(a) If $\lim s_{n}=s$, prove that $\lim \sigma_{n}=s$.\\
+(b) Construct a sequence $\left\{s_{n}\right\}$ which does not converge, although $\lim \sigma_{n}=0$.\\
+(c) Can it happen that $s_{n}>0$ for all $n$ and that lim sup $s_{n}=\infty$, although $\lim \sigma_{n}=0$ ?\\
+(d) Put $a_{n}=s_{n}-s_{n-1}$, for $n \geq 1$. Show that
+
+$$
+s_{n}-\sigma_{n}=\frac{1}{n+1} \sum_{k=1}^{n} k a_{k}
+$$
+
+Assume that $\lim \left(n a_{n}\right)=0$ and that $\left\{\sigma_{n}\right\}$ converges. Prove that $\left\{s_{n}\right\}$ converges. [This gives a converse of ( $a$ ), but under the additional assumption that $n a_{n} \rightarrow 0$.] (e) Derive the last conclusion from a weaker hypothesis: Assume $M<\infty$, $\left|n a_{n}\right| \leq M$ for all $n$, and $\lim \sigma_{n}=\sigma$. Prove that $\lim s_{n}=\sigma$, by completing the following outline:
+
+If $m<n$, then
+
+$$
+s_{n}-\sigma_{n}=\frac{m+1}{n-m}\left(\sigma_{n}-\sigma_{m}\right)+\frac{1}{n-m} \sum_{i=m+1}^{n}\left(s_{n}-s_{i}\right) .
+$$
+
+For these $i$,
+
+$$
+\left|s_{n}-s_{i}\right| \leq \frac{(n-i) M}{i+1} \leq \frac{(n-m-1) M}{m+2}
+$$
+
+Fix $\varepsilon>0$ and associate with each $n$ the integer $m$ that satisfies
+
+$$
+m \leq \frac{n-\varepsilon}{1+\varepsilon}<m+1
+$$
+
+Then $(m+1) /(n-m) \leq 1 / \varepsilon$ and $\left|s_{n}-s_{i}\right|<M \varepsilon$. Hence
+
+$$
+\limsup _{n \rightarrow \infty}\left|s_{n}-\sigma\right| \leq M \varepsilon
+$$
+
+Since $\varepsilon$ was arbitrary, $\lim s_{n}=\sigma$.\\
+15. Definition 3.21 can be extended to the case in which the $a_{n}$ lie in some fixed $R^{k}$. Absolute convergence is defined as convergence of $\Sigma\left|\mathbf{a}_{n}\right|$. Show that Theorems 3.22, 3.23, 3.25(a), 3.33, 3.34, 3.42, 3.45, 3.47, and 3.55 are true in this more general setting. (Only slight modifications are required in any of the proofs.)\\
+16. Fix a positive number $\alpha$. Choose $x_{1}>\sqrt{\alpha}$, and define $x_{2}, x_{3}, x_{4}, \ldots$, by the recursion formula
+
+$$
+x_{n+1}=\frac{1}{2}\left(x_{n}+\frac{\alpha}{x_{n}}\right)
+$$
+
+(a) Prove that $\left\{x_{n}\right\}$ decreases monotonically and that $\lim x_{n}=\sqrt{\alpha}$.\\
+(b) Put $\varepsilon_{n}=x_{n}-\sqrt{\alpha}$, and show that
+
+$$
+\varepsilon_{n+1}=\frac{\varepsilon_{n}^{2}}{2 x_{n}}<\frac{\varepsilon_{n}^{2}}{2 \sqrt{\alpha}}
+$$
+
+so that, setting $\beta=2 \sqrt{\alpha}$,
+
+$$
+\varepsilon_{n+1}<\beta\left(\frac{\varepsilon_{1}}{\beta}\right)^{2^{n}} \quad(n=1,2,3, \ldots)
+$$
+
+(c) This is a good algorithm for computing square roots, since the recursion formula is simple and the convergence is extremely rapid. For example, if $\alpha=3$ and $x_{1}=2$, show that $\varepsilon_{1} / \beta<\frac{1}{10}$ and that therefore
+
+$$
+\varepsilon_{5}<4 \cdot 10^{-16}, \quad \varepsilon_{6}<4 \cdot 10^{-32} .
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{16}
+  \item Fix $\alpha>1$. Take $x_{1}>\sqrt{\alpha}$, and define
+\end{enumerate}
+
+$$
+x_{n+1}=\frac{\alpha+x_{n}}{1+x_{n}}=x_{n}+\frac{\alpha-x_{n}^{2}}{1+x_{n}}
+$$
+
+(a) Prove that $x_{1}>x_{3}>x_{5}>\cdots$.\\
+(b) Prove that $x_{2}<x_{4}<x_{6}<\cdots$.\\
+(c) Prove that $\lim x_{n}=\sqrt{\alpha}$.\\
+(d) Compare the rapidity of convergence of this process with the one described in Exercise 16.\\
+18. Replace the recursion formula of Exercise 16 by
+
+$$
+x_{n+1}=\frac{p-1}{p} x_{n}+\frac{\alpha}{p} x_{n}^{-p+1}
+$$
+
+where $p$ is a fixed positive integer, and describe the behavior of the resulting sequences $\left\{x_{n}\right\}$.\\
+19. Associate to each sequence $a=\left\{\alpha_{n}\right\}$, in which $\alpha_{n}$ is 0 or 2 , the real number
+
+$$
+x(a)=\sum_{n=1}^{\infty} \frac{\alpha_{n}}{3^{n}} .
+$$
+
+Prove that the set of all $x(a)$ is precisely the Cantor set described in Sec. 2.44.\\
+20. Suppose $\left\{p_{n}\right\}$ is a Cauchy sequence in a metric space $X$, and some subsequence $\left\{\boldsymbol{p}_{\boldsymbol{n}_{i}}\right\}$ converges to a point $\boldsymbol{p} \in \boldsymbol{X}$. Prove that the full sequence $\left\{\boldsymbol{p}_{n}\right\}$ converges to $\boldsymbol{p}$.\\
+21. Prove the following analogue of Theorem 3.10(b): If $\left\{E_{n}\right\}$ is a sequence of closed nonempty and bounded sets in a complete metric space $X$, if $E_{n} \supset E_{n+1}$, and if
+
+$$
+\lim _{n \rightarrow \infty} \operatorname{diam} E_{n}=0,
+$$
+
+then $\bigcap_{1}^{\infty} E_{n}$ consists of exactly one point.\\
+22. Suppose $X$ is a nonempty complete metric space, and $\left\{G_{n}\right\}$ is a sequence of dense open subsets of $X$. Prove Baire's theorem, namely, that $\bigcap_{1}^{\infty} G_{n}$ is not empty. (In fact, it is dense in $X$.) Hint: Find a shrinking sequence of neighborhoods $E_{n}$ such that $E_{n} \subset G_{n}$, and apply Exercise 21.\\
+23. Suppose $\left\{p_{n}\right\}$ and $\left\{q_{n}\right\}$ are Cauchy sequences in a metric space $X$. Show that the sequence $\left\{d\left(p_{n}, q_{n}\right)\right\}$ converges. Hint: For any $m, n$,
+
+$$
+d\left(p_{n}, q_{n}\right) \leq d\left(p_{n}, p_{m}\right)+d\left(p_{m}, q_{m}\right)+d\left(q_{m}, q_{n}\right)
+$$
+
+it follows that
+
+$$
+\left|d\left(p_{n}, q_{n}\right)-d\left(p_{m}, q_{m}\right)\right|
+$$
+
+is small if $m$ and $n$ are large.\\
+24. Let $X$ be a metric space.\\
+(a) Call two Cauchy sequences $\left\{p_{n}\right\},\left\{q_{n}\right\}$ in $X$ equivalent if
+
+$$
+\lim _{n \rightarrow \infty} d\left(p_{n}, q_{n}\right)=0
+$$
+
+Prove that this is an equivalence relation.\\
+(b) Let $X^{*}$ be the set of all equivalence classes so obtained. If $P \in X^{*}, Q \in X^{*}$, $\left\{p_{n}\right\} \in P,\left\{q_{n}\right\} \in Q$, define
+
+$$
+\Delta(P, Q)=\lim _{n \rightarrow \infty} d\left(p_{n}, q_{n}\right)
+$$
+
+by Exercise 23, this limit exists. Show that the number $\Delta(P, Q)$ is unchanged if $\left\{p_{n}\right\}$ and $\left\{q_{n}\right\}$ are replaced by equivalent sequences, and hence that $\Delta$ is a distance function in $X^{*}$.\\
+(c) Prove that the resulting metric space $X^{*}$ is complete.\\
+(d) For each $p \in X$, there is a Cauchy sequence all of whose terms are $p$; let $P_{p}$ be the element of $X^{*}$ which contains this sequence. Prove that
+
+$$
+\Delta\left(P_{p}, P_{q}\right)=d(p, q)
+$$
+
+for all $p, q \in X$. In other words, the mapping $\varphi$ defined by $\varphi(p)=P_{p}$ is an isometry (i.e., a distance-preserving mapping) of $X$ into $X^{*}$.\\
+(e) Prove that $\varphi(X)$ is dense in $X^{*}$, and that $\varphi(X)=X^{*}$ if $X$ is complete. By (d), we may identify $X$ and $\varphi(X)$ and thus regard $X$ as embedded in the complete metric space $X^{*}$. We call $X^{*}$ the completion of $X$.\\
+25. Let $X$ be the metric space whose points are the rational numbers, with the metric $d(x, y)=|x-y|$. What is the completion of this space? (Compare Exercise 24.)
+
+\section*{4}
+\section*{CONTINUITY}
+The function concept and some of the related terminology were introduced in Definitions 2.1 and 2.2. Although we shall (in later chapters) be mainly interested in real and complex functions (i.e., in functions whose values are real or complex numbers) we shall also discuss vector-valued functions (i.e., functions with values in $R^{k}$ ) and functions with values in an arbitrary metric space. The theorems we shall discuss in this general setting would not become any easier if we restricted ourselves to real functions, for instance, and it actually simplifies and clarifies the picture to discard unnecessary hypotheses and to state and prove theorems in an appropriately general context.
+
+The domains of definition of our functions will also be metric spaces, suitably specialized in various instances.
+
+\section*{LIMITS OF FUNCTIONS}
+4.1 Definition Let $X$ and $Y$ be metric spaces; suppose $E \subset X, f$ maps $E$ into $Y$, and $p$ is a limit point of $E$. We write $f(x) \rightarrow q$ as $x \rightarrow p$, or
+
+
+\begin{equation*}
+\lim _{x \rightarrow p} f(x)=q \tag{1}
+\end{equation*}
+
+
+
+\end{document}
