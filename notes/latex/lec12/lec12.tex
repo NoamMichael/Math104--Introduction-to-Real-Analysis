@@ -1,0 +1,121 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 12: Taylor's Theorem
+% Date: March 12, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{12}
+\renewcommand{\lecturedate}{March 12, 2026}
+\renewcommand{\lecturetopic}{Taylor's Theorem}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:} TODO
+\end{lecturesummary}
+
+\subsection{Taylor's Theorem}
+
+\begin{summarybox}
+\textbf{Section Overview:} TODO
+\end{summarybox}
+
+\begin{theorem}[Taylor's Theorem]
+Suppose that
+\begin{enumerate}
+    \item $f$ is a real function defined on $[a,b]$,
+    \item $f^{(n-1)}$ is continuous on $[a,b]$,
+    \item $f^{(n)}$ exists on $(a,b)$.
+\end{enumerate}
+Let $\alpha, \beta$ be distinct points of $[a,b]$, and define the \defn{Taylor polynomial}
+\[
+P(t) = \sum_{k=0}^{n-1} \frac{f^{(k)}(\alpha)}{k!} (t - \alpha)^k.
+\]
+Then there exists a point $x$ between $\alpha$ and $\beta$ such that
+\[
+f(\beta) = P(\beta) + \frac{f^{(n)}(x)}{n!} (\beta - \alpha)^n.
+\]
+The term $\frac{f^{(n)}(x)}{n!}(\beta - \alpha)^n$ is called the \defn{Lagrange remainder}.
+\end{theorem}
+
+\begin{remark}
+As $n \to \infty$, the Lagrange remainder tends to $0$, so $P(\beta)$ gives a better and better approximation of $f(\beta)$. In general, the theorem shows that $f$ can be approximated by a polynomial of degree $n-1$.
+\end{remark}
+
+\begin{proof}
+Let $M$ be such that
+\[
+f(\beta) = P(\beta) + M(\beta - \alpha)^n
+\]
+for a fixed $\beta$. It suffices to show that $M = \frac{f^{(n)}(x)}{n!}$ for some $x$ between $\alpha$ and $\beta$.
+
+Consider the function
+\[
+g(t) = f(t) - P(t) - M(t - \alpha)^n, \quad t \in [a,b].
+\]
+Then $g(\beta) = f(\beta) - P(\beta) - M(\beta - \alpha)^n = 0$ by definition of $M$, and $g(\alpha) = f(\alpha) - P(\alpha) - 0 = 0$. More generally,
+\[
+g^{(k)}(\alpha) = f^{(k)}(\alpha) - P^{(k)}(\alpha) - 0 = f^{(k)}(\alpha) - f^{(k)}(\alpha) = 0, \quad k = 0, 1, \dots, n-1.
+\]
+We now apply the Mean Value Theorem repeatedly. Since $g(\alpha) = g(\beta) = 0$, $g$ is continuous on the interval between $\alpha$ and $\beta$, and differentiable in its interior, the MVT gives
+\[
+g'(x_1) = \frac{g(\beta) - g(\alpha)}{\beta - \alpha} = 0
+\]
+for some $x_1$ between $\alpha$ and $\beta$. Next, since $g'(\alpha) = 0$ and $g'(x_1) = 0$, applying the MVT to $g'$ on the interval between $\alpha$ and $x_1$ gives
+\[
+g''(x_2) = \frac{g'(x_1) - g'(\alpha)}{x_1 - \alpha} = 0
+\]
+for some $x_2$ between $\alpha$ and $x_1$. At each stage, $g^{(k)}(\alpha) = 0$ and $g^{(k)}(x_k) = 0$, so the MVT applied to $g^{(k)}$ yields $x_{k+1}$ between $\alpha$ and $x_k$ with $g^{(k+1)}(x_{k+1}) = 0$. After $n$ steps, we obtain a point $x_n$ between $\alpha$ and $x_{n-1}$ (and hence between $\alpha$ and $\beta$) such that
+\[
+g^{(n)}(x_n) = 0.
+\]
+Now $P$ has degree $n-1$, so $P^{(n)} \equiv 0$, and the $n$-th derivative of $M(t - \alpha)^n$ is $M \cdot n!$. Therefore
+\[
+0 = g^{(n)}(x_n) = f^{(n)}(x_n) - M \cdot n!,
+\]
+which gives $M = \frac{f^{(n)}(x_n)}{n!}$. Setting $x = x_n$ completes the proof.
+\end{proof}
+
+\begin{theorem}[Taylor's Theorem with Peano Remainder]
+Suppose $f$ is real and $f^{(n)}$ exists at $x_0$. Then there is a small neighborhood $B(x_0, \delta)$ such that
+\[
+f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + r(x)
+\]
+for all $x \in B(x_0, \delta)$, where the \defn{Peano remainder} $r(x)$ satisfies
+\[
+\lim_{x \to x_0} \frac{r(x)}{|x - x_0|^n} = 0.
+\]
+That is, if we define
+\[
+R_k(x) = f(x) - \sum_{j=0}^{k} \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j,
+\]
+then $\displaystyle\lim_{x \to x_0} \frac{R_k(x)}{(x - x_0)^k} = 0$.
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on $n$.
+
+\textbf{Base case} ($n = 1$): We have $R_1(x) = f(x) - f(x_0) - f'(x_0)(x - x_0)$, so
+\[
+\frac{R_1(x)}{x - x_0} = \frac{f(x) - f(x_0)}{x - x_0} - f'(x_0) \to f'(x_0) - f'(x_0) = 0
+\]
+by the definition of the derivative.
+
+\textbf{Inductive step}: Assume the result holds for $n - 1$. Since $f^{(n)}(x_0)$ exists, $f^{(n-1)}$ exists in a neighborhood of $x_0$. Differentiating $R_n$, we find
+\[
+R_n'(x) = f'(x) - \sum_{j=0}^{n-1} \frac{(f')^{(j)}(x_0)}{j!}(x - x_0)^j,
+\]
+which is exactly the $(n-1)$-th remainder for $f'$ at $x_0$. Since $(f')^{(n-1)} = f^{(n)}$ exists at $x_0$, the inductive hypothesis gives
+\[
+\lim_{x \to x_0} \frac{R_n'(x)}{(x - x_0)^{n-1}} = 0.
+\]
+Now $R_n(x_0) = 0$, so by the Mean Value Theorem, for each $x \neq x_0$ there exists $c_x$ between $x_0$ and $x$ such that $R_n(x) = R_n'(c_x)(x - x_0)$. Therefore
+\[
+\frac{R_n(x)}{(x - x_0)^n} = \frac{R_n'(c_x)}{(x - x_0)^{n-1}} = \frac{R_n'(c_x)}{(c_x - x_0)^{n-1}} \cdot \frac{(c_x - x_0)^{n-1}}{(x - x_0)^{n-1}}.
+\]
+Since $|c_x - x_0| \leq |x - x_0|$, the second factor is at most $1$. As $x \to x_0$, we have $c_x \to x_0$, so the first factor tends to $0$ by the inductive hypothesis. Hence $R_n(x)/(x - x_0)^n \to 0$.
+\end{proof}
+
+\end{document}
