@@ -1,0 +1,110 @@
+\documentclass[12 pt]{article}        	%sets
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill \today \hfill}
+\newtheorem{prob}{Problem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Math 104 --- Homework 6}\\[0.5em]
+    \large Rudin Chapter 4: Exercises 4, 6, 8, 14, 15, 18
+\end{center}
+
+\begin{prob}[Rudin 4.4]
+Let $f$ and $g$ be continuous mappings of a metric space $X$ into a metric space $Y$, and let $E$ be a dense subset of $X$. Prove that $f(E)$ is dense in $f(X)$. If $g(p) = f(p)$ for all $p \in E$, prove that $g(p) = f(p)$ for all $p \in X$.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.6]
+Suppose $E$ is compact, and prove that $f$ is continuous on $E$ if and only if its graph is compact.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.8]
+Let $f$ be a real uniformly continuous function on the bounded set $E$ in $\R^1$. Prove that $f$ is bounded on $E$. Show that the conclusion is false if boundedness of $E$ is omitted from the hypothesis.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.14]
+Let $I = [0,1]$ be the closed unit interval. Suppose $f$ is a continuous mapping of $I$ into $I$. Prove that $f(x) = x$ for at least one $x \in I$.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.15]
+Call a mapping of $X$ into $Y$ \emph{open} if $f(V)$ is an open set in $Y$ whenever $V$ is an open set in $X$. Prove that every continuous open mapping of $\R^1$ into $\R^1$ is monotonic.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.18]
+Every rational $x$ can be written in the form $x = m/n$, where $n > 0$, and $m$ and $n$ are integers without any common divisors. When $x = 0$, we take $n = 1$. Consider the function $f$ defined on $\R^1$ by
+\[
+f(x) = \begin{cases} 0 & \text{if } x \text{ is irrational,}\\ \frac{1}{n} & \text{if } x = \frac{m}{n}.\end{cases}
+\]
+Prove that $f$ is continuous at every irrational point, and that $f$ has a simple discontinuity at every rational point.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\newpage
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+
+\begin{center}
+    \textbf{\Large Bonus Problems}\\[0.5em]
+    \large Rudin Chapter 4: Exercises 23, 24
+\end{center}
+
+\begin{prob}[Rudin 4.23]
+A real-valued function $f$ defined in $(a,b)$ is said to be \emph{convex} if
+\[
+f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)
+\]
+whenever $a < x < b$, $a < y < b$, $0 < \lambda < 1$. Prove that every convex function is continuous. Prove that every increasing convex function of a convex function is convex. If $f$ is convex in $(a,b)$ and if $a < s < t < u < b$, show that
+\[
+\frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t}.
+\]
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}[Rudin 4.24]
+Assume that $f$ is a continuous real function defined in $(a,b)$ such that
+\[
+f\!\left(\frac{x+y}{2}\right) \leq \frac{f(x) + f(y)}{2}
+\]
+for all $x, y \in (a,b)$. Prove that $f$ is convex.
+\end{prob}
+\begin{proof}
+
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}
