@@ -24,35 +24,53 @@
 Let $f$ and $g$ be continuous mappings of a metric space $X$ into a metric space $Y$, and let $E$ be a dense subset of $X$. Prove that $f(E)$ is dense in $f(X)$. If $g(p) = f(p)$ for all $p \in E$, prove that $g(p) = f(p)$ for all $p \in X$.
 \end{prob}
 \begin{proof}
+\textbf{Part 1:} We show $f(E)$ is dense in $f(X)$. Let $f(x) \in f(X)$ and let $\eps > 0$. Since $f$ is continuous, the preimage $f^{-1}(B_\eps(f(x)))$ is open in $X$. This set is nonempty since it contains $x$. Since $E$ is dense in $X$, every nonempty open set intersects $E$, so there exists $p \in E \cap f^{-1}(B_\eps(f(x)))$. Then $f(p) \in B_\eps(f(x)) \cap f(E)$. Since $\eps > 0$ was arbitrary, every neighborhood of $f(x)$ contains a point of $f(E)$, so $f(E)$ is dense in $f(X)$.
 
+\textbf{Part 2:} Now suppose $g(p) = f(p)$ for all $p \in E$. Let $x_0 \in X$. Since $E$ is dense in $X$, there exists a sequence $(e_n)$ in $E$ with $e_n \to x_0$. By continuity of $f$ and $g$, we have $f(e_n) \to f(x_0)$ and $g(e_n) \to g(x_0)$. But $f(e_n) = g(e_n)$ for all $n$ since each $e_n \in E$, so the two sequences are identical. Since limits in metric spaces are unique, $f(x_0) = g(x_0)$. As $x_0 \in X$ was arbitrary, $f = g$ on $X$.
 \end{proof}
 
 \begin{prob}[Rudin 4.6]
 Suppose $E$ is compact, and prove that $f$ is continuous on $E$ if and only if its graph is compact.
 \end{prob}
 \begin{proof}
+Let $G = \{(x, f(x)) : x \in E\}$ denote the graph of $f$.
 
+$(\Leftarrow)$ Suppose $G$ is compact. Let $(x_n)$ be a sequence in $E$ with $x_n \to x$. Consider the sequence $(x_n, f(x_n))$ in $G$. Since $G$ is compact, there is a convergent subsequence $(x_{n_k}, f(x_{n_k})) \to (x^*, y^*)$ with $(x^*, y^*) \in G$. Since $x_{n_k} \to x$, we have $x^* = x$, and since $(x, y^*) \in G$, we get $y^* = f(x)$. Thus $f(x_{n_k}) \to f(x)$.
+
+Now suppose some other subsequence $f(x_{n_j})$ converges to a different limit. By compactness of $G$, $(x_{n_j}, f(x_{n_j}))$ has a further convergent subsequence in $G$, and by the same argument its limit must be $(x, f(x))$. So every convergent subsequence of $f(x_n)$ has the same limit $f(x)$, which forces $f(x_n) \to f(x)$. Hence $f$ is continuous.
+
+$(\Rightarrow)$ Suppose $f$ is continuous on $E$. Define $\varphi: E \to E \times Y$ by $\varphi(x) = (x, f(x))$. Since the identity map $x \mapsto x$ is continuous and $f$ is continuous, $\varphi$ is continuous. The graph $G = \varphi(E)$ is the continuous image of a compact set, hence compact.
 \end{proof}
 
 \begin{prob}[Rudin 4.8]
 Let $f$ be a real uniformly continuous function on the bounded set $E$ in $\R^1$. Prove that $f$ is bounded on $E$. Show that the conclusion is false if boundedness of $E$ is omitted from the hypothesis.
 \end{prob}
 \begin{proof}
+Since $f$ is uniformly continuous on $E$, there exists $\delta > 0$ such that $|f(x) - f(y)| < 1$ whenever $x, y \in E$ with $|x - y| < \delta$. Since $E$ is bounded, $E \subset [-M, M]$ for some $M > 0$. Partition $[-M, M]$ into finitely many intervals of length less than $\delta$, say $N$ of them. For each interval that intersects $E$, pick a point $x_i \in E$ from that interval. For any $x \in E$, there is some $x_i$ with $|x - x_i| < \delta$, so $|f(x) - f(x_i)| < 1$. Thus
+\[
+|f(x)| \leq |f(x_i)| + 1 \leq \max\{|f(x_1)|, \dots, |f(x_N)|\} + 1
+\]
+for all $x \in E$, so $f$ is bounded.
 
+If boundedness of $E$ is omitted, the conclusion can fail. Let $E = \R$ and $f(x) = x$. Then $f$ is uniformly continuous (given $\eps > 0$, take $\delta = \eps$), but $f$ is unbounded.
 \end{proof}
 
 \begin{prob}[Rudin 4.14]
 Let $I = [0,1]$ be the closed unit interval. Suppose $f$ is a continuous mapping of $I$ into $I$. Prove that $f(x) = x$ for at least one $x \in I$.
 \end{prob}
 \begin{proof}
-
+Define $g: I \to \R$ by $g(x) = f(x) - x$. Since $f$ is continuous, $g$ is continuous. Since $f$ maps $I$ into $I$, we have $f(0) \geq 0$, so $g(0) = f(0) \geq 0$. Similarly, $f(1) \leq 1$, so $g(1) = f(1) - 1 \leq 0$. By the Intermediate Value Theorem, there exists $c \in [0,1]$ with $g(c) = 0$, i.e., $f(c) = c$.
 \end{proof}
 
 \begin{prob}[Rudin 4.15]
 Call a mapping of $X$ into $Y$ \emph{open} if $f(V)$ is an open set in $Y$ whenever $V$ is an open set in $X$. Prove that every continuous open mapping of $\R^1$ into $\R^1$ is monotonic.
 \end{prob}
 \begin{proof}
+Suppose $f: \R^1 \to \R^1$ is continuous and open but not monotonic. Then $f$ is neither nondecreasing nor nonincreasing, so there exist $a < b < c$ such that either $f(b) > f(a)$ and $f(b) > f(c)$, or $f(b) < f(a)$ and $f(b) < f(c)$. Without loss of generality, assume $f(b) > f(a)$ and $f(b) > f(c)$ (the other case is analogous).
 
+Since $f$ is continuous on $[a,c]$, it attains its maximum on $[a,c]$. Since $f(b) > f(a)$ and $f(b) > f(c)$, this maximum is attained at some interior point $d \in (a,c)$. Let $M = f(d)$. Then $M \in f((a,c))$, but for all $x \in (a,c)$ we have $f(x) \leq M$, so no value greater than $M$ belongs to $f((a,c))$. Thus $f((a,c))$ is not open, since $M$ is not an interior point of $f((a,c))$.
+
+But $(a,c)$ is open in $\R^1$ and $f$ is an open map, so $f((a,c))$ must be open --- a contradiction. Therefore $f$ is monotonic.
 \end{proof}
 
 \begin{prob}[Rudin 4.18]
@@ -63,7 +81,9 @@ f(x) = \begin{cases} 0 & \text{if } x \text{ is irrational,}\\ \frac{1}{n} & \te
 Prove that $f$ is continuous at every irrational point, and that $f$ has a simple discontinuity at every rational point.
 \end{prob}
 \begin{proof}
+\textbf{Continuity at irrational points:} Let $x$ be irrational and let $\eps > 0$. There are only finitely many positive integers $n$ with $1/n \geq \eps$, and for each such $n$, only finitely many rationals $m/n$ (in lowest terms) lie in the interval $[x-1, x+1]$. Thus there are finitely many rationals $r$ near $x$ with $f(r) \geq \eps$. Since $x$ is irrational, $x$ is not equal to any of these rationals, so we can choose $\delta > 0$ small enough that $(x - \delta, x + \delta)$ contains none of them. Then for any $t$ with $|t - x| < \delta$: if $t$ is irrational, $f(t) = 0 < \eps$; if $t = m/n$ in lowest terms, then $1/n < \eps$, so $f(t) < \eps$. In either case $|f(t) - f(x)| = |f(t)| < \eps$, so $f$ is continuous at $x$.
 
+\textbf{Simple discontinuity at rational points:} Let $p = m/n$ be rational (in lowest terms). We show $f(p+) = f(p-) = 0$. For any sequence of irrationals $x_k \to p$ from either side, $f(x_k) = 0$ for all $k$, so $f(x_k) \to 0$. Since every neighborhood of $p$ contains irrationals, we get $f(p+) = f(p-) = 0 \neq \frac{1}{n} = f(p)$. Thus $f$ has a removable discontinuity at $p$, which is a simple discontinuity.
 \end{proof}
 
 \newpage
