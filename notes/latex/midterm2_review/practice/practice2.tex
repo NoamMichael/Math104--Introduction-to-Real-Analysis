@@ -1,0 +1,327 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+
+\newenvironment{solution}{%
+  \par\medskip\noindent{\color{red}\textbf{Solution.}}\color{red}\;}%
+  {\par\medskip}
+
+\begin{document}
+Math 104\\
+Spring 2026\\
+Practice Midterm 2
+
+Name: $\_\_\_\_$\\
+Student ID: $\_\_\_\_$
+
+This exam contains 7 pages (including this cover page) and 6 problems. Check to see if any pages are missing. Enter all requested information on the top of this page, and put your initials on the top of every page, in case the pages become separated.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+Question: & 1 & 2 & 3 & 4 & 5 & 6 & Total \\
+\hline
+Points: & 10 & 10 & 20 & 10 & 10 & 10 & 70 \\
+\hline
+Score: &  &  &  &  &  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\clearpage
+%----------------------------------------------------------------------
+\begin{enumerate}
+  \item (10 points) Let $\alpha>0$ and $p \geq 2$ be a positive integer. Choose $x_{1}>\sqrt[p]{\alpha}$, and define $x_{2}, x_{3}, \ldots$ by
+\end{enumerate}
+
+$$
+x_{n+1}=\frac{1}{p}\left((p-1) x_{n}+\frac{\alpha}{x_{n}^{p-1}}\right)
+$$
+
+Prove that $\left\{x_{n}\right\}$ decreases monotonically and $\lim x_{n}=\sqrt[p]{\alpha}$.
+
+\begin{solution}
+\textbf{Step 1: Lower bound.} For $n \geq 2$, we show $x_n \geq \alpha^{1/p}$ by AM-GM. Write $x_{n+1}$ as the arithmetic mean of $p$ terms: $(p-1)$ copies of $x_n$ and one copy of $\alpha/x_n^{p-1}$. By AM-GM,
+$$
+x_{n+1} = \frac{(p-1)x_n + \alpha/x_n^{p-1}}{p} \;\geq\; \left(x_n^{p-1} \cdot \frac{\alpha}{x_n^{p-1}}\right)^{1/p} = \alpha^{1/p}.
+$$
+Equality holds iff all terms are equal, i.e.\ $x_n = \alpha^{1/p}$. Since $x_1 > \alpha^{1/p}$, we get $x_2 > \alpha^{1/p}$, and by induction $x_n > \alpha^{1/p}$ for all $n \geq 1$.
+
+\textbf{Step 2: Monotone decrease.} We compute
+$$
+x_n - x_{n+1} = x_n - \frac{(p-1)x_n}{p} - \frac{\alpha}{px_n^{p-1}} = \frac{x_n}{p} - \frac{\alpha}{px_n^{p-1}} = \frac{x_n^p - \alpha}{px_n^{p-1}}.
+$$
+Since $x_n > \alpha^{1/p}$, we have $x_n^p > \alpha$, so $x_n - x_{n+1} > 0$ for all $n$. Thus $\{x_n\}$ is strictly decreasing.
+
+\textbf{Step 3: Convergence.} The sequence is monotonically decreasing and bounded below by $\alpha^{1/p}$, so by the monotone convergence theorem it converges to some limit $L \geq \alpha^{1/p}$.
+
+\textbf{Step 4: Identify the limit.} Taking $n\to\infty$ in the recurrence (using continuity of the right-hand side):
+$$
+L = \frac{(p-1)L + \alpha/L^{p-1}}{p} \implies pL = (p-1)L + \frac{\alpha}{L^{p-1}} \implies L = \frac{\alpha}{L^{p-1}} \implies L^p = \alpha.
+$$
+Since $L > 0$, we conclude $L = \alpha^{1/p} = \sqrt[p]{\alpha}$. \qed
+\end{solution}
+\clearpage
+%----------------------------------------------------------------------
+\noindent 2. If $E$ is a nonempty subset of a metric space $X$, define the distance from $x \in X$ to $E$ by
+
+$$
+\rho_{E}(x)=\inf _{e \in E} d(x, e)
+$$
+
+(a) (3 points) Prove that $\rho_{E}(x)=0$ if and only if $x \in \bar{E}$.
+
+\begin{solution}
+Recall that $x \in \bar{E}$ iff every open ball $B(x,\eps)$ meets $E$.
+
+$(\Rightarrow)$: If $\rho_E(x) = 0$, then for every $\eps > 0$ there exists $e \in E$ with $d(x,e) < \eps$, so $B(x,\eps) \cap E \neq \emptyset$. Hence $x \in \bar{E}$.
+
+$(\Leftarrow)$: If $x \in \bar{E}$, then for every $\eps > 0$ there exists $e \in E$ with $d(x,e) < \eps$. So $\rho_E(x) = \inf_{e \in E} d(x,e) \leq d(x,e) < \eps$ for all $\eps > 0$. Since $\rho_E(x) \geq 0$, we get $\rho_E(x) = 0$. \qed
+\end{solution}
+
+(b) (3 points) Prove that $\rho_{E}$ is a uniformly continuous function on $X$, by showing that
+
+$$
+\left|\rho_{E}(x)-\rho_{E}(y)\right| \leq d(x, y)
+$$
+
+for all $x, y \in X$. Hint:
+
+$$
+\rho_{E}(x) \leq d(x, e) \leq d(x, y)+d(y, e)
+$$
+
+so that
+
+$$
+\rho_{E}(x) \leq d(x, y)+\rho_{E}(y)
+$$
+
+\begin{solution}
+For any $e \in E$, the triangle inequality gives $d(x,e) \leq d(x,y) + d(y,e)$. Taking the infimum over $e \in E$ on both sides:
+$$
+\rho_E(x) = \inf_{e \in E} d(x,e) \leq d(x,y) + \inf_{e\in E} d(y,e) = d(x,y) + \rho_E(y).
+$$
+Hence $\rho_E(x) - \rho_E(y) \leq d(x,y)$. By symmetry (swap $x$ and $y$), $\rho_E(y) - \rho_E(x) \leq d(x,y)$. Therefore $|\rho_E(x) - \rho_E(y)| \leq d(x,y)$.
+
+This shows $\rho_E$ is Lipschitz with constant $1$, and in particular uniformly continuous: given $\eps > 0$, take $\delta = \eps$. \qed
+\end{solution}
+
+(c) (4 points) Let $A$ and $B$ be disjoint nonempty closed sets in a metric space $X$, and define $f: X \rightarrow \mathbb{R}$ such that
+
+$$
+f(p)=\frac{\rho_{A}(p)}{\rho_{A}(p)+\rho_{B}(p)}
+$$
+
+Show that $f$ is a continuous function on $X$ whose range lies in $[0,1]$, that $f(p)=0$ precisely on $A$ and $f(p)=1$ precisely on $B$.
+
+\begin{solution}
+\textbf{Well-definedness:} The denominator $\rho_A(p) + \rho_B(p) > 0$ for all $p \in X$. Indeed, if $\rho_A(p) = \rho_B(p) = 0$, then by part (a), $p \in \bar{A} = A$ and $p \in \bar{B} = B$, contradicting $A \cap B = \emptyset$.
+
+\textbf{Continuity:} By part (b), $\rho_A$ and $\rho_B$ are continuous. Since the denominator is continuous and everywhere positive, $f$ is a ratio of continuous functions with nonzero denominator, hence continuous.
+
+\textbf{Range in $[0,1]$:} Since $\rho_A, \rho_B \geq 0$, we have $f(p) \geq 0$. And $f(p) = \rho_A/(\rho_A+\rho_B) \leq 1$.
+
+\textbf{$f(p) = 0$ iff $p \in A$:} $f(p) = 0 \iff \rho_A(p) = 0 \iff p \in \bar{A} = A$ (since $A$ is closed).
+
+\textbf{$f(p) = 1$ iff $p \in B$:} $f(p) = 1 \iff \rho_A(p) = \rho_A(p)+\rho_B(p) \iff \rho_B(p) = 0 \iff p \in \bar{B} = B$. \qed
+\end{solution}
+\clearpage
+%----------------------------------------------------------------------
+\noindent 3. Suppose $f$ is a real function on the extended real line. Call $x$ a fixed point of $f$ if $f(x)=x$.
+
+(a) (5 points) If $f$ is differentiable and $f^{\prime}(t) \neq 1$ for every real $t$, prove that $f$ has at most one fixed point.
+
+\begin{solution}
+Suppose $x$ and $y$ are both fixed points, so $f(x) = x$ and $f(y) = y$. If $x \neq y$, the MVT gives some $c$ between $x$ and $y$ with
+$$
+f(x) - f(y) = f'(c)(x - y) \implies x - y = f'(c)(x-y).
+$$
+Since $x \neq y$, we may divide: $f'(c) = 1$, contradicting the hypothesis. So $x = y$, and $f$ has at most one fixed point. \qed
+\end{solution}
+
+(b) (5 points) Show that the function $f$ defined by
+
+$$
+f(t)=t+\left(1+e^{t}\right)^{-1}
+$$
+
+has no fixed point, although $0<f^{\prime}(t)<1$ for all real $t$.
+
+\begin{solution}
+\textbf{No fixed point:} $f(t) = t$ requires $(1+e^t)^{-1} = 0$, which is impossible since $e^t > 0$ for all $t$.
+
+\textbf{$0 < f'(t) < 1$:} Differentiating, $f'(t) = 1 - \dfrac{e^t}{(1+e^t)^2}$. Since $e^t > 0$, we have $f'(t) < 1$. For the lower bound: $(1+e^t)^2 = 1 + 2e^t + e^{2t} > e^t$, so $\dfrac{e^t}{(1+e^t)^2} < 1$, giving $f'(t) > 0$.
+
+\textbf{Why does part (a) not apply?} Part (a) requires $f'(t) \neq 1$, which holds here. But part (a) only says at \emph{most} one fixed point; it does not guarantee existence. The function escapes to $+\infty$ as $t \to +\infty$ with $f(t) - t = (1+e^t)^{-1} > 0$ always, so it never crosses $y = t$. \qed
+\end{solution}
+
+(c) (5 points) However, if there is a constant $A<1$ such that $\left|f^{\prime}(t)\right| \leq A$ for all real $t$, prove that a fixed point $x$ of $f$ exists, and that $x=\lim x_{n}$, where $x_{1}$ is an arbitrary real number and
+
+$$
+x_{n+1}=f\left(x_{n}\right)
+$$
+
+\begin{solution}
+\textbf{The sequence is Cauchy.} By the MVT, for each $n$:
+$$
+|x_{n+1} - x_n| = |f(x_n) - f(x_{n-1})| = |f'(c_n)| \cdot |x_n - x_{n-1}| \leq A|x_n - x_{n-1}|.
+$$
+By induction, $|x_{n+1} - x_n| \leq A^{n-1}|x_2 - x_1|$. For $m > n$:
+$$
+|x_m - x_n| \leq \sum_{k=n}^{m-1}|x_{k+1}-x_k| \leq |x_2 - x_1|\sum_{k=n}^{\infty}A^{k-1} = \frac{A^{n-1}}{1-A}|x_2-x_1| \to 0.
+$$
+So $\{x_n\}$ is Cauchy, hence converges to some $x \in \R$.
+
+\textbf{$x$ is a fixed point.} Since $|f'| \leq A$, $f$ is Lipschitz (hence continuous). Taking $n \to \infty$:
+$$
+x = \lim x_{n+1} = \lim f(x_n) = f\!\left(\lim x_n\right) = f(x).
+$$
+
+\textbf{Uniqueness.} Since $|f'| \leq A < 1$, $f'(t) \neq 1$ everywhere, so by part (a) the fixed point is unique. \qed
+\end{solution}
+
+(d) (5 points) Show that the process described in (c) can be visualized by the zigzag path
+
+$$
+\left(x_{1}, x_{2}\right) \rightarrow\left(x_{2}, x_{2}\right) \rightarrow\left(x_{2}, x_{3}\right) \rightarrow\left(x_{3}, x_{3}\right) \rightarrow\left(x_{3}, x_{4}\right) \rightarrow \cdots
+$$
+
+\begin{solution}
+Plot the graph $y = f(x)$ and the diagonal $y = x$ in the plane. The zigzag traces the iteration as follows:
+\begin{itemize}
+  \item Start at $(x_1, x_2) = (x_1, f(x_1))$: the point on the graph of $f$ above $x_1$.
+  \item Move \emph{horizontally} to the diagonal: reach $(x_2, x_2)$.
+  \item Move \emph{vertically} to the graph: reach $(x_2, f(x_2)) = (x_2, x_3)$.
+  \item Repeat.
+\end{itemize}
+Each horizontal step reads off the current value from the diagonal; each vertical step evaluates $f$. Since $|f'| \leq A < 1$ the graph $y = f(x)$ has slope strictly less than the diagonal everywhere, so the iterates spiral inward to the unique intersection point $(x^*, x^*) = (x^*, f(x^*))$, the fixed point. \qed
+\end{solution}
+\clearpage
+%----------------------------------------------------------------------
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item For $1<s<\infty$, define
+\end{enumerate}
+
+$$
+\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^{s}}
+$$
+
+Let $[x]$ denote the greatest integer $\leq x$. Prove that
+
+(a) $\left(5\right.$ points) $\zeta(s)=s \int_{1}^{\infty} \frac{[x]}{x^{s+1}} d x$, and
+
+\begin{solution}
+Write the integral over $[1,N]$ as a sum of integrals over $[n, n+1)$, on each of which $[x] = n$:
+$$
+s\int_1^N \frac{[x]}{x^{s+1}}\,dx = s\sum_{n=1}^{N-1}\int_n^{n+1}\frac{n}{x^{s+1}}\,dx = s\sum_{n=1}^{N-1} n\cdot \frac{1}{s}\bigl(n^{-s} - (n+1)^{-s}\bigr) = \sum_{n=1}^{N-1}n\bigl(n^{-s}-(n+1)^{-s}\bigr).
+$$
+Expanding and telescoping (re-index the second sum with $m = n+1$):
+\begin{align*}
+\sum_{n=1}^{N-1}n\bigl(n^{-s}-(n+1)^{-s}\bigr)
+&= \sum_{n=1}^{N-1}n^{1-s} - \sum_{n=1}^{N-1}n(n+1)^{-s} \\
+&= \sum_{n=1}^{N-1}n^{1-s} - \sum_{m=2}^{N}(m-1)m^{-s} \\
+&= \sum_{n=1}^{N-1}n^{1-s} - \sum_{m=2}^{N}m^{1-s} + \sum_{m=2}^{N}m^{-s} \\
+&= 1 - N^{1-s} + \sum_{n=2}^{N}n^{-s} \;=\; \sum_{n=1}^{N}n^{-s} - N^{1-s}.
+\end{align*}
+For $s > 1$, $N^{1-s} \to 0$ as $N\to\infty$. Hence $s\int_1^\infty \frac{[x]}{x^{s+1}}\,dx = \sum_{n=1}^\infty n^{-s} = \zeta(s)$. \qed
+\end{solution}
+
+(b) (5 points) $\zeta(s)=\frac{s}{s-1}-s \int_{1}^{\infty} \frac{x-[x]}{x^{s+1}} d x$.
+
+Prove that the integral in (b) converges for all $s>0$. Hint: To prove (a), compute the difference between the integral over $[1, N]$ and the $N$ th partial sum of the series that defines $\zeta(s)$.
+
+\begin{solution}
+\textbf{Deriving (b) from (a).} Write $[x] = x - (x - [x])$ and split:
+$$
+\zeta(s) = s\int_1^\infty \frac{[x]}{x^{s+1}}\,dx = s\int_1^\infty \frac{x - (x-[x])}{x^{s+1}}\,dx = s\int_1^\infty x^{-s}\,dx - s\int_1^\infty \frac{x-[x]}{x^{s+1}}\,dx.
+$$
+For $s > 1$: $s\int_1^\infty x^{-s}\,dx = s\cdot\dfrac{1}{s-1} = \dfrac{s}{s-1}$. This gives part (b).
+
+\textbf{Convergence for $s > 0$.} Since $0 \leq x - [x] < 1$,
+$$
+\left|\frac{x-[x]}{x^{s+1}}\right| \leq \frac{1}{x^{s+1}}.
+$$
+For $s > 0$ we have $s+1 > 1$, so $\int_1^\infty x^{-(s+1)}\,dx = \dfrac{1}{s}$ converges. By the comparison test, $\int_1^\infty \dfrac{x-[x]}{x^{s+1}}\,dx$ converges absolutely for all $s > 0$. \qed
+\end{solution}
+
+%----------------------------------------------------------------------
+\clearpage
+\noindent 5. (10 points) Suppose $f$ is differentiable on $[a, b], f(a)=0$, and there is $A \in \mathbb{R}$ such that $\left|f^{\prime}(x)\right| \leq A|f(x)|$ on $[a, b]$. Prove that $f(x)=0$ for all $x \in[a, b]$. Hint: Fix $x_{0} \in[a, b]$, let
+
+$$
+M_{0}=\sup |f(x)|, M_{1}=\sup \left|f^{\prime}(x)\right|
+$$
+
+for $x \in\left[a, x_{0}\right]$. For any such $x$,
+
+$$
+|f(x)| \leq M_{1}\left(x_{0}-a\right) \leq A\left(x_{0}-a\right) M_{0}
+$$
+
+Hence $M_0=0$ if $A\left(x_{0}-a\right)<1$, i.e., $f \equiv 0$ on $\left[a, x_{0}\right]$.
+
+\begin{solution}
+\textbf{Local step.} Fix $x_0 \in [a,b]$ with $A(x_0 - a) < 1$ (e.g., take $x_0 = a + \frac{1}{2A}$ if this lies in $[a,b]$, else $x_0 = b$). Let $M_0 = \sup_{[a,x_0]}|f|$ and $M_1 = \sup_{[a,x_0]}|f'|$.
+
+For any $x \in [a, x_0]$, apply the MVT with $f(a) = 0$:
+$$
+|f(x)| = |f(x) - f(a)| \leq M_1 \cdot (x - a) \leq M_1(x_0 - a).
+$$
+Taking the sup over $x \in [a,x_0]$: $M_0 \leq M_1(x_0 - a)$. By hypothesis $M_1 \leq AM_0$, so
+$$
+M_0 \leq A(x_0 - a)\,M_0.
+$$
+Since $A(x_0 - a) < 1$, this forces $M_0 = 0$. Thus $f \equiv 0$ on $[a, x_0]$.
+
+\textbf{Iteration (bootstrapping).} Now $f(x_0) = 0$. Repeat the same argument on the interval $[x_0, \min(x_0 + \frac{1}{2A}, b)]$, using $f(x_0) = 0$ as the new base point. Each step covers a length of $\frac{1}{2A}$ (or less at the right end), so after finitely many steps (at most $\lceil 2A(b-a) \rceil$ steps) we reach $b$ and conclude $f \equiv 0$ on $[a,b]$. \qed
+\end{solution}
+\clearpage
+%----------------------------------------------------------------------
+
+\noindent 6. (10 points) Let $\phi$ be a real function defined on a rectangle $R=[a, b] \times[\alpha, \beta]$ in the plane. A solution of the initial-valued problem
+
+$$
+y^{\prime}=\phi(x, y), y(a)=c
+$$
+
+for $c \in[\alpha, \beta]$ is a differentiable function $f$ on $[a, b]$ such that $f(a)=c$ and $f(x) \in[\alpha, \beta]$ and
+
+$$
+f^{\prime}(x)=\phi(x, f(x))
+$$
+
+for $x \in[a, b]$. Prove that such a problem has at most one solution if there is a constant $A$ such that
+
+$$
+\left|\phi\left(x, y_{2}\right)-\phi\left(x, y_{1}\right)\right| \leq A\left|y_{2}-y_{1}\right|
+$$
+
+whenever $\left(x, y_{1}\right) \in R$ and $\left(x, y_{2}\right) \in R$.
+
+\begin{solution}
+Suppose $f$ and $g$ are both solutions of the IVP. Let $h = f - g$. Then:
+\begin{itemize}
+  \item $h(a) = f(a) - g(a) = c - c = 0$.
+  \item $h'(x) = f'(x) - g'(x) = \phi(x, f(x)) - \phi(x, g(x))$.
+\end{itemize}
+By the Lipschitz condition on $\phi$:
+$$
+|h'(x)| = |\phi(x, f(x)) - \phi(x, g(x))| \leq A|f(x) - g(x)| = A|h(x)|.
+$$
+So $h$ is differentiable on $[a,b]$, $h(a) = 0$, and $|h'(x)| \leq A|h(x)|$. By Problem 5, $h \equiv 0$ on $[a,b]$, i.e., $f \equiv g$. Hence the solution is unique. \qed
+\end{solution}
+
+\end{document}

@@ -1,0 +1,196 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 14: Topic
+% Date: March 19, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{14}
+\renewcommand{\lecturedate}{March 19, 2026}
+\renewcommand{\lecturetopic}{Topic}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:}
+\end{lecturesummary}
+
+\subsection{Discussion: Examples of Riemann Integrability}
+
+\begin{summarybox}
+\textbf{Section Overview:} For each function $f:[0,1] \to \R$, determine whether $f$ is Riemann integrable, and if so, compute $\int_0^1 f\,dx$.
+\end{summarybox}
+
+\begin{example}
+Define $f:[0,1] \to \R$ by
+\[
+f(x) = \begin{cases} \dfrac{1}{q} & \text{if } x = \dfrac{p}{q} \text{ in lowest terms}, \\[6pt] 0 & \text{if } x \text{ is irrational}. \end{cases}
+\]
+\end{example}
+
+\begin{example}
+Define $f:[0,1] \to \R$ by
+\[
+f(x) = \begin{cases} 1 & \text{if } x \in \Q, \\ 0 & \text{if } x \notin \Q. \end{cases}
+\]
+\end{example}
+
+\begin{example}
+Define $f:[0,1] \to \R$ by
+\[
+f(x) = \begin{cases} \dfrac{1}{\sqrt{x}} & \text{if } x > 0, \\[6pt] 0 & \text{if } x = 0. \end{cases}
+\]
+\end{example}
+
+\subsection{Determining the Riemann Integrable}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{theorem}[Sandwich Principle]
+$f \in \mathscr{R}([a,b])$ if for all $\eps > 0$, there exist $g, h \in \mathscr{R}([a,b])$ with $g \leq f \leq h$ and
+\[
+\int_a^b (h - g)\,dx < \eps.
+\]
+\end{theorem}
+
+\begin{definition}
+A set $E$ is a \defn{zero set} if for every $\eps > 0$, there exist countably many intervals $\{I_n\}$ that cover $E$ and
+\[
+\sum_{n=1}^{\infty} |I_n| < \eps.
+\]
+\end{definition}
+
+\begin{example}
+$\Q$ is a zero set.
+\end{example}
+
+\begin{theorem}
+If $f$ is bounded and the set of discontinuities of $f$ is a zero set, then $f \in \mathscr{R}$.
+\end{theorem}
+
+Consider that the lower Darboux sum
+\[
+L(P, f) = \sum_{i=1}^{n} \inf_{[x_{i-1}, x_i]} f \cdot \Delta x_i
+\]
+can be generalized by replacing $\Delta x_i$ with $\alpha(x_i) - \alpha(x_{i-1})$, giving
+\[
+L(P, f, \alpha) = \sum_{i=1}^{n} \inf_{[x_{i-1}, x_i]} f \cdot (\alpha(x_i) - \alpha(x_{i-1})).
+\]
+
+\begin{theorem}
+If $\alpha$ is monotonically increasing with $\alpha' \in \mathscr{R}$, and $f$ is bounded, then $f \in \mathscr{R}(\alpha)$ if and only if $f\alpha' \in \mathscr{R}$, and
+\[
+\int_a^b f\,d\alpha = \int_a^b f\alpha'\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\eps > 0$. Since $\alpha' \in \mathscr{R}$, there exists a partition $P = \{x_0, \ldots, x_n\}$ of $[a,b]$ such that
+\[
+U(P, \alpha') - L(P, \alpha') < \eps.
+\]
+By the Mean Value Theorem, there exist $t_i \in [x_{i-1}, x_i]$ such that
+\[
+\Delta \alpha_i = \alpha'(t_i)\,\Delta x_i.
+\]
+Now consider Riemann sums for $f$ with respect to $\alpha$ at sample points $s_i$:
+\[
+\sum f(s_i)\,\Delta\alpha_i = \sum f(s_i)\,\alpha'(t_i)\,\Delta x_i.
+\]
+Compare this to the Riemann sum for $f\alpha'$:
+\[
+\sum f(s_i)\,\alpha'(s_i)\,\Delta x_i.
+\]
+The difference is bounded by
+\[
+\left|\sum f(s_i)\bigl(\alpha'(t_i) - \alpha'(s_i)\bigr)\,\Delta x_i\right| \leq M \sum |\alpha'(t_i) - \alpha'(s_i)|\,\Delta x_i \leq M\bigl(U(P,\alpha') - L(P,\alpha')\bigr) < M\eps,
+\]
+where $M = \sup|f|$. Since $\eps$ was arbitrary, the Riemann sums converge to the same limit, so $\int_a^b f\,d\alpha = \int_a^b f\alpha'\,dx$.
+\end{proof}
+
+\begin{notebox}
+\textbf{Technique:} To compare a Riemann--Stieltjes integral $\int f\,d\alpha$ with an ordinary Riemann integral, use the MVT to replace $\Delta\alpha_i$ with $\alpha'(t_i)\,\Delta x_i$. This converts the Stieltjes sum into something close to a Riemann sum for $f\alpha'$. The error between the two sums is controlled by the oscillation of $\alpha'$, i.e., $U(P,\alpha') - L(P,\alpha')$, which can be made small since $\alpha' \in \mathscr{R}$.
+\end{notebox}
+
+\subsection{Applications of the Stieltjes Integral}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{example}
+In physics, the \defn{moment of inertia} is given by
+\[
+I = \int x^2\,dm,
+\]
+which is a Stieltjes integral with $f(x) = x^2$ and $\alpha = m$ (mass distribution).
+\end{example}
+
+\begin{theorem}
+If $f$ is continuous at $s \in (a,b)$ and $\alpha(x) = I_{[s,\infty)}(x)$ (unit jump at $s$), then $f \in \mathscr{R}(\alpha)$ and
+\[
+\int_a^b f\,d\alpha = f(s).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\eps > 0$. Since $f$ is continuous at $s$, there exists $\delta > 0$ such that $|f(x) - f(s)| < \eps$ whenever $|x - s| < \delta$. Choose a partition $P$ with $s - \delta < x_{k-1} < s < x_k < s + \delta$ for some $k$. Since $\alpha$ jumps only at $s$, we have $\Delta\alpha_i = 0$ for $i \neq k$ and $\Delta\alpha_k = 1$. Therefore
+\[
+U(P, f, \alpha) = \sup_{[x_{k-1}, x_k]} f \leq f(s) + \eps, \qquad L(P, f, \alpha) = \inf_{[x_{k-1}, x_k]} f \geq f(s) - \eps.
+\]
+Thus $U(P, f, \alpha) - L(P, f, \alpha) \leq 2\eps$, so $f \in \mathscr{R}(\alpha)$, and since $f(s) - \eps \leq \int_a^b f\,d\alpha \leq f(s) + \eps$ for all $\eps > 0$, we conclude $\int_a^b f\,d\alpha = f(s)$.
+\end{proof}
+
+\subsection{Change of Variable}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{theorem}[Change of Variable]
+Let $\varphi:[A,B] \to [a,b]$ be strictly increasing, $\alpha$ monotonically increasing, and $f \in \mathscr{R}([a,b], \alpha)$. Define $\beta(y) = \alpha(\varphi(y))$ and $g(y) = f(\varphi(y))$. Then
+\[
+\int_A^B g\,d\beta = \int_a^b f\,d\alpha.
+\]
+\end{theorem}
+
+\begin{proof}
+Since $\varphi$ is strictly increasing and surjects onto $[a,b]$, partitions of $[A,B]$ and $[a,b]$ are in bijection: given $Q = \{y_0, \ldots, y_n\}$ of $[A,B]$, set $P = \{\varphi(y_0), \ldots, \varphi(y_n)\}$, a partition of $[a,b]$. On each subinterval,
+\[
+\Delta\beta_i = \beta(y_i) - \beta(y_{i-1}) = \alpha(\varphi(y_i)) - \alpha(\varphi(y_{i-1})) = \Delta\alpha_i,
+\]
+and since $\varphi$ is a bijection from $[y_{i-1}, y_i]$ to $[x_{i-1}, x_i]$,
+\[
+\sup_{[y_{i-1}, y_i]} g = \sup_{[y_{i-1}, y_i]} f \circ \varphi = \sup_{[x_{i-1}, x_i]} f, \qquad \inf_{[y_{i-1}, y_i]} g = \inf_{[x_{i-1}, x_i]} f.
+\]
+Therefore $U(Q, g, \beta) = U(P, f, \alpha)$ and $L(Q, g, \beta) = L(P, f, \alpha)$. Since $f \in \mathscr{R}(\alpha)$, for every $\eps > 0$ there exists $P$ with $U(P,f,\alpha) - L(P,f,\alpha) < \eps$, so the corresponding $Q$ satisfies $U(Q,g,\beta) - L(Q,g,\beta) < \eps$, giving $g \in \mathscr{R}(\beta)$. Moreover,
+\[
+\int_A^B g\,d\beta = \sup_Q L(Q,g,\beta) = \sup_P L(P,f,\alpha) = \int_a^b f\,d\alpha. \qedhere
+\]
+\end{proof}
+
+\begin{theorem}[Inverse Function Theorem]
+If $f$ is continuously differentiable on an open interval containing $x_0$ and $f'(x_0) \neq 0$, then $f$ is locally invertible near $x_0$, the inverse $f^{-1}$ is continuously differentiable, and
+\[
+(f^{-1})'(y_0) = \frac{1}{f'(x_0)}, \quad \text{where } y_0 = f(x_0).
+\]
+\end{theorem}
+
+\begin{proof}
+Since $f'(x_0) \neq 0$ and $f'$ is continuous, $f'$ does not change sign in some neighborhood $(x_0 - \delta, x_0 + \delta)$, so $f$ is strictly monotone there and hence injective. By the Intermediate Value Theorem, $f$ maps this interval onto an open interval containing $y_0 = f(x_0)$, so $f^{-1}$ exists locally.
+
+To compute the derivative, let $y_0 = f(x_0)$ and $y = f(x)$ with $y \neq y_0$. Then
+\[
+\frac{f^{-1}(y) - f^{-1}(y_0)}{y - y_0} = \frac{x - x_0}{f(x) - f(x_0)}.
+\]
+Since $f$ is continuous and injective, $f^{-1}$ is continuous, so $x \to x_0$ as $y \to y_0$. Therefore
+\[
+(f^{-1})'(y_0) = \lim_{y \to y_0} \frac{x - x_0}{f(x) - f(x_0)} = \frac{1}{f'(x_0)}.
+\]
+Since $f'$ is continuous and nonzero near $x_0$, the map $y \mapsto 1/f'(f^{-1}(y))$ is continuous, so $f^{-1}$ is continuously differentiable.
+\end{proof}
+
+\end{document}

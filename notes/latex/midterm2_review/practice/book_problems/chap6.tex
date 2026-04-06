@@ -1,0 +1,433 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+
+\begin{document}
+\section*{EXERCISES}
+\begin{enumerate}
+  \item Suppose $\alpha$ increases on $[a, b], a \leq x_{0} \leq b, \alpha$ is continuous at $x_{0}, f\left(x_{0}\right)=1$, and $f(x)=0$ if $x \neq x_{0}$. Prove that $f \in \mathscr{R}(\alpha)$ and that $\int f d \alpha=0$.
+  \item Suppose $f \geq 0, f$ is continuous on $[a, b]$, and $\int_{a}^{b} f(x) d x=0$. Prove that $f(x)=0$ for all $x \in[a, b]$. (Compare this with Exercise 1.)
+  \item Define three functions $\beta_{1}, \beta_{2}, \beta_{3}$ as follows: $\beta_{j}(x)=0$ if $x<0, \beta_{j}(x)=1$ if $x>0$ for $j=1,2,3$; and $\beta_{1}(0)=0, \beta_{2}(0)=1, \beta_{3}(0)=\frac{1}{2}$. Let $f$ be a bounded function on $[-1,1]$.\\
+(a) Prove that $f \in \mathscr{R}\left(\beta_{1}\right)$ if and only if $f(0+)=f(0)$ and that then
+\end{enumerate}
+
+$$
+\int f d \beta_{1}=f(0) .
+$$
+
+(b) State and prove a similar result for $\beta_{2}$.\\
+(c) Prove that $f \in \mathscr{R}\left(\beta_{3}\right)$ if and only if $f$ is continuous at 0 .\\
+(d) If $f$ is continuous at 0 prove that
+
+$$
+\int f d \beta_{1}=\int f d \beta_{2}=\int f d \beta_{3}=f(0)
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item If $f(x)=0$ for all irrational $x, f(x)=1$ for all rational $x$, prove that $f \notin \mathscr{R}$ on $[a, b]$ for any $a<b$.
+  \item Suppose $f$ is a bounded real function on $[a, b]$, and $f^{2} \in \mathscr{R}$ on $[a, b]$. Does it follow that $f \in \mathscr{R}$ ? Does the answer change if we assume that $f^{3} \in \mathscr{R}$ ?
+  \item Let $P$ be the Cantor set constructed in Sec. 2.44. Let $f$ be a bounded real function on $[0,1]$ which is continuous at every point outside $P$. Prove that $f \in \mathscr{R}$ on $[0,1]$. Hint: $P$ can be covered by finitely many segments whose total length can be made as small as desired. Proceed as in Theorem 6.10.
+  \item Suppose $f$ is a real function on $(0,1]$ and $f \in \mathscr{R}$ on $[c, 1]$ for every $c>0$. Define
+\end{enumerate}
+
+$$
+\int_{0}^{1} f(x) d x=\lim _{c \rightarrow 0} \int_{c}^{1} f(x) d x
+$$
+
+if this limit exists (and is finite).\\
+(a) If $f \in \mathscr{R}$ on $[0,1]$, show that this definition of the integral agrees with the old one.\\
+(b) Construct a function $f$ such that the above limit exists, although it fails to exist with $|f|$ in place of $f$.\\
+8. Suppose $f \in \mathscr{R}$ on $[a, b]$ for every $b>a$ where $a$ is fixed. Define
+
+$$
+\int_{a}^{\infty} f(x) d x=\lim _{b \rightarrow \infty} \int_{a}^{b} f(x) d x
+$$
+
+if this limit exists (and is finite). In that case, we say that the integral on the left converges. If it also converges after $f$ has been replaced by $|f|$, it is said to converge absolutely.
+
+Assume that $f(x) \geq 0$ and that $f$ decreases monotonically on $[1, \infty)$. Prove that
+
+$$
+\int_{1}^{\infty} f(x) d x
+$$
+
+converges if and only if
+
+$$
+\sum_{n=1}^{\infty} f(n)
+$$
+
+converges. (This is the so-called "integral test" for convergence of series.)\\
+9. Show that integration by parts can sometimes be applied to the "improper" integrals defined in Exercises 7 and 8. (State appropriate hypotheses, formulate a theorem, and prove it.) For instance show that
+
+$$
+\int_{0}^{\infty} \frac{\cos x}{1+x} d x=\int_{0}^{\infty} \frac{\sin x}{(1+x)^{2}} d x
+$$
+
+Show that one of these integrals converges absolutely, but that the other does not.\\
+10. Let $p$ and $q$ be positive real numbers such that
+
+$$
+\frac{1}{p}+\frac{1}{q}=1 .
+$$
+
+Prove the following statements.\\
+(a) If $u \geq 0$ and $v \geq 0$, then
+
+$$
+u v \leq \frac{u^{p}}{p}+\frac{u^{q}}{q} .
+$$
+
+Equality holds if and only if $u^{p}=v^{q}$.\\
+(b) If $f \in \mathscr{R}(\alpha), g \in \mathscr{R}(\alpha), f \geq 0, g \geq 0$, and
+
+$$
+\int_{a}^{b} f^{p} d \alpha=1=\int_{a}^{b} g^{q} d \alpha
+$$
+
+then
+
+$$
+\int_{a}^{b} f g d \alpha \leq 1
+$$
+
+(c) If $f$ and $g$ are complex functions in $\mathscr{R}(\alpha)$, then
+
+$$
+\left|\int_{a}^{b} f g d \alpha\right| \leq\left\{\int_{a}^{b}|f|^{p} d \alpha\right\}^{1 / p}\left\{\int_{a}^{b}|g|^{q} d \alpha\right\}^{1 / q}
+$$
+
+This is Hölder's inequality. When $p=q=2$ it is usually called the Schwarz inequality. (Note that Theorem 1.35 is a very special case of this.)\\
+(d) Show that Hölder's inequality is also true for the "improper" integrals described in Exercises 7 and 8.\\
+11. Let $\alpha$ be a fixed increasing function on $[a, b]$. For $u \in \mathscr{R}(\alpha)$, define
+
+$$
+\|u\|_{2}=\left\{\int_{a}^{b}|u|^{2} d \alpha\right\}^{1 / 2}
+$$
+
+Suppose $f, g, h \in \mathscr{R}(\alpha)$, and prove the triangle inequality
+
+$$
+\|f-h\|_{2} \leq\|f-g\|_{2}+\|g-h\|_{2}
+$$
+
+as a consequence of the Schwarz inequality, as in the proof of Theorem 1.37.\\
+
+\color{red}
+\textbf{Solution to Exercise 11.}
+
+\medskip
+\textbf{The big picture: what are we even doing?}
+
+The norm $\|\cdot\|_2$ is the ``$L^2$ norm'' --- it measures the size of a function by integrating its square (against the weight $d\alpha$) and then taking a square root.
+The triangle inequality says: the distance from $f$ to $h$ (passing through no intermediate stop) is at most the distance from $f$ to $g$ plus the distance from $g$ to $h$.
+Geometrically, the straight-line path is always the shortest; going via a detour through $g$ can only be longer.
+Proving this for functions will require exactly one nontrivial ingredient: the Schwarz inequality.
+
+\medskip
+\textbf{Step 1: A cosmetic substitution that clarifies the algebra.}
+
+The clutter in $\|f - h\|_2 \leq \|f - g\|_2 + \|g - h\|_2$ comes from the three functions $f, g, h$ with their differences.
+Let us name those differences:
+$$u = f - g, \qquad v = g - h.$$
+Then $u + v = (f - g) + (g - h) = f - h$ --- the $g$'s cancel perfectly.
+The inequality we must prove becomes simply
+$$\|u + v\|_2 \leq \|u\|_2 + \|v\|_2,$$
+which is the classical triangle inequality (also called \emph{Minkowski's inequality} in this context).
+Everything that follows is proving this cleaner statement; at the very end we just remember that $u = f-g$ and $v = g-h$.
+
+\medskip
+\textbf{Step 2: Why we square both sides.}
+
+The norm is defined with a square root: $\|u\|_2 = \bigl(\int |u|^2\,d\alpha\bigr)^{1/2}$.
+Square roots interact badly with addition --- there is no clean way to expand $\sqrt{A+B}$.
+But \emph{squares} interact perfectly with addition via $(A+B)^2 = A^2 + 2AB + B^2$.
+
+Since both $\|u+v\|_2$ and $\|u\|_2 + \|v\|_2$ are nonneg, squaring preserves the direction of the inequality.
+So it is equivalent to prove
+$$\|u + v\|_2^2 \leq \bigl(\|u\|_2 + \|v\|_2\bigr)^2.$$
+This is the move: \emph{clear the square roots by squaring}, then work with integrals directly.
+
+\medskip
+\textbf{Step 3: Expand both sides.}
+
+The left side, using linearity of the integral:
+\begin{align*}
+\|u + v\|_2^2
+  &= \int_a^b |u + v|^2 \, d\alpha \\
+  &= \int_a^b (u + v)^2 \, d\alpha \\
+  &= \int_a^b u^2 \, d\alpha \;+\; 2\int_a^b uv \, d\alpha \;+\; \int_a^b v^2 \, d\alpha \\
+  &= \|u\|_2^2 + 2\int_a^b uv \, d\alpha + \|v\|_2^2.
+\end{align*}
+(We assumed $f,g,h$ are real-valued, so $|u+v|^2 = (u+v)^2$.)
+
+The right side, just by expanding the binomial square:
+$$\bigl(\|u\|_2 + \|v\|_2\bigr)^2 = \|u\|_2^2 + 2\|u\|_2\|v\|_2 + \|v\|_2^2.$$
+
+Now compare the two sides term by term.
+The $\|u\|_2^2$ and $\|v\|_2^2$ pieces match exactly.
+The entire question reduces to comparing the \emph{cross terms}:
+$$2\int_a^b uv \, d\alpha \quad \overset{?}{\leq} \quad 2\|u\|_2\|v\|_2.$$
+Dividing by 2, we need:
+$$\int_a^b uv \, d\alpha \leq \|u\|_2 \|v\|_2.$$
+
+\medskip
+\textbf{Step 4: The cross term is the inner product, and Schwarz controls it.}
+
+Notice that $\int_a^b uv \, d\alpha$ is exactly the \emph{inner product} $\langle u, v\rangle$ on this space of functions.
+(You can verify all the inner product axioms: bilinearity, symmetry, positive-definiteness.)
+The Schwarz inequality --- Exercise 10(c) with $p = q = 2$ --- says precisely that
+$$\left|\int_a^b uv \, d\alpha\right| \leq \|u\|_2 \|v\|_2.$$
+In particular, since $x \leq |x|$ for any real $x$, we get
+$$\int_a^b uv \, d\alpha \leq \left|\int_a^b uv \, d\alpha\right| \leq \|u\|_2 \|v\|_2.$$
+The cross-term inequality is proved.
+
+\medskip
+\textbf{Step 5: Chain everything together and take the square root.}
+
+Substituting back:
+$$\|u+v\|_2^2 = \|u\|_2^2 + 2\int_a^b uv\,d\alpha + \|v\|_2^2 \leq \|u\|_2^2 + 2\|u\|_2\|v\|_2 + \|v\|_2^2 = \bigl(\|u\|_2 + \|v\|_2\bigr)^2.$$
+Taking square roots of both sides (both sides are nonneg, so this preserves the inequality):
+$$\|u + v\|_2 \leq \|u\|_2 + \|v\|_2.$$
+Translating back to $f, g, h$ via $u = f-g$, $v = g-h$, $u+v = f-h$:
+$$\|f - h\|_2 \leq \|f - g\|_2 + \|g - h\|_2. \qed$$
+
+\medskip
+\textbf{Key insights to remember.}
+
+\begin{itemize}
+  \item \textbf{The proof strategy is: square, expand, apply Schwarz, take square root.}
+    This exact four-step template works for the triangle inequality in any inner product space, whether it is $\mathbb{R}^n$ (Theorem 1.37), $\mathbb{C}^n$, or an $L^2$ function space like here.
+
+  \item \textbf{The Schwarz inequality is the only nontrivial input.}
+    Everything else is just algebra (expanding squares) and the basic fact that $x \leq |x|$.
+    The inequality $\|f-h\|_2 \leq \|f-g\|_2 + \|g-h\|_2$ is hard only insofar as $\left|\int uv\,d\alpha\right| \leq \|u\|_2\|v\|_2$ is hard.
+
+  \item \textbf{The cross term $\int uv\,d\alpha$ is the inner product, and Schwarz says inner products are bounded by the product of norms.}
+    This is the same reason the dot product satisfies $\mathbf{u} \cdot \mathbf{v} \leq |\mathbf{u}||\mathbf{v}|$ in $\mathbb{R}^n$: all Schwarz inequalities are the same theorem in disguise.
+
+  \item \textbf{This shows $d(f, h) = \|f - h\|_2$ is a genuine metric on $\mathscr{R}(\alpha)$.}
+    A norm always induces a metric, but only if the triangle inequality holds.
+    We just proved it does, so $\mathscr{R}(\alpha)$ (modulo functions that agree $d\alpha$-almost everywhere) is a metric space under this norm.
+    In fact, its completion is the Hilbert space $L^2(\alpha)$.
+\end{itemize}
+\color{black}
+
+12. With the notations of Exercise 11, suppose $f \in \mathscr{R}(\alpha)$ and $\varepsilon>0$. Prove that there exists a continuous function $g$ on $[a, b]$ such that $\|f-g\|_{2}<\varepsilon$.
+
+Hint: Let $P=\left\{x_{0}, \ldots, x_{n}\right\}$ be a suitable partition of $[a, b]$, define
+
+$$
+g(t)=\frac{x_{i}-t}{\Delta x_{i}} f\left(x_{i-1}\right)+\frac{t-x_{i-1}}{\Delta x_{i}} f\left(x_{i}\right)
+$$
+
+if $x_{i-1} \leq t \leq x_{i}$.\\
+
+\color{red}
+\textbf{Solution to Exercise 12.}
+
+\medskip
+\textbf{The big picture: what are we proving?}
+
+This is a \emph{density theorem}.
+It says that inside the space $\mathscr{R}(\alpha)$ equipped with the $\|\cdot\|_2$ norm, the continuous functions form a dense subset.
+In other words: no matter how badly behaved $f$ is --- it could have countably many jump discontinuities, for instance --- you can always find a continuous function $g$ that approximates $f$ to within $\varepsilon$ in the $L^2$ sense.
+The $L^2$ norm averages out the error over the whole interval, which is weaker than demanding uniform closeness; that is what makes this possible.
+The proof is constructive: we will build the specific $g$ from the hint and verify it works.
+
+\medskip
+\textbf{Step 1: Understand the construction.}
+
+The $g$ in the hint is the \emph{piecewise linear interpolation} of $f$ through the partition points.
+On each subinterval $[x_{i-1}, x_i]$, instead of using $f$ itself, we simply draw a straight line from the point $(x_{i-1}, f(x_{i-1}))$ to the point $(x_i, f(x_i))$.
+The formula
+$$g(t) = \frac{x_i - t}{\Delta x_i} f(x_{i-1}) + \frac{t - x_{i-1}}{\Delta x_i} f(x_i), \qquad t \in [x_{i-1}, x_i]$$
+is exactly that straight line.
+To see this, notice the two coefficients $\frac{x_i - t}{\Delta x_i}$ and $\frac{t - x_{i-1}}{\Delta x_i}$ are nonneg and sum to 1: they are the barycentric (convex combination) weights.
+When $t = x_{i-1}$, the first coefficient is 1 and the second is 0, so $g(x_{i-1}) = f(x_{i-1})$.
+When $t = x_i$, the first coefficient is 0 and the second is 1, so $g(x_i) = f(x_i)$.
+In between, $g$ interpolates linearly.
+
+\medskip
+\textbf{Step 2: Verify that $g$ is continuous.}
+
+$g$ is clearly continuous on the interior of each subinterval $[x_{i-1}, x_i]$, since it is a linear function of $t$ there.
+The only thing to check is continuity at the partition points $x_i$.
+From the left (the $i$-th piece) we get $g(x_i) = f(x_i)$.
+From the right (the $(i+1)$-th piece) we also get $g(x_i) = f(x_i)$.
+The two pieces glue together seamlessly at every partition point, so $g$ is continuous on all of $[a, b]$.
+
+\medskip
+\textbf{Step 3: Bound the pointwise error $|f(t) - g(t)|$ on each subinterval.}
+
+Let $M_i = \sup_{[x_{i-1}, x_i]} f$ and $m_i = \inf_{[x_{i-1}, x_i]} f$.
+These are the oscillation bounds on the $i$-th subinterval.
+
+Since $g(t)$ is a convex combination of $f(x_{i-1})$ and $f(x_i)$, and both of those values lie in $[m_i, M_i]$, the interpolated value $g(t)$ also lies in $[m_i, M_i]$.
+Meanwhile, by definition, $f(t) \in [m_i, M_i]$ as well.
+Therefore, both $f(t)$ and $g(t)$ lie in the interval $[m_i, M_i]$, which has length $M_i - m_i$, so
+$$|f(t) - g(t)| \leq M_i - m_i \qquad \text{for all } t \in [x_{i-1}, x_i].$$
+This is the key pointwise bound: the error between $f$ and its linear interpolant is at most the \emph{oscillation} of $f$ on that subinterval.
+Intuitively, $g$ stays within the same ``vertical band'' as $f$, so they can never be too far apart.
+
+\medskip
+\textbf{Step 4: Convert the pointwise bound into an $L^2$ bound.}
+
+Squaring and integrating over the whole interval:
+\begin{align*}
+\|f - g\|_2^2
+  &= \int_a^b |f - g|^2 \, d\alpha
+   = \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f(t) - g(t)|^2 \, d\alpha \\
+  &\leq \sum_{i=1}^n (M_i - m_i)^2 \, \Delta\alpha_i.
+\end{align*}
+This is a sum of squared oscillations weighted by $\Delta\alpha_i$.
+We know $f$ is bounded, say $|f| \leq M$, so $M_i - m_i \leq 2M$ on every subinterval.
+We can factor one copy of $(M_i - m_i)$ out and replace it by $2M$:
+$$(M_i - m_i)^2 \leq 2M \cdot (M_i - m_i).$$
+Substituting:
+$$\|f - g\|_2^2 \leq 2M \sum_{i=1}^n (M_i - m_i) \, \Delta\alpha_i = 2M \bigl(U(P, f, \alpha) - L(P, f, \alpha)\bigr).$$
+
+\medskip
+\textbf{Step 5: Use integrability to make the oscillation sum small.}
+
+This is the moment where the hypothesis $f \in \mathscr{R}(\alpha)$ enters.
+By Rudin's integrability criterion (Theorem 6.6), $f \in \mathscr{R}(\alpha)$ if and only if for every $\delta > 0$ there exists a partition $P$ such that
+$$U(P, f, \alpha) - L(P, f, \alpha) < \delta.$$
+We want $\|f - g\|_2^2 < \varepsilon^2$, i.e., we want $2M(U - L) < \varepsilon^2$.
+So choose $\delta = \varepsilon^2 / (2M)$ (if $M = 0$ then $f \equiv 0$ and $g \equiv 0$ works trivially), and pick a partition $P$ with $U(P,f,\alpha) - L(P,f,\alpha) < \delta$.
+
+Then for the piecewise linear interpolation $g$ on this partition:
+$$\|f - g\|_2^2 \leq 2M \cdot \frac{\varepsilon^2}{2M} = \varepsilon^2,$$
+so $\|f - g\|_2 < \varepsilon$. $\qed$
+
+\medskip
+\textbf{Key insights to remember.}
+
+\begin{itemize}
+  \item \textbf{The construction is ``connect the dots.''} You evaluate $f$ only at the $n+1$ partition points, and draw straight lines between them.
+  The resulting $g$ is continuous by design, because adjacent line segments share their endpoint values.
+
+  \item \textbf{The pointwise error is controlled by oscillation.} Since $g$ stays in the same $[m_i, M_i]$ band as $f$ on each piece, the error $|f - g|$ can never exceed the oscillation $M_i - m_i$.
+  This is why we use linear interpolation specifically: a constant approximation (say, $g = f(x_{i-1})$ on the whole interval) would also be bounded by $M_i - m_i$, but it would not be continuous across partition points.
+
+  \item \textbf{The key algebraic trick: $(M_i - m_i)^2 \leq 2M(M_i - m_i)$.}
+  We are trying to bound $\sum (M_i - m_i)^2 \Delta\alpha_i$ (a sum involving \emph{squared} oscillations), but the Riemann criterion controls $\sum (M_i - m_i) \Delta\alpha_i$ (a sum of \emph{linear} oscillations).
+  The trick of extracting one factor of $M_i - m_i$ and bounding it by the global bound $2M$ is what bridges the two.
+
+  \item \textbf{Integrability is used in exactly one place: choosing $P$.}
+  The entire argument reduces to: ``pick a partition fine enough that $U - L$ is small.'' That is precisely what $f \in \mathscr{R}(\alpha)$ guarantees you can do.
+
+  \item \textbf{The deeper meaning.} This result says that in $L^2$, integrable functions are \emph{no harder to approximate} than continuous functions.
+  In more advanced analysis, this is the baby version of the theorem that continuous functions are dense in $L^2(\mu)$ for any Borel measure $\mu$ on a compact space --- a foundational fact in functional analysis.
+\end{itemize}
+\color{black}
+
+13. Define
+
+$$
+f(x)=\int_{x}^{x+1} \sin \left(t^{2}\right) d t
+$$
+
+(a) Prove that $|f(x)|<1 / x$ if $x>0$.
+
+Hint: Put $t^{2}=u$ and integrate by parts, to show that $f(x)$ is equal to
+
+$$
+\frac{\cos \left(x^{2}\right)}{2 x}-\frac{\cos \left[(x+1)^{2}\right]}{2(x+1)}-\int_{x^{2}}^{(x+1)^{2}} \frac{\cos u}{4 u^{3 / 2}} d u
+$$
+
+Replace $\cos u$ by -1 .\\
+(b) Prove that
+
+$$
+2 x f(x)=\cos \left(x^{2}\right)-\cos \left[(x+1)^{2}\right]+r(x)
+$$
+
+where $|r(x)|<c / x$ and $c$ is a constant.\\
+(c) Find the upper and lower limits of $x f(x)$, as $x \rightarrow \infty$.\\
+(d) Does $\int_{0}^{\infty} \sin \left(t^{2}\right) d t$ converge?\\
+14. Deal similarly with
+
+$$
+f(x)=\int_{x}^{x+1} \sin \left(e^{t}\right) d t
+$$
+
+Show that
+
+$$
+e^{x}|f(x)|<2
+$$
+
+and that
+
+$$
+e^{x} f(x)=\cos \left(e^{x}\right)-e^{-1} \cos \left(e^{x+1}\right)+r(x)
+$$
+
+where $|r(x)|<C e^{-x}$, for some constant $C$.\\
+15. Suppose $f$ is a real, continuously differentiable function on $[a, b], f(a)=f(b)=0$, and
+
+$$
+\int_{a}^{b} f^{2}(x) d x=1
+$$
+
+Prove that
+
+$$
+\int_{a}^{b} x f(x) f^{\prime}(x) d x=-\frac{1}{2}
+$$
+
+and that
+
+$$
+\int_{a}^{b}\left[f^{\prime}(x)\right]^{2} d x \cdot \int_{a}^{b} x^{2} f^{2}(x) d x>\frac{1}{4}
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{15}
+  \item For $1<s<\infty$, define
+\end{enumerate}
+
+$$
+\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^{s}} .
+$$
+
+(This is Riemann's zeta function, of great importance in the study of the distribution of prime numbers.) Prove that\\
+(a) $\zeta(s)=s \int_{1}^{\infty} \frac{[x]}{x^{s+1}} d x$\\
+and that\\
+(b) $\zeta(s)=\frac{s}{s-1}-s \int_{1}^{\infty} \frac{x-[x]}{x^{s+1}} d x$,\\
+where $[x]$ denotes the greatest integer $\leq x$.\\
+Prove that the integral in $(b)$ converges for all $s>0$.\\
+Hint: To prove $(a)$, compute the difference between the integral over $[1, N]$ and the $N$ th partial sum of the series that defines $\zeta(s)$.\\
+17. Suppose $\alpha$ increases monotonically on $[a, b], g$ is continuous, and $g(x)=G^{\prime}(x)$ for $a \leq x \leq b$. Prove that
+
+$$
+\int_{a}^{b} \alpha(x) g(x) d x=G(b) \alpha(b)-G(a) \alpha(a)-\int_{a}^{b} G d \alpha
+$$
+
+Hint: Take $g$ real, without loss of generality. Given $P=\left\{x_{0}, x_{1}, \ldots, x_{n}\right\}$, choose $t_{i} \in\left(x_{i-1}, x_{i}\right)$ so that $g\left(t_{i}\right) \Delta x_{i}=G\left(x_{i}\right)-G\left(x_{i-1}\right)$. Show that
+
+$$
+\sum_{i=1}^{n} \alpha\left(x_{i}\right) g\left(t_{i}\right) \Delta x_{i}=G(b) \alpha(b)-G(a) \alpha(a)-\sum_{i=1}^{n} G\left(x_{i-1}\right) \Delta \alpha_{i} .
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{17}
+  \item Let $\gamma_{1}, \gamma_{2}, \gamma_{3}$ be curves in the complex plane, defined on $[0,2 \pi]$ by
+\end{enumerate}
+
+$$
+\gamma_{1}(t)=e^{i t}, \quad \gamma_{2}(t)=e^{2 i t}, \quad \gamma_{3}(t)=e^{2 \pi i t \sin (1 / t)} .
+$$
+
+Show that these three curves have the same range, that $\gamma_{1}$ and $\gamma_{2}$ are rectifiable, that the length of $\gamma_{1}$ is $2 \pi$, that the length of $\gamma_{2}$ is $4 \pi$, and that $\gamma_{3}$ is not rectifiable.\\
+19. Let $\gamma_{1}$ be a curve in $R^{k}$, defined on $[a, b]$; let $\phi$ be a continuous 1-1 mapping of $[c, d]$ onto $[a, b]$, such that $\phi(c)=a$; and define $\gamma_{2}(s)=\gamma_{1}(\phi(s))$. Prove that $\gamma_{2}$ is an arc, a closed curve, or a rectifiable curve if and only if the same is true of $\gamma_{1}$. Prove that $\gamma_{2}$ and $\gamma_{1}$ have the same length.
+
+
+\end{document}

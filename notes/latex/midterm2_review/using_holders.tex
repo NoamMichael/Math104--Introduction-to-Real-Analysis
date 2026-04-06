@@ -1,0 +1,344 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[2]{\left\|#1\right\|_{#2}}
+
+% Theorem environments
+\newtheoremstyle{myplain}{8pt}{6pt}{\itshape}{}{\bfseries}{.}{6pt}{}
+\theoremstyle{myplain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{theorem*}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% Technique highlight box
+\newenvironment{technique}{%
+  \par\smallskip
+  \noindent\colorbox{Apricot}{\textbf{Technique}}\enspace\ignorespaces
+}{\par\smallskip}
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Applying H\"{o}lder's Inequality}\\[4pt]
+  {\large Math 104 $\cdot$ Spring 2026}
+\end{center}
+
+\bigskip
+
+%======================================================================
+\section{Statement}
+%======================================================================
+
+\begin{theorem*}[H\"{o}lder's Inequality]
+Let $p, q > 1$ with $\dfrac{1}{p} + \dfrac{1}{q} = 1$ (conjugate exponents). If $f, g : [a,b] \to \R$ are Riemann integrable, then
+\[
+  \int_a^b |f(x)\,g(x)|\,dx \;\leq\; \norm{f}{p}\,\norm{g}{q}
+  \;:=\; \left(\int_a^b |f|^p\right)^{1/p}\!\left(\int_a^b |g|^q\right)^{1/q}.
+\]
+The discrete version: for sequences $a_k, b_k$,
+\[
+  \sum_{k=1}^n |a_k b_k| \leq \left(\sum_{k=1}^n |a_k|^p\right)^{1/p}\!\left(\sum_{k=1}^n |b_k|^q\right)^{1/q}.
+\]
+\end{theorem*}
+
+\begin{remark}
+The case $p = q = 2$ is the \textbf{Cauchy--Schwarz inequality}. Young's inequality $uv \leq u^p/p + v^q/q$ underlies the proof: normalize $u = |f|/\norm{f}{p}$, $v = |g|/\norm{g}{q}$, apply Young pointwise, then integrate.
+\end{remark}
+
+%======================================================================
+\section{Application 1: Bounding an Integral of a Product}
+%======================================================================
+
+\textbf{Setup.} You want to show $\int_a^b |h(x)|\,dx < \infty$ or bound it, where $h(x) = f(x)g(x)$ and neither factor alone is obviously integrable.
+
+\begin{technique}
+Split $h = f \cdot g$. Choose conjugate $p,q$ so that $\int |f|^p$ and $\int |g|^q$ are both finite. Then $\int|h| \leq \norm{f}{p}\norm{g}{q}$.
+\end{technique}
+
+\begin{example}
+Show that $\displaystyle\int_0^1 \sqrt{x}\,e^{-x}\,dx$ is finite and bounded.
+
+Take $f(x) = \sqrt{x} = x^{1/2}$ and $g(x) = e^{-x}$, with $p = 4$ and $q = 4/3$ (so $1/4 + 3/4 = 1$).
+\[
+  \int_0^1 \sqrt{x}\,e^{-x}\,dx \leq \left(\int_0^1 x^2\,dx\right)^{1/4}\!\left(\int_0^1 e^{-4x/3}\,dx\right)^{3/4}.
+\]
+Both factors are finite: $\int_0^1 x^2\,dx = 1/3$ and $e^{-4x/3}$ is bounded on $[0,1]$.
+\end{example}
+
+\begin{example}
+Show that $\displaystyle\int_0^1 \frac{f(x)}{\sqrt{x}}\,dx$ is finite whenever $f \in L^2[0,1]$ (i.e., $\int_0^1 f^2\,dx < \infty$).
+
+Apply Cauchy--Schwarz ($p = q = 2$) with $f(x)$ and $g(x) = 1/\sqrt{x}$:
+\[
+  \int_0^1 \frac{|f(x)|}{\sqrt{x}}\,dx \leq \left(\int_0^1 f(x)^2\,dx\right)^{1/2}\!\left(\int_0^1 \frac{1}{x}\,dx\right)^{1/2}.
+\]
+Wait --- $\int_0^1 x^{-1}\,dx$ diverges, so $p = q = 2$ fails here. Instead take $p = 4$, $q = 4/3$:
+\[
+  \int_0^1 \frac{|f(x)|}{\sqrt{x}}\,dx \leq \left(\int_0^1 |f|^4\right)^{1/4}\!\left(\int_0^1 x^{-2/3}\,dx\right)^{3/4}.
+\]
+Now $\int_0^1 x^{-2/3}\,dx = 3$ (since $-2/3 > -1$), so this works whenever $f \in L^4[0,1]$.
+
+\textbf{Key lesson:} The choice of $p$ and $q$ matters. If one choice makes a factor diverge, try different exponents.
+\end{example}
+
+%======================================================================
+\section{Application 2: The Trivial Split ($g \equiv 1$)}
+%======================================================================
+
+\textbf{Setup.} You want to bound $\norm{h}{1} = \int|h|$ using only information about $\norm{h}{p}$ for some $p > 1$.
+
+\begin{technique}
+Write $h = h \cdot 1$ and apply H\"{o}lder with $f = h$, $g \equiv 1$:
+\[
+  \int_a^b |h|\,dx \leq \left(\int_a^b |h|^p\right)^{1/p}(b-a)^{1/q}.
+\]
+This converts an $L^p$ bound into an $L^1$ bound, at the cost of a factor of $(b-a)^{1/q}$.
+\end{technique}
+
+\begin{example}
+Let $f$ be continuous on $[0,1]$ with $\left(\int_0^1 f^2\right)^{1/2} \leq 5$. Bound $\int_0^1 |f|$.
+
+Apply Cauchy--Schwarz with $g \equiv 1$:
+\[
+  \int_0^1 |f|\,dx \leq \left(\int_0^1 f^2\right)^{1/2}\!\left(\int_0^1 1^2\right)^{1/2} = 5 \cdot 1 = 5.
+\]
+\end{example}
+
+\begin{example}[Comparing $L^p$ norms on finite intervals]
+For $1 \leq r < s$ and $f \in L^s[a,b]$, show $\norm{f}{r} \leq (b-a)^{1/r - 1/s}\norm{f}{s}$.
+
+Apply H\"{o}lder with $p = s/r > 1$ and $q = s/(s-r)$, writing $|f|^r = |f|^r \cdot 1$:
+\[
+  \int_a^b |f|^r \leq \left(\int_a^b |f|^s\right)^{r/s}(b-a)^{1-r/s}.
+\]
+Taking $r$-th roots: $\norm{f}{r} \leq \norm{f}{s}\cdot(b-a)^{1/r - 1/s}$.
+
+\textbf{Moral:} On a finite interval, higher $L^p$ norms dominate lower ones (up to a constant depending on interval length).
+\end{example}
+
+%======================================================================
+\section{Application 3: Cauchy--Schwarz ($p = q = 2$)}
+%======================================================================
+
+\textbf{Setup.} The most common special case. Use when both factors are naturally square-integrable or when symmetry suggests equal exponents.
+
+\begin{technique}
+$p = q = 2$: $\displaystyle\int |fg| \leq \left(\int f^2\right)^{1/2}\!\left(\int g^2\right)^{1/2}$.
+
+In $\R^n$ (discrete): $\left|\sum a_k b_k\right| \leq \left(\sum a_k^2\right)^{1/2}\!\left(\sum b_k^2\right)^{1/2}$.
+\end{technique}
+
+\begin{example}
+Prove that $\left(\int_a^b f(x)\,dx\right)^2 \leq (b-a)\int_a^b f(x)^2\,dx$.
+
+This is the trivial split with Cauchy--Schwarz:
+\[
+  \left(\int_a^b f\right)^2 = \left(\int_a^b f \cdot 1\right)^2 \leq \left(\int_a^b f^2\right)\!\left(\int_a^b 1\right) = (b-a)\int_a^b f^2.
+\]
+\end{example}
+
+\begin{example}
+Prove the Cauchy--Schwarz inequality for inner products in $\R^n$: $|\langle u, v\rangle| \leq \|u\|\|v\|$.
+
+Apply the discrete H\"{o}lder with $p=q=2$ to sequences $a_k = u_k$, $b_k = v_k$:
+\[
+  \left|\sum_{k=1}^n u_k v_k\right| \leq \sum_{k=1}^n |u_k||v_k| \leq \left(\sum u_k^2\right)^{1/2}\!\left(\sum v_k^2\right)^{1/2} = \|u\|\|v\|.
+\]
+\end{example}
+
+%======================================================================
+\section{Application 4: Bounding Improper Integrals (Comparison via H\"{o}lder)}
+%======================================================================
+
+\textbf{Setup.} You have an improper integral $\int_1^\infty f(x)/x^s\,dx$ and need to show it converges. If $f$ is bounded, comparison suffices; but if $f$ grows, H\"{o}lder can isolate the growth into a factor you can control.
+
+\begin{technique}
+Write $f(x)/x^s = f(x) \cdot x^{-s}$. Choose $p,q$ so that $\int |f|^p$ converges and $\int x^{-sq}$ converges (requires $sq > 1$, i.e., $s > 1/q = 1 - 1/p$).
+\end{technique}
+
+\begin{example}
+Show $\displaystyle\int_1^\infty \frac{x-[x]}{x^{s+1}}\,dx$ converges for all $s > 0$.
+
+Since $0 \leq x - [x] < 1$, we have $\left|\dfrac{x-[x]}{x^{s+1}}\right| \leq x^{-(s+1)}$. For $s > 0$, $s + 1 > 1$, so by comparison:
+\[
+  \int_1^\infty \frac{x-[x]}{x^{s+1}}\,dx \leq \int_1^\infty x^{-(s+1)}\,dx = \frac{1}{s} < \infty.
+\]
+(Here comparison suffices since the numerator is bounded. H\"{o}lder would be needed if $f$ grew.)
+\end{example}
+
+\begin{example}
+Show $\displaystyle\int_1^\infty \frac{\ln x}{x^s}\,dx$ converges for $s > 1$.
+
+Apply H\"{o}lder with $p = 2$, $q = 2$, writing $\ln x / x^s = (\ln x / x^{s/2}) \cdot (1/x^{s/2})$:
+\[
+  \int_1^\infty \frac{\ln x}{x^s}\,dx \leq \left(\int_1^\infty \frac{(\ln x)^2}{x^s}\,dx\right)^{1/2}\!\left(\int_1^\infty \frac{1}{x^s}\,dx\right)^{1/2}.
+\]
+Both factors converge for $s > 1$ (the second is $(s-1)^{-1/2}$; the first by integration by parts).
+\end{example}
+
+%======================================================================
+\section{Application 5: Discrete H\"{o}lder for Finite Sums}
+%======================================================================
+
+\textbf{Setup.} You need to bound $\sum a_k b_k$ or $\sum |a_k|$ over a finite index set.
+
+\begin{technique}
+Apply the discrete version. The key choice: if you know $\ell^p$ information about one sequence (e.g., it comes from a norm), match it with the conjugate exponent on the other.
+\end{technique}
+
+\begin{example}
+Prove that $\displaystyle\sum_{k=1}^n k \leq n^{3/2}\left(\sum_{k=1}^n k^2\right)^{1/2} / n^{1/2}$ --- actually, directly: $\sum_{k=1}^n k \leq \sqrt{n}\left(\sum_{k=1}^n k^2\right)^{1/2}$.
+
+Apply Cauchy--Schwarz with $a_k = 1$, $b_k = k$:
+\[
+  \sum_{k=1}^n k = \sum_{k=1}^n 1 \cdot k \leq \left(\sum_{k=1}^n 1^2\right)^{1/2}\!\left(\sum_{k=1}^n k^2\right)^{1/2} = \sqrt{n}\left(\frac{n(n+1)(2n+1)}{6}\right)^{1/2}.
+\]
+\end{example}
+
+\begin{example}
+Show that for $x_1, \ldots, x_n \geq 0$: $\left(\dfrac{x_1 + \cdots + x_n}{n}\right)^p \leq \dfrac{x_1^p + \cdots + x_n^p}{n}$ for $p \geq 1$ (Jensen / power mean inequality).
+
+By H\"{o}lder with $a_k = x_k$ and $b_k = 1/n$, exponents $p$ and $q = p/(p-1)$:
+\[
+  \frac{\sum x_k}{n} = \sum x_k \cdot \frac{1}{n} \leq \left(\sum x_k^p\right)^{1/p}\!\left(\sum \frac{1}{n^q}\right)^{1/q} = \left(\sum x_k^p\right)^{1/p} \cdot n^{1/q - 1}.
+\]
+Since $1/q - 1 = -1/p$: $\left(\sum x_k/n\right)^p \leq \sum x_k^p / n$.
+\end{example}
+
+%======================================================================
+\section{Application 6: Moment Generating Functions (Probability)}
+%======================================================================
+
+\textbf{Setup.} The \textbf{moment generating function} (MGF) of a random variable $X$ is
+\[
+  M_X(t) = E[e^{tX}] = \int e^{tx}\,dP,
+\]
+where $dP$ is the probability measure. This is just a Lebesgue integral against a probability measure, so Hölder applies directly with $d\mu = dP$.
+
+\subsection{Log-Convexity of the MGF}
+
+\begin{theorem}
+$M_X(t)$ is \textbf{log-convex}: $\log M_X$ is a convex function of $t$.
+\end{theorem}
+
+\begin{proof}
+Let $\alpha \in (0,1)$, and set $p = 1/\alpha$, $q = 1/(1-\alpha)$, so $1/p + 1/q = 1$. Then:
+\[
+  M_X(\alpha s + (1-\alpha)t)
+  = E\!\left[e^{\alpha s X} \cdot e^{(1-\alpha)tX}\right]
+  \leq \bigl(E[e^{sX}]\bigr)^\alpha \bigl(E[e^{tX}]\bigr)^{1-\alpha}
+  = M_X(s)^\alpha\, M_X(t)^{1-\alpha},
+\]
+where the inequality is Hölder with exponents $p = 1/\alpha$ and $q = 1/(1-\alpha)$.
+Taking $\log$ of both sides gives
+\[
+  \log M_X(\alpha s + (1-\alpha)t) \leq \alpha \log M_X(s) + (1-\alpha)\log M_X(t),
+\]
+which is exactly convexity of $\log M_X$.
+\end{proof}
+
+\begin{technique}
+To prove log-convexity of any quantity of the form $F(t) = E[f(t, X)]$ where $f(t,x) = e^{tx}$ or similar: write $F(\alpha s + (1-\alpha)t) = E[f(s,X)^\alpha f(t,X)^{1-\alpha}]$ and apply Hölder with $p = 1/\alpha$.
+\end{technique}
+
+\begin{remark}
+The \textbf{cumulant generating function} (CGF) is $K(t) = \log M_X(t)$. Its first derivative at 0 is $E[X]$; its second derivative at 0 is $\mathrm{Var}(X)$. Convexity of $K$ means $K''(t) \geq 0$ everywhere, i.e., the ``running variance'' $\mathrm{Var}(e^{tX})$ is always nonneg --- a tautology, but Hölder is what proves it globally, not just at $t=0$.
+\end{remark}
+
+\subsection{Chernoff Bounds}
+
+Log-convexity is the engine behind the sharpest tail bounds in probability.
+
+\begin{example}[Chernoff bound]
+For any $a \in \R$ and $t > 0$:
+\[
+  P(X \geq a) = P(e^{tX} \geq e^{ta}) \leq \frac{E[e^{tX}]}{e^{ta}} = e^{-ta} M_X(t).
+\]
+Optimizing over $t > 0$ gives the \textbf{Chernoff bound}:
+\[
+  P(X \geq a) \leq \inf_{t > 0}\, e^{-ta} M_X(t) = e^{-\sup_{t>0}(ta - \log M_X(t))}.
+\]
+The exponent is the \textbf{Legendre transform} of $K(t) = \log M_X(t)$. Convexity of $K$ (proved via Hölder above) guarantees the supremum is attained at a unique $t^*$ where $K'(t^*) = a$, making the bound explicit and tight.
+\end{example}
+
+\begin{example}[Large deviations / Cramér's theorem]
+Let $S_n = (X_1 + \cdots + X_n)/n$ be the sample mean. The \textbf{rate function} governing how fast $P(S_n \geq a)$ decays is
+\[
+  I(a) = \sup_{t \in \R}\, (ta - K(t)),
+\]
+the Legendre--Fenchel transform of $K$. Since $K$ is convex (Hölder), $I$ is a proper convex function and equals zero only at $a = E[X]$. Cramér's theorem says $P(S_n \geq a) \approx e^{-nI(a)}$ --- so Hölder, via log-convexity, is literally the foundation of the exponential decay rate in the law of large numbers.
+\end{example}
+
+\subsection{The Abstract Picture: Convex Duality}
+
+Both Hölder's inequality and MGFs are special cases of the same underlying structure in convex analysis.
+
+Young's inequality --- the engine of Hölder's proof --- states:
+\[
+  uv \leq \frac{u^p}{p} + \frac{v^q}{q} \qquad \left(\tfrac{1}{p}+\tfrac{1}{q}=1\right).
+\]
+This is the \textbf{Fenchel--Young inequality} $\langle x, y\rangle \leq f(x) + f^*(y)$ applied to $f(u) = u^p/p$, whose convex conjugate is $f^*(v) = v^q/q$.
+
+The Chernoff bound's optimization $\sup_t(ta - K(t))$ is exactly the convex conjugate $K^*(a)$ of the CGF. So the full chain is:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ccc}
+  Young's inequality & $\longrightarrow$ & Hölder's inequality \\
+  (Fenchel--Young, $f = u^p/p$) & & (bound $E[|fg|]$) \\[4pt]
+  Hölder applied to $E[e^{tX}]$ & $\longrightarrow$ & Log-convexity of $M_X(t)$ \\[4pt]
+  Legendre transform of $\log M_X$ & $\longrightarrow$ & Chernoff / Cramér rate function \\
+\end{tabular}
+\end{center}
+
+\begin{remark}
+At the deepest level, Hölder's inequality, MGFs, and large deviations are all facets of \textbf{convex duality}: the pairing between a convex function and its conjugate. Young's inequality is where it starts; the Cramér rate function is where it ends up.
+\end{remark}
+
+%======================================================================
+\section{Decision Guide: Choosing $p$ and $q$}
+%======================================================================
+
+When you see $\int |fg|$ or $\sum |a_kb_k|$, ask:
+
+\begin{enumerate}[leftmargin=*, itemsep=4pt]
+  \item \textbf{Is the product symmetric?} Use $p = q = 2$ (Cauchy--Schwarz). Fastest and most natural.
+
+  \item \textbf{Is one factor bounded?} Use comparison directly (H\"{o}lder is overkill). E.g., $|f| \leq M$ gives $\int |fg| \leq M\int|g|$.
+
+  \item \textbf{Does one factor have a singularity like $x^{-\alpha}$?} Choose $q$ so that $q\alpha < 1$ (keeping the singular factor integrable). Then set $p = q/(q-1)$.
+
+  \item \textbf{Do you only know an $L^p$ norm?} Use the trivial split with $g \equiv 1$ to get an $L^1$ bound. Result: $\int|h| \leq \norm{h}{p}(b-a)^{1/q}$.
+
+  \item \textbf{Does a weight function appear?} Write $\int w(x)|f(x)|\,dx = \int |f| \cdot |w|$ and put the weight $w$ in the $L^q$ factor (often easier to compute) and $f$ in the $L^p$ factor (often the unknown).
+\end{enumerate}
+
+\begin{remark}
+If your choice of $p,q$ makes one factor infinite, try different exponents or split the integral into $\int_0^1 + \int_1^\infty$ and use different exponents on each piece.
+\end{remark}
+
+\end{document}

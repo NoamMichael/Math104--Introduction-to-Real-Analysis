@@ -1,0 +1,250 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% MIDTERM 2 REVIEW
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{M2}
+\renewcommand{\lecturedate}{Spring 2026}
+\renewcommand{\lecturetopic}{Midterm 2 Review}
+
+\section{Midterm 2 Review}
+
+\begin{lecturesummary}
+\textbf{Midterm 2 Review:} This document covers key topics from the second half of the course: power series and radius of convergence, convergence tests (root and ratio), simple discontinuities, the derivative, improper integrals, integration by parts, and H\"{o}lder's inequality.
+\end{lecturesummary}
+
+%======================================================================
+\subsection{Radius of Convergence}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} A \defn{power series} is a series of the form $\sum_{n=0}^{\infty} c_n (x - a)^n$. The \defn{radius of convergence} $R$ determines the largest interval on which the series converges absolutely. The Cauchy--Hadamard formula gives $R$ in terms of the coefficients.
+\end{summarybox}
+
+\begin{definition}
+Given a power series $\displaystyle\sum_{n=0}^{\infty} c_n (x-a)^n$ with $c_n, x, a \in \R$ (or $\C$), the \defn{radius of convergence} is
+\[
+    R = \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}},
+\]
+with the conventions $1/0 = +\infty$ and $1/\infty = 0$.
+\end{definition}
+
+\begin{theorem}[Cauchy--Hadamard]
+The power series $\sum c_n (x-a)^n$ converges absolutely for $|x - a| < R$ and diverges for $|x - a| > R$. At $|x - a| = R$, convergence must be checked separately.
+\end{theorem}
+
+\begin{notebox}
+\textbf{Why $\limsup$?} The root test requires $\limsup |c_n(x-a)^n|^{1/n} = |x-a| \cdot \limsup |c_n|^{1/n}$. Setting this $< 1$ gives $|x-a| < 1/\limsup|c_n|^{1/n} = R$.
+\end{notebox}
+
+\begin{example}
+For $\sum_{n=0}^{\infty} \frac{x^n}{n!}$: $|c_n|^{1/n} = (1/n!)^{1/n} \to 0$, so $R = \infty$ (converges everywhere). \\
+For $\sum_{n=0}^{\infty} n!\, x^n$: $|c_n|^{1/n} = (n!)^{1/n} \to \infty$, so $R = 0$ (converges only at $x = 0$).
+\end{example}
+
+%======================================================================
+\subsection{Root Test and Ratio Test}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} The root test and ratio test are two standard criteria for absolute convergence of a series $\sum a_n$. Both compare asymptotic growth to a geometric series. The root test is strictly more powerful; the ratio test is often easier to apply when factorials or exponentials appear.
+\end{summarybox}
+
+\begin{theorem}[Root Test]
+Let $\alpha = \limsup_{n \to \infty} |a_n|^{1/n}$. Then:
+\begin{itemize}
+    \item If $\alpha < 1$: $\sum a_n$ converges absolutely.
+    \item If $\alpha > 1$: $\sum a_n$ diverges.
+    \item If $\alpha = 1$: the test is inconclusive.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Ratio Test]
+Suppose $a_n \neq 0$ for large $n$. Let
+\[
+    \beta = \limsup_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|, \qquad \alpha = \liminf_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|.
+\]
+Then:
+\begin{itemize}
+    \item If $\beta < 1$: $\sum a_n$ converges absolutely.
+    \item If $\alpha > 1$: $\sum a_n$ diverges.
+    \item If $\alpha \leq 1 \leq \beta$: the test is inconclusive.
+\end{itemize}
+\end{theorem}
+
+\begin{notebox}
+\textbf{Root vs.\ Ratio:} The root test applies whenever $\limsup |a_n|^{1/n}$ exists; the ratio test requires the ratio to have a limit. If both apply and the ratio test gives $L$, then the root test also gives $\alpha = L$ (since $\lim \Rightarrow \limsup$ agrees). The ratio test can fail (give $L=1$) where the root test succeeds.
+\end{notebox}
+
+%======================================================================
+\subsection{Simple Discontinuity}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} A function can fail to be continuous in several ways. A \defn{simple discontinuity} (also called a \emph{first-kind} discontinuity) is the mildest: both one-sided limits exist, but they either disagree with each other or with the function's value.
+\end{summarybox}
+
+\begin{definition}
+For $f: (a,b) \to \R$ and $x \in (a,b)$, define the \defn{right-hand limit} and \defn{left-hand limit}:
+\[
+    f(x^+) = \lim_{t \to x^+} f(t), \qquad f(x^-) = \lim_{t \to x^-} f(t),
+\]
+whenever these limits exist.
+\end{definition}
+
+\begin{definition}
+$f$ has a \defn{simple discontinuity} at $x$ if $f(x^+)$ and $f(x^-)$ both exist (as finite values) but either:
+\begin{enumerate}
+    \item $f(x^+) \neq f(x^-)$ \quad (jump discontinuity), or
+    \item $f(x^+) = f(x^-)$ but $f(x^+) \neq f(x)$ \quad (removable discontinuity).
+\end{enumerate}
+A discontinuity that is not simple (e.g., an oscillation where one-sided limits fail to exist) is called a \defn{discontinuity of the second kind}.
+\end{definition}
+
+\begin{example}
+Jump: $f(x) = \mathbf{1}_{x \geq 0}$ has $f(0^-) = 0$, $f(0^+) = 1$. \\
+Removable: $f(x) = \sin(x)/x$ for $x \neq 0$, $f(0) = 0$: here $f(0^{\pm}) = 1 \neq f(0)$.
+\end{example}
+
+%======================================================================
+\subsection{Definition of the Derivative}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} The derivative formalizes the notion of instantaneous rate of change via a limit of difference quotients. Differentiability is a stronger condition than continuity: differentiable $\Rightarrow$ continuous, but not conversely.
+\end{summarybox}
+
+\begin{definition}
+Let $f: [a,b] \to \R$ and $x \in [a,b]$. The \defn{derivative} of $f$ at $x$ is
+\[
+    f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
+\]
+provided this limit exists. Equivalently, $f'(x) = \lim_{t \to x} \dfrac{f(t) - f(x)}{t - x}$.
+
+We say $f$ is \defn{differentiable} at $x$ if $f'(x)$ exists, and \defn{differentiable on} $[a,b]$ if it is differentiable at every point.
+\end{definition}
+
+\begin{theorem}
+If $f$ is differentiable at $x$, then $f$ is continuous at $x$.
+\end{theorem}
+
+\begin{notebox}
+\textbf{Proof sketch:} $f(x+h) - f(x) = \dfrac{f(x+h)-f(x)}{h} \cdot h \to f'(x) \cdot 0 = 0$ as $h \to 0$.
+\end{notebox}
+
+\begin{theorem}[Mean Value Theorem]
+If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $c \in (a,b)$ such that $f'(c) = \dfrac{f(b)-f(a)}{b-a}$.
+\end{theorem}
+
+%======================================================================
+\subsection{Improper Integrals}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} The Riemann integral is defined on bounded intervals for bounded functions. \defn{Improper integrals} extend integration to unbounded intervals or to functions with singularities, defined as limits of proper integrals.
+\end{summarybox}
+
+\begin{definition}
+\textbf{Unbounded interval:} If $f$ is Riemann integrable on $[a, R]$ for all $R > a$, define
+\[
+    \int_a^{\infty} f(x)\, dx = \lim_{R \to \infty} \int_a^R f(x)\, dx,
+\]
+provided the limit exists (finite). Similarly for $\int_{-\infty}^b$ and $\int_{-\infty}^{\infty}$.
+
+\textbf{Singularity at endpoint:} If $f$ is integrable on $[a+\eps, b]$ for all $\eps > 0$ but possibly unbounded near $a$, define
+\[
+    \int_a^b f(x)\, dx = \lim_{\eps \to 0^+} \int_{a+\eps}^b f(x)\, dx.
+\]
+\end{definition}
+
+\begin{example}
+$\displaystyle\int_1^{\infty} \frac{1}{x^p}\, dx$ converges iff $p > 1$; $\displaystyle\int_0^1 \frac{1}{x^p}\, dx$ converges iff $p < 1$.
+\end{example}
+
+\begin{notebox}
+\textbf{Comparison test for improper integrals:} If $0 \leq f(x) \leq g(x)$ and $\int g$ converges, then $\int f$ converges. If $\int f$ diverges, then $\int g$ diverges.
+\end{notebox}
+
+%======================================================================
+\subsection{Integration by Parts}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} Integration by parts is the integral analogue of the product rule for derivatives. In the Riemann--Stieltjes setting, it takes a particularly clean symmetric form.
+\end{summarybox}
+
+\begin{theorem}[Integration by Parts]
+If $f, g: [a,b] \to \R$ and $\int_a^b f\, dg$ exists (Riemann--Stieltjes), then $\int_a^b g\, df$ also exists and
+\[
+    \int_a^b f\, dg + \int_a^b g\, df = f(b)g(b) - f(a)g(a).
+\]
+\end{theorem}
+
+In the classical (Riemann) setting with $g(x) = x$:
+\[
+    \int_a^b f(x) g'(x)\, dx = \bigl[f(x)g(x)\bigr]_a^b - \int_a^b f'(x) g(x)\, dx.
+\]
+
+\begin{notebox}
+\textbf{Proof:} Apply the product rule $d(fg) = f\, dg + g\, df$ and integrate both sides over $[a,b]$.
+\end{notebox}
+
+%======================================================================
+\subsection{H\"{o}lder's Inequality}
+%======================================================================
+
+\begin{summarybox}
+\textbf{Section Overview:} H\"{o}lder's inequality generalizes the Cauchy--Schwarz inequality. It bounds the integral (or sum) of a product $|fg|$ in terms of the $L^p$ norm of $f$ and the $L^q$ norm of $g$, where $p$ and $q$ are \defn{conjugate exponents}.
+\end{summarybox}
+
+\begin{definition}
+$p, q \in (1, \infty)$ are \defn{conjugate exponents} if $\dfrac{1}{p} + \dfrac{1}{q} = 1$.
+\end{definition}
+
+\begin{theorem}[H\"{o}lder's Inequality]
+Let $p, q > 1$ be conjugate exponents. If $f, g : [a,b] \to \R$ are Riemann integrable, then
+\[
+    \int_a^b |f(x)\, g(x)|\, dx \;\leq\; \left(\int_a^b |f(x)|^p\, dx\right)^{1/p} \left(\int_a^b |g(x)|^q\, dx\right)^{1/q}.
+\]
+\end{theorem}
+
+\begin{notebox}
+\textbf{Proof via Young's inequality:} For any $u, v \geq 0$,
+\[
+    uv \leq \frac{u^p}{p} + \frac{v^q}{q}.
+\]
+Normalize: let $U = \|f\|_p = \left(\int |f|^p\right)^{1/p}$ and $V = \|g\|_q$. Apply Young's inequality to $u = |f(x)|/U$ and $v = |g(x)|/V$, then integrate.
+
+\textbf{Proof of Young's inequality:} For $u, v > 0$ (the case $u=0$ or $v=0$ is trivial), use concavity of $\ln$. Since $\frac{1}{p} + \frac{1}{q} = 1$, concavity of $\ln$ gives
+\[
+    \ln\!\left(\frac{u^p}{p} + \frac{v^q}{q}\right)
+    \geq \frac{1}{p}\ln(u^p) + \frac{1}{q}\ln(v^q)
+    = \ln u + \ln v = \ln(uv).
+\]
+Exponentiating both sides yields $\dfrac{u^p}{p} + \dfrac{v^q}{q} \geq uv$. $\square$
+\end{notebox}
+
+\begin{remark}
+The case $p = q = 2$ recovers the \defn{Cauchy--Schwarz inequality}:
+\[
+    \int_a^b |f g|\, dx \leq \left(\int_a^b f^2\, dx\right)^{1/2}\!\left(\int_a^b g^2\, dx\right)^{1/2}.
+\]
+For sums: $\displaystyle\sum_{k=1}^n |a_k b_k| \leq \left(\sum |a_k|^p\right)^{1/p}\!\left(\sum |b_k|^q\right)^{1/q}$.
+\end{remark}
+
+\begin{notebox}
+\textbf{How to apply H\"{o}lder's inequality:} Given an integral $\int_a^b |f(x) g(x)|\, dx$ that you want to bound:
+\begin{enumerate}
+    \item \textbf{Choose $p$ and $q$} conjugate ($1/p + 1/q = 1$) so that $|f|^p$ and $|g|^q$ are integrable. Common choices: $p = q = 2$ (Cauchy--Schwarz), or $p = 1, q = \infty$ (trivial bound).
+    \item \textbf{Split the integrand} as $|f(x) g(x)| = |f(x)| \cdot |g(x)|$ and apply:
+    \[
+        \int_a^b |f g|\, dx \leq \left(\int_a^b |f|^p\right)^{1/p} \left(\int_a^b |g|^q\right)^{1/q}.
+    \]
+    \item \textbf{Evaluate each factor} separately --- often one factor is a finite constant and the other is the quantity of interest.
+\end{enumerate}
+\textbf{Typical exam pattern:} You are given $\int |h|$ and asked to show it is finite or bounded. Write $h = f \cdot g$ cleverly (e.g., $h(x) = h(x) \cdot 1$, or split a weight function off), then apply H\"{o}lder.
+\end{notebox}
+
+\end{document}

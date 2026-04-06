@@ -1,0 +1,391 @@
+\documentclass[9pt,landscape]{extarticle}
+
+% Page geometry: landscape, tight margins
+\usepackage[landscape, margin=0.4in, top=0.35in, bottom=0.35in]{geometry}
+
+% Multi-column
+\usepackage{multicol}
+\setlength{\columnsep}{7pt}
+\setlength{\columnseprule}{0.4pt}
+
+% Math
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Formatting
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\setlist{nosep, leftmargin=14pt, itemsep=2pt, parsep=1.5pt, topsep=3pt}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries\color{black}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{7pt}{3pt}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt plus 1pt}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+% Theorem-like environments
+\newtheoremstyle{compact}{3pt}{3pt}{\itshape}{}{\bfseries}{.}{4pt}{}
+\theoremstyle{compact}
+\newtheorem*{thm}{Thm}
+\newtheorem*{defn}{Def}
+\newtheorem*{lem}{Lem}
+\newtheorem*{cor}{Cor}
+
+% Technique box: red-outlined box for techniques
+\newenvironment{technique}[1]{%
+  \smallskip\noindent{\color{BrickRed}\bfseries\sffamily Technique: #1.}\enspace\ignorespaces
+}{\smallskip}
+
+% Key fact box
+\newenvironment{keyfact}{%
+  \smallskip\noindent{\color{MidnightBlue}\bfseries Key fact:}\enspace\ignorespaces
+}{\smallskip}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textbf{Math 104 -- Midterm 2 Cheat Sheet}}
+\rhead{Lectures 9--14, Midterm 2 Review}
+\cfoot{\thepage}
+
+\begin{document}
+\begin{multicols}{4}
+\raggedcolumns
+
+%==============================================================
+\section{Series \& Sequences}
+%==============================================================
+
+\subsection{Cauchy Criterion}
+$\{s_n\}$ converges $\Leftrightarrow$ for all $\eps>0$, $\exists N$ s.t.\ $m,n\geq N \Rightarrow |s_m - s_n| < \eps$.
+
+For series: $|s_m - s_n| = \left|\sum_{k=n+1}^m a_k\right|$. Use this when you can't find the limit explicitly.
+
+\begin{cor}
+$\sum a_n$ converges $\Rightarrow a_n \to 0$. (Converse fails: harmonic series.)
+\end{cor}
+
+\subsection{Monotone Sequences}
+\begin{thm}
+Monotone $+$ bounded $\Rightarrow$ convergent.
+\end{thm}
+\textit{To find the limit $L$:} take $n\to\infty$ in the recurrence and solve for $L$ using continuity of the right-hand side.
+
+\subsection{Key Limits (all $\to 0$)}
+\textit{Proof technique:} \textbf{Bernoulli's inequality}: $(1+x)^n \geq 1+nx$ for $x > -1$. Use it to sandwich the sequence between 0 and something that $\to 0$.
+
+\begin{tabular}{@{}p{52pt}@{\hspace{3pt}}>{\raggedright\arraybackslash}p{118pt}@{}}
+$\dfrac{1}{n^p}$ & $p > 0$ \\[5pt]
+$\sqrt[n]{p} \to 1$ & $p > 0$: set $x_n = \sqrt[n]{p}-1$; Bernoulli gives $p \geq (1+x_n)^n \geq 1+nx_n$ \\[3pt]
+$\sqrt[n]{n} \to 1$ & set $x_n = \sqrt[n]{n}-1 \geq 0$; $n=(1+x_n)^n\geq \binom{n}{2}x_n^2$, so $x_n\leq\sqrt{2/(n-1)}$ \\[3pt]
+$\dfrac{n^\alpha}{(1+p)^n}$ & $\alpha\in\R$, $p>0$: exponential beats poly \\[5pt]
+$x^n,\;|x|<1$ & geometric decay \\
+\end{tabular}
+
+\subsection{Convergence Tests}
+\begin{thm}[Comparison]
+$|a_n| \leq c_n$ and $\sum c_n$ converges $\Rightarrow \sum a_n$ converges. \\
+$a_n \geq d_n \geq 0$ and $\sum d_n$ diverges $\Rightarrow \sum a_n$ diverges.
+\end{thm}
+
+\begin{thm}[Cauchy Condensation]
+$a_n \geq a_{n+1} \geq 0$: $\sum a_n$ converges $\Leftrightarrow \sum 2^k a_{2^k}$ converges.
+\end{thm}
+\textit{Use for $p$-series:} $\sum 2^k (2^k)^{-s} = \sum 2^{k(1-s)}$, geometric iff $s > 1$.
+
+\begin{thm}[Root Test]
+$\alpha = \limsup |a_n|^{1/n}$. $\alpha < 1 \Rightarrow$ converges. $\alpha > 1 \Rightarrow$ diverges. $\alpha = 1$: inconclusive.
+\end{thm}
+
+\begin{thm}[Ratio Test]
+$$\beta = \limsup\left|\frac{a_{n+1}}{a_n}\right|, \quad \alpha_* = \liminf\left|\frac{a_{n+1}}{a_n}\right|.$$
+$\beta < 1 \Rightarrow$ converges. $\alpha_* > 1 \Rightarrow$ diverges. Use when factorials/exponentials appear.
+\end{thm}
+
+\begin{keyfact}
+Root test is strictly stronger than ratio test. If ratio test gives $L$, root test also gives $L$. Ratio can fail ($L=1$) where root succeeds.
+\end{keyfact}
+
+%==============================================================
+\section{Power Series}
+%==============================================================
+
+\begin{defn}
+$\sum c_n(x-a)^n$ has \textbf{radius of convergence}
+$$R = \frac{1}{\limsup_{n\to\infty}|c_n|^{1/n}}.$$
+\end{defn}
+
+\begin{thm}[Cauchy--Hadamard]
+Converges absolutely for $|x-a| < R$, diverges for $|x-a| > R$. Check endpoints separately.
+\end{thm}
+
+\textit{Why $\limsup$?} Root test: $\limsup|c_n(x-a)^n|^{1/n} = |x-a|\limsup|c_n|^{1/n} < 1 \Leftrightarrow |x-a| < R$.
+
+\textit{Examples:} $e^x = \sum x^n/n!$: $R = \infty$. $\sum n!\, x^n$: $R = 0$.
+
+%==============================================================
+\section{Differentiation}
+%==============================================================
+
+\subsection{Definition \& Basic Rules}
+$$f'(x) = \lim_{t\to x}\frac{f(t)-f(x)}{t-x}.$$
+Differentiable $\Rightarrow$ continuous ($C^1 \subset C^0$). \\
+Chain rule: $(g\circ f)'(x) = g'(f(x))\cdot f'(x)$.
+
+\subsection{Simple Discontinuities}
+\begin{defn}
+$f$ has a \textbf{simple discontinuity} at $x$ if $f(x^+)$ and $f(x^-)$ both exist but: (i) $f(x^+)\neq f(x^-)$ (jump), or (ii) $f(x^+)=f(x^-)$ but $\neq f(x)$ (removable). Otherwise: discontinuity of the \textbf{second kind} (e.g., $\sin(1/x)$).
+\end{defn}
+
+\subsection{Mean Value Theorems}
+\begin{thm}[MVT]
+$f$ cts on $[a,b]$, diff'able on $(a,b)$: $\exists c$ with $f'(c) = \dfrac{f(b)-f(a)}{b-a}$.
+\end{thm}
+
+\begin{thm}[Generalized MVT]
+$\exists c \in (a,b)$: $[f(b)-f(a)]g'(c) = [g(b)-g(a)]f'(c)$.
+\end{thm}
+\textit{Proof:} Apply MVT to $h = [f(b)-f(a)]g - [g(b)-g(a)]f$, which has $h(a)=h(b)$.
+
+\begin{thm}[L'H\^opital]
+$f,g \to 0$ as $x\to a$ and $\lim f'/g' = A \Rightarrow \lim f/g = A$. \\
+\textit{Proof:} GMVT gives $f(x)/g(x) = f'(c)/g'(c)$ for some $c\in(a,x)$.
+\end{thm}
+
+\begin{thm}[IVT for Derivatives]
+If $f'(a) < \lambda < f'(b)$, $\exists x \in (a,b)$ with $f'(x) = \lambda$.\\
+\textit{Proof:} Apply EVT to $h(t) = f(t) - \lambda t$; interior min has $h'=0$.
+\end{thm}
+
+\subsection{Taylor's Theorem}
+\[f(\beta) = \sum_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}{(\beta-\alpha)}^k + \frac{f^{(n)}(x)}{n!}{(\beta-\alpha)}^n\]
+for some $x$ between $\alpha$ and $\beta$ (Lagrange remainder).
+
+\textit{Proof:} Define $M$ by $f(\beta) = P(\beta) + M(\beta-\alpha)^n$. Apply MVT $n$ times to $g(t) = f(t) - P(t) - M(t-\alpha)^n$, using $g^{(k)}(\alpha) = 0$ at each step.
+
+\subsection{Fixed Points}
+\begin{thm}
+$f'(t) \neq 1$ everywhere $\Rightarrow$ at most one fixed point. \\
+\textit{Proof:} If $f(x)=x, f(y)=y$, MVT gives $f'(c) = 1$, contradiction.
+\end{thm}
+
+\begin{thm}[Contraction Mapping]
+$|f'(t)| \leq A < 1$ everywhere $\Rightarrow$ unique fixed point $x = \lim x_n$ (any $x_1$).
+\end{thm}
+
+%==============================================================
+\section{Riemann Integration}
+%==============================================================
+
+\subsection{Darboux Sums}
+Partition $P = \{x_0,\ldots,x_n\}$. $M_i = \sup_{[x_{i-1},x_i]}f$, $m_i = \inf_{[x_{i-1},x_i]}f$.
+$$U(P,f) = \sum M_i\Delta x_i, \quad L(P,f) = \sum m_i\Delta x_i.$$
+$f \in \mathscr{R} \Leftrightarrow \inf_P U(P,f) = \sup_P L(P,f)$.
+
+\begin{thm}[Integrability Criterion]
+$f \in \mathscr{R} \Leftrightarrow$ for all $\eps>0$, $\exists P$ with $U(P,f) - L(P,f) < \eps$.
+\end{thm}
+
+\begin{thm}[Zero Sets]
+$E$ is a \textbf{zero set} if $\forall\eps>0$, $\exists$ countable intervals covering $E$ with total length $< \eps$.\\
+$f$ bounded $+$ disc'ties form a zero set $\Rightarrow f \in \mathscr{R}$.
+\end{thm}
+
+\textit{Key examples:} $f$ monotone $\Rightarrow f \in \mathscr{R}$. $f$ continuous $\Rightarrow f \in \mathscr{R}$. Dirichlet function $\notin \mathscr{R}$.
+
+\subsection{Riemann--Stieltjes}
+\textit{Replace $\Delta x_i$ by $\Delta\alpha_i = \alpha(x_i)-\alpha(x_{i-1})$.}
+
+\begin{thm}
+$\alpha' \in \mathscr{R}$, $f$ bounded: $f\in\mathscr{R}(\alpha) \Leftrightarrow f\alpha'\in\mathscr{R}$ and
+$${\textstyle\int} f\,d\alpha = {\textstyle\int} f\alpha'\,dx.$$
+\textit{Proof:} MVT gives $\Delta\alpha_i = \alpha'(t_i)\Delta x_i$; compare Stieltjes sum to Riemann sum for $f\alpha'$, error $\leq M[U(P,\alpha')-L(P,\alpha')]$.
+\end{thm}
+
+\begin{thm}[Integration by Parts]
+$\displaystyle\int_a^b f\,dg + \int_a^b g\,df = f(b)g(b)-f(a)g(a)$.
+\end{thm}
+
+\begin{thm}[Change of Variable]
+$\varphi:[A,B]\to[a,b]$ strictly increasing, $\beta = \alpha\circ\varphi$, $g = f\circ\varphi$:
+$${\textstyle\int_A^B} g\,d\beta = {\textstyle\int_a^b} f\,d\alpha.$$
+\end{thm}
+
+%==============================================================
+\section{Improper Integrals \& H\"{o}lder}
+%==============================================================
+
+\begin{defn}
+$\int_a^\infty f\,dx = \lim_{R\to\infty}\int_a^R f\,dx$ (if limit exists).
+\end{defn}
+
+\begin{thm}[Comparison]
+$0 \leq f \leq g$: $\int g$ converges $\Rightarrow \int f$ converges.
+\end{thm}
+
+\textit{Key:} $\int_1^\infty x^{-p}\,dx$ converges iff $p>1$. $\int_0^1 x^{-p}\,dx$ converges iff $p < 1$.
+
+\begin{thm}[H\"{o}lder's Inequality]
+$\frac{1}{p}+\frac{1}{q}=1$, $p,q>1$:
+$$\int_a^b |fg|\,dx \leq \left(\int_a^b |f|^p\right)^{1/p}\!\left(\int_a^b |g|^q\right)^{1/q}.$$
+\end{thm}
+\textit{Proof:} Young's inequality $uv \leq u^p/p + v^q/q$ (from concavity of $\ln$). Normalize $u = |f|/\|f\|_p$, $v = |g|/\|g\|_q$, integrate.
+
+\textit{$p=q=2$:} Cauchy--Schwarz. \textit{To apply:} split $h = f \cdot g$ cleverly, choose $p,q$ so both $\int |f|^p$ and $\int |g|^q$ are finite.
+
+%==============================================================
+\section{Distance \& Metric Continuity}
+%==============================================================
+
+$\rho_E(x) = \inf_{e\in E} d(x,e)$. Properties:
+\begin{itemize}
+  \item $\rho_E(x) = 0 \Leftrightarrow x \in \bar{E}$ \quad (uses: $x\in\bar{E}$ iff every ball hits $E$).
+  \item $|\rho_E(x) - \rho_E(y)| \leq d(x,y)$ \quad (Lipschitz-1, hence uniformly cts).
+\end{itemize}
+
+\begin{thm}[Urysohn-type]
+$A,B$ disjoint closed: $f(p) = \rho_A(p)/(\rho_A(p)+\rho_B(p))$ is continuous, $f|_A=0$, $f|_B=1$.\\
+\textit{Key:} denom $> 0$ since $p \in A\cap B = \emptyset$ is impossible.
+\end{thm}
+
+%==============================================================
+\section{KEY TECHNIQUES}
+%==============================================================
+
+\begin{technique}{AM-GM for iteration}
+To show a Newton-type sequence $x_{n+1} = \frac{1}{p}\bigl((p-1)x_n + \alpha/x_n^{p-1}\bigr)$ is bounded below by $\alpha^{1/p}$: view $x_{n+1}$ as the arithmetic mean of $(p-1)$ copies of $x_n$ and one copy of $\alpha/x_n^{p-1}$. AM-GM gives $x_{n+1} \geq (x_n^{p-1}\cdot\alpha/x_n^{p-1})^{1/p} = \alpha^{1/p}$. Then monotone decrease follows from $x_n - x_{n+1} = (x_n^p - \alpha)/(px_n^{p-1}) > 0$.
+\end{technique}
+
+\begin{technique}{Monotone + bounded $\to$ limit}
+Once you know $\{x_n\}$ is monotone and bounded, it converges. To find the limit $L$: take $n\to\infty$ in the recurrence. Since $f$ is continuous, $L = f(L)$. Solve for $L$.
+\end{technique}
+
+\begin{technique}{MVT as a bounding tool}
+The MVT gives $|f(b) - f(a)| = |f'(c)||b-a| \leq \sup|f'| \cdot |b-a|$. Use this whenever you need to bound a function value in terms of its derivative. Especially powerful when $f(a) = 0$: then $|f(x)| \leq M_1(x-a)$.
+\end{technique}
+
+\begin{technique}{Bootstrapping / Gronwall}
+You have $M_0 \leq c \cdot M_0$ where $c < 1$ (e.g., $c = A(x_0-a) < 1$). Conclude $M_0 = 0$. Then repeat on the next interval with the new base point. This ``bootstraps'' a local result ($f\equiv 0$ near $a$) into a global result ($f\equiv 0$ on $[a,b]$) by covering the interval in finitely many steps of length $\leq 1/(2A)$.
+
+\textit{Pattern:} $f(a)=0$, $|f'|\leq A|f|$ $\Rightarrow$ $|f(x)|\leq AM_0(x_0-a) \cdot (M_0/M_0) \Rightarrow M_0 \leq A(x_0-a)M_0 \Rightarrow M_0 = 0$.
+\end{technique}
+
+\begin{technique}{Auxiliary function / uniqueness by subtraction}
+To prove uniqueness (or that something is zero): suppose $f$ and $g$ both satisfy the conditions. Define $h = f - g$. Then $h$ satisfies $h(a)=0$ and $|h'|\leq A|h|$ (by Lipschitz). Apply Gronwall to conclude $h\equiv 0$.
+
+\textit{General pattern:} reduce ``$f = g$'' to ``$h = f-g$ satisfies conditions implying $h\equiv 0$''.
+\end{technique}
+
+\begin{technique}{Contraction mapping (fixed points)}
+$|f'|\leq A < 1$ everywhere $\Rightarrow$ iterate $x_{n+1} = f(x_n)$. Then $|x_{n+1}-x_n| \leq A^{n-1}|x_2-x_1|$. Tail sum: $|x_m - x_n| \leq \frac{A^{n-1}}{1-A}|x_2-x_1| \to 0$, so $\{x_n\}$ is Cauchy. Limit satisfies $f(x) = x$ by continuity.
+\end{technique}
+
+\begin{technique}{Triangle inequality for $\rho_E$}
+To show $|\rho_E(x) - \rho_E(y)| \leq d(x,y)$: for any $e\in E$, use triangle inequality $d(x,e)\leq d(x,y)+d(y,e)$ then take inf over $e$. This gives $\rho_E(x) \leq d(x,y) + \rho_E(y)$. Swap $x,y$ for the other direction. Abstract principle: taking inf over a third variable preserves triangle inequality.
+\end{technique}
+
+\begin{technique}{Creating functions from metric (Urysohn)}
+To continuously separate two disjoint closed sets $A, B$: use $f = \rho_A/(\rho_A+\rho_B)$. The denominator is nonzero since $p\in A\cap B$ is impossible (they're disjoint closed). Then $f$ is a ratio of continuous functions with positive denominator, so $f$ is continuous. Properties of $\rho_E$ from part (a) then immediately give $f|_A=0$ and $f|_B=1$.
+\end{technique}
+
+\begin{technique}{Abel summation (sums $\leftrightarrow$ integrals)}
+To show $\sum 1/n^s = s\int_1^\infty [x]/x^{s+1}\,dx$: write $s\int_n^{n+1}n/x^{s+1}\,dx = n(n^{-s}-(n+1)^{-s})$. Sum and telescope. The telescoping gives $\sum_{n=1}^N n^{-s} - N^{1-s}$; let $N\to\infty$.
+
+\textit{General:} Abel summation = ``summation by parts'': $\sum a_n(b_n - b_{n+1}) = a_Nb_N - a_1 b_1 + \sum (a_{n+1}-a_n)b_{n+1}$.
+\end{technique}
+
+\begin{technique}{Eps-delta recipe}
+(1) Write out what you need: $d(f(p),f(q)) < \eps$. (2) Work backwards: express $d(f(p),f(q))$ in terms of $d(p,q)$ using triangle inequality and available bounds. (3) Read off $\delta$: if $d(p,q) < \delta$ implies $d(f(p),f(q)) \leq C\cdot\delta$, set $\delta = \eps/C$.
+
+For metric spaces: to show $f$ is cts at $p$, find $\delta$ s.t.\ $d(p,q)<\delta \Rightarrow d(f(p),f(q)) < \eps$. For uniform cts, $\delta$ must be independent of $p$.
+\end{technique}
+
+\begin{technique}{Partition refinement (integrability)}
+To show $f\in\mathscr{R}$: construct a partition $P$ with $U(P,f)-L(P,f)<\eps$. Strategy: isolate the ``bad'' subintervals (where $f$ varies a lot) into a set of small total length. On the rest, $f$ varies by at most $\eps$. \\
+\textit{Formal:} bad subintervals contribute $\leq 2M\cdot(\text{total bad length})$; good ones contribute $\leq \eps\cdot(b-a)$.
+\end{technique}
+
+\begin{technique}{Comparison for improper integrals}
+$\int_1^\infty |f(x)|/x^{s+1}\,dx$: if $|f(x)| \leq C$ (bounded), then the integral is $\leq C\int_1^\infty x^{-(s+1)}\,dx = C/s$, which converges for $s>0$. This handles the $x-[x]$ term in the zeta function proof.
+\end{technique}
+
+\begin{technique}{Triangle inequality in $L^2$ (square $\to$ Schwarz $\to$ root)}
+To prove $\|f-h\|_2 \leq \|f-g\|_2 + \|g-h\|_2$: (1) set $u = f-g$, $v = g-h$, so $f-h = u+v$; (2) square both sides --- reduces to showing $\|u+v\|_2^2 \leq (\|u\|_2+\|v\|_2)^2$; (3) expand left side and right side --- everything cancels except the cross term:
+$$\int uv\,d\alpha \;\leq\; \|u\|_2\|v\|_2;$$
+(4) apply Schwarz ($p=q=2$ Hölder) to bound the cross term; (5) take square root.
+
+\textit{Template:} square, expand, bound cross term by Schwarz, factor as perfect square, root.
+\end{technique}
+
+\begin{technique}{$L^2$ approximation by piecewise linear interpolation (Ex.\ 12)}
+To construct continuous $g$ with $\|f-g\|_2 < \eps$ for $f\in\mathscr{R}(\alpha)$: (1) since $f\in\mathscr{R}(\alpha)$, pick $P$ with $U(P,f,\alpha)-L(P,f,\alpha) < \eps^2/(2M)$; (2) define $g$ by linear interpolation between the values of $f$ at partition points --- $g$ is continuous since adjacent pieces agree at shared endpoints; (3) on each $[x_{i-1},x_i]$, both $f(t)$ and $g(t)$ (a convex combination of $f$-values) lie in $[m_i, M_i]$, so $|f-g| \leq M_i - m_i$; (4) integrate:
+
+\begin{align*}
+  \|f-g\|_2^2 &\leq \sum (M_i-m_i)^2\,\Delta\alpha_i \\
+              &\leq 2M\underbrace{\sum(M_i-m_i)\Delta\alpha_i}_{= U-L} \\
+              &< \varepsilon^2.
+\end{align*}
+
+
+\textit{Key trick:} $(M_i-m_i)^2 \leq 2M(M_i-m_i)$ --- one factor of oscillation is absorbed into the global bound $2M$, converting squared oscillations to linear ones so the Riemann criterion applies.
+\end{technique}
+
+%==============================================================
+\section{Quick Reference}
+%==============================================================
+
+\subsection{Convergence Summary}
+\begin{tabular}{@{}ll@{}}
+$\sum 1/n^s$ & conv.\ iff $s>1$ \\
+$\sum r^n$ & conv.\ iff $|r|<1$ \\
+$\sum 1/(n\log n)$ & diverges \\
+$\int_1^\infty x^{-p}$ & conv.\ iff $p>1$ \\
+$\int_0^1 x^{-p}$ & conv.\ iff $p<1$ \\
+\end{tabular}
+
+\subsection{Zeta Function Facts}
+For $s > 1$:
+$$\zeta(s) = s\!\int_1^\infty \frac{[x]}{x^{s+1}}\,dx = \frac{s}{s-1} - s\!\int_1^\infty\frac{x-[x]}{x^{s+1}}\,dx.$$
+Second integral converges for all $s > 0$ by comparison with $\int x^{-(s+1)}$.
+
+\subsection{Key Inequalities}
+\begin{itemize}
+  \item AM-GM: $\frac{1}{p}\sum a_i \geq \left(\prod a_i\right)^{1/p}$
+  \item MVT: $|f(b)-f(a)| \leq \sup|f'| \cdot |b-a|$
+  \item Lipschitz: $|f(x)-f(y)| \leq A|x-y|$
+  \item Young: $uv \leq u^p/p + v^q/q$ ($1/p+1/q=1$)
+  \item H\"{o}lder: $\int|fg| \leq \|f\|_p\|g\|_q$
+  \item Cauchy--Schwarz: $|\langle u,v\rangle| \leq \|u\|\|v\|$
+\end{itemize}
+
+\subsection{MVT Applications}
+\begin{itemize}
+  \item $f(a)=f(b) \Rightarrow f'(c)=0$ (Rolle's)
+  \item $f'=0$ on $(a,b) \Rightarrow f$ constant
+  \item $f'\geq 0$ on $(a,b) \Rightarrow f$ nondecreasing
+  \item $|f'|\leq A|f|$ and $f(a)=0 \Rightarrow f\equiv 0$ (Gronwall)
+  \item Lipschitz ODE $\Rightarrow$ unique solution (via Gronwall)
+\end{itemize}
+
+\end{multicols}
+\end{document}

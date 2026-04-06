@@ -1,0 +1,686 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[2]{\left\|#1\right\|_{#2}}
+
+% Theorem environments
+\newtheoremstyle{myplain}{8pt}{6pt}{\itshape}{}{\bfseries}{.}{6pt}{}
+\theoremstyle{myplain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% Colored boxes
+\tcbuselibrary{skins, breakable}
+
+% Orange: lecture-level summary
+\newtcolorbox{insight}{
+  colback=orange!12, colframe=orange!60!black,
+  fonttitle=\bfseries, title=Key Insight,
+  breakable, arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+% Blue: technique
+\newtcolorbox{technique}[1]{
+  colback=Cerulean!10, colframe=Cerulean!70!black,
+  fonttitle=\bfseries, title=Technique: #1,
+  breakable, arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+% Light red: warning / common mistake
+\newtcolorbox{watchout}{
+  colback=Red!8, colframe=Red!60!black,
+  fonttitle=\bfseries, title=Watch Out,
+  breakable, arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+% Green: big picture
+\newtcolorbox{bigpicture}{
+  colback=Green!8, colframe=Green!60!black,
+  fonttitle=\bfseries, title=Big Picture,
+  breakable, arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{\thesection\quad}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0pt}{\thesubsection\quad}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Math 104 Crash Course}\\[4pt]
+  {\large Midterm 2 $\cdot$ Lectures 9--14 $\cdot$ Spring 2026}
+\end{center}
+
+\bigskip
+
+\tableofcontents
+\newpage
+
+%==============================================================
+\section{Series and Convergence}
+%==============================================================
+
+\begin{bigpicture}
+A \textbf{series} $\sum a_n$ is just a sequence in disguise: the sequence of partial sums $s_N = \sum_{n=1}^N a_n$. All your sequence machinery applies directly. The hard part is that you usually can't compute $s_N$ in closed form, so you need indirect tests.
+\end{bigpicture}
+
+\subsection{Cauchy Criterion}
+
+A sequence $\{s_n\}$ converges if and only if it is \emph{Cauchy}: for every $\eps > 0$, there exists $N$ such that $m, n \geq N \Rightarrow |s_m - s_n| < \eps$.
+
+For a series, $|s_m - s_n| = \left|\sum_{k=n+1}^m a_k\right|$. So a series is Cauchy iff its tails can be made arbitrarily small.
+
+\begin{corollary}
+If $\sum a_n$ converges, then $a_n \to 0$. \textbf{Converse fails}: the harmonic series $\sum 1/n$ diverges even though $1/n \to 0$.
+\end{corollary}
+
+\begin{insight}
+The $n$-th term test only rules out convergence. If $a_n \not\to 0$, you're done---it diverges. But $a_n \to 0$ tells you nothing; you need a real test.
+\end{insight}
+
+\subsection{Monotone Sequences and Finding Limits}
+
+\begin{theorem}
+A monotone bounded sequence converges.
+\end{theorem}
+
+\textbf{How to find the limit when you have a recurrence $x_{n+1} = f(x_n)$:}
+\begin{enumerate}
+  \item Show the sequence is monotone and bounded (so it converges to some $L$).
+  \item Take $n \to \infty$ in the recurrence: $L = f(L)$ (valid because $f$ is continuous).
+  \item Solve for $L$.
+\end{enumerate}
+
+\subsection{Comparison and Condensation Tests}
+
+\begin{theorem}[Comparison Test]
+If $|a_n| \leq c_n$ for all large $n$ and $\sum c_n$ converges, then $\sum a_n$ converges.
+
+If $a_n \geq d_n \geq 0$ and $\sum d_n$ diverges, then $\sum a_n$ diverges.
+\end{theorem}
+
+\begin{theorem}[Cauchy Condensation Test]
+Let $\{a_n\}$ be non-negative and decreasing. Then
+$$\sum_{n=1}^\infty a_n \quad \text{converges} \quad \Longleftrightarrow \quad \sum_{k=0}^\infty 2^k a_{2^k} \quad \text{converges}.$$
+\end{theorem}
+
+\begin{insight}
+Why does condensation work? The idea is that on each dyadic block $[2^k, 2^{k+1})$, the decreasing sequence $a_n$ is sandwiched between $a_{2^k}$ (the biggest) and $a_{2^{k+1}}$ (the smallest). There are $2^k$ terms in the block, so the block sum is sandwiched between $2^k a_{2^{k+1}}$ and $2^k a_{2^k}$. The condensed series $\sum 2^k a_{2^k}$ captures exactly this block size.
+
+\textbf{Application to $p$-series:} $a_n = 1/n^s$ gives $2^k a_{2^k} = 2^k / 2^{ks} = 2^{k(1-s)}$, which is a geometric series converging iff $2^{1-s} < 1$ iff $s > 1$.
+\end{insight}
+
+\subsection{Root Test and Ratio Test}
+
+\begin{theorem}[Root Test]
+Let $\alpha = \limsup |a_n|^{1/n}$.
+\begin{itemize}
+  \item $\alpha < 1$: $\sum a_n$ converges absolutely.
+  \item $\alpha > 1$: $\sum a_n$ diverges.
+  \item $\alpha = 1$: inconclusive.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Ratio Test]
+Let $\beta = \limsup |a_{n+1}/a_n|$ and $\alpha_* = \liminf |a_{n+1}/a_n|$.
+\begin{itemize}
+  \item $\beta < 1$: converges absolutely.
+  \item $\alpha_* > 1$: diverges.
+  \item $\beta = 1$ or $\alpha_* = 1$: inconclusive.
+\end{itemize}
+\end{theorem}
+
+\begin{insight}
+\textbf{Root test is strictly stronger than the ratio test.} If the ratio test gives a limit $L$, then the root test also gives $L$ (because $\liminf |a_{n+1}/a_n| \leq \limsup |a_n|^{1/n} \leq \limsup |a_{n+1}/a_n|$). But the root test can succeed where the ratio test fails (e.g., $\limsup = 1$ for ratio but $< 1$ for root).
+
+\textbf{When to use ratio:} factorials ($n!$) and pure exponentials ($c^n$), where ratios simplify cleanly. \textbf{When to use root:} $n$-th powers $(c_n)^n$, since the $\limsup^{1/n}$ kills the power.
+\end{insight}
+
+\subsection{Power Series and Radius of Convergence}
+
+\begin{definition}
+A \textbf{power series} centered at $a$ is $\sum_{n=0}^\infty c_n(x-a)^n$. Its \textbf{radius of convergence} is
+$$R = \frac{1}{\limsup_{n\to\infty} |c_n|^{1/n}}$$
+with conventions $1/0 = +\infty$ and $1/\infty = 0$.
+\end{definition}
+
+\begin{theorem}[Cauchy--Hadamard]
+The series converges absolutely for $|x - a| < R$ and diverges for $|x - a| > R$. At $|x - a| = R$, check separately.
+\end{theorem}
+
+\begin{insight}
+The formula for $R$ comes directly from the root test: $\limsup |c_n(x-a)^n|^{1/n} = |x-a| \cdot \limsup |c_n|^{1/n}$. This is $< 1$ iff $|x-a| < 1/\limsup|c_n|^{1/n} = R$.
+
+\textbf{Key examples:}
+\begin{itemize}
+  \item $e^x = \sum x^n/n!$: $|c_n|^{1/n} = (1/n!)^{1/n} \to 0$, so $R = \infty$.
+  \item $\sum n! x^n$: $|c_n|^{1/n} = (n!)^{1/n} \to \infty$, so $R = 0$ (converges only at $x = 0$).
+  \item $\sum x^n$: geometric, $R = 1$. Check endpoints: $x = \pm 1$ both diverge.
+\end{itemize}
+\end{insight}
+
+%==============================================================
+\section{Differentiation}
+%==============================================================
+
+\begin{bigpicture}
+Differentiation is about local linear approximation. The derivative $f'(x)$ is the slope of the best linear fit to $f$ near $x$. The MVT is the bridge between pointwise derivative information and global behavior---it's the most-used theorem in the course.
+\end{bigpicture}
+
+\subsection{The Derivative}
+
+\begin{definition}
+For $f: [a,b] \to \R$ and $x \in [a,b]$, the \textbf{derivative} is
+$$f'(x) = \lim_{t \to x} \frac{f(t) - f(x)}{t - x},$$
+provided this limit exists.
+\end{definition}
+
+\begin{theorem}[$C^1 \subset C^0$]
+Differentiable at $x$ implies continuous at $x$. Converse fails: $f(x) = |x|$ is continuous at $0$ but not differentiable.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Write $f(t) - f(x) = \frac{f(t)-f(x)}{t-x} \cdot (t-x)$. As $t \to x$: the first factor $\to f'(x)$ and the second $\to 0$. Product $\to 0$.
+\end{proof}
+
+\subsection{Simple Discontinuities}
+
+\begin{definition}
+A function $f$ has a \textbf{simple discontinuity} at $x$ if both one-sided limits $f(x^+)$ and $f(x^-)$ exist, but either:
+\begin{itemize}
+  \item $f(x^+) \neq f(x^-)$ (a \textbf{jump discontinuity}), or
+  \item $f(x^+) = f(x^-)$ but $\neq f(x)$ (a \textbf{removable discontinuity}).
+\end{itemize}
+If one-sided limits don't exist, it's a \textbf{discontinuity of the second kind} (e.g., $\sin(1/x)$ at $0$).
+\end{definition}
+
+\begin{insight}
+Simple discontinuities are ``well-behaved'' in the sense that the one-sided limits exist. This matters for integration: a function with only finitely many simple discontinuities is still Riemann integrable (its discontinuities form a finite, hence zero, set).
+\end{insight}
+
+\subsection{Mean Value Theorem}
+
+\begin{theorem}[Rolle's Theorem]
+If $f$ is continuous on $[a,b]$, differentiable on $(a,b)$, and $f(a) = f(b)$, then $\exists c \in (a,b)$ with $f'(c) = 0$.
+\end{theorem}
+
+\begin{theorem}[Mean Value Theorem]
+If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then $\exists c \in (a,b)$ with
+$$f'(c) = \frac{f(b) - f(a)}{b - a}.$$
+\end{theorem}
+
+\begin{theorem}[Generalized MVT]
+If $f, g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, then $\exists c \in (a,b)$ with
+$$[f(b) - f(a)]\,g'(c) = [g(b) - g(a)]\,f'(c).$$
+\end{theorem}
+
+\begin{proof}[Proof of GMVT]
+Apply Rolle's to $h(t) = [f(b)-f(a)]g(t) - [g(b)-g(a)]f(t)$. Check: $h(a) = [f(b)-f(a)]g(a) - [g(b)-g(a)]f(a) = f(b)g(a) - f(a)g(b)$, and $h(b)$ gives the same value. So $h(a) = h(b)$, and Rolle's gives $h'(c) = 0$.
+\end{proof}
+
+\begin{insight}
+The GMVT is MVT with two functions. It says: the ratio of the increments of $f$ and $g$ equals the ratio of derivatives at some interior point. Setting $g(t) = t$ recovers the ordinary MVT.
+\end{insight}
+
+\subsection{Applications of the MVT}
+
+\begin{theorem}[MVT consequences]
+\begin{itemize}
+  \item $f' = 0$ on $(a,b)$ $\Rightarrow$ $f$ is constant on $(a,b)$.
+  \item $f' \geq 0$ on $(a,b)$ $\Rightarrow$ $f$ is nondecreasing.
+  \item $|f(b) - f(a)| \leq \sup_{(a,b)}|f'| \cdot |b-a|$ \quad (MVT as a bound).
+  \item $f'(a) < \lambda < f'(b)$ $\Rightarrow$ $\exists x \in (a,b)$ with $f'(x) = \lambda$ \quad (\textbf{IVT for derivatives}).
+\end{itemize}
+\end{theorem}
+
+\begin{technique}{MVT as a Bounding Tool}
+Whenever you need to bound $|f(x) - f(y)|$, use the MVT: $|f(x) - f(y)| \leq \sup|f'| \cdot |x-y|$. This turns derivative information into function value bounds. Especially powerful when $f(a) = 0$: then $|f(x)| \leq \sup|f'| \cdot |x - a|$.
+\end{technique}
+
+\subsection{L'H\^opital's Rule}
+
+\begin{theorem}[L'H\^opital]
+Suppose $f(a) = g(a) = 0$ and $g'(x) \neq 0$ near $a$. If $\lim_{x\to a} f'(x)/g'(x) = A$ exists, then $\lim_{x\to a} f(x)/g(x) = A$.
+\end{theorem}
+
+\begin{proof}[Proof idea]
+The GMVT applied to $f, g$ on $[a, x]$ gives $f(x)/g(x) = f'(c)/g'(c)$ for some $c \in (a,x)$. As $x \to a$, $c \to a$ too, and the right side $\to A$.
+\end{proof}
+
+\begin{watchout}
+L'H\^opital requires the form $0/0$ (or $\infty/\infty$) and requires that $\lim f'/g'$ exists. If the derivative ratio doesn't converge, L'H\^opital says nothing---the original limit may still exist.
+\end{watchout}
+
+\subsection{Taylor's Theorem}
+
+\begin{theorem}[Taylor's Theorem with Lagrange Remainder]
+Suppose $f^{(n-1)}$ is continuous on $[a,b]$ and $f^{(n)}$ exists on $(a,b)$. Let $\alpha, \beta \in [a,b]$. Define the degree-$(n-1)$ Taylor polynomial
+$$P(t) = \sum_{k=0}^{n-1} \frac{f^{(k)}(\alpha)}{k!}(t - \alpha)^k.$$
+Then there exists $x$ between $\alpha$ and $\beta$ such that
+$$f(\beta) = P(\beta) + \underbrace{\frac{f^{(n)}(x)}{n!}(\beta - \alpha)^n}_{\text{Lagrange remainder}}.$$
+\end{theorem}
+
+\begin{proof}[Proof idea]
+Define $M$ by $f(\beta) = P(\beta) + M(\beta-\alpha)^n$. Let $g(t) = f(t) - P(t) - M(t-\alpha)^n$. Then $g(\alpha) = g(\beta) = 0$ and $g^{(k)}(\alpha) = 0$ for $k = 0, \ldots, n-1$. Apply MVT $n$ times: $g(\alpha) = g(\beta) = 0$ gives $g'(x_1) = 0$, then $g'(\alpha) = g'(x_1) = 0$ gives $g''(x_2) = 0$, and so on. After $n$ steps, $g^{(n)}(x_n) = 0$. But $g^{(n)}(t) = f^{(n)}(t) - M \cdot n!$, so $M = f^{(n)}(x_n)/n!$.
+\end{proof}
+
+\begin{insight}
+Taylor's theorem is a quantitative version of ``smooth functions are locally polynomial.'' The Lagrange remainder tells you the error when you truncate the Taylor series. \textbf{Key use:} to bound the error in approximating $f$ near $\alpha$:
+$$|f(\beta) - P(\beta)| \leq \frac{\sup|f^{(n)}|}{n!}\,|\beta - \alpha|^n.$$
+As $n \to \infty$, this $\to 0$ if $f$ is well-behaved (entire functions like $e^x, \sin, \cos$).
+\end{insight}
+
+\subsection{Fixed Points and Contraction Mapping}
+
+\begin{theorem}
+If $f'(t) \neq 1$ for all $t$, then $f$ has at most one fixed point ($f(x) = x$).
+\end{theorem}
+
+\begin{proof}
+If $f(x) = x$ and $f(y) = y$ with $x \neq y$, MVT gives $f'(c) = (f(y)-f(x))/(y-x) = 1$, contradiction.
+\end{proof}
+
+\begin{theorem}[Contraction Mapping]
+If $|f'(t)| \leq A < 1$ for all $t$, then for any starting point $x_1$, the iteration $x_{n+1} = f(x_n)$ converges to the unique fixed point of $f$.
+\end{theorem}
+
+\begin{insight}
+Why does iteration work? The MVT gives $|x_{n+1} - x_n| = |f(x_n) - f(x_{n-1})| \leq A|x_n - x_{n-1}|$. So the gaps shrink geometrically: $|x_{n+1} - x_n| \leq A^{n-1}|x_2 - x_1|$. The tail sum is bounded by a geometric series, making $\{x_n\}$ Cauchy.
+\end{insight}
+
+\begin{technique}{Gronwall / Bootstrapping}
+\textbf{Setup:} You have $|f'| \leq A|f|$ and $f(a) = 0$. You want to show $f \equiv 0$.
+
+\textbf{Step 1 (Local):} Let $M_0 = \sup_{[a,x_0]}|f|$. By MVT, $|f(x)| \leq A|f(c)||x-a| \leq AM_0(x_0 - a)$. Taking sup: $M_0 \leq AM_0(x_0 - a)$. If $x_0 - a < 1/A$, then $AM_0(x_0-a) < M_0$, forcing $M_0 = 0$. So $f \equiv 0$ on $[a, x_0]$.
+
+\textbf{Step 2 (Global):} Restart at $x_0$ as the new base point (we now know $f(x_0) = 0$). Cover $[a,b]$ in finitely many steps of length $< 1/A$. Conclude $f \equiv 0$ on all of $[a,b]$.
+
+\textbf{Corollary:} If $f$ and $g$ both satisfy $h' = A h$ and $h(a) = 0$, apply Gronwall to $h = f - g$ to get $f = g$ (uniqueness of ODE solutions).
+\end{technique}
+
+%==============================================================
+\section{The Riemann Integral}
+%==============================================================
+
+\begin{bigpicture}
+The Riemann integral is defined by approximating the area under $f$ from above (upper sums) and below (lower sums). If the approximations can be made to agree, $f$ is integrable. The key tool is the \textbf{integrability criterion}: $f \in \mathscr{R}$ iff you can make $U - L < \eps$ for any $\eps > 0$.
+\end{bigpicture}
+
+\subsection{Partitions and Darboux Sums}
+
+\begin{definition}
+A \textbf{partition} of $[a,b]$ is $P = \{x_0, x_1, \ldots, x_n\}$ with $a = x_0 \leq \cdots \leq x_n = b$. Let $\Delta x_i = x_i - x_{i-1}$, $M_i = \sup_{[x_{i-1},x_i]} f$, $m_i = \inf_{[x_{i-1},x_i]} f$.
+
+The \textbf{upper} and \textbf{lower Darboux sums} are:
+$$U(P,f) = \sum_{i=1}^n M_i \Delta x_i, \qquad L(P,f) = \sum_{i=1}^n m_i \Delta x_i.$$
+\end{definition}
+
+Always $L(P,f) \leq U(P,f)$, and refining $P$ (adding more points) can only decrease $U$ and increase $L$.
+
+\begin{definition}
+The \textbf{upper Riemann integral} is $\overline{\int} f = \inf_P U(P,f)$ and the \textbf{lower Riemann integral} is $\underline{\int} f = \sup_P L(P,f)$.
+
+$f$ is \textbf{Riemann integrable} ($f \in \mathscr{R}$) iff $\overline{\int} f = \underline{\int} f$.
+\end{definition}
+
+\subsection{The Integrability Criterion}
+
+\begin{theorem}[Integrability Criterion]
+$f \in \mathscr{R}$ if and only if for every $\eps > 0$, there exists a partition $P$ such that
+$$U(P,f) - L(P,f) < \eps.$$
+\end{theorem}
+
+\begin{insight}
+$U - L = \sum (M_i - m_i)\Delta x_i$ is the \textbf{total oscillation} of $f$. The criterion says $f$ is integrable iff you can make the total oscillation arbitrarily small by choosing a fine enough partition. Oscillation is large where $f$ is discontinuous, so roughly: $f$ is integrable iff it's not too discontinuous.
+\end{insight}
+
+\begin{technique}{Proving $f \in \mathscr{R}$ via the Criterion}
+To show $f \in \mathscr{R}$, construct a partition $P$ with $U(P,f) - L(P,f) < \eps$. The standard strategy:
+\begin{enumerate}
+  \item Split intervals into ``bad'' (where $f$ oscillates a lot) and ``good'' (where $f$ is nearly constant).
+  \item On bad intervals: the oscillation can be large, but make the total \emph{length} small (say $< \delta$), contributing $\leq 2M\delta$ to $U - L$.
+  \item On good intervals: oscillation $\leq \eps$ each, contributing $\leq \eps(b-a)$ total.
+  \item Choose $\delta = \eps/(2M)$ so both contributions are $O(\eps)$.
+\end{enumerate}
+\end{technique}
+
+\subsection{Who Is Integrable?}
+
+\begin{theorem}
+The following classes of functions are in $\mathscr{R}([a,b])$:
+\begin{itemize}
+  \item \textbf{Continuous functions} $f \in C([a,b])$: continuity on a compact set is uniform, so you can make oscillation on each interval $< \eps$ simultaneously.
+  \item \textbf{Monotone functions}: at most countably many discontinuities, all of jump type.
+  \item \textbf{Bounded functions whose discontinuities form a zero set}.
+\end{itemize}
+The Dirichlet function ($f = 1$ on $\Q$, $f = 0$ on $\R \setminus \Q$) is \emph{not} integrable: $U = 1, L = 0$ for every partition.
+\end{theorem}
+
+\begin{definition}
+A set $E \subset \R$ is a \textbf{zero set} (measure zero) if for every $\eps > 0$, there exist countably many intervals $\{I_n\}$ covering $E$ with $\sum |I_n| < \eps$.
+\end{definition}
+
+\begin{example}
+$\Q$ is a zero set (it's countable: enumerate and cover the $n$-th rational by an interval of length $\eps/2^n$). The Thomae function ($f(p/q) = 1/q$, $f(\text{irrational}) = 0$) is integrable: its discontinuities are exactly $\Q$, a zero set.
+\end{example}
+
+\subsection{Riemann--Stieltjes Integration}
+
+\begin{bigpicture}
+The Riemann--Stieltjes integral $\int f\,d\alpha$ generalizes the Riemann integral by replacing the length measure $dx$ with a measure $d\alpha$ induced by a monotone increasing function $\alpha$. If $\alpha$ has a derivative, the Stieltjes integral reduces to an ordinary Riemann integral.
+\end{bigpicture}
+
+Replace $\Delta x_i = x_i - x_{i-1}$ by $\Delta\alpha_i = \alpha(x_i) - \alpha(x_{i-1})$ to get $U(P,f,\alpha)$ and $L(P,f,\alpha)$. The integrability criterion and classes remain the same.
+
+\begin{theorem}[Reduction to Riemann]
+If $\alpha' \in \mathscr{R}$ and $f$ is bounded, then $f \in \mathscr{R}(\alpha)$ iff $f\alpha' \in \mathscr{R}$, and
+$$\int_a^b f\,d\alpha = \int_a^b f\alpha'\,dx.$$
+\end{theorem}
+
+\begin{proof}[Proof idea]
+By the MVT, $\Delta\alpha_i = \alpha'(t_i)\Delta x_i$ for some $t_i \in [x_{i-1},x_i]$. So a Stieltjes sum $\sum f(s_i)\Delta\alpha_i = \sum f(s_i)\alpha'(t_i)\Delta x_i$ is close to the Riemann sum $\sum f(s_i)\alpha'(s_i)\Delta x_i$ for $f\alpha'$. The error is bounded by $M[U(P,\alpha') - L(P,\alpha')]$, which can be made small since $\alpha' \in \mathscr{R}$.
+\end{proof}
+
+\begin{theorem}[Integration by Parts]
+$$\int_a^b f\,d\alpha + \int_a^b \alpha\,df = f(b)\alpha(b) - f(a)\alpha(a).$$
+\end{theorem}
+
+\begin{theorem}[Change of Variable]
+Let $\varphi: [A,B] \to [a,b]$ be strictly increasing. Let $\beta = \alpha \circ \varphi$ and $g = f \circ \varphi$. Then
+$$\int_A^B g\,d\beta = \int_a^b f\,d\alpha.$$
+\end{theorem}
+
+\subsection{Improper Integrals}
+
+\begin{definition}
+$\displaystyle\int_a^\infty f\,dx = \lim_{R\to\infty}\int_a^R f\,dx$, if the limit exists. Similarly for $\int_{-\infty}^b$ and for singularities at endpoints.
+\end{definition}
+
+\begin{theorem}[Comparison]
+If $0 \leq f(x) \leq g(x)$ and $\int g$ converges, then $\int f$ converges.
+\end{theorem}
+
+\begin{insight}
+Key benchmark integrals:
+\begin{itemize}
+  \item $\displaystyle\int_1^\infty \frac{dx}{x^p}$ converges iff $p > 1$.
+  \item $\displaystyle\int_0^1 \frac{dx}{x^p}$ converges iff $p < 1$.
+\end{itemize}
+The switchover happens at $p = 1$ (the harmonic integral). Near $\infty$, you need $f$ to decay faster than $1/x$; near $0$, you need $f$ to blow up slower than $1/x$.
+\end{insight}
+
+%==============================================================
+\section{H\"{o}lder's Inequality and the $L^2$ Space}
+%==============================================================
+
+\begin{bigpicture}
+Hölder's inequality is the integral version of the AM-GM inequality. It lets you bound $\int fg$ in terms of norms of $f$ and $g$ separately. The special case $p = q = 2$ is Cauchy--Schwarz. Hölder is the key to proving the triangle inequality for the $L^2$ norm.
+\end{bigpicture}
+
+\subsection{Young's Inequality and Hölder}
+
+\begin{theorem}[Young's Inequality]
+For $a, b \geq 0$ and conjugate exponents $1/p + 1/q = 1$ with $p, q > 1$:
+$$ab \leq \frac{a^p}{p} + \frac{b^q}{q}.$$
+\end{theorem}
+
+\begin{proof}
+Fix $b$ and optimize $ab - a^p/p$ over $a \geq 0$. The maximum is at $a = b^{1/(p-1)} = b^{q-1}$, giving $b^q - b^q/p = b^q/q$. Alternatively: Young is equivalent to $\ln$ being concave, via $\ln(ab) = \ln a + \ln b \leq p\ln a/p + q\ln b/q = \ln(a^p/p + b^q/q)$ by Jensen.
+\end{proof}
+
+\begin{theorem}[H\"{o}lder's Inequality]
+Let $1/p + 1/q = 1$ with $p, q > 1$. If $f \in \mathscr{R}(\alpha)$ and $g \in \mathscr{R}(\alpha)$, then
+$$\int_a^b |fg|\,d\alpha \leq \left(\int_a^b |f|^p\,d\alpha\right)^{1/p} \left(\int_a^b |g|^q\,d\alpha\right)^{1/q} = \|f\|_p \|g\|_q.$$
+\end{theorem}
+
+\begin{proof}
+If $\|f\|_p = 0$ or $\|g\|_q = 0$, both sides are 0. Otherwise, normalize: let $u = |f|/\|f\|_p$ and $v = |g|/\|g\|_q$. Apply Young pointwise: $u(x)v(x) \leq u(x)^p/p + v(x)^q/q$. Integrate: $\int uv \leq 1/p + 1/q = 1$. Multiply back: $\int|fg| \leq \|f\|_p\|g\|_q$.
+\end{proof}
+
+\begin{insight}
+The key steps to remember:
+\begin{enumerate}
+  \item Young's inequality: $uv \leq u^p/p + v^q/q$ (from concavity of $\ln$).
+  \item Normalize so that $\|u\|_p = \|v\|_q = 1$.
+  \item After normalization, Young + integration gives $\int uv \leq 1$.
+  \item Denormalize (multiply back by $\|f\|_p\|g\|_q$).
+\end{enumerate}
+\end{insight}
+
+\subsection{The $L^2$ Space and Its Triangle Inequality}
+
+\begin{definition}
+For $f \in \mathscr{R}(\alpha)$, the \textbf{$L^2$ norm} (with respect to $\alpha$) is
+$$\|f\|_2 = \left(\int_a^b |f|^2\,d\alpha\right)^{1/2}.$$
+\end{definition}
+
+\begin{theorem}[Triangle Inequality in $L^2$]
+$\|f + g\|_2 \leq \|f\|_2 + \|g\|_2$.
+\end{theorem}
+
+\begin{proof}
+Square both sides. Need to show $\|f+g\|_2^2 \leq (\|f\|_2 + \|g\|_2)^2$. Expand the left side:
+\begin{align*}
+\|f+g\|_2^2 &= \int |f+g|^2\,d\alpha = \int f^2 + 2\int fg + \int g^2.
+\end{align*}
+Expand the right side: $(\|f\|_2 + \|g\|_2)^2 = \|f\|_2^2 + 2\|f\|_2\|g\|_2 + \|g\|_2^2$.
+
+Everything cancels except the cross terms: need $\int fg \leq \|f\|_2\|g\|_2$. This is Cauchy--Schwarz (Hölder with $p=q=2$). Take the square root.
+\end{proof}
+
+\begin{technique}{Triangle Inequality via Squaring}
+Template: to prove $\|A\| \leq \|B\| + \|C\|$, square both sides, expand, bound the cross term by Schwarz/Hölder, recognize a perfect square, take the root. This pattern appears whenever you have an inner product or $L^2$ norm.
+\end{technique}
+
+\subsection{$L^2$ Approximation by Piecewise Linear Functions}
+
+\begin{theorem}[Approximation in $L^2$]
+If $f \in \mathscr{R}(\alpha)$ on $[a,b]$ and $\eps > 0$, there exists a continuous function $g$ on $[a,b]$ with $\|f - g\|_2 < \eps$.
+\end{theorem}
+
+\begin{proof}[Proof]
+\textbf{Construction:} Since $f \in \mathscr{R}(\alpha)$, choose $P$ with $U(P,f,\alpha) - L(P,f,\alpha) < \eps^2/(2M)$ where $M = \sup|f|$. Define $g$ by linear interpolation between the values of $f$ at the partition points; $g$ is continuous.
+
+\textbf{Bound:} On each $[x_{i-1},x_i]$, both $f$ and $g$ (being a convex combination of $f$-values at partition points) lie in $[m_i, M_i]$. So $|f(t) - g(t)| \leq M_i - m_i$ pointwise. Then:
+\begin{align*}
+\|f-g\|_2^2 &= \int |f-g|^2\,d\alpha \\
+&\leq \sum_{i=1}^n (M_i - m_i)^2\,\Delta\alpha_i \\
+&\leq 2M\sum_{i=1}^n (M_i - m_i)\,\Delta\alpha_i \qquad \text{(since $M_i - m_i \leq 2M$)} \\
+&= 2M[U(P,f,\alpha) - L(P,f,\alpha)] \\
+&< 2M \cdot \frac{\eps^2}{2M} = \eps^2.
+\end{align*}
+Take the square root: $\|f-g\|_2 < \eps$.
+\end{proof}
+
+\begin{insight}
+\textbf{The key algebraic trick}: $(M_i - m_i)^2 \leq 2M(M_i - m_i)$. One factor of oscillation is bounded by the global constant $2M$, converting squared oscillation to linear oscillation so the Riemann criterion applies.
+
+\textbf{Why piecewise linear?} Linear interpolation is the simplest way to build a continuous function that passes through prescribed values at the partition points, and it automatically stays within $[m_i, M_i]$ on each interval (by convexity).
+\end{insight}
+
+\begin{technique}{Applying Hölder: How to Split $h = f \cdot g$}
+Given $\int h$, write $h = f \cdot g$ and choose $p, q$ so that both $\|f\|_p$ and $\|g\|_q$ are computable/finite. Checklist:
+\begin{itemize}
+  \item Identify what power of $h$ appears naturally.
+  \item Set $|f|^p = $ (something you can integrate) and $|g|^q = $ (something else).
+  \item Verify $1/p + 1/q = 1$.
+  \item Apply Hölder.
+\end{itemize}
+\textbf{Example:} To show $\left(\int fg\right)^2 \leq \int f^2 \cdot \int g^2$, write $fg = f \cdot g$ and apply Hölder with $p = q = 2$.
+\end{technique}
+
+%==============================================================
+\section{Distance Functions and Metric Continuity}
+%==============================================================
+
+\begin{bigpicture}
+Distance to a set $\rho_E(x) = \inf_{e \in E} d(x,e)$ is one of the most useful constructions in metric topology. It creates continuous functions from closed sets, and it lets you separate disjoint closed sets smoothly (Urysohn's lemma).
+\end{bigpicture}
+
+\subsection{Distance to a Set}
+
+\begin{definition}
+For a nonempty set $E$ in a metric space $(X,d)$, the \textbf{distance function} is
+$$\rho_E(x) = \inf_{e \in E} d(x, e).$$
+\end{definition}
+
+\begin{theorem}[Properties of $\rho_E$]
+\begin{enumerate}
+  \item $\rho_E(x) = 0 \Longleftrightarrow x \in \overline{E}$ (the closure of $E$).
+  \item $|\rho_E(x) - \rho_E(y)| \leq d(x, y)$ \quad (\textbf{Lipschitz-1}, hence uniformly continuous).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of (2)]
+For any $e \in E$: $d(x,e) \leq d(x,y) + d(y,e)$. Taking the inf over $e$: $\rho_E(x) \leq d(x,y) + \rho_E(y)$. So $\rho_E(x) - \rho_E(y) \leq d(x,y)$. Swap $x$ and $y$ for the other direction.
+\end{proof}
+
+\begin{insight}
+The proof uses a fundamental trick: \textbf{triangle inequality + inf}. The inf over a third variable preserves the triangle inequality. This pattern appears in many metric space arguments.
+\end{insight}
+
+\subsection{Urysohn Separation Function}
+
+\begin{theorem}[Urysohn-type]
+Let $A$ and $B$ be disjoint closed sets in a metric space. Define
+$$f(p) = \frac{\rho_A(p)}{\rho_A(p) + \rho_B(p)}.$$
+Then $f$ is continuous, $f|_A = 0$, and $f|_B = 1$.
+\end{theorem}
+
+\begin{proof}
+The denominator $\rho_A(p) + \rho_B(p) > 0$ for all $p$: if it were $0$, then $\rho_A(p) = \rho_B(p) = 0$, so $p \in \overline{A} \cap \overline{B} = A \cap B = \emptyset$, contradiction. Since $\rho_A$ and $\rho_B$ are continuous (Lipschitz-1) and the denominator is positive and continuous, $f$ is continuous. On $A$: $\rho_A = 0$, so $f = 0$. On $B$: $\rho_B = 0$, so $f = 1$.
+\end{proof}
+
+\begin{insight}
+This is remarkable: from a purely topological fact (two closed sets are disjoint) you construct a continuous function that perfectly separates them. The function $f$ takes values in $[0,1]$, is $0$ on one set, $1$ on the other, and varies continuously between them.
+\end{insight}
+
+%==============================================================
+\section{Master Technique Reference}
+%==============================================================
+
+This section is a catalog of the core proof patterns. For each exam problem, identify which pattern applies first.
+
+\begin{technique}{Pattern 1: Showing a Series Converges}
+\begin{enumerate}
+  \item \textbf{Root test:} compute $\limsup|a_n|^{1/n}$. Works for $n$-th powers.
+  \item \textbf{Ratio test:} compute $\limsup|a_{n+1}/a_n|$. Works for factorials.
+  \item \textbf{Comparison:} bound $|a_n| \leq c_n$ where $\sum c_n$ is known.
+  \item \textbf{Cauchy condensation:} for decreasing $a_n \geq 0$, replace by $\sum 2^k a_{2^k}$.
+  \item \textbf{$p$-series benchmark:} $\sum 1/n^s$ converges iff $s > 1$.
+\end{enumerate}
+\end{technique}
+
+\begin{technique}{Pattern 2: Showing $f \in \mathscr{R}$}
+\begin{enumerate}
+  \item \textbf{Continuous:} $f \in C([a,b]) \Rightarrow f \in \mathscr{R}$.
+  \item \textbf{Monotone:} monotone $\Rightarrow f \in \mathscr{R}$.
+  \item \textbf{Integrability criterion:} exhibit $P$ with $U(P,f) - L(P,f) < \eps$. Strategy: isolate bad intervals (large oscillation) into small total length; bound good intervals by uniform small oscillation.
+  \item \textbf{Zero set:} if discontinuities of bounded $f$ form a zero set, then $f \in \mathscr{R}$.
+  \item \textbf{Sandwich:} find $g \leq f \leq h$ with $g, h \in \mathscr{R}$ and $\int(h-g) < \eps$.
+\end{enumerate}
+\end{technique}
+
+\begin{technique}{Pattern 3: Bounding with MVT}
+Given: $f$ differentiable, $|f'| \leq M$.
+Then: $|f(x) - f(y)| \leq M|x-y|$ for all $x, y$.
+Special case: $f(a) = 0 \Rightarrow |f(x)| \leq M|x-a|$.
+Use this: to bound function values, to show Lipschitz continuity, to prove convergence in iteration arguments.
+\end{technique}
+
+\begin{technique}{Pattern 4: Uniqueness via Subtraction}
+Want: $f = g$ given both satisfy some conditions.
+Method: Let $h = f - g$. Show $h$ satisfies conditions implying $h \equiv 0$ (e.g., Gronwall: $h(a) = 0$ and $|h'| \leq A|h|$).
+\end{technique}
+
+\begin{technique}{Pattern 5: Applying Hölder}
+Want to bound $\int |fg|$ or $\int |h|$ (by writing $h = f \cdot g$).
+Steps: (1) pick $p$ and $q = p/(p-1)$ with $1/p + 1/q = 1$; (2) write $h = f \cdot g$ with $|f|^p$ and $|g|^q$ both integrable; (3) apply $\int|fg| \leq \|f\|_p\|g\|_q$.
+Most common: $p = q = 2$ (Cauchy--Schwarz).
+\end{technique}
+
+\begin{technique}{Pattern 6: Constructing the $U-L$ Bound for R-S}
+When $\alpha$ has a derivative: use $\Delta\alpha_i = \alpha'(t_i)\Delta x_i$ (MVT). Compare R-S sums to Riemann sums for $f\alpha'$; the error is $\leq M[U(P,\alpha') - L(P,\alpha')]$, which $\to 0$ since $\alpha' \in \mathscr{R}$.
+\end{technique}
+
+%==============================================================
+\section{Common Pitfalls and Quick Tests}
+%==============================================================
+
+\begin{watchout}
+\textbf{Pitfall 1: Converse of necessary conditions.}
+\begin{itemize}
+  \item $a_n \to 0$ does NOT imply $\sum a_n$ converges (harmonic series).
+  \item $f$ continuous does NOT imply $f$ differentiable ($|x|$ at $0$).
+  \item $f \in \mathscr{R}$ does NOT imply $f$ is continuous (step functions, Thomae).
+\end{itemize}
+\end{watchout}
+
+\begin{watchout}
+\textbf{Pitfall 2: Root/ratio test gives $L = 1$.}
+The test is \emph{inconclusive}, not ``converges.'' You need a different test. Both $\sum 1/n$ (diverges) and $\sum 1/n^2$ (converges) give $L = 1$ for the root test.
+\end{watchout}
+
+\begin{watchout}
+\textbf{Pitfall 3: Forgetting to check endpoints for power series.}
+$\sum c_n(x-a)^n$ converges absolutely for $|x-a| < R$ and diverges for $|x-a| > R$. At the two endpoints $x = a \pm R$, the root/ratio test is inconclusive and you must check directly.
+\end{watchout}
+
+\begin{watchout}
+\textbf{Pitfall 4: Swapping limit and integral.}
+In general, $\lim \int f_n \neq \int \lim f_n$. You need uniform convergence (or dominated convergence) to justify swapping. Watch for this in Stieltjes reduction arguments.
+\end{watchout}
+
+\begin{watchout}
+\textbf{Pitfall 5: Dirichlet vs.\ Thomae.}
+\begin{itemize}
+  \item Dirichlet: $f = 1_\Q$. NOT integrable ($U = 1, L = 0$ always).
+  \item Thomae: $f(p/q) = 1/q$, $f(\text{irrational}) = 0$. IS integrable (discontinuities are $\Q$, a zero set; integral $= 0$).
+\end{itemize}
+\end{watchout}
+
+\subsection{Quick Reference Card}
+
+\textbf{Series tests ranked by power:}
+Root test $\geq$ Ratio test $>$ Comparison $>$ $n$-th term test.
+
+\textbf{$p$-series benchmarks:}
+$\sum 1/n^s$ conv. iff $s > 1$. \quad $\int_1^\infty x^{-p}$ conv. iff $p > 1$. \quad $\int_0^1 x^{-p}$ conv. iff $p < 1$.
+
+\textbf{Integrability hierarchy:}
+$C([a,b]) \subset \mathscr{R} \supset \{\text{monotone}\} \supset \{\text{zero-set discontinuities}\}$.
+
+\textbf{Key inequalities (all follow from AM-GM / convexity):}
+$$\text{AM-GM} \Rightarrow \text{Young } (uv \leq u^p/p + v^q/q) \Rightarrow \text{H\"older} \Rightarrow \text{Cauchy--Schwarz}.$$
+
+\textbf{MVT family:}
+Rolle's $\Rightarrow$ MVT $\Rightarrow$ GMVT $\Rightarrow$ L'H\^opital. All follow by applying Rolle's to a cleverly chosen auxiliary function.
+
+\end{document}
