@@ -1,0 +1,590 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{breakable}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+% Theorem environments
+\theoremstyle{definition}
+\newtheorem*{recipe}{Strategy}
+
+% Colors matching lecture notes
+\definecolor{lectureorange}{RGB}{255, 200, 120}
+\definecolor{babyblue}{RGB}{173, 216, 230}
+\definecolor{lightred}{RGB}{255, 180, 180}
+
+% Colored boxes (same scheme as notes: orange=overview, blue=section, red=notes)
+\newtcolorbox{intuition}[1][]{colback=lectureorange!30, colframe=lectureorange!80, title=Intuition, fonttitle=\bfseries, breakable, #1}
+\newtcolorbox{application}[1][]{colback=babyblue!30, colframe=babyblue!80, title=How to Apply, fonttitle=\bfseries, breakable, #1}
+\newtcolorbox{pitfall}[1][]{colback=lightred!30, colframe=lightred!80, title=Common Pitfall, fonttitle=\bfseries, breakable, #1}
+\newtcolorbox{example}[1][]{colback=gray!8, colframe=gray!40, title=Example, fonttitle=\bfseries, breakable, #1}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textbf{Math 104 -- Final Study Guide}}
+\rhead{How to Apply the Theorems}
+\cfoot{\thepage}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Math 104: Final Study Guide}\\[6pt]
+{\large How to Apply the Theorems of Real Analysis}
+\end{center}
+
+\tableofcontents
+\newpage
+
+%==========================================================================
+\section{$\limsup$ and $\liminf$}
+%==========================================================================
+
+\begin{intuition}
+$\limsup s_n$ is the ``eventual ceiling'' of the sequence --- the largest value that subsequences can cluster around. $\liminf s_n$ is the ``eventual floor.'' If they agree, the sequence converges to that value.
+
+Think of it this way: $\limsup s_n = L$ means that (1) infinitely many terms get close to $L$, and (2) only finitely many terms exceed $L + \eps$ for any $\eps > 0$.
+\end{intuition}
+
+\textbf{Two equivalent definitions:}
+\begin{enumerate}
+\item \textbf{Subsequential limits:} $\limsup s_n = \sup\{$all subsequential limits of $\{s_n\}\}$.
+\item \textbf{Tail sups:} $\limsup s_n = \inf_{n} \sup_{k \geq n} s_k = \lim_{n \to \infty} \sup_{k \geq n} s_k$.
+\end{enumerate}
+
+The tail-sup formulation is often easier to compute: the sequence $a_n = \sup_{k \geq n} s_k$ is decreasing, so its limit always exists (possibly $\pm\infty$).
+
+\begin{application}
+\textbf{When you see $\limsup$ on an exam:}
+\begin{itemize}
+\item To \textbf{compute} $\limsup s_n$: find all subsequential limits (cluster points), take the largest. Or compute $\sup_{k \geq n} s_k$ and take $n \to \infty$.
+\item To \textbf{show convergence}: prove $\limsup s_n = \liminf s_n$.
+\item To \textbf{bound a sequence}: $\limsup s_n \leq L$ means $s_n < L + \eps$ eventually.
+\item In the \textbf{root/ratio tests}: the test computes $\limsup$ of $|a_n|^{1/n}$ or $|a_{n+1}/a_n|$ and compares it to 1.
+\end{itemize}
+\end{application}
+
+\begin{example}
+$s_n = (-1)^n(1 + 1/n)$. The subsequential limits are $\{-1, 1\}$. So $\limsup s_n = 1$ and $\liminf s_n = -1$.
+\end{example}
+
+\begin{example}
+$s_n = \sin(n)$. The set of subsequential limits is $[-1, 1]$ (since $\{n \mod 2\pi\}$ is dense in $[0, 2\pi]$). So $\limsup = 1$, $\liminf = -1$.
+\end{example}
+
+%==========================================================================
+\section{Metric Spaces and Topology}
+%==========================================================================
+
+\subsection{Open, Closed, Compact, Connected, Dense}
+
+\begin{intuition}
+These five properties describe different ``shapes'' a subset can have:
+\begin{itemize}
+\item \textbf{Open}: every point has breathing room (an $\eps$-ball fitting inside).
+\item \textbf{Closed}: the set ``contains its boundary'' --- limits of sequences in the set stay in the set.
+\item \textbf{Compact}: the set is ``finite-like'' --- you can always extract finite subcovers, convergent subsequences, etc. In $\R^n$: closed + bounded.
+\item \textbf{Connected}: the set is ``one piece'' --- you can't split it into two separated parts.
+\item \textbf{Dense}: the set is ``everywhere'' --- every point of the ambient space is either in the set or arbitrarily close to it.
+\end{itemize}
+\end{intuition}
+
+\begin{application}
+\textbf{To show a set is open:} For each $x \in E$, find $\eps > 0$ with $B(x, \eps) \subseteq E$. Alternatively, show $E$ is a union of open balls, or show $E^c$ is closed.
+
+\textbf{To show a set is closed:} Show $E$ contains all its limit points: if $x_n \in E$ and $x_n \to x$, then $x \in E$. Or show $E^c$ is open.
+
+\textbf{To show a set is compact (in $\R^n$):} Use Heine--Borel: show it's closed AND bounded. For a general metric space, you must work from the definition (every open cover has a finite subcover).
+
+\textbf{To show a set is connected:} In $\R$, show it's an interval (no gaps). In general, assume $E = A \cup B$ with $A, B$ separated and nonempty, derive a contradiction.
+
+\textbf{To show a set is dense:} Show that for every $x \in X$ and every $\eps > 0$, there exists a point of $E$ within distance $\eps$ of $x$. Equivalently, show $\overline{E} = X$.
+\end{application}
+
+\begin{pitfall}
+\begin{itemize}
+\item A set can be \textbf{neither open nor closed} (e.g., $[0, 1)$ in $\R$) or \textbf{both open and closed} ($\emptyset$, $\R$, or any set in the discrete topology).
+\item \textbf{Bounded does not imply compact} in general metric spaces. Example: $(0, 1)$ is bounded but not compact. Heine--Borel only works in $\R^n$.
+\item \textbf{Closed and bounded} $\neq$ compact in arbitrary metric spaces. You need $\R^n$.
+\item An \textbf{infinite intersection of open sets} need not be open: $\bigcap_{n=1}^\infty (-1/n, 1/n) = \{0\}$.
+\end{itemize}
+\end{pitfall}
+
+\subsection{Closure, Limit Points, and the Closure Formula}
+
+The closure $\overline{E} = E \cup E'$ where $E'$ is the set of limit points. This is the smallest closed set containing $E$.
+
+\begin{application}
+\textbf{To find $\overline{E}$:} Ask ``what are the limit points of $E$?'' A point $p$ is a limit point if every neighborhood of $p$ contains a point of $E$ different from $p$.
+
+Example: $E = \{1/n : n \in \N\}$. The only limit point is $0$ (every neighborhood of $0$ contains some $1/n$). So $\overline{E} = E \cup \{0\} = \{0, 1, 1/2, 1/3, \ldots\}$, which is closed.
+\end{application}
+
+\subsection{Compactness: Why It Matters}
+
+Compactness is the most powerful tool in analysis. Whenever you have compactness, you get:
+
+\begin{enumerate}
+\item Every sequence has a convergent subsequence (in the set)
+\item Every continuous function attains its max and min (Extreme Value Theorem)
+\item Continuous functions are automatically uniformly continuous
+\item Open covers have finite subcovers (the definition!)
+\item The finite intersection property holds
+\end{enumerate}
+
+\begin{application}
+\textbf{The compactness trick:} You need something to hold globally. Get a local version at each point $x$ (using continuity, openness, etc.), which gives an open set $U_x$ around $x$. These $U_x$ cover the compact set $K$. Extract a \textbf{finite} subcover $U_{x_1}, \ldots, U_{x_n}$. Now take $\delta = \min(\delta_{x_1}, \ldots, \delta_{x_n})$, which works globally since the minimum of finitely many positive numbers is positive.
+
+This is exactly how you prove ``continuous on compact $\Rightarrow$ uniformly continuous.''
+\end{application}
+
+%==========================================================================
+\section{Cantor Set and Its Uses}
+%==========================================================================
+
+The Cantor set $C$ is the universal counterexample machine in real analysis.
+
+\textbf{Construction:} Start with $[0, 1]$. Remove the middle third $(1/3, 2/3)$. From each remaining interval, remove its middle third. Repeat. $C = \bigcap_{n=0}^\infty C_n$.
+
+\textbf{Ternary characterization:} $C = \{x \in [0, 1] : x$ has a base-3 expansion using only digits $0$ and $2\}$.
+
+\begin{application}
+\textbf{Use the Cantor set when you need:}
+\begin{itemize}
+\item An \textbf{uncountable set with measure zero}: $C$ is uncountable ($C \sim \{0,1\}^\N$) but has Lebesgue measure $0$ (total length $(2/3)^n \to 0$).
+\item A \textbf{perfect set} (closed, no isolated points): $C' = C$.
+\item A \textbf{nowhere dense} closed set: $C$ contains no interval, yet is uncountable.
+\item A \textbf{totally disconnected} compact set: the only connected subsets of $C$ are singletons.
+\item Proof that \textbf{nonempty perfect sets are uncountable}: $C$ is the canonical example.
+\end{itemize}
+\end{application}
+
+%==========================================================================
+\section{Continuity and the Smoothness Hierarchy}
+%==========================================================================
+
+\subsection{The Three Faces of Continuity}
+
+Continuity has three equivalent definitions (for metric spaces):
+\begin{enumerate}
+\item \textbf{$\eps$-$\delta$:} $\forall \eps > 0$, $\exists \delta > 0$: $d(x, y) < \delta \Rightarrow d(f(x), f(y)) < \eps$.
+\item \textbf{Sequential:} $x_n \to x \Rightarrow f(x_n) \to f(x)$.
+\item \textbf{Topological:} Preimages of open sets are open.
+\end{enumerate}
+
+Use $\eps$-$\delta$ for explicit proofs, sequential for contradictions (``if $f$ weren't continuous, there'd be a bad sequence''), and topological for clean abstract arguments.
+
+\subsection{Continuity vs.\ Uniform Continuity}
+
+\begin{intuition}
+\textbf{Continuous}: at each point, you can find a $\delta$ that works for that point (different points may need different $\delta$'s).
+
+\textbf{Uniformly continuous}: one $\delta$ works for ALL points simultaneously.
+\end{intuition}
+
+\begin{application}
+\textbf{To show $f$ is NOT uniformly continuous:} Find two sequences $x_n, y_n$ with $|x_n - y_n| \to 0$ but $|f(x_n) - f(y_n)| \not\to 0$.
+
+Example: $f(x) = x^2$ on $\R$ is not uniformly continuous. Take $x_n = n$, $y_n = n + 1/n$. Then $|x_n - y_n| = 1/n \to 0$ but $|f(x_n) - f(y_n)| = |2 + 1/n^2| \to 2 \neq 0$.
+
+\textbf{Shortcut:} If the domain is compact and $f$ is continuous, you automatically get uniform continuity. So non-uniform-continuity can only happen on non-compact domains.
+\end{application}
+
+\subsection{The Smoothness Hierarchy}
+
+$$C^\infty \subsetneq \cdots \subsetneq C^2 \subsetneq C^1 \subsetneq C^0$$
+
+Each inclusion is strict. Know the separating examples:
+\begin{itemize}
+\item $C^0$ but not $C^1$: $f(x) = |x|$ (continuous, not differentiable at $0$).
+\item $C^0$ but not $C^1$ (subtler): $f(x) = x \sin(1/x)$, $f(0) = 0$.
+\item Differentiable but derivative not continuous: $f(x) = x^2 \sin(1/x)$, $f(0) = 0$. Here $f'(0) = 0$ exists but $f'$ is not continuous at $0$.
+\item $C^\infty$ but not analytic: $f(x) = e^{-1/x^2}$ for $x \neq 0$, $f(0) = 0$.
+\end{itemize}
+
+%==========================================================================
+\section{Intermediate Value Theorem and Mean Value Theorem}
+%==========================================================================
+
+\subsection{IVT: Continuous Functions Hit Everything Between}
+
+\textbf{Statement:} If $f$ is continuous on $[a,b]$ and $c$ is between $f(a)$ and $f(b)$, then $f(p) = c$ for some $p \in (a,b)$.
+
+\begin{application}
+\textbf{Use IVT to show equations have solutions:}
+\begin{enumerate}
+\item Define $f$ so that your equation becomes $f(x) = 0$ (or $f(x) = c$).
+\item Find $a, b$ where $f(a) < 0$ and $f(b) > 0$ (or vice versa).
+\item Conclude by IVT: $\exists p$ with $f(p) = 0$.
+\end{enumerate}
+
+Example: Show $x^5 + x = 1$ has a solution. Let $f(x) = x^5 + x - 1$. $f(0) = -1 < 0$, $f(1) = 1 > 0$. By IVT, $\exists p \in (0,1)$ with $f(p) = 0$.
+\end{application}
+
+\begin{pitfall}
+IVT requires continuity on a \textbf{closed interval}. It fails for discontinuous functions (Dirichlet function takes values $0$ and $1$ but misses everything in between on any interval).
+\end{pitfall}
+
+\subsection{MVT: Derivatives Match Secant Lines}
+
+\textbf{Statement:} $f$ continuous on $[a,b]$, differentiable on $(a,b)$ $\Rightarrow$ $\exists c \in (a,b)$ with $f'(c) = \frac{f(b) - f(a)}{b - a}$.
+
+\begin{application}
+\textbf{Use MVT to bound function values:}
+$$|f(b) - f(a)| = |f'(c)| \cdot |b - a| \leq \sup_{[a,b]} |f'| \cdot |b - a|.$$
+
+This is the workhorse inequality of analysis. It says: ``if the derivative is small, the function doesn't change much.''
+
+\textbf{Use MVT to prove functions are constant:} If $f' = 0$ on $(a,b)$, then for any $x, y \in (a,b)$: $|f(x) - f(y)| = |f'(c)||x - y| = 0$.
+
+\textbf{Use MVT to prove uniqueness of fixed points:} If $f(x_1) = x_1$ and $f(x_2) = x_2$ with $x_1 \neq x_2$, MVT gives $f'(c) = \frac{f(x_2) - f(x_1)}{x_2 - x_1} = 1$. So if $f' \neq 1$ everywhere, at most one fixed point.
+\end{application}
+
+\subsection{Generalized MVT and L'H\^opital's Rule}
+
+The Generalized MVT replaces the denominator $b - a$ with $g(b) - g(a)$:
+$$[f(b) - f(a)] g'(c) = [g(b) - g(a)] f'(c).$$
+
+L'H\^opital's rule follows from GMVT: if $f(x), g(x) \to 0$ as $x \to a$, then
+$$\frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(c)}{g'(c)} \to \frac{\lim f'}{\lim g'}.$$
+
+\begin{application}
+\textbf{L'H\^opital recipe:}
+\begin{enumerate}
+\item Verify you have $0/0$ or $\infty/\infty$ form.
+\item Differentiate numerator and denominator separately.
+\item If the new limit exists, it equals the original.
+\item If you get $0/0$ again, apply L'H\^opital again.
+\end{enumerate}
+\end{application}
+
+\subsection{Taylor's Theorem}
+
+$$f(x) = \sum_{k=0}^{n-1} \frac{f^{(k)}(a)}{k!}(x-a)^k + \frac{f^{(n)}(c)}{n!}(x-a)^n$$
+
+The last term is the \textbf{Lagrange remainder} --- it tells you how good the polynomial approximation is.
+
+\begin{application}
+\textbf{To bound the error of a Taylor approximation:} The error is $|R_n| = \frac{|f^{(n)}(c)|}{n!}|x-a|^n$ for some unknown $c$. Bound $|f^{(n)}(c)| \leq M$ on the interval, giving $|R_n| \leq \frac{M}{n!}|x-a|^n$.
+\end{application}
+
+%==========================================================================
+\section{Series}
+%==========================================================================
+
+\subsection{Choosing a Convergence Test}
+
+\begin{application}
+\textbf{Decision tree for $\sum a_n$:}
+\begin{enumerate}
+\item Does $a_n \to 0$? If not, the series \textbf{diverges} (necessary condition).
+\item Does it look like a known series ($p$-series, geometric)? Use \textbf{comparison}.
+\item Are there factorials or exponentials? Try the \textbf{ratio test}.
+\item Is $a_n = f(n)$ for some nice $f$? Try the \textbf{root test} (always at least as good as ratio).
+\item Is it decreasing and positive? Try \textbf{Cauchy condensation}.
+\item Is it alternating? Try the \textbf{alternating series test} (Leibniz).
+\end{enumerate}
+\end{application}
+
+\subsection{Absolute vs.\ Conditional Convergence}
+
+\textbf{Absolutely convergent:} $\sum |a_n| < \infty$. This is the ``safe'' type --- you can rearrange terms, group them, multiply series, etc.
+
+\textbf{Conditionally convergent:} $\sum a_n$ converges but $\sum |a_n| = \infty$. This is fragile --- the \textbf{Riemann rearrangement theorem} says you can rearrange the terms to make the series converge to \textit{any} value you want (or diverge).
+
+\begin{application}
+\textbf{To determine which type:}
+\begin{enumerate}
+\item First check if $\sum |a_n|$ converges (using comparison, root, ratio tests).
+\item If yes: absolutely convergent.
+\item If $\sum |a_n|$ diverges but $\sum a_n$ converges (often via alternating series test): conditionally convergent.
+\end{enumerate}
+\end{application}
+
+\begin{example}
+$\sum (-1)^n / n$: converges by alternating series test, but $\sum 1/n$ diverges (harmonic). So it converges \textbf{conditionally}.
+
+$\sum (-1)^n / n^2$: $\sum 1/n^2$ converges ($p$-series, $p = 2 > 1$). So it converges \textbf{absolutely}.
+\end{example}
+
+\subsection{Radius of Convergence}
+
+For a power series $\sum c_n (x - a)^n$, the radius of convergence is:
+$$R = \frac{1}{\limsup_{n \to \infty} |c_n|^{1/n}}$$
+
+\begin{application}
+\textbf{To find $R$:}
+\begin{itemize}
+\item \textbf{Root test method:} Compute $\limsup |c_n|^{1/n}$, take reciprocal.
+\item \textbf{Ratio test shortcut:} If $\lim |c_{n+1}/c_n|$ exists, then $R = \lim |c_n / c_{n+1}|$.
+\item \textbf{Always check endpoints} $x = a \pm R$ separately --- convergence there is not determined by $R$.
+\end{itemize}
+\end{application}
+
+\begin{example}
+$\sum x^n / n$: $c_n = 1/n$, so $|c_n|^{1/n} = n^{-1/n} \to 1$, giving $R = 1$. At $x = 1$: $\sum 1/n$ diverges. At $x = -1$: $\sum (-1)^n/n$ converges (alternating). So: converges on $[-1, 1)$.
+\end{example}
+
+%==========================================================================
+\section{Sequences and Series of Functions}
+%==========================================================================
+
+\subsection{Pointwise vs.\ Uniform Convergence}
+
+\begin{intuition}
+\textbf{Pointwise:} At each individual point $x$, $f_n(x) \to f(x)$. Different points may converge at very different rates.
+
+\textbf{Uniform:} ALL points converge at the same rate. After some $N$, the entire graph of $f_n$ is within $\eps$ of the graph of $f$.
+\end{intuition}
+
+\begin{application}
+\textbf{To show uniform convergence:} Compute $\|f_n - f\|_\infty = \sup_{x \in E} |f_n(x) - f(x)|$ and show it $\to 0$.
+
+Common technique: find the maximum of $|f_n(x) - f(x)|$ by taking the derivative and setting it to zero.
+
+\textbf{To show convergence is NOT uniform:}
+\begin{enumerate}
+\item Find the supremum $\sup_x |f_n(x) - f(x)|$ and show it does NOT go to $0$.
+\item Or: the limit function is discontinuous but each $f_n$ is continuous (uniform limit of continuous functions must be continuous).
+\end{enumerate}
+\end{application}
+
+\begin{example}
+$f_n(x) = x^n$ on $[0, 1]$. Pointwise limit: $f(x) = 0$ for $x \in [0,1)$, $f(1) = 1$. The limit is discontinuous, but each $f_n$ is continuous. So the convergence is \textbf{not uniform}.
+
+Alternatively: $\sup_{x \in [0,1]} |x^n - f(x)| \geq |f_n(1-1/n) - 0| = (1 - 1/n)^n \to 1/e \neq 0$.
+\end{example}
+
+\subsection{Weierstrass M-Test}
+
+\textbf{Statement:} If $|f_n(x)| \leq M_n$ for all $x$ and $\sum M_n < \infty$, then $\sum f_n$ converges uniformly.
+
+\begin{application}
+\textbf{To apply the M-test:}
+\begin{enumerate}
+\item For each $n$, find $M_n = \sup_{x \in E} |f_n(x)|$.
+\item Check if $\sum M_n$ converges.
+\item If yes, $\sum f_n$ converges uniformly on $E$.
+\end{enumerate}
+
+Example: $\sum_{n=1}^\infty \frac{\sin(nx)}{n^2}$ on $\R$. We have $|\sin(nx)/n^2| \leq 1/n^2 = M_n$. Since $\sum 1/n^2$ converges, the series converges uniformly by M-test.
+\end{application}
+
+\begin{pitfall}
+The M-test is a \textbf{sufficient} condition, not necessary. The converse is false: a series can converge uniformly even if the M-test fails. But the M-test is the go-to first attempt.
+\end{pitfall}
+
+%==========================================================================
+\section{Uniform Convergence and Interchange of Limits}
+%==========================================================================
+
+The central theme: \textbf{when can we swap the order of two limit operations?} The answer is almost always: when convergence is uniform.
+
+\subsection{Uniform Convergence + Continuity}
+
+\textbf{Theorem:} Uniform limit of continuous functions is continuous.
+$$f_n \text{ continuous}, \; f_n \to f \text{ uniformly} \implies f \text{ continuous}$$
+
+\begin{application}
+\textbf{Use this to prove a function is continuous:} Write it as the uniform limit of continuous functions (often partial sums of a series). Use the M-test to verify uniform convergence.
+
+\textbf{Use the contrapositive to show convergence is not uniform:} If $f = \lim f_n$ is discontinuous but each $f_n$ is continuous, the convergence cannot be uniform. (This is the $x^n$ argument.)
+\end{application}
+
+\subsection{Uniform Convergence + Integration}
+
+\textbf{Theorem:} If $f_n \to f$ uniformly and each $f_n$ is integrable, then $f$ is integrable and
+$$\int_a^b f \, dx = \lim_{n \to \infty} \int_a^b f_n \, dx.$$
+
+\begin{intuition}
+Uniform convergence lets you ``pass the limit inside the integral.'' This is the easiest interchange theorem --- it just works, no extra hypotheses needed (beyond uniform convergence and integrability of each $f_n$).
+\end{intuition}
+
+\subsection{Uniform Convergence + Differentiation}
+
+\textbf{Theorem:} If $f_n$ are differentiable, $f_n'$ converges uniformly to $g$, and $f_n(x_0)$ converges for some $x_0$, then $f_n \to f$ uniformly and $f' = g$.
+
+\begin{pitfall}
+This is the trickiest interchange. You need:
+\begin{enumerate}
+\item Uniform convergence of the \textbf{derivatives} $f_n'$ (not the functions!).
+\item Pointwise convergence of $f_n$ at \textbf{at least one point}.
+\end{enumerate}
+
+Uniform convergence of $f_n$ alone is NOT enough for $(\lim f_n)' = \lim f_n'$. Example: $f_n(x) = \frac{\sin(nx)}{\sqrt{n}} \to 0$ uniformly, but $f_n'(x) = \sqrt{n} \cos(nx)$ diverges.
+\end{pitfall}
+
+\subsection{Summary Table}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Operation} & \textbf{Hypothesis} & \textbf{Conclusion} \\
+\hline
+Continuity & $f_n$ cts, $f_n \to f$ unif. & $f$ is cts \\
+Integration & $f_n \in \mathscr{R}$, $f_n \to f$ unif. & $\int f = \lim \int f_n$ \\
+Differentiation & $f_n' \to g$ unif., $f_n(x_0)$ conv. & $f' = g = \lim f_n'$ \\
+\hline
+\end{tabular}
+\end{center}
+
+%==========================================================================
+\section{Equicontinuity and Arzel\`a--Ascoli}
+%==========================================================================
+
+\subsection{What is Equicontinuity?}
+
+\begin{intuition}
+A family $\{f_n\}$ is equicontinuous if ALL functions in the family are ``uniformly continuous with the same $\delta$.'' In other words, the modulus of continuity is uniform across the entire family, not just across points.
+
+\textbf{Single function, uniform continuity:} One $\delta$ works for all \textbf{points}.\\
+\textbf{Family, equicontinuity:} One $\delta$ works for all \textbf{points} AND all \textbf{functions in the family}.
+\end{intuition}
+
+\begin{application}
+\textbf{To verify equicontinuity:} Find a single $\delta$ (depending only on $\eps$) such that $d(x,y) < \delta \Rightarrow |f_n(x) - f_n(y)| < \eps$ for ALL $n$.
+
+Common sufficient conditions:
+\begin{itemize}
+\item All $f_n$ are Lipschitz with the \textbf{same} Lipschitz constant $L$: $\delta = \eps/L$.
+\item All $f_n$ are differentiable with $|f_n'| \leq M$ (uniformly bounded derivatives): $\delta = \eps/M$ by MVT.
+\item $f_n \to f$ uniformly and each $f_n$ is continuous $\Rightarrow$ equicontinuous.
+\end{itemize}
+\end{application}
+
+\subsection{Arzel\`a--Ascoli: Compactness for Function Spaces}
+
+\textbf{Statement:} If $K$ is compact and $\{f_n\} \subset \mathscr{C}(K)$ is \textbf{pointwise bounded} and \textbf{equicontinuous}, then $\{f_n\}$ has a \textbf{uniformly convergent} subsequence.
+
+\begin{intuition}
+Arzel\`a--Ascoli is the Bolzano--Weierstrass theorem for functions. In $\R^n$, bounded sequences have convergent subsequences. In $\mathscr{C}(K)$, pointwise bounded + equicontinuous families have convergent subsequences.
+
+Think of it as: ``bounded + equicontinuous = compact in function space.''
+\end{intuition}
+
+\begin{application}
+\textbf{To apply Arzel\`a--Ascoli:} Check three things:
+\begin{enumerate}
+\item \textbf{Domain is compact}: $K$ must be compact.
+\item \textbf{Pointwise bounded}: $\forall x \in K$, $\exists M_x$: $|f_n(x)| \leq M_x$ for all $n$.
+\item \textbf{Equicontinuous}: One $\delta$ works for all $n$ and all points.
+\end{enumerate}
+Then conclude: there exists a uniformly convergent subsequence.
+\end{application}
+
+\begin{example}
+Show that $\{f_n\}$ where $f_n: [0,1] \to \R$, $|f_n| \leq 10$, and $|f_n'| \leq 5$ for all $n$ has a uniformly convergent subsequence.
+
+\textbf{Solution:} Domain $[0,1]$ is compact. Pointwise bounded: $|f_n(x)| \leq 10$. Equicontinuous: $|f_n(x) - f_n(y)| \leq 5|x - y|$ by MVT, so $\delta = \eps/5$ works for all $n$. By Arzel\`a--Ascoli, done.
+\end{example}
+
+%==========================================================================
+\section{Riemann Integrability}
+%==========================================================================
+
+\subsection{The Big Picture}
+
+A bounded function $f$ on $[a,b]$ is Riemann integrable if and only if it can be ``squeezed'' between step functions that are arbitrarily close together.
+
+\subsection{The Criterion}
+
+$f \in \mathscr{R}[a,b]$ $\Leftrightarrow$ $\forall \eps > 0$, $\exists$ partition $P$ with $U(P,f) - L(P,f) < \eps$.
+
+\begin{application}
+\textbf{To show $f \in \mathscr{R}$:} Construct a partition that makes $U - L$ small. Strategy:
+\begin{enumerate}
+\item Identify where $f$ has big oscillation (``bad'' intervals).
+\item Make the total length of bad intervals very small.
+\item On the ``good'' intervals, $f$ doesn't vary much, so $M_i - m_i$ is small.
+\item Total: $U - L \leq (\text{bad contribution}) + (\text{good contribution})$.
+\item Bad: $\leq 2\|f\|_\infty \cdot (\text{total bad length})$. Good: $\leq \eps \cdot (b-a)$.
+\end{enumerate}
+
+\textbf{To show $f \notin \mathscr{R}$:} Show $U(P,f) - L(P,f) \geq c > 0$ for ALL partitions $P$.
+\end{application}
+
+\subsection{Sufficient Conditions (know these!)}
+
+\begin{enumerate}
+\item $f$ continuous on $[a,b]$ $\Rightarrow$ $f \in \mathscr{R}$. (Uniform continuity controls oscillation.)
+\item $f$ monotone on $[a,b]$ $\Rightarrow$ $f \in \mathscr{R}$. (Oscillation on $[x_{i-1}, x_i]$ is $f(x_i) - f(x_{i-1})$, and these telescope.)
+\item $f$ bounded with discontinuities forming a \textbf{zero set} $\Rightarrow$ $f \in \mathscr{R}$.
+\end{enumerate}
+
+A set $E$ is a \textbf{zero set} (measure zero) if for every $\eps > 0$, $E$ can be covered by countably many intervals with total length $< \eps$. Examples: finite sets, countable sets (like $\Q$), the Cantor set.
+
+\subsection{The Three Key Counterexamples}
+
+\begin{enumerate}
+\item \textbf{Thomae's function} $T(x)$: $T(p/q) = 1/q$ (in lowest terms), $T(\text{irrational}) = 0$.
+\begin{itemize}
+\item Continuous at every irrational (given $\eps$, only finitely many rationals $p/q$ with $1/q \geq \eps$ in any bounded interval).
+\item Discontinuous at every rational.
+\item $\in \mathscr{R}$ because the discontinuity set $\Q$ is a zero set.
+\item Shows: you can be discontinuous on a dense set and still be integrable.
+\end{itemize}
+
+\item \textbf{Dirichlet function} $D(x) = \mathbf{1}_\Q(x)$:
+\begin{itemize}
+\item Discontinuous everywhere.
+\item $U(P, D) = 1$ and $L(P, D) = 0$ for every partition (every interval contains both rationals and irrationals).
+\item $\notin \mathscr{R}$.
+\item Shows: the ``everywhere discontinuous'' case fails.
+\end{itemize}
+
+\item $\mathbf{1/\sqrt{x}}$ \textbf{on} $(0, 1]$:
+\begin{itemize}
+\item Unbounded near $0$.
+\item Not Riemann integrable (Riemann integration requires bounded functions on closed intervals).
+\item But the improper integral $\int_0^1 x^{-1/2} dx = 2$ exists.
+\item Shows: unboundedness breaks Riemann integrability, but improper integrals can rescue the situation.
+\end{itemize}
+\end{enumerate}
+
+\begin{application}
+\textbf{Geometric interpretation of $U(P,f) - L(P,f) < \eps$:} Draw the function. The upper sum is the area of rectangles sitting on top of the curve; the lower sum sits below. Their difference is the total area of the ``cracks'' between upper and lower rectangles. Integrability means these cracks can be made arbitrarily thin.
+\end{application}
+
+%==========================================================================
+\section{Putting It All Together: Common Exam Problem Types}
+%==========================================================================
+
+\begin{enumerate}
+\item \textbf{``Show $f$ is uniformly continuous''}: If the domain is compact, just show continuity. Otherwise, find $\delta$ independent of the point.
+
+\item \textbf{``Show $\sum f_n$ converges uniformly''}: Try the Weierstrass M-test first.
+
+\item \textbf{``Show the limit is continuous/integrable/differentiable''}: Show uniform convergence (or for differentiation: uniform convergence of derivatives), then apply the interchange theorem.
+
+\item \textbf{``Does the family have a convergent subsequence?''}: Check Arzel\`a--Ascoli conditions (compact domain, pointwise bounded, equicontinuous).
+
+\item \textbf{``Show $f$ is Riemann integrable''}: Check if $f$ is continuous, monotone, or has a zero set of discontinuities.
+
+\item \textbf{``Find the radius of convergence''}: Use $R = 1/\limsup|c_n|^{1/n}$ or the ratio test. Then check endpoints.
+
+\item \textbf{``Show a sequence converges''}: Show $\limsup = \liminf$, or show it's Cauchy, or show it's monotone and bounded.
+
+\item \textbf{``Show a set is compact/connected/dense''}: For compact in $\R^n$: closed and bounded. For connected in $\R$: show it's an interval. For dense: show $\overline{E} = X$.
+\end{enumerate}
+
+\end{document}

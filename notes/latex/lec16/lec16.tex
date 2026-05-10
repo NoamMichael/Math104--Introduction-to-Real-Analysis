@@ -1,0 +1,191 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 16: The Gamma Function
+% Date: April 23, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{16}
+\renewcommand{\lecturedate}{April 23, 2026}
+\renewcommand{\lecturetopic}{The Gamma Function}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:}
+\end{lecturesummary}
+
+\subsection{The Gamma Function}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+Recall the \defn{Gamma function} $\Gamma(x)$. It is characterized by the following three properties:
+\begin{enumerate}[label=(\roman*)]
+    \item $\Gamma(x+1) = x\,\Gamma(x)$,
+    \item $\Gamma(1) = 1$,
+    \item $\log \Gamma$ is convex.
+\end{enumerate}
+
+\begin{theorem}
+These three properties uniquely define $\Gamma$.
+\end{theorem}
+
+\begin{proof}
+It suffices to show the result for all $x \in (0,1)$, since property (i) then determines $\Gamma$ on all of $(0,\infty)$.
+
+If $f$ is convex and $x_1 < x_2 < x_3$, then
+\[
+\frac{f(x_2) - f(x_1)}{x_2 - x_1} \leq \frac{f(x_3) - f(x_1)}{x_3 - x_1} \leq \frac{f(x_3) - f(x_2)}{x_3 - x_2}.
+\]
+
+Assume $f$ is some function satisfying all three properties. Let $\varphi = \log f$. In particular, $f(n) = (n-1)!$ for all $n \geq 1$. Then
+\[
+\varphi(n+1) - \varphi(n) = \log n! - \log (n-1)! = \log \frac{n!}{(n-1)!} = \log n,
+\]
+and similarly,
+\[
+\varphi(n+2) - \varphi(n+1) = \log(n+1).
+\]
+
+For $x \in (0,1)$, apply the convexity inequality with $x_1 = n$, $x_2 = n+x$, $x_3 = n+1$:
+\[
+\frac{\varphi(n+x) - \varphi(n)}{x} \leq \frac{\varphi(n+1) - \varphi(n)}{1} = \log n.
+\]
+Similarly, with $x_1 = n-1$, $x_2 = n$, $x_3 = n+x$:
+\[
+\log(n-1) = \frac{\varphi(n) - \varphi(n-1)}{1} \leq \frac{\varphi(n+x) - \varphi(n)}{x}.
+\]
+Combining:
+\[
+x\log(n-1) \leq \varphi(n+x) - \varphi(n) \leq x\log n.
+\]
+
+By property (i), $f(x+k+1) = (x+k)f(x+k)$, so applying this repeatedly:
+\[
+\varphi(n+x) = \varphi(x) + \sum_{k=0}^{n-1} \log(x+k).
+\]
+Since $\varphi(n) = \log(n-1)!$, we get
+\[
+\log(n-1)! + x\log(n-1) - \sum_{k=0}^{n-1}\log(x+k) \leq \varphi(x) \leq \log(n-1)! + x\log n - \sum_{k=0}^{n-1}\log(x+k).
+\]
+The difference between the upper and lower bounds is $x\log\dfrac{n}{n-1} \to 0$ as $n \to \infty$. By the squeeze theorem, $\varphi(x)$ is uniquely determined:
+\[
+\varphi(x) = \lim_{n \to \infty} \left[\log(n-1)! + x\log n - \sum_{k=0}^{n-1}\log(x+k)\right],
+\]
+so $f = e^{\varphi}$ is uniquely determined on $(0,1)$, and hence on all of $(0,\infty)$ by property (i).
+\end{proof}
+
+\subsection{The Beta Function}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{definition}
+For $x > 0$, $y > 0$, we define the \defn{Beta function} by
+\[
+B(x, y) = \int_0^1 t^{x-1}(1-t)^{y-1}\,dt = \frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}.
+\]
+\end{definition}
+
+\begin{proof}
+We will show that $f(x) = \dfrac{B(x,y)\,\Gamma(x+y)}{\Gamma(y)}$ satisfies the three properties, which by uniqueness proves equality.
+
+\textbf{Property (ii):} $B(1,y) = \int_0^1 (1-t)^{y-1}\,dt = \dfrac{1}{y}$, and $\Gamma(1+y) = y\,\Gamma(y)$, so
+\[
+f(1) = \frac{\frac{1}{y} \cdot y\,\Gamma(y)}{\Gamma(y)} = 1.
+\]
+
+\end{proof}
+
+\begin{remark}[Probabilistic interpretation of $\Gamma$]
+\begin{enumerate}
+    \item $\Gamma(k+1) = \int_0^\infty x^k e^{-x}\,dx = E[X^k]$ is the $k$-th moment of an exponential random variable.
+    \item The Gamma distribution models the waiting time until the $k$-th event in a Poisson process.
+\end{enumerate}
+\end{remark}
+
+\subsection{Stirling's Formula}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{theorem}[Stirling's Approximation]
+\[
+n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n \quad \text{as } n \to \infty.
+\]
+\end{theorem}
+
+\begin{theorem}[Stirling's Limit]
+\[
+\lim_{n \to \infty} \frac{n!}{\sqrt{2\pi n}\left(\frac{n}{e}\right)^n} = 1.
+\]
+\end{theorem}
+
+\begin{proof}
+Starting from $\Gamma(n+1) = n! = \int_0^\infty t^n e^{-t}\,dt$, substitute $t = n(1+u)$:
+\[
+n! = n^{n+1}e^{-n}\int_{-1}^{\infty}(1+u)^n e^{-nu}\,du = n^{n+1}e^{-n}\int_{-1}^{\infty} e^{n\psi(u)}\,du,
+\]
+where $\psi(u) = \log(1+u) - u$. Note that $\psi(0) = 0$, $\psi'(0) = 0$, $\psi''(0) = -1$, and $\psi$ has a unique global maximum at $u = 0$.
+
+Substitute $u = s/\sqrt{n}$:
+\[
+n! = \frac{n^{n+1/2}}{e^n}\int_{-\sqrt{n}}^{\infty} e^{n\psi(s/\sqrt{n})}\,ds.
+\]
+Since $\psi(u) = -u^2/2 + O(u^3)$ near $u = 0$, for fixed $s$:
+\[
+n\,\psi\!\left(\frac{s}{\sqrt{n}}\right) = n\left(-\frac{s^2}{2n} + O\!\left(\frac{s^3}{n^{3/2}}\right)\right) = -\frac{s^2}{2} + O\!\left(\frac{s^3}{\sqrt{n}}\right) \to -\frac{s^2}{2}.
+\]
+The integrand $e^{n\psi(s/\sqrt{n})}$ converges pointwise to $e^{-s^2/2}$ and is dominated by an integrable function (since $\psi(u) < 0$ for all $u \neq 0$ and $\psi(u) \sim -u^2/2$). By dominated convergence,
+\[
+\int_{-\sqrt{n}}^{\infty} e^{n\psi(s/\sqrt{n})}\,ds \to \int_{-\infty}^{\infty} e^{-s^2/2}\,ds = \sqrt{2\pi}.
+\]
+Therefore
+\[
+n! \sim \frac{n^{n+1/2}}{e^n} \cdot \sqrt{2\pi} = \sqrt{2\pi n}\left(\frac{n}{e}\right)^n. \qedhere
+\]
+\end{proof}
+
+\subsection{Introduction to Multivariable Differentiation}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+In the book, we write $F' = f$, $G' = g$. Then
+\[
+\int fG + \int gF = FG.
+\]
+
+Let $V$ be a vector space over $\R$.
+
+\begin{definition}
+A function $f: V^k \to \R$ is \defn{$k$-linear} (or \defn{multilinear}) if it is linear in each coordinate:
+\[
+f(\dots, au + bv, \dots) = a\,f(\dots, u, \dots) + b\,f(\dots, v, \dots).
+\]
+Such a function is also called a \defn{$k$-tensor}, where $k$ is the \defn{degree}.
+\end{definition}
+
+There is a high-dimensional tangent plane to every surface. Given a ``nice shape'' (manifold), every point $p$ has a \defn{tangent vector space} $T_p$. In particular,
+\[
+T_p(\R^n) \cong \R^n.
+\]
+``Nice'' means all tangent spaces $T_p$ have the same dimension.
+
+\begin{definition}
+A \defn{$1$-form} on $X$ is a map that assigns to each $p \in X$ a linear function on $T_p(X)$.
+\end{definition}
+
+\begin{example}
+On $\R^2$, $dx$ and $dy$ are $1$-forms: $dx$ picks out the first coordinate of a tangent vector, and $dy$ picks out the second.
+\end{example}
+
+\subsubsection*{Properties of Tensor Products}
+
+\end{document}

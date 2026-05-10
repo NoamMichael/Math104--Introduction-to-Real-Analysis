@@ -1,0 +1,429 @@
+\documentclass[9pt,landscape]{extarticle}
+
+% Page geometry: landscape, tight margins
+\usepackage[landscape, margin=0.4in, top=0.35in, bottom=0.35in]{geometry}
+
+% Multi-column
+\usepackage{multicol}
+\setlength{\columnsep}{7pt}
+\setlength{\columnseprule}{0.4pt}
+
+% Math
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Formatting
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+% Lists
+\setlist{nosep, leftmargin=12pt, itemsep=1pt, parsep=1pt, topsep=2pt}
+
+% Section formatting
+\titleformat{\section}{\normalsize\bfseries\color{black}}{}{0pt}{}
+\titleformat{\subsection}{\small\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+\titlespacing*{\subsection}{0pt}{4pt}{1.5pt}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt plus 1pt}
+
+% Shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+% Theorem-like environments
+\newtheoremstyle{compact}{2pt}{2pt}{\itshape}{}{\bfseries}{.}{3pt}{}
+\theoremstyle{compact}
+\newtheorem*{thm}{Thm}
+\newtheorem*{defn}{Def}
+\newtheorem*{lem}{Lem}
+\newtheorem*{cor}{Cor}
+
+% Key fact box
+\newenvironment{keyfact}{%
+  \smallskip\noindent{\color{MidnightBlue}\bfseries Key:}\enspace\ignorespaces
+}{\smallskip}
+
+% Header
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textbf{Math 104 -- Final Cheat Sheet}}
+\rhead{Comprehensive Review}
+\cfoot{\thepage}
+
+\begin{document}
+\begin{multicols}{4}
+\raggedcolumns
+
+%==============================================================
+\section{$\limsup$ \& $\liminf$}
+%==============================================================
+
+\begin{defn}
+Let $\{s_n\}$ be a sequence in $\R$. Let $E$ be the set of all $x$ (in the extended reals) such that $s_{n_k} \to x$ for some subsequence $\{s_{n_k}\}$. Then:
+$$\limsup_{n\to\infty} s_n = \sup E, \quad \liminf_{n\to\infty} s_n = \inf E.$$
+\end{defn}
+
+Equivalently: $\limsup s_n = \inf_{n} \sup_{k \geq n} s_k$ and $\liminf s_n = \sup_{n} \inf_{k \geq n} s_k$.
+
+\begin{thm}
+$s^* = \limsup s_n$ satisfies: (a) $s^* \in E$ (some subseq.\ converges to it); (b) If $x > s^*$, then $s_n < x$ for all but finitely many $n$. Unique with both properties.
+\end{thm}
+
+$\lim s_n = s$ exists $\Leftrightarrow$ $\limsup s_n = \liminf s_n = s$.
+
+$s_n \leq t_n$ eventually $\Rightarrow$ $\limsup s_n \leq \limsup t_n$ (same for $\liminf$).
+
+\subsection{Special Limits}
+\begin{tabular}{@{}ll@{}}
+$1/n^p \to 0$ & $p > 0$ \\
+$\sqrt[n]{p} \to 1$ & $p > 0$ \\
+$\sqrt[n]{n} \to 1$ &  \\
+$n^\alpha/(1+p)^n \to 0$ & $p > 0$, any $\alpha$ \\
+$x^n \to 0$ & $|x| < 1$ \\
+\end{tabular}
+
+%==============================================================
+\section{Metric Spaces \& Topology}
+%==============================================================
+
+\subsection{Metric Spaces}
+\begin{defn}
+\textbf{Metric} $d: X \times X \to \R$: (i) $d(x,y) \geq 0$, $d(x,y)=0 \Leftrightarrow x=y$; (ii) $d(x,y)=d(y,x)$; (iii) $d(x,z) \leq d(x,y)+d(y,z)$. \textbf{Open ball}: $B(x,\eps) = \{y : d(x,y) < \eps\}$.
+\end{defn}
+
+\subsection{Key Definitions}
+\begin{defn}
+\textbf{Open}: every point is an interior point ($\exists \eps$-ball $\subseteq E$).\\
+\textbf{Closed}: complement is open. Equiv: contains all its limit points.\\
+\textbf{Compact}: every sequence in $K$ has a subsequence converging to a point in $K$.\\
+\textbf{Connected}: cannot be written as $A \cup B$ with $A, B$ nonempty and separated ($\overline{A}\cap B = A \cap \overline{B} = \emptyset$, where $\overline{\cdot}$ = closure).\\
+\textbf{Dense}: $E$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$. Equiv: $\overline{E} = X$.\\
+\textbf{Perfect}: closed with no isolated points ($E = E'$).\\
+\textbf{Bounded}: $E \subseteq B(x,M)$ for some $x, M$.
+\end{defn}
+
+\subsection{Examples}
+
+\begin{tabular}{@{}p{38pt}p{122pt}@{}}
+Open & $(0,1)$, $B(x,r)$, $\R$, $\emptyset$ \\
+Closed & $[0,1]$, $\{1/n\}\cup\{0\}$, $\R$, $\emptyset$ \\
+Compact & $[a,b]$, $\{1,1/2,\ldots,0\}$, finite sets \\
+Not cpt & $(0,1)$, $\R$, $\Z$ \\
+Connected & intervals $[a,b]$, $(a,b)$, $\R$ \\
+Not conn & $[0,1]\cup[2,3]$, $\Q$ \\
+Dense & $\Q$ in $\R$; irrationals in $\R$ \\
+Perfect & $[a,b]$, Cantor set $C$ \\
+\end{tabular}
+
+\subsection{Key Facts}
+$\overline{E} = E \cup E'$ ($E'$ = limit points). $E$ closed $\Leftrightarrow E' \subseteq E$. $p \in E' \Rightarrow$ every nbhd has $\infty$-many points of $E$.
+
+Compact $\Rightarrow$ closed $\&$ bounded. Closed $\subseteq$ compact $\Rightarrow$ compact.
+
+\begin{thm}[Heine--Borel, $\R^n$ only]
+Closed $\&$ bounded $\Leftrightarrow$ compact $\Leftrightarrow$ every $\infty$ subset has limit point in $E$.
+\end{thm}
+
+FIP: $\{K_\alpha\}$ compact, every finite $\cap$ nonempty $\Rightarrow \bigcap K_\alpha \neq \emptyset$. Weierstrass: bounded $\infty$ subset of $\R^n$ has a limit point.
+
+$E \subset \R$ connected $\Leftrightarrow$ no gaps ($x,y\in E$, $x<z<y \Rightarrow z\in E$). Connected subsets of $\R$: intervals.
+
+%==============================================================
+\section{Cantor Set}
+%==============================================================
+
+Construction: $C = \bigcap C_n$ (remove middle thirds from $[0,1]$). $C = \{x \in [0,1] : $ ternary expansion uses only $0, 2\}$.
+
+\textbf{Properties:} Closed ($\cap$ of closed), bounded $\Rightarrow$ \textbf{compact}. \textbf{Perfect} ($C'=C$). \textbf{Uncountable} ($C \sim \{0,1\}^\N$). \textbf{Nowhere dense} (contains no interval). \textbf{Measure zero} (length$(C_n) = (2/3)^n \to 0$).
+
+\textbf{Uses:} Uncountable set with measure $0$; perfect set; totally disconnected compact set.
+
+%==============================================================
+\section{Continuity}
+%==============================================================
+
+\begin{defn}
+$f$ \textbf{continuous}: $V$ open $\Rightarrow f^{-1}(V)$ open. Equiv ($\eps$-$\delta$): $d(x,y)<\delta \Rightarrow d(f(x),f(y))<\eps$.
+\end{defn}
+
+\textit{How to show cts:} (1) Direct $\eps$-$\delta$: bound $|f(x)-f(x_0)|$ in terms of $|x-x_0|$, choose $\delta$. (2) Sequential: $x_n \to x_0 \Rightarrow f(x_n)\to f(x_0)$. (3) Algebraic: sums, products, quotients, compositions of cts functions are cts.
+
+\textit{How to show NOT cts:} Find $x_n \to x_0$ with $f(x_n) \not\to f(x_0)$, or two sequences approaching $x_0$ giving different limits.
+
+\subsection{Differentiability}
+$f'(x) = \lim_{t \to x}\frac{f(t)-f(x)}{t-x}$. Exists $\Rightarrow$ diff'able at $x$.
+
+$C^\infty \subset \cdots \subset C^1 \subset C^0$. Diff'able $\Rightarrow$ cts (not vice versa).
+
+\textit{To prove diff'able at $x$:} Compute $\frac{f(x+h)-f(x)}{h}$ and show the limit as $h\to 0$ exists. Often needed at special points (e.g.\ $x=0$).
+
+\textit{Ex:} $f(x)=x^2\sin(1/x)$, $f(0)=0$: $\frac{f(h)}{h} = h\sin(1/h) \to 0$, so $f'(0)=0$. (Diff'able but $f'$ not cts at $0$: diff'able $\neq C^1$.)
+
+\textit{To show NOT diff'able:} Left and right limits of difference quotient disagree. Ex: $|x|$ at $0$: left $= -1$, right $= 1$.
+
+\subsection{Uniform Continuity}
+\textbf{Uniformly cts}: $\forall\eps>0$, $\exists\delta>0$: $d(p,q)<\delta \Rightarrow d(f(p),f(q))<\eps$ for ALL $p,q$. (One $\delta$ works everywhere.)
+
+Cts on compact $\Rightarrow$ uniformly cts. Cts image of compact is compact; of connected is connected.
+
+\textit{To show NOT unif.\ cts:} Find $x_n, y_n$ with $|x_n-y_n|\to 0$ but $|f(x_n)-f(y_n)|\not\to 0$. Ex: $f(x)=x^2$ on $\R$: $x_n=n$, $y_n=n+1/n$, $|f(x_n)-f(y_n)| = 2+1/n^2 \to 2$.
+
+\begin{thm}[Extreme Value]
+$f$ cts on compact $K$ $\Rightarrow$ attains max and min.
+\end{thm}
+
+$E$ non-compact $\Rightarrow$ $\exists$ cts $f$: unbounded, or misses sup, or not unif.\ cts.
+
+%==============================================================
+\section{IVT and MVT}
+%==============================================================
+
+\begin{thm}[Intermediate Value]
+$f$ cts on $[a,b]$, $f(a) < c < f(b)$ $\Rightarrow$ $\exists p \in (a,b)$ with $f(p) = c$.
+\end{thm}
+\begin{thm}[Mean Value]
+$f$ cts on $[a,b]$, diff'able on $(a,b)$: $\exists c$ with $f'(c) = \dfrac{f(b)-f(a)}{b-a}$.
+\end{thm}
+
+\begin{thm}[Generalized MVT]
+$f, g$ cts on $[a,b]$, diff'able on $(a,b)$: $\exists c$ with
+$$[f(b)-f(a)]g'(c) = [g(b)-g(a)]f'(c).$$
+\end{thm}
+
+\begin{thm}[L'H\^opital]
+$f,g \to 0$ as $x \to a$ and $\lim f'/g' = A$ $\Rightarrow$ $\lim f/g = A$.
+\end{thm}
+
+\begin{thm}[IVT for Derivatives]
+$f'(a) < \lambda < f'(b)$ $\Rightarrow$ $\exists x \in (a,b)$ with $f'(x) = \lambda$.
+\end{thm}
+
+\subsection{Taylor's Theorem}
+\begin{thm}[Lagrange Remainder]
+$$f(\beta) = \sum_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}(\beta-\alpha)^k + \frac{f^{(n)}(x)}{n!}(\beta-\alpha)^n$$
+for some $x$ between $\alpha$ and $\beta$.
+\end{thm}
+
+%==============================================================
+\section{Series}
+%==============================================================
+
+\subsection{Convergence Tests}
+
+\begin{thm}[Comparison]
+$|a_n| \leq c_n$ and $\sum c_n$ converges $\Rightarrow \sum a_n$ converges.
+\end{thm}
+
+\begin{thm}[Cauchy Condensation]
+$a_n \geq a_{n+1} \geq 0$: $\sum a_n$ conv.\ $\Leftrightarrow \sum 2^k a_{2^k}$ conv.
+\end{thm}
+
+\begin{thm}[Root Test]
+$\alpha = \limsup |a_n|^{1/n}$. $\alpha < 1$: converges. $\alpha > 1$: diverges. $\alpha = 1$: inconclusive.
+\end{thm}
+
+\begin{thm}[Ratio Test]
+$\limsup|a_{n+1}/a_n| < 1$: converges. $\liminf|a_{n+1}/a_n| > 1$: diverges. Root test is strictly stronger.
+\end{thm}
+
+\subsection{Absolute \& Conditional Conv.}
+\begin{defn}
+$\sum a_n$ converges \textbf{absolutely} if $\sum|a_n|$ converges.
+$\sum a_n$ converges \textbf{conditionally} if it converges but $\sum|a_n|$ diverges.
+\end{defn}
+
+\begin{thm}
+Absolute convergence $\Rightarrow$ convergence.
+\end{thm}
+
+\textit{Example:} $\sum (-1)^n/n$ converges conditionally.
+
+\begin{keyfact}
+Absolutely convergent series can be rearranged freely. Conditionally convergent series can be rearranged to converge to any value (Riemann rearrangement theorem).
+\end{keyfact}
+
+\begin{thm}[Alternating Series / Leibniz]
+$|c_1| \geq |c_2| \geq \cdots$, alternating signs, $c_n \to 0$ $\Rightarrow \sum c_n$ converges.
+\end{thm}
+
+\begin{thm}[Summation by Parts (Abel)]
+$$\sum_{n=p}^{q}a_n b_n = \sum_{n=p}^{q-1}A_n(b_n - b_{n+1}) + A_q b_q - A_{p-1}b_p$$
+where $A_n = \sum_{k=0}^n a_k$. Apply when $\{b_n\}$ is monotone.
+\end{thm}
+
+\subsection{Radius of Convergence}
+$\sum c_n z^n$: $R = 1/\limsup|c_n|^{1/n}$. Abs.\ conv.\ for $|z|<R$, diverges for $|z|>R$. If $|z|=R$: no general conclusion about absolute convergence (e.g.\ $\sum z^n/n$ conv.\ at $z=-1$ but not $z=1$; $\sum z^n/n^2$ conv.\ at both). Unif.\ conv.\ on $[-R+\eps,R-\eps]$. $f(x)=\sum c_n x^n$ is cts and $f'(x) = \sum nc_n x^{n-1}$ (same $R$).
+
+\smallskip
+\begin{tabular}{@{}ll@{}}
+$\sum 1/n^s$ & conv.\ iff $s > 1$ \\
+$\sum r^n$ & conv.\ iff $|r| < 1$ \\
+$\int_1^\infty x^{-p}$ & conv.\ iff $p > 1$ \\
+$\int_0^1 x^{-p}$ & conv.\ iff $p < 1$ \\
+\end{tabular}
+
+\textit{Which test to use:} Factorials/$n^n$ $\to$ ratio. $n$th powers $\to$ root. Alternating $\to$ Leibniz. Looks like known series $\to$ comparison. Product $a_n b_n$ with oscillating/decaying $\to$ Abel.
+
+%==============================================================
+\section{Sequences/Series of Functions}
+%==============================================================
+
+\begin{defn}
+\textbf{Pointwise}: $f_n(x) \to f(x)$ $\forall x$. \textbf{Uniform}: $\|f_n - f\|_\infty = \sup_x|f_n(x)-f(x)| \to 0$, i.e.\ single $N$ works for ALL $x$.
+\end{defn}
+
+\textit{Key difference:} Pointwise: each $x$ gets its own $N$. Uniform: one $N$ works for every $x$ at once (entire graph within $\eps$-band).
+
+Uniform $\Rightarrow$ pointwise. Converse fails: $f_n(x) = x^n$ on $[0,1]$ converges pointwise to $\mathbf{1}_{\{1\}}$ but not uniformly (limit discontinuous).
+
+\textit{To check uniform conv.:} Compute $M_n = \sup_x|f_n(x)-f(x)|$ (find max via derivative). $M_n \to 0 \Rightarrow$ uniform.
+
+\textit{To show NOT uniform:} Find $x_n$ with $|f_n(x_n)-f(x_n)| \not\to 0$, or show limit is discontinuous but each $f_n$ is cts.
+
+\begin{thm}[Cauchy Criterion]
+$\{f_n\}$ converges uniformly on $E$ $\Leftrightarrow$ $\forall \eps > 0$, $\exists N$: $m,n \geq N \Rightarrow \|f_m - f_n\|_\infty < \eps$.
+\end{thm}
+
+$\mathscr{C}(X)$ with $\|\cdot\|_\infty$ is a complete metric space ($X$ compact).
+
+\begin{thm}[Weierstrass M-Test]
+$|f_n(x)| \leq M_n$ $\forall x$ and $\sum M_n$ converges $\Rightarrow \sum f_n$ converges uniformly.
+\end{thm}
+
+%==============================================================
+\section{Uniform Conv.\ Interchange}
+%==============================================================
+
+\subsection{+ Continuity (Thm 7.12)}
+\begin{thm}
+$f_n \to f$ uniformly on $E$, each $f_n$ cts $\Rightarrow$ $f$ is cts.
+\end{thm}
+\textit{Application:} To show $\sum f_n$ converges to a cts function: (1) check each $f_n$ is cts; (2) show $\sum f_n$ converges uniformly (e.g.\ M-test: $|f_n(x)|\leq M_n$, $\sum M_n < \infty$). Contrapositive: if the limit is discontinuous, convergence is NOT uniform.
+
+\textit{Interchange of limits:} $f_n \to f$ uniformly, $\lim_{t\to x} f_n(t) = A_n$ $\Rightarrow$ $\lim_{t\to x} f(t) = \lim_{n} A_n$.
+
+\subsection{+ Integration}
+\begin{thm}
+$f_n \in \mathscr{R}[a,b]$, $f_n \to f$ uniformly $\Rightarrow$ $f \in \mathscr{R}[a,b]$ and
+$$\int_a^b f\,dx = \lim_{n\to\infty}\int_a^b f_n\,dx.$$
+\end{thm}
+\textit{Application:} To compute $\int \sum f_n$: show uniform conv.\ (M-test), then swap: $\int \sum f_n = \sum \int f_n$.
+
+\subsection{+ Differentiation}
+\begin{thm}
+$\{f_n\}$ diff'able on $[a,b]$, $\{f_n(x_0)\}$ converges for some $x_0$, and $f_n' \to g$ uniformly. Then $f_n \to f$ uniformly for some $f$, and $f' = g$. That is:
+$$\left(\lim_{n\to\infty} f_n\right)' = \lim_{n\to\infty} f_n'.$$
+\end{thm}
+\textit{Application:} To differentiate a series term-by-term: (1) show $\sum f_n'$ converges uniformly; (2) check $\sum f_n(x_0)$ converges at one point. Then $(\sum f_n)' = \sum f_n'$.
+
+\begin{keyfact}
+For differentiation, you need uniform convergence of the \textbf{derivatives} (not just the functions), plus pointwise convergence at one point.
+\end{keyfact}
+
+%==============================================================
+\section{Equicontinuity \& Arzel\`a--Ascoli}
+%==============================================================
+
+\begin{defn}
+$\{f_n\} \subset \mathscr{C}(X)$ is \textbf{equicontinuous} on $X$ if $\forall \eps > 0$, $\exists \delta > 0$ s.t.\ $d(x,y) < \delta \Rightarrow |f_n(x) - f_n(y)| < \eps$ for \textbf{all} $n$ and all $x, y$.
+\end{defn}
+
+\textbf{Ptwise bounded}: $\forall x$, $\exists M_x$: $|f_n(x)| \leq M_x$ $\forall n$. \textbf{Unif.\ bounded}: single $M$ works $\forall n, x$.
+
+\begin{thm}[Arzel\`a--Ascoli]
+$K$ compact, $f_n \in \mathscr{C}(K)$, ptwise bounded $+$ equicontinuous $\Rightarrow$ (a) uniformly bounded; (b) has uniformly convergent subsequence.
+\end{thm}
+
+\textit{Application (``does $\{f_n\}$ have a unif.\ conv.\ subseq?''):}\\
+(1) $K$ compact, each $f_n$ cts.\\
+(2) Ptwise bounded: $|f_n(x)|\leq M_x$ $\forall n$.\\
+(3) Equicontinuous: easiest via shared \textbf{Lipschitz bound}. If $|f_n'(x)|\leq L$ $\forall n,x$, then $|f_n(x)-f_n(y)|\leq L|x-y|$ (MVT), so $\delta=\eps/L$ works for all $n$.\\
+Cite A-A $\Rightarrow$ done.
+
+\begin{defn}
+$f$ is \textbf{Lipschitz} with constant $L$ if $|f(x)-f(y)|\leq L|x-y|$ $\forall x,y$. Lipschitz $\Rightarrow$ unif.\ cts ($\delta=\eps/L$). $|f'|\leq L \Rightarrow$ Lipschitz (MVT).
+\end{defn}
+
+%==============================================================
+\section{Riemann Integrability}
+%==============================================================
+
+\subsection{Setup}
+Partition $P = \{x_0, \ldots, x_n\}$ of $[a,b]$. $M_i = \sup_{[x_{i-1},x_i]}f$, $m_i = \inf f$.
+$$U(P,f) = \sum M_i \Delta x_i, \quad L(P,f) = \sum m_i \Delta x_i.$$
+$f \in \mathscr{R}[a,b]$ if $\overline{\int}f = \inf_P U(P,f) = \sup_P L(P,f) = \underline{\int}f$.
+
+\subsection{Criterion}
+\begin{thm}
+$f \in \mathscr{R}[a,b]$ $\Leftrightarrow$ $\forall \eps > 0$, $\exists P$ with $U(P,f) - L(P,f) < \eps$.
+\end{thm}
+
+\subsection{Sufficient Conditions}
+$f \in \mathscr{R}$ if: (i) continuous; (ii) monotone; (iii) bounded, finitely many disc'ties; (iv) bounded, disc'ties form a \textbf{zero set} ($\forall\eps$, coverable by intervals of total length $<\eps$).
+
+\subsection{Counterexamples}
+\textbf{Thomae}: $f(p/q) = 1/q$, $f(\text{irr.})=0$. Disc.\ set $=\Q$ (zero set) $\Rightarrow f \in \mathscr{R}$.\\
+\textbf{Dirichlet} ($\mathbf{1}_\Q$): $U=1$, $L=0$ always $\Rightarrow f \notin \mathscr{R}$.\\
+$1/\sqrt{x}$ on $(0,1]$: unbounded $\Rightarrow \notin \mathscr{R}$ (improper integral exists).
+
+\subsection{Properties}
+Linearity. $f \leq g \Rightarrow \int f \leq \int g$. $|\int f| \leq \int|f|$. FTC: $F(x) = \int_a^x f \Rightarrow F'=f$ at cts points.
+
+%==============================================================
+\section{Key Techniques}
+%==============================================================
+
+\textbf{$\eps$-$\delta$ recipe:} (1) Write what you need. (2) Work backwards to express in terms of $d(p,q)$. (3) Read off $\delta$.
+
+\textbf{Supremum argument:} $E = \{t : t$ ``too small''$\}$, $y = \sup E$. Show $y$ too small and $y$ too big both lead to contradictions.
+
+\textbf{Compactness trick:} Local version at each point $\to$ open cover $\to$ finite subcover $\to$ take min/max over finitely many parameters.
+
+\textbf{Partition refinement:} Isolate ``bad'' intervals into small total length. Bad: $\leq 2\|f\|_\infty \cdot (\text{bad length})$. Good: $\leq \eps(b-a)$.
+
+\textbf{Triple $\eps$:} For uniform conv.\ $+$ continuity: $|f-f_n| + |f_n(\text{close})| + |f_n-f|$.
+
+\textbf{Diagonal argument:} Extract successive subsequences, take diagonal. Used in Arzel\`a--Ascoli and uncountability proofs.
+
+%==============================================================
+\section{Quick Reference}
+%==============================================================
+
+\subsection{Key Inequalities}
+\begin{itemize}
+\item Cauchy--Schwarz: $|\langle u,v\rangle| \leq \|u\|\|v\|$
+\item H\"older: $\int|fg| \leq \|f\|_p\|g\|_q$, $\frac{1}{p}+\frac{1}{q}=1$
+\item MVT bound: $|f(b)-f(a)| \leq \sup|f'|\cdot|b-a|$
+\item AM-GM: $\frac{a+b}{2} \geq \sqrt{ab}$
+\end{itemize}
+
+\subsection{Convergence Summary}
+Uniform conv.\ preserves: continuity, integrability. For differentiation: need uniform conv.\ of \textbf{derivatives}.
+
+\begin{tabular}{@{}ll@{}}
+$\R^n$ sets: & closed $+$ bounded $\Leftrightarrow$ compact \\
+Func.\ spaces: & ptwise bdd $+$ equicts $\Rightarrow$ conv.\ subseq. \\
+\end{tabular}
+
+\subsection{Cauchy Criterion}
+$\{s_n\}$ converges $\Leftrightarrow$ $\forall\eps>0$, $\exists N$: $m,n\geq N \Rightarrow |s_m-s_n|<\eps$.
+
+For series: $\sum a_n$ converges $\Rightarrow a_n \to 0$ (converse fails: harmonic).
+
+Monotone $+$ bounded $\Rightarrow$ convergent.
+
+\end{multicols}
+\end{document}

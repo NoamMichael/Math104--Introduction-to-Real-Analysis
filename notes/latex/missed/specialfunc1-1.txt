@@ -1,0 +1,142 @@
+Special Functions
+
+Define exp(z) := sum from n=0 to infinity of z^n/n!
+
+Since exp(z) converges absolutely for every complex z, we can multiply
+exp(z) exp(w) = exp(z+w) (just do the algebra)
+It is also easily verified that (e^x)' = e^x
+
+Exercise
+
+limit as x goes to infinity of x^n e^{-x} = 0 for every n.
+In other words, exponential functions grow faster than any polynomial.
+
+Proof
+By the series definition, we have e^x > x^{n+1}/(n+1)! for x > 0, so
+x^n e^{-x} < (n+1)!/x
+which tends to 0 as x goes to infinity.
+
+Since (e^x)' = e^x > 0 for all x, the exponential function is strictly increasing and differentiable on the real line, so it must have an inverse function which is also strictly increasing and differentiable on the image of exp, which is ℝ_{>0}. We derive these from the inverse function theorem in one variable.
+This inverse function is the (natural) logarithm.
+
+Remark
+In pure math and physics, people can mix up log and ln, because most of the time we don't care much about constants.
+In CS, people probably mean log base 2.
+
+By the inverse function theorem, log(x)' = 1/x
+Hence we also have the integral formula
+log(y) = ∫_1^y dx/x
+which will become handy in complex analysis context.
+
+The trigonometric functions shall be defined as follows:
+
+cos(x) := 1/2 (exp(ix) + exp(-ix)) where i is the imaginary unit and exp(ix) is defined using series as above.
+sin(x) := 1/2 (exp(ix) - exp(-ix)).
+These definitions lead to the Euler's formula
+exp(ix) = cos(x) + i sin(x)
+
+In particular, exp(iπ) = -1, exp(iπ/2) = i.
+
+Exercise:
+exp and log define a bijection between the unit circle on the complex plane and the half-open interval [0,2π].
+
+The Gamma function
+For 0 < x < ∞, define Γ(x) = ∫_0^∞ t^{x-1} e^{-t} dt.
+The integral converges.
+
+Theorem
+1. Γ(x+1) = xΓ(x) for all 0 < x < ∞
+2. Γ(n+1) = n! for positive integers n
+3. log Γ is convex on (0,∞)
+
+Proof.
+1. integration by parts
+2. by induction
+3. Hölder's inequality.
+Γ(x/p+y/q) ≤ Γ(x)^{1/p} Γ(y)^{1/q}
+for 1 < p < ∞ and (1/p) + (1/q) = 1.
+(convexity of logarithm can be translated into:
+for any λ ∈ (0,1)
+Γ(λx + (1-λ)y) ≤ Γ(x)^λ Γ(y)^{1-λ}.)
+
+Theorem by Bohr and Mollerup shows that these three properties characterize Γ completely.
+Any positive function on the positive real numbers with these three properties must be equal to the Γ function.
+
+Proof
+By the first property, it suffices to show that f coincides with Γ on the interval (0,1).
+Let φ = log f, then φ(x+1) = φ(x) + log(x), φ(1) = 0 and φ is convex.
+
+Suppose x ∈ (0,1) and n is a positive integer, then φ(n+1) = log(n!).
+Consider the secant slope of φ on three separate intervals
+[n,n+1], [n+1,n+1+x], [n+1,n+2]
+Since φ is convex, we have
+log n ≤ (φ(n+1+x) - φ(n+1))/x ≤ log (n+1)
+
+Repeated application of φ(x+1) = φ(x) + log(x) results in
+φ(n+1+x) = φ(x) + log(x(x+1)...(x+n))
+We usually write x(x+1)...(x+n) as (x)_{n+1}, which is called the *rising factorial*, or sometimes called the *Pochhammer symbol* (although it usually means something more specific of this form).
+
+Therefore
+0 ≤ φ(x) - log(n! n^x/ (x)_{n+1}) ≤ x log(1+1/n)
+The rightmost expression tends to 0 as n → ∞.
+Hence φ(x) = lim_{n→∞} log(n! n^x/ (x)_{n+1})
+and it is completely determined by the three properties.
+
+Remark on Pochhammer symbols
+q-analogue of integers
+Define [n]_q := 1+q+...+q^{n-1} = (1-q^n)/(1-q)
+When q is a prime power, they count the number of lines in the vector space of dimension n over the finite field F_q.
+
+The q-Pochhammer symbol is defined, for some constant a and some integer n,
+(a;q)_n = ∏_{k=0}^{n-1}(1-a q^k)
+We have that
+lim_{q → 1} (q^x;q)_n/(1-q)^n = x_n
+
+If everything converges or you don't care about convergence, you can extend it to
+(a;q)_{∞} = ∏_{k=0}^{∞} (1-aq^k)
+
+One can extend this further to multivariate q-Pochhammer symbol by multiplying them together
+(a_1,a_2,...,a_m;q)_{∞} = (a_1;q)_{∞}...(a_m;q)_{∞}
+
+Beta function
+If x > 0 and y > 0, then
+∫_0^1 t^{x-1} (1-t)^{y-1} dt = Γ(x)Γ(y)/Γ(x+y) =: B(x,y)
+
+Proof
+We first show that for any y, log B(x,y) is convex in x, i.e.,
+for any 1 < p < ∞ such that 1/p + 1/q = 1
+we want to show that
+B(x/p + z/q, y) ≤ B(x, y)^{1/p} B(z,y)^{1/q}
+This is another application of Hölder's inequality.
+Let f(t) = t^{x-1} (1-t)^{y-1}, g(t) = t^{z-1} (1-t)^{y-1}.
+Then
+B(x/p + z/q, y) = ∫_0^1 f(t)^{1/p} g(t)^{1/q} dt ≤ (∫_0^1 f)^{1/p} (∫_0^1 g)^{1/q}.
+Therefore, log B(x, y) is a convex function of x.
+
+Also, B(1, y) = 1/y and B(x+1,y) = x/(x+y)B(x, y) (integration by parts
+B(x+1, y) = ∫_0^1 [t/(1-t)]^x (1-t)^{x+y-1} dt.)
+
+Therefore, by our previous theorem, 
+B(x, y)*Γ(x+y)/Γ(y)
+satisfies the three properties that characterize the Γ function, so it must be equal to Γ(x).
+
+Probabilistic interpretations
+
+If X ~ exp(1) is an exponential random variable, i.e.,
+the PDF of X is e^{-x}, then Γ(s) = E[X^{s-1}], the (s-1)-st moment of X.
+
+A Poisson process can be thought of as follows.
+You are waiting for a bus at the bus stop. The waiting time until the next bus arrives is roughly an exponential random variable.
+The number of buses N(t) that had arrived in t minutes is roughly a Poisson random variable.
+These counts, N(t), is a Poisson process.
+The time of the n-th arrival is roughly distributed according to the Γ function.
+
+Take n i.i.d uniformly random variables on [0,1]
+Then the k-th smallest number is distributed according to Beta(k, n+1-k)
+
+Start with x red balls and y blue balls in an urn.
+At each step:
+1. draw a ball
+2. return it
+3. add another ball of the same color
+The limiting fraction of the red balls converges to Beta(x, y)

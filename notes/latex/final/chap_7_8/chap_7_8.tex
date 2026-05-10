@@ -1,0 +1,2607 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\begin{document}
+\section*{7}
+\section*{SEQUENCES AND SERIES OF FUNCTIONS}
+In the present chapter we confine our attention to complex-valued functions (including the real-valued ones, of course), although many of the theorems and proofs which follow extend without difficulty to vector-valued functions, and even to mappings into general metric spaces. We choose to stay within this simple framework in order to focus attention on the most important aspects of the problems that arise when limit processes are interchanged.
+
+\section*{DISCUSSION OF MAIN PROBLEM}
+7.1 Definition Suppose $\left\{f_{n}\right\}, n=1,2,3, \ldots$, is a sequence of functions defined on a set $E$, and suppose that the sequence of numbers $\left\{f_{n}(x)\right\}$ converges for every $x \in E$. We can then define a function $f$ by
+
+
+\begin{equation*}
+f(x)=\lim _{n \rightarrow \infty} f_{n}(x) \quad(x \in E) \tag{1}
+\end{equation*}
+
+
+Under these circumstances we say that $\left\{f_{n}\right\}$ converges on $E$ and that $f$ is the limit, or the limit function, of $\left\{f_{n}\right\}$. Sometimes we shall use more descriptive terminology and shall say that " $\left\{f_{n}\right\}$ converges to $f$ pointwise on $E$ " if (1) holds. Similarly, if $\Sigma f_{n}(x)$ converges for every $x \in E$, and if we define
+
+
+\begin{equation*}
+f(x)=\sum_{n=1}^{\infty} f_{n}(x) \quad(x \in E), \tag{2}
+\end{equation*}
+
+
+the function $f$ is called the sum of the series $\Sigma f_{n}$.\\
+The main problem which arises is to determine whether important properties of functions are preserved under the limit operations (1) and (2). For instance, if the functions $f_{n}$ are continuous, or differentiable, or integrable, is the same true of the limit function? What are the relations between $f_{n}^{\prime}$ and $f^{\prime}$, say, or between the integrals of $f_{n}$ and that of $f$ ?
+
+To say that $f$ is continuous at a limit point $x$ means
+
+$$
+\lim _{t \rightarrow x} f(t)=f(x) .
+$$
+
+Hence, to ask whether the limit of a sequence of continuous functions is continuous is the same as to ask whether
+
+
+\begin{equation*}
+\lim _{t \rightarrow x} \lim _{n \rightarrow \infty} f_{n}(t)=\lim _{n \rightarrow \infty} \lim _{t \rightarrow x} f_{n}(t), \tag{3}
+\end{equation*}
+
+
+i.e., whether the order in which limit processes are carried out is immaterial. On the left side of (3), we first let $n \rightarrow \infty$, then $t \rightarrow x$; on the right side, $t \rightarrow x$ first, then $n \rightarrow \infty$.
+
+We shall now show by means of several examples that limit processes cannot in general be interchanged without affecting the result. Afterward, we shall prove that under certain conditions the order in which limit operations are carried out is immaterial.
+
+Our first example, and the simplest one, concerns a "double sequence."\\
+7.2 Example For $m=1,2,3, \ldots, n=1,2,3, \ldots$, let
+
+$$
+s_{m, n}=\frac{m}{m+n} .
+$$
+
+Then, for every fixed $n$,
+
+$$
+\lim _{m \rightarrow \infty} s_{m, n}=1,
+$$
+
+so that
+
+
+\begin{equation*}
+\lim _{n \rightarrow \infty} \lim _{m \rightarrow \infty} s_{m, n}=1 . \tag{4}
+\end{equation*}
+
+
+On the other hand, for every fixed $m$,
+
+$$
+\lim _{n \rightarrow \infty} s_{m, n}=0
+$$
+
+so that
+
+
+\begin{equation*}
+\lim _{m \rightarrow \infty} \lim _{n \rightarrow \infty} s_{m, n}=0 \tag{5}
+\end{equation*}
+
+
+7.3 Example Let
+
+$$
+f_{n}(x)=\frac{x^{2}}{\left(1+x^{2}\right)^{n}} \quad(x \text { real } ; n=0,1,2, \ldots),
+$$
+
+and consider
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} f_{n}(x)=\sum_{n=0}^{\infty} \frac{x^{2}}{\left(1+x^{2}\right)^{n}} . \tag{6}
+\end{equation*}
+
+
+Since $f_{n}(0)=0$, we have $f(0)=0$. For $x \neq 0$, the last series in (6) is a convergent geometric series with sum $1+x^{2}$ (Theorem 3.26). Hence
+
+\[
+f(x)= \begin{cases}0 & (x=0)  \tag{7}\\ 1+x^{2} & (x \neq 0)\end{cases}
+\]
+
+so that a convergent series of continuous functions may have a discontinuous sum.\\
+7.4 Example For $m=1,2,3, \ldots$, put
+
+$$
+f_{m}(x)=\lim _{n \rightarrow \infty}(\cos m!\pi x)^{2 n}
+$$
+
+When $m!x$ is an integer, $f_{m}(x)=1$. For all other values of $x, f_{m}(x)=0$. Now let
+
+$$
+f(x)=\lim _{m \rightarrow \infty} f_{m}(x) .
+$$
+
+For irrational $x, f_{m}(x)=0$ for every $m$; hence $f(x)=0$. For rational $x$, say $x=p / q$, where $p$ and $q$ are integers, we see that $m!x$ is an integer if $m \geq q$, so that $f(x)=1$. Hence
+
+\[
+\lim _{m \rightarrow \infty} \lim _{n \rightarrow \infty}(\cos m!\pi x)^{2 n}= \begin{cases}0 & (x \text { irrational }),  \tag{8}\\ 1 & (x \text { rational }) .\end{cases}
+\]
+
+We have thus obtained an everywhere discontinuous limit function, which is not Riemann-integrable (Exercise 4, Chap. 6).\\
+7.5 Example Let
+
+
+\begin{equation*}
+f_{n}(x)=\frac{\sin n x}{\sqrt{n}} \quad(x \text { real, } n=1,2,3, \ldots) \tag{9}
+\end{equation*}
+
+
+and
+
+$$
+f(x)=\lim _{n \rightarrow \infty} f_{n}(x)=0
+$$
+
+Then $f^{\prime}(x)=0$, and
+
+$$
+f_{n}^{\prime}(x)=\sqrt{n} \cos n x
+$$
+
+so that $\left\{f_{n}^{\prime}\right\}$ does not converge to $f^{\prime}$. For instance,
+
+$$
+f_{n}^{\prime}(0)=\sqrt{n} \rightarrow+\infty
+$$
+
+as $n \rightarrow \infty$, whereas $f^{\prime}(0)=0$.\\
+7.6 Example Let
+
+
+\begin{equation*}
+f_{n}(x)=n^{2} x\left(1-x^{2}\right)^{n} \quad(0 \leq x \leq 1, n=1,2,3, \ldots) . \tag{10}
+\end{equation*}
+
+
+For $0<x \leq 1$, we have
+
+$$
+\lim _{n \rightarrow \infty} f_{n}(x)=0
+$$
+
+by Theorem 3.20(d). Since $f_{n}(0)=0$, we see that
+
+
+\begin{equation*}
+\lim _{n \rightarrow \infty} f_{n}(x)=0 \quad(0 \leq x \leq 1) \tag{11}
+\end{equation*}
+
+
+A simple calculation shows that
+
+$$
+\int_{0}^{1} x\left(1-x^{2}\right)^{n} d x=\frac{1}{2 n+2}
+$$
+
+Thus, in spite of (11),
+
+$$
+\int_{0}^{1} f_{n}(x) d x=\frac{n^{2}}{2 n+2} \rightarrow+\infty
+$$
+
+as $n \rightarrow \infty$.\\
+If, in (10), we replace $n^{2}$ by $n$, (11) still holds, but we now have
+
+$$
+\lim _{n \rightarrow \infty} \int_{0}^{1} f_{n}(x) d x=\lim _{n \rightarrow \infty} \frac{n}{2 n+2}=\frac{1}{2}
+$$
+
+whereas
+
+$$
+\int_{0}^{1}\left[\lim _{n \rightarrow \infty} f_{n}(x)\right] d x=0
+$$
+
+Thus the limit of the integral need not be equal to the integral of the limit, even if both are finite.
+
+After these examples, which show what can go wrong if limit processes are interchanged carelessly, we now define a new mode of convergence, stronger than pointwise convergence as defined in Definition 7.1, which will enable us to arrive at positive results.
+
+\section*{UNIFORM CONVERGENCE}
+7.7 Definition We say that a sequence of functions $\left\{f_{n}\right\}, n=1,2,3, \ldots$, converges uniformly on $E$ to a function $f$ if for every $\varepsilon>0$ there is an integer $N$ such that $n \geq N$ implies
+
+
+\begin{equation*}
+\left|f_{n}(x)-f(x)\right| \leq \varepsilon \tag{12}
+\end{equation*}
+
+
+for all $x \in E$.\\
+It is clear that every uniformly convergent sequence is pointwise convergent. Quite explicitly, the difference between the two concepts is this: If $\left\{f_{n}\right\}$ converges pointwise on $E$, then there exists a function $f$ such that, for every $\varepsilon>0$, and for every $x \in E$, there is an integer $N$, depending on $\varepsilon$ and on $x$, such that (12) holds if $n \geq N$; if $\left\{f_{n}\right\}$ converges uniformly on $E$, it is possible, for each $\varepsilon>0$, to find one integer $N$ which will do for all $x \in E$.
+
+We say that the series $\Sigma f_{n}(x)$ converges uniformly on $E$ if the sequence $\left\{s_{n}\right\}$ of partial sums defined by
+
+$$
+\sum_{i=1}^{n} f_{i}(x)=s_{n}(x)
+$$
+
+converges uniformly on $E$.\\
+The Cauchy criterion for uniform convergence is as follows.\\
+7.8 Theorem The sequence of functions $\left\{f_{n}\right\}$, defined on $E$, converges uniformly on $E$ if and only if for every $\varepsilon>0$ there exists an integer $N$ such that $m \geq N$, $n \geq N, x \in E$ implies
+
+
+\begin{equation*}
+\left|f_{n}(x)-f_{m}(x)\right| \leq \varepsilon \tag{13}
+\end{equation*}
+
+
+Proof Suppose $\left\{f_{n}\right\}$ converges uniformly on $E$, and let $f$ be the limit function. Then there is an integer $N$ such that $n \geq N, x \in E$ implies
+
+$$
+\left|f_{n}(x)-f(x)\right| \leq \frac{\varepsilon}{2}
+$$
+
+so that
+
+$$
+\left|f_{n}(x)-f_{m}(x)\right| \leq\left|f_{n}(x)-f(x)\right|+\left|f(x)-f_{m}(x)\right| \leq \varepsilon
+$$
+
+if $n \geq N, m \geq N, x \in E$.
+
+Conversely, suppose the Cauchy condition holds. By Theorem 3.11, the sequence $\left\{f_{n}(x)\right\}$ converges, for every $x$, to a limit which we may call $f(x)$. Thus the sequence $\left\{f_{n}\right\}$ converges on $E$, to $f$. We have to prove that the convergence is uniform.
+
+Let $\varepsilon>0$ be given, and choose $N$ such that (13) holds. Fix $n$, and let $m \rightarrow \infty$ in (13). Since $f_{m}(x) \rightarrow f(x)$ as $m \rightarrow \infty$, this gives
+
+
+\begin{equation*}
+\left|f_{n}(x)-f(x)\right| \leq \varepsilon \tag{14}
+\end{equation*}
+
+
+for every $n \geq N$ and every $x \in E$, which completes the proof.\\
+The following criterion is sometimes useful.\\
+7.9 Theorem Suppose
+
+$$
+\lim _{n \rightarrow \infty} f_{n}(x)=f(x) \quad(x \in E)
+$$
+
+Put
+
+$$
+M_{n}=\sup _{x \in E}\left|f_{n}(x)-f(x)\right|
+$$
+
+Then $f_{n} \rightarrow f$ uniformly on $E$ if and only if $M_{n} \rightarrow 0$ as $n \rightarrow \infty$.\\
+Since this is an immediate consequence of Definition 7.7, we omit the details of the proof.
+
+For series, there is a very convenient test for uniform convergence, due to Weierstrass.\\
+7.10 Theorem Suppose $\left\{f_{n}\right\}$ is a sequence of functions defined on $E$, and suppose
+
+$$
+\left|f_{n}(x)\right| \leq M_{n} \quad(x \in E, n=1,2,3, \ldots)
+$$
+
+Then $\Sigma f_{n}$ converges uniformly on $E$ if $\Sigma M_{n}$ converges.\\
+Note that the converse is not asserted (and is, in fact, not true).\\
+Proof If $\Sigma M_{n}$ converges, then, for arbitrary $\varepsilon>0$,
+
+$$
+\left|\sum_{i=n}^{m} f_{i}(x)\right| \leq \sum_{i=n}^{m} M_{i} \leq \varepsilon \quad(x \in E)
+$$
+
+provided $m$ and $n$ are large enough. Uniform convergence now follows from Theorem 7.8.
+
+\section*{UNIFORM CONVERGENCE AND CONTINUITY}
+7.11 Theorem Suppose $f_{n} \rightarrow f$ uniformly on a set $E$ in a metric space. Let $x$ be a limit point of $E$, and suppose that
+
+
+\begin{equation*}
+\lim _{t \rightarrow x} f_{n}(t)=A_{n} \quad(n=1,2,3, \ldots) . \tag{15}
+\end{equation*}
+
+
+Then $\left\{A_{n}\right\}$ converges, and
+
+
+\begin{equation*}
+\lim _{t \rightarrow x} f(t)=\lim _{n \rightarrow \infty} A_{n} . \tag{16}
+\end{equation*}
+
+
+In other words, the conclusion is that
+
+
+\begin{equation*}
+\lim _{t \rightarrow x} \lim _{n \rightarrow \infty} f_{n}(t)=\lim _{n \rightarrow \infty} \lim _{t \rightarrow x} f_{n}(t) . \tag{17}
+\end{equation*}
+
+
+Proof Let $\varepsilon>0$ be given. By the uniform convergence of $\left\{f_{n}\right\}$, there exists $N$ such that $n \geq N, m \geq N, t \in E$ imply
+
+
+\begin{equation*}
+\left|f_{n}(t)-f_{m}(t)\right| \leq \varepsilon . \tag{18}
+\end{equation*}
+
+
+Letting $t \rightarrow x$ in (18), we obtain
+
+$$
+\left|A_{n}-A_{m}\right| \leq \varepsilon
+$$
+
+for $n \geq N, m \geq N$, so that $\left\{A_{n}\right\}$ is a Cauchy sequence and therefore converges, say to $A$.
+
+Next,
+
+
+\begin{equation*}
+|f(t)-A| \leq\left|f(t)-f_{n}(t)\right|+\left|f_{n}(t)-A_{n}\right|+\left|A_{n}-A\right| . \tag{19}
+\end{equation*}
+
+
+We first choose $n$ such that
+
+
+\begin{equation*}
+\left|f(t)-f_{n}(t)\right| \leq \frac{\varepsilon}{3} \tag{20}
+\end{equation*}
+
+
+for all $t \in E$ (this is possible by the uniform convergence), and such that
+
+
+\begin{equation*}
+\left|A_{n}-A\right| \leq \frac{\varepsilon}{3} \tag{21}
+\end{equation*}
+
+
+Then, for this $n$, we choose a neighborhood $V$ of $x$ such that
+
+
+\begin{equation*}
+\left|f_{n}(t)-A_{n}\right| \leq \frac{\varepsilon}{3} \tag{22}
+\end{equation*}
+
+
+if $t \in V \cap E, t \neq x$.\\
+Substituting the inequalities (20) to (22) into (19), we see that
+
+$$
+|f(t)-A| \leq \varepsilon,
+$$
+
+provided $t \in V \cap E, t \neq x$. This is equivalent to (16).\\
+7.12 Theorem If $\left\{f_{n}\right\}$ is a sequence of continuous functions on $E$, and if $f_{n} \rightarrow f$ uniformly on $E$, then $f$ is continuous on $E$.
+
+This very important result is an immediate corollary of Theorem 7.11.\\
+The converse is not true; that is, a sequence of continuous functions may converge to a continuous function, although the convergence is not uniform. Example 7.6 is of this kind (to see this, apply Theorem 7.9). But there is a case in which we can assert the converse.\\
+7.13 Theorem Suppose $K$ is compact, and\\
+(a) $\quad\left\{f_{n}\right\}$ is a sequence of continuous functions on $K$,\\
+(b) $\quad\left\{f_{n}\right\}$ converges pointwise to a continuous function $f$ on $K$,\\
+(c) $f_{n}(x) \geq f_{n+1}(x)$ for all $x \in K, n=1,2,3, \ldots$.
+
+Then $f_{n} \rightarrow f$ uniformly on $K$.\\
+Proof Put $g_{n}=f_{n}-f$. Then $g_{n}$ is continuous, $g_{n} \rightarrow 0$ pointwise, and $g_{n} \geq g_{n+1}$. We have to prove that $g_{n} \rightarrow 0$ uniformly on $K$.
+
+Let $\varepsilon>0$ be given. Let $K_{n}$ be the set of all $x \in K$ with $g_{n}(x) \geq \varepsilon$. Since $g_{n}$ is continuous, $K_{n}$ is closed (Theorem 4.8), hence compact (Theorem 2.35). Since $g_{n} \geq g_{n+1}$, we have $K_{n} \supset K_{n+1}$. Fix $x \in K$. Since $g_{n}(x) \rightarrow 0$, we see that $x \notin K_{n}$ if $n$ is sufficiently large. Thus $x \notin \bigcap K_{n}$. In other words, $\bigcap K_{n}$ is empty. Hence $K_{N}$ is empty for some $N$ (Theorem 2.36). It follows that $0 \leq g_{n}(x)<\varepsilon$ for all $x \in K$ and for all $n \geq N$. This proves the theorem.
+
+Let us note that compactness is really needed here. For instance, if
+
+$$
+f_{n}(x)=\frac{1}{n x+1} \quad(0<x<1 ; n=1,2,3, \ldots)
+$$
+
+then $f_{n}(x) \rightarrow 0$ monotonically in $(0,1)$, but the convergence is not uniform.\\
+7.14 Definition If $X$ is a metric space, $\mathscr{C}(X)$ will denote the set of all complexvalued, continuous, bounded functions with domain $X$.\\[0pt]
+[Note that boundedness is redundant if $X$ is compact (Theorem 4.15). Thus $\mathscr{C}(X)$ consists of all complex continuous functions on $X$ if $X$ is compact.]
+
+We associate with each $f \in \mathscr{C}(X)$ its supremum norm
+
+$$
+\|f\|=\sup _{x \in X}|f(x)| .
+$$
+
+Since $f$ is assumed to be bounded, $\|f\|<\infty$. It is obvious that $\|f\|=0$ only if $f(x)=0$ for every $x \in X$, that is, only if $f=0$. If $h=f+g$, then
+
+$$
+|h(x)| \leq|f(x)|+|g(x)| \leq\|f\|+\|g\|
+$$
+
+for all $x \in X$; hence
+
+$$
+\|f+g\| \leq\|f\|+\|g\| .
+$$
+
+If we define the distance between $f \in \mathscr{C}(X)$ and $g \in \mathscr{C}(X)$ to be $\|f-g\|$, it follows that Axioms 2.15 for a metric are satisfied.
+
+We have thus made $\mathscr{C}(X)$ into a metric space.\\
+Theorem 7.9 can be rephrased as follows:\\
+A sequence $\left\{f_{n}\right\}$ converges to $f$ with respect to the metric of $\mathscr{C}(X)$ if and only if $f_{n} \rightarrow f$ uniformly on $X$.
+
+Accordingly, closed subsets of $\mathscr{C}(X)$ are sometimes called uniformly closed, the closure of a set $\mathscr{A} \subset \mathscr{C}(X)$ is called its uniform closure, and so on.\\
+7.15 Theorem The above metric makes $\mathscr{C}(X)$ into a complete metric space.
+
+Proof Let $\left\{f_{n}\right\}$ be a Cauchy sequence in $\mathscr{C}(X)$. This means that to each $\varepsilon>0$ corresponds an $N$ such that $\left\|f_{n}-f_{m}\right\|<\varepsilon$ if $n \geq N$ and $m \geq N$. It follows (by Theorem 7.8) that there is a function $f$ with domain $X$ to which $\left\{f_{n}\right\}$ converges uniformly. By Theorem 7.12, $f$ is continuous. Moreover, $f$ is bounded, since there is an $n$ such that $\left|f(x)-f_{n}(x)\right|<1$ for all $x \in X$, and $f_{n}$ is bounded.
+
+Thus $f \in \mathscr{C}(X)$, and since $f_{n} \rightarrow f$ uniformly on $X$, we have $\left\|f-f_{n}\right\| \rightarrow 0$ as $n \rightarrow \infty$.
+
+\section*{UNIFORM CONVERGENCE AND INTEGRATION}
+7.16 Theorem Let $\alpha$ be monotonically increasing on $[a, b]$. Suppose $f_{n} \in \mathscr{R}(\alpha)$ on $[a, b]$, for $n=1,2,3, \ldots$, and suppose $f_{n} \rightarrow f$ uniform on $[a, b]$. Then $f \in \mathscr{R}(\alpha)$ on $[a, b]$, and
+
+
+\begin{equation*}
+\int_{a}^{b} f d \alpha=\lim _{n \rightarrow \infty} \int_{a}^{b} f_{n} d \alpha \tag{23}
+\end{equation*}
+
+
+(The existence of the limit is part of the conclusion.)\\
+Proof It suffices to prove this for real $f_{n}$. Put
+
+
+\begin{equation*}
+\varepsilon_{n}=\sup \left|f_{n}(x)-f(x)\right| \tag{24}
+\end{equation*}
+
+
+the supremum being taken over $a \leq x \leq b$. Then
+
+$$
+f_{n}-\varepsilon_{n} \leq f \leq f_{n}+\varepsilon_{n}
+$$
+
+so that the upper and lower integrals of $f$ (see Definition 6.2) satisfy
+
+
+\begin{equation*}
+\int_{a}^{b}\left(f_{n}-\varepsilon_{n}\right) d \alpha \leq \underline{\int} f d \alpha \leq \bar{\int} f d \alpha \leq \int_{a}^{b}\left(f_{n}+\varepsilon_{n}\right) d \alpha \tag{25}
+\end{equation*}
+
+
+Hence
+
+$$
+0 \leq \bar{\int} f d \alpha-\underline{\int} f d \alpha \leq 2 \varepsilon_{n}[\alpha(b)-\alpha(a)]
+$$
+
+Since $\varepsilon_{n} \rightarrow 0$ as $n \rightarrow \infty$ (Theorem 7.9), the upper and lower integrals of $f$ are equal.
+
+Thus $f \in \mathscr{R}(\alpha)$. Another application of (25) now yields
+
+
+\begin{equation*}
+\left|\int_{a}^{b} f d \alpha-\int_{a}^{b} f_{n} d \alpha\right| \leq \varepsilon_{n}[\alpha(b)-\alpha(a)] . \tag{26}
+\end{equation*}
+
+
+This implies (23).\\
+Corollary If $f_{n} \in \mathscr{R}(\alpha)$ on $[a, b]$ and if
+
+$$
+f(x)=\sum_{n=1}^{\infty} f_{n}(x) \quad(a \leq x \leq b),
+$$
+
+the series converging uniformly on $[a, b]$, then
+
+$$
+\int_{a}^{b} f d \alpha=\sum_{n=1}^{\infty} \int_{a}^{b} f_{n} d \alpha
+$$
+
+In other words, the series may be integrated term by term.
+
+\section*{UNIFORM CONVERGENCE AND DIFFERENTIATION}
+We have already seen, in Example 7.5, that uniform convergence of $\left\{f_{n}\right\}$ implies nothing about the sequence $\left\{f_{n}^{\prime}\right\}$. Thus stronger hypotheses are required for the assertion that $f_{n}^{\prime} \rightarrow f^{\prime}$ if $f_{n} \rightarrow f$.\\
+7.17 Theorem Suppose $\left\{f_{n}\right\}$ is a sequence of functions, differentiable on $[a, b]$ and such that $\left\{f_{n}\left(x_{0}\right)\right\}$ converges for some point $x_{0}$ on $[a, b]$. If $\left\{f_{n}^{\prime}\right\}$ converges uniformly on $[a, b]$, then $\left\{f_{n}\right\}$ converges uniformly on $[a, b]$, to a function $f$, and
+
+
+\begin{equation*}
+f^{\prime}(x)=\lim _{n \rightarrow \infty} f_{n}^{\prime}(x) \quad(a \leq x \leq b) . \tag{27}
+\end{equation*}
+
+
+Proof Let $\varepsilon>0$ be given. Choose $N$ such that $n \geq N, m \geq N$, implies
+
+
+\begin{equation*}
+\left|f_{n}\left(x_{0}\right)-f_{m}\left(x_{0}\right)\right|<\frac{\varepsilon}{2} \tag{28}
+\end{equation*}
+
+
+and
+
+
+\begin{equation*}
+\left|f_{n}^{\prime}(t)-f_{m}^{\prime}(t)\right|<\frac{\varepsilon}{2(b-a)} \quad(a \leq t \leq b) . \tag{29}
+\end{equation*}
+
+
+If we apply the mean value theorem 5.19 to the function $f_{n}-f_{m}$, (29) shows that
+
+
+\begin{equation*}
+\left|f_{n}(x)-f_{m}(x)-f_{n}(t)+f_{m}(t)\right| \leq \frac{|x-t| \varepsilon}{2(b-a)} \leq \frac{\varepsilon}{2} \tag{30}
+\end{equation*}
+
+
+for any $x$ and $t$ on $[a, b]$, if $n \geq N, m \geq N$. The inequality
+
+$$
+\left|f_{n}(x)-f_{m}(x)\right| \leq\left|f_{n}(x)-f_{m}(x)-f_{n}\left(x_{0}\right)+f_{m}\left(x_{0}\right)\right|+\left|f_{n}\left(x_{0}\right)-f_{m}\left(x_{0}\right)\right|
+$$
+
+implies, by (28) and (30), that
+
+$$
+\left|f_{n}(x)-f_{m}(x)\right|<\varepsilon \quad(a \leq x \leq b, n \geq N, m \geq N)
+$$
+
+so that $\left\{f_{n}\right\}$ converges uniformly on $[a, b]$. Let
+
+$$
+f(x)=\lim _{n \rightarrow \infty} f_{n}(x) \quad(a \leq x \leq b)
+$$
+
+Let us now fix a point $x$ on $[a, b]$ and define
+
+
+\begin{equation*}
+\phi_{n}(t)=\frac{f_{n}(t)-f_{n}(x)}{t-x}, \quad \phi(t)=\frac{f(t)-f(x)}{t-x} \tag{31}
+\end{equation*}
+
+
+for $a \leq t \leq b, t \neq x$. Then
+
+
+\begin{equation*}
+\lim _{t \rightarrow x} \phi_{n}(t)=f_{n}^{\prime}(x) \quad(n=1,2,3, \ldots) \tag{32}
+\end{equation*}
+
+
+The first inequality in (30) shows that
+
+$$
+\left|\phi_{n}(t)-\phi_{m}(t)\right| \leq \frac{\varepsilon}{2(b-a)} \quad(n \geq N, m \geq N)
+$$
+
+so that $\left\{\phi_{n}\right\}$ converges uniformly, for $t \neq x$. Since $\left\{f_{n}\right\}$ converges to $f$, we conclude from (31) that
+
+
+\begin{equation*}
+\lim _{n \rightarrow \infty} \phi_{n}(t)=\phi(t) \tag{33}
+\end{equation*}
+
+
+uniformly for $a \leq t \leq b, t \neq x$.\\
+If we now apply Theorem 7.11 to $\left\{\phi_{n}\right\}$, (32) and (33) show that
+
+$$
+\lim _{t \rightarrow x} \phi(t)=\lim _{n \rightarrow \infty} f_{n}^{\prime}(x)
+$$
+
+and this is (27), by the definition of $\phi(t)$.\\
+Remark: If the continuity of the functions $f_{n}^{\prime}$ is assumed in addition to the above hypotheses, then a much shorter proof of (27) can be based on Theorem 7.16 and the fundamental theorem of calculus.\\
+7.18 Theorem There exists a real continuous function on the real line which is nowhere differentiable.
+
+Proof Define
+
+
+\begin{equation*}
+\varphi(x)=|x| \quad(-1 \leq x \leq 1) \tag{34}
+\end{equation*}
+
+
+and extend the definition of $\varphi(x)$ to all real $x$ by requiring that
+
+
+\begin{equation*}
+\varphi(x+2)=\varphi(x) . \tag{35}
+\end{equation*}
+
+
+Then, for all $s$ and $t$,
+
+
+\begin{equation*}
+|\varphi(s)-\varphi(t)| \leq|s-t| . \tag{36}
+\end{equation*}
+
+
+In particular, $\varphi$ is continuous on $R^{1}$. Define
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty}\left(\frac{3}{4}\right)^{n} \varphi\left(4^{n} x\right) . \tag{37}
+\end{equation*}
+
+
+Since $0 \leq \varphi \leq 1$, Theorem 7.10 shows that the series (37) converges uniformly on $R^{1}$. By Theorem 7.12, $f$ is continuous on $R^{1}$.
+
+Now fix a real number $x$ and a positive integer $m$. Put
+
+
+\begin{equation*}
+\delta_{m}= \pm \frac{1}{2} \cdot 4^{-m} \tag{38}
+\end{equation*}
+
+
+where the sign is so chosen that no integer lies between $4^{m} x$ and $4^{m}\left(x+\delta_{m}\right)$. This can be done, since $4^{m}\left|\delta_{m}\right|=\frac{1}{2}$. Define
+
+
+\begin{equation*}
+\gamma_{n}=\frac{\varphi\left(4^{n}\left(x+\delta_{m}\right)\right)-\varphi\left(4^{n} x\right)}{\delta_{m}} . \tag{39}
+\end{equation*}
+
+
+When $n>m$, then $4^{n} \delta_{m}$ is an even integer, so that $\gamma_{n}=0$. When $0 \leq n \leq m$, (36) implies that $\left|\gamma_{n}\right| \leq 4^{n}$.
+
+Since $\left|\gamma_{m}\right|=4^{m}$, we conclude that
+
+$$
+\begin{aligned}
+\left|\frac{f\left(x+\delta_{m}\right)-f(x)}{\delta_{m}}\right| & =\left|\sum_{n=0}^{m}\left(\frac{3}{4}\right)^{n} \gamma_{n}\right| \\
+& \geq 3^{m}-\sum_{n=0}^{m-1} 3^{n} \\
+& =\frac{1}{2}\left(3^{m}+1\right) .
+\end{aligned}
+$$
+
+As $m \rightarrow \infty, \delta_{m} \rightarrow 0$. It follows that $f$ is not differentiable at $x$.
+
+\section*{EQUICONTINUOUS FAMILIES OF FUNCTIONS}
+In Theorem 3.6 we saw that every bounded sequence of complex numbers contains a convergent subsequence, and the question arises whether something similar is true for sequences of functions. To make the question more precise, we shall define two kinds of boundedness.\\
+7.19 Definition Let $\left\{f_{n}\right\}$ be a sequence of functions defined on a set $E$.
+
+We say that $\left\{f_{n}\right\}$ is pointwise bounded on $E$ if the sequence $\left\{f_{n}(x)\right\}$ is bounded for every $x \in E$, that is, if there exists a finite-valued function $\phi$ defined on $E$ such that
+
+$$
+\left|f_{n}(x)\right|<\phi(x) \quad(x \in E, n=1,2,3, \ldots) .
+$$
+
+We say that $\left\{f_{n}\right\}$ is uniformly bounded on $E$ if there exists a number $M$ such that
+
+$$
+\left|f_{n}(x)\right|<M \quad(x \in E, n=1,2,3, \ldots)
+$$
+
+Now if $\left\{f_{n}\right\}$ is pointwise bounded on $E$ and $E_{1}$ is a countable subset of $E$, it is always possible to find a subsequence $\left\{f_{n_{k}}\right\}$ such that $\left\{f_{n_{k}}(x)\right\}$ converges for every $x \in E_{1}$. This can be done by the diagonal process which is used in the proof of Theorem 7.23.
+
+However, even if $\left\{f_{n}\right\}$ is a uniformly bounded sequence of continuous functions on a compact set $E$, there need not exist a subsequence which converges pointwise on $E$. In the following example, this would be quite troublesome to prove with the equipment which we have at hand so far, but the proof is quite simple if we appeal to a theorem from Chap. 11.\\
+7.20 Example Let
+
+$$
+f_{n}(x)=\sin n x \quad(0 \leq x \leq 2 \pi, n=1,2,3, \ldots) .
+$$
+
+Suppose there exists a sequence $\left\{n_{k}\right\}$ such that $\left\{\sin n_{k} x\right\}$ converges, for every $x \in[0,2 \pi]$. In that case we must have
+
+$$
+\lim _{k \rightarrow \infty}\left(\sin n_{k} x-\sin n_{k+1} x\right)=0 \quad(0 \leq x \leq 2 \pi) ;
+$$
+
+hence
+
+
+\begin{equation*}
+\lim _{k \rightarrow \infty}\left(\sin n_{k} x-\sin n_{k+1} x\right)^{2}=0 \quad(0 \leq x \leq 2 \pi) \tag{40}
+\end{equation*}
+
+
+By Lebesgue's theorem concerning integration of boundedly convergent sequences (Theorem 11.32), (40) implies
+
+
+\begin{equation*}
+\lim _{k \rightarrow \infty} \int_{0}^{2 \pi}\left(\sin n_{k} x-\sin n_{k+1} x\right)^{2} d x=0 \tag{41}
+\end{equation*}
+
+
+But a simple calculation shows that
+
+$$
+\int_{0}^{2 \pi}\left(\sin n_{k} x-\sin n_{k+1} x\right)^{2} d x=2 \pi
+$$
+
+which contradicts (41).
+
+Another question is whether every convergent sequence contains a uniformly convergent subsequence. Our next example will show that this need not be so, even if the sequence is uniformly bounded on a compact set. (Example 7.6 shows that a sequence of bounded functions may converge without being uniformly bounded; but it is trivial to see that uniform convergence of a sequence of bounded functions implies uniform boundedness.)\\
+7.21 Example Let
+
+$$
+f_{n}(x)=\frac{x^{2}}{x^{2}+(1-n x)^{2}} \quad(0 \leq x \leq 1, n=1,2,3, \ldots)
+$$
+
+Then $\left|f_{n}(x)\right| \leq 1$, so that $\left\{f_{n}\right\}$ is uniformly bounded on $[0,1]$. Also
+
+$$
+\lim _{n \rightarrow \infty} f_{n}(x)=0 \quad(0 \leq x \leq 1)
+$$
+
+but
+
+$$
+f_{n}\left(\frac{1}{n}\right)=1 \quad(n=1,2,3, \ldots)
+$$
+
+so that no subsequence can converge uniformly on $[0,1]$.\\
+The concept which is needed in this connection is that of equicontinuity; it is given in the following definition.\\
+7.22 Definition A family $\mathscr{F}$ of complex functions $f$ defined on a set $E$ in a metric space $X$ is said to be equicontinuous on $E$ if for every $\varepsilon>0$ there exists a $\delta>0$ such that
+
+$$
+|f(x)-f(y)|<\varepsilon
+$$
+
+whenever $d(x, y)<\delta, x \in E, y \in E$, and $f \in \mathscr{F}$. Here $d$ denotes the metric of $X$.\\
+It is clear that every member of an equicontinuous family is uniformly continuous.
+
+The sequence of Example 7.21 is not equicontinuous.\\
+Theorems 7.24 and 7.25 will show that there is a very close relation between equicontinuity, on the one hand, and uniform convergence of sequences of continuous functions, on the other. But first we describe a selection process which has nothing to do with continuity.\\
+7.23 Theorem If $\left\{f_{n}\right\}$ is a pointwise bounded sequence of complex functions on a countable set $E$, then $\left\{f_{n}\right\}$ has a subsequence $\left\{f_{n_{k}}\right\}$ such that $\left\{f_{n_{k}}(x)\right\}$ converges for every $x \in E$.
+
+Proof Let $\left\{x_{i}\right\}, i=1,2,3, \ldots$, be the points of $E$, arranged in a sequence. Since $\left\{f_{n}\left(x_{1}\right)\right\}$ is bounded, there exists a subsequence, which we shall denote by $\left\{f_{1, k}\right\}$, such that $\left\{f_{1, k}\left(x_{1}\right)\right\}$ converges as $k \rightarrow \infty$.
+
+Let us now consider sequences $S_{1}, S_{2}, S_{3}, \ldots$, which we represent by the array
+
+$$
+\begin{array}{cccccc}
+S_{1}: & f_{1,1} & f_{1,2} & f_{1,3} & f_{1,4} & \cdots \\
+S_{2}: & f_{2,1} & f_{2,2} & f_{2,3} & f_{2,4} & \cdots \\
+S_{3}: & f_{3,1} & f_{3,2} & f_{3,3} & f_{3,4} & \cdots \\
+\cdots & \cdots & \cdots & \cdots & \cdots
+\end{array}
+$$
+
+and which have the following properties:\\
+(a) $S_{n}$ is a subsequence of $S_{n-1}$, for $n=2,3,4, \ldots$.\\
+(b) $\left\{f_{n, k}\left(x_{n}\right)\right\}$ converges, as $k \rightarrow \infty$ (the boundedness of $\left\{f_{n}\left(x_{n}\right)\right\}$ makes it possible to choose $S_{n}$ in this way);\\
+(c) The order in which the functions appear is the same in each sequence; i.e., if one function precedes another in $S_{1}$, they are in the same relation in every $S_{n}$, until one or the other is deleted. Hence, when going from one row in the above array to the next below, functions may move to the left but never to the right.\\
+We now go down the diagonal of the array; i.e., we consider the sequence
+
+$$
+S: f_{1,1} \quad f_{2,2} \quad f_{3,3} \quad f_{4,4} \cdots
+$$
+
+By (c), the sequence $S$ (except possibly its first $n-1$ terms) is a subsequence of $S_{n}$, for $n=1,2,3, \ldots$. Hence (b) implies that $\left\{f_{n, n}\left(x_{i}\right)\right\}$ converges, as $n \rightarrow \infty$, for every $x_{i} \in E$.\\
+7.24 Theorem If $K$ is a compact metric space, if $f_{n} \in \mathscr{C}(K)$ for $n=1,2,3, \ldots$, and if $\left\{f_{n}\right\}$ converges uniformly on $K$, then $\left\{f_{n}\right\}$ is equicontinuous on $K$.
+
+Proof Let $\varepsilon>0$ be given. Since $\left\{f_{n}\right\}$ converges uniformly, there is an integer $N$ such that
+
+
+\begin{equation*}
+\left\|f_{n}-f_{N}\right\|<\varepsilon \quad(n>N) \tag{42}
+\end{equation*}
+
+
+(See Definition 7.14.) Since continuous functions are uniformly continuous on compact sets, there is a $\delta>0$ such that
+
+
+\begin{equation*}
+\left|f_{i}(x)-f_{i}(y)\right|<\varepsilon \tag{43}
+\end{equation*}
+
+
+if $1 \leq i \leq N$ and $d(x, y)<\delta$.\\
+If $n>N$ and $d(x, y)<\delta$, it follows that
+
+$$
+\left|f_{n}(x)-f_{n}(y)\right| \leq\left|f_{n}(x)-f_{N}(x)\right|+\left|f_{N}(x)-f_{N}(y)\right|+\left|f_{N}(y)-f_{n}(y)\right|<3 \varepsilon
+$$
+
+In conjunction with (43), this proves the theorem.\\
+7.25 Theorem If $K$ is compact, if $f_{n} \in \mathscr{C}(K)$ for $n=1,2,3, \ldots$, and if $\left\{f_{n}\right\}$ is pointwise bounded and equicontinuous on $K$, then\\
+(a) $\quad\left\{f_{n}\right\}$ is uniformly bounded on $K$,\\
+(b) $\quad\left\{f_{n}\right\}$ contains a uniformly convergent subsequence.
+
+\section*{Proof}
+(a) Let $\varepsilon>0$ be given and choose $\delta>0$, in accordance with Definition 7.22, so that
+
+
+\begin{equation*}
+\left|f_{n}(x)-f_{n}(y)\right|<\varepsilon \tag{44}
+\end{equation*}
+
+
+for all $n$, provided that $d(x, y)<\delta$.\\
+Since $K$ is compact, there are finitely many points $p_{1}, \ldots, p_{r}$ in $K$ such that to every $x \in K$ corresponds at least one $p_{i}$ with $d\left(x, p_{i}\right)<\delta$. Since $\left\{f_{n}\right\}$ is pointwise bounded, there exist $M_{i}<\infty$ such that $\left|f_{n}\left(p_{i}\right)\right|<M_{i}$ for all $n$. If $M=\max \left(M_{1}, \ldots, M_{r}\right)$, then $\left|f_{n}(x)\right|<M+\varepsilon$ for every $x \in K$. This proves (a).\\
+(b) Let $E$ be a countable dense subset of $K$. (For the existence of such a set $E$, see Exercise 25, Chap. 2.) Theorem 7.23 shows that $\left\{f_{n}\right\}$ has a subsequence $\left\{f_{n_{i}}\right\}$ such that $\left\{f_{n_{i}}(x)\right\}$ converges for every $x \in E$.
+
+Put $f_{n_{i}}=g_{i}$, to simplify the notation. We shall prove that $\left\{g_{i}\right\}$ converges uniformly on $K$.
+
+Let $\varepsilon>0$, and pick $\delta>0$ as in the beginning of this proof. Let $V(x, \delta)$ be the set of all $y \in K$ with $d(x, y)<\delta$. Since $E$ is dense in $K$, and $K$ is compact, there are finitely many points $x_{1}, \ldots, x_{m}$ in $E$ such that
+
+
+\begin{equation*}
+K \subset V\left(x_{1}, \delta\right) \cup \cdots \cup V\left(x_{m}, \delta\right) \tag{45}
+\end{equation*}
+
+
+Since $\left\{g_{i}(x)\right\}$ converges for every $x \in E$, there is an integer $N$ such that
+
+
+\begin{equation*}
+\left|g_{i}\left(x_{s}\right)-g_{j}\left(x_{s}\right)\right|<\varepsilon \tag{46}
+\end{equation*}
+
+
+whenever $i \geq N, j \geq N, 1 \leq s \leq m$.\\
+If $x \in K$, (45) shows that $x \in V\left(x_{s}, \delta\right)$ for some $s$, so that
+
+$$
+\left|g_{i}(x)-g_{i}\left(x_{s}\right)\right|<\varepsilon
+$$
+
+for every $i$. If $i \geq N$ and $j \geq N$, it follows from (46) that
+
+$$
+\begin{aligned}
+\left|g_{i}(x)-g_{j}(x)\right| & \leq\left|g_{i}(x)-g_{i}\left(x_{s}\right)\right|+\left|g_{i}\left(x_{s}\right)-g_{j}\left(x_{s}\right)\right|+\left|g_{j}\left(x_{s}\right)-g_{j}(x)\right| \\
+& <3 \varepsilon .
+\end{aligned}
+$$
+
+This completes the proof.
+
+\section*{THE STONE-WEIERSTRASS THEOREM}
+7.26 Theorem If $f$ is a continuous complex function on $[a, b]$, there exists a sequence of polynomials $P_{n}$ such that
+
+$$
+\lim _{n \rightarrow \infty} P_{n}(x)=f(x)
+$$
+
+uniformly on $[a, b]$. If $f$ is real, the $P_{n}$ may be taken real.\\
+This is the form in which the theorem was originally discovered by Weierstrass.
+
+Proof We may assume, without loss of generality, that $[a, b]=[0,1]$. We may also assume that $f(0)=f(1)=0$. For if the theorem is proved for this case, consider
+
+$$
+g(x)=f(x)-f(0)-x[f(1)-f(0)] \quad(0 \leq x \leq 1) .
+$$
+
+Here $g(0)=g(1)=0$, and if $g$ can be obtained as the limit of a uniformly convergent sequence of polynomials, it is clear that the same is true for $f$, since $f-g$ is a polynomial.
+
+Furthermore, we define $f(x)$ to be zero for $x$ outside $[0,1]$. Then $f$ is uniformly continuous on the whole line.
+
+We put
+
+
+\begin{equation*}
+Q_{n}(x)=c_{n}\left(1-x^{2}\right)^{n} \quad(n=1,2,3, \ldots) \tag{47}
+\end{equation*}
+
+
+where $c_{n}$ is chosen so that
+
+
+\begin{equation*}
+\int_{-1}^{1} Q_{n}(x) d x=1 \quad(n=1,2,3, \ldots) \tag{48}
+\end{equation*}
+
+
+We need some information about the order of magnitude of $c_{n}$. Since
+
+$$
+\begin{aligned}
+\int_{-1}^{1}\left(1-x^{2}\right)^{n} d x=2 \int_{0}^{1}\left(1-x^{2}\right)^{n} d x & \geq 2 \int_{0}^{1 / \sqrt{n}}\left(1-x^{2}\right)^{n} d x \\
+& \geq 2 \int_{0}^{1 / \sqrt{n}}\left(1-n x^{2}\right) d x \\
+& =\frac{4}{3 \sqrt{n}} \\
+& >\frac{1}{\sqrt{n}}
+\end{aligned}
+$$
+
+it follows from (48) that
+
+
+\begin{equation*}
+c_{n}<\sqrt{n} \tag{49}
+\end{equation*}
+
+
+The inequality $\left(1-x^{2}\right)^{n} \geq 1-n x^{2}$ which we used above is easily shown to be true by considering the function
+
+$$
+\left(1-x^{2}\right)^{n}-1+n x^{2}
+$$
+
+which is zero at $x=0$ and whose derivative is positive in $(0,1)$.\\
+For any $\delta>0$, (49) implies
+
+
+\begin{equation*}
+Q_{n}(x) \leq \sqrt{n}\left(1-\delta^{2}\right)^{n} \quad(\delta \leq|x| \leq 1), \tag{50}
+\end{equation*}
+
+
+so that $Q_{n} \rightarrow 0$ uniformly in $\delta \leq|x| \leq 1$.\\
+Now set
+
+
+\begin{equation*}
+P_{n}(x)=\int_{-1}^{1} f(x+t) Q_{n}(t) d t \quad(0 \leq x \leq 1) \tag{51}
+\end{equation*}
+
+
+Our assumptions about $f$ show, by a simple change of variable, that
+
+$$
+P_{n}(x)=\int_{-x}^{1-x} f(x+t) Q_{n}(t) d t=\int_{0}^{1} f(t) Q_{n}(t-x) d t
+$$
+
+and the last integral is clearly a polynomial in $x$. Thus $\left\{P_{n}\right\}$ is a sequence of polynomials, which are real if $f$ is real.
+
+Given $\varepsilon>0$, we choose $\delta>0$ such that $|y-x|<\delta$ implies
+
+$$
+|f(y)-f(x)|<\frac{\varepsilon}{2}
+$$
+
+Let $M=\sup |f(x)|$. Using (48), (50), and the fact that $Q_{n}(x) \geq 0$, we see that for $0 \leq x \leq 1$,
+
+$$
+\begin{aligned}
+\left|P_{n}(x)-f(x)\right| & =\left|\int_{-1}^{1}[f(x+t)-f(x)] Q_{n}(t) d t\right| \\
+& \leq \int_{-1}^{1}|f(x+t)-f(x)| Q_{n}(t) d t \\
+& \leq 2 M \int_{-1}^{-\delta} Q_{n}(t) d t+\frac{\varepsilon}{2} \int_{-\delta}^{\delta} Q_{n}(t) d t+2 M \int_{\delta}^{1} Q_{n}(t) d t \\
+& \leq 4 M \sqrt{n}\left(1-\delta^{2}\right)^{n}+\frac{\varepsilon}{2} \\
+& <\varepsilon
+\end{aligned}
+$$
+
+for all large enough $n$, which proves the theorem.\\
+It is instructive to sketch the graphs of $Q_{n}$ for a few values of $n$; also, note that we needed uniform continuity of $f$ to deduce uniform convergence of $\left\{P_{n}\right\}$.
+
+In the proof of Theorem 7.32 we shall not need the full strength of Theorem 7.26, but only the following special case, which we state as a corollary.\\
+7.27 Corollary For every interval $[-a, a]$ there is a sequence of real polynomials $P_{n}$ such that $P_{n}(0)=0$ and such that
+
+$$
+\lim _{n \rightarrow \infty} P_{n}(x)=|x|
+$$
+
+uniformly on $[-a, a]$.\\
+Proof By Theorem 7.26, there exists a sequence $\left\{P_{n}^{*}\right\}$ of real polynomials which converges to $|x|$ uniformly on $[-a, a]$. In particular, $P_{n}^{*}(0) \rightarrow 0$ as $n \rightarrow \infty$. The polynomials
+
+$$
+P_{n}(x)=P_{n}^{*}(x)-P_{n}^{*}(0) \quad(n=1,2,3, \ldots)
+$$
+
+have desired properties.\\
+We shall now isolate those properties of the polynomials which make the Weierstrass theorem possible.\\
+7.28 Definition A family $\mathscr{A}$ of complex functions defined on a set $E$ is said to be an algebra if (i) $f+g \in \mathscr{A}$, (ii) $f g \in \mathscr{A}$, and (iii) $c f \in \mathscr{A}$ for all $f \in \mathscr{A}, g \in \mathscr{A}$ and for all complex constants $c$, that is, if $\mathscr{A}$ is closed under addition, multiplication, and scalar multiplication. We shall also have to consider algebras of real functions; in this case, (iii) is of course only required to hold for all real $c$.
+
+If $\mathscr{A}$ has the property that $f \in \mathscr{A}$ whenever $f_{n} \in \mathscr{A}(n=1,2,3, \ldots)$ and $f_{n} \rightarrow f$ uniformly on $E$, then $\mathscr{A}$ is said to be uniformly closed.
+
+Let $\mathscr{B}$ be the set of all functions which are limits of uniformly convergent sequences of members of $\mathscr{A}$. Then $\mathscr{B}$ is called the uniform closure of $\mathscr{A}$. (See Definition 7.14.)
+
+For example, the set of all polynomials is an algebra, and the Weierstrass theorem may be stated by saying that the set of continuous functions on $[a, b]$ is the uniform closure of the set of polynomials on $[a, b]$.\\
+7.29 Theorem Let $\mathscr{B}$ be the uniform closure of an algebra $\mathscr{A}$ of bounded functions. Then $\mathscr{B}$ is a uniformly closed algebra.
+
+Proof If $f \in \mathscr{B}$ and $g \in \mathscr{B}$, there exist uniformly convergent sequences $\left\{f_{n}\right\},\left\{g_{n}\right\}$ such that $f_{n} \rightarrow f, g_{n} \rightarrow g$ and $f_{n} \in \mathscr{A}, g_{n} \in \mathscr{A}$. Since we are dealing with bounded functions, it is easy to show that
+
+$$
+f_{n}+g_{n} \rightarrow f+g, \quad f_{n} g_{n} \rightarrow f g, \quad c f_{n} \rightarrow c f,
+$$
+
+where $c$ is any constant, the convergence being uniform in each case.\\
+Hence $f+g \in \mathscr{B}, f g \in \mathscr{B}$, and $c f \in \mathscr{B}$, so that $\mathscr{B}$ is an algebra.\\
+By Theorem 2.27, $\mathscr{B}$ is (uniformly) closed.\\
+7.30 Definition Let $\mathscr{A}$ be a family of functions on a set $E$. Then $\mathscr{A}$ is said to separate points on $E$ if to every pair of distinct points $x_{1}, x_{2} \in E$ there corresponds a function $f \in \mathscr{A}$ such that $f\left(x_{1}\right) \neq f\left(x_{2}\right)$.
+
+If to each $x \in E$ there corresponds a function $g \in \mathscr{A}$ such that $g(x) \neq 0$, we say that $\mathscr{A}$ vanishes at no point of $E$.
+
+The algebra of all polynomials in one variable clearly has these properties on $R^{1}$. An example of an algebra which does not separate points is the set of all even polynomials, say on $[-1,1]$, since $f(-x)=f(x)$ for every even function $f$.
+
+The following theorem will illustrate these concepts further.\\
+7.31 Theorem Suppose $\mathscr{A}$ is an algebra of functions on a set $E, \mathscr{A}$ separates points on $E$, and $\mathscr{A}$ vanishes at no point of $E$. Suppose $x_{1}, x_{2}$ are distinct points of $E$, and $c_{1}, c_{2}$ are constants (real if $\mathscr{A}$ is a real algebra). Then $\mathscr{A}$ contains a function $f$ such that
+
+$$
+f\left(x_{1}\right)=c_{1}, \quad f\left(x_{2}\right)=c_{2}
+$$
+
+Proof The assumptions show that $\mathscr{A}$ contains functions $g, h$, and $k$ such that
+
+$$
+g\left(x_{1}\right) \neq g\left(x_{2}\right), \quad h\left(x_{1}\right) \neq 0, \quad k\left(x_{2}\right) \neq 0 .
+$$
+
+Put
+
+$$
+u=g k-g\left(x_{1}\right) k, \quad v=g h-g\left(x_{2}\right) h .
+$$
+
+Then $u \in \mathscr{A}, v \in \mathscr{A}, u\left(x_{1}\right)=v\left(x_{2}\right)=0, u\left(x_{2}\right) \neq 0$, and $v\left(x_{1}\right) \neq 0$. Therefore
+
+$$
+f=\frac{c_{1} v}{v\left(x_{1}\right)}+\frac{c_{2} u}{u\left(x_{2}\right)}
+$$
+
+has the desired properties.\\
+We now have all the material needed for Stone's generalization of the Weierstrass theorem.\\
+7.32 Theorem Let $\mathscr{A}$ be an algebra of real continuous functions on a compact set $K$. If $\mathscr{A}$ separates points on $K$ and if $\mathscr{A}$ vanishes at no point of $K$, then the uniform closure $\mathscr{B}$ of $\mathscr{A}$ consists of all real continuous functions on $K$.
+
+We shall divide the proof into four steps.\\
+step 1 If $f \in \mathscr{B}$, then $|f| \in \mathscr{B}$.\\
+Proof Let
+
+
+\begin{equation*}
+a=\sup |f(x)| \quad(x \in K) \tag{52}
+\end{equation*}
+
+
+and let $\varepsilon>0$ be given. By Corollary 7.27 there exist real numbers $c_{1}, \ldots, c_{n}$ such that
+
+
+\begin{equation*}
+\left|\sum_{i=1}^{n} c_{i} y^{i}-|y|\right|<\varepsilon \quad(-a \leq y \leq a) . \tag{53}
+\end{equation*}
+
+
+Since $\mathscr{B}$ is an algebra, the function
+
+$$
+g=\sum_{i=1}^{n} c_{i} f^{i}
+$$
+
+is a member of $\mathscr{B}$. By (52) and (53), we have
+
+$$
+|g(x)-|f(x)||<\varepsilon \quad(x \in K)
+$$
+
+Since $\mathscr{B}$ is uniformly closed, this shows that $|f| \in \mathscr{B}$.\\
+step 2 If $f \in \mathscr{B}$ and $g \in \mathscr{B}$, then $\max (f, g) \in \mathscr{B}$ and $\min (f, g) \in \mathscr{B}$.\\
+By $\max (f, g)$ we mean the function $h$ defined by
+
+$$
+h(x)= \begin{cases}f(x) & \text { if } f(x) \geq g(x) \\ g(x) & \text { if } f(x)<g(x)\end{cases}
+$$
+
+and $\min (f, g)$ is defined likewise.\\
+Proof Step 2 follows from step 1 and the identities
+
+$$
+\begin{aligned}
+& \max (f, g)=\frac{f+g}{2}+\frac{|f-g|}{2}, \\
+& \min (f, g)=\frac{f+g}{2}-\frac{|f-g|}{2} .
+\end{aligned}
+$$
+
+By iteration, the result can of course be extended to any finite set of functions: If $f_{1}, \ldots, f_{n} \in \mathscr{B}$, then $\max \left(f_{1}, \ldots, f_{n}\right) \in \mathscr{B}$, and
+
+$$
+\min \left(f_{1}, \ldots, f_{n}\right) \in \mathscr{B}
+$$
+
+step 3 Given a real function $f$, continuous on $K$, a point $x \in K$, and $\varepsilon>0$, there exists a function $g_{x} \in \mathscr{B}$ such that $g_{x}(x)=f(x)$ and
+
+
+\begin{equation*}
+g_{x}(t)>f(t)-\varepsilon \quad(t \in K) \tag{54}
+\end{equation*}
+
+
+Proof Since $\mathscr{A} \subset \mathscr{B}$ and $\mathscr{A}$ satisfies the hypotheses of Theorem 7.31 so does $\mathscr{B}$. Hence, for every $y \in K$, we can find a function $h_{y} \in \mathscr{B}$ such that
+
+
+\begin{equation*}
+h_{y}(x)=f(x), \quad h_{y}(y)=f(y) \tag{55}
+\end{equation*}
+
+
+By the continuity of $h_{y}$ there exists an open set $J_{y}$, containing $y$, such that
+
+
+\begin{equation*}
+h_{y}(t)>f(t)-\varepsilon \quad\left(t \in J_{y}\right) . \tag{56}
+\end{equation*}
+
+
+Since $K$ is compact, there is a finite set of points $y_{1}, \ldots, y_{n}$ such that
+
+
+\begin{equation*}
+K \subset J_{y_{1}} \cup \cdots \cup J_{y_{n}} . \tag{57}
+\end{equation*}
+
+
+Put
+
+$$
+g_{x}=\max \left(h_{y_{1}}, \ldots, h_{y_{n}}\right)
+$$
+
+By step $2, g_{x} \in \mathscr{B}$, and the relations (55) to (57) show that $g_{x}$ has the other required properties.\\
+step 4 Given a real function $f$, continuous on $K$, and $\varepsilon>0$, there exists a function $h \in \mathscr{B}$ such that
+
+
+\begin{equation*}
+|h(x)-f(x)|<\varepsilon \quad(x \in K) . \tag{58}
+\end{equation*}
+
+
+Since $\mathscr{B}$ is uniformly closed, this statement is equivalent to the conclusion of the theorem.
+
+Proof Let us consider the functions $g_{x}$, for each $x \in K$, constructed in step 3. By the continuity of $g_{x}$, there exist open sets $V_{x}$ containing $x$, such that
+
+
+\begin{equation*}
+g_{x}(t)<f(t)+\varepsilon \quad\left(t \in V_{x}\right) . \tag{59}
+\end{equation*}
+
+
+Since $K$ is compact, there exists a finite set of points $x_{1}, \ldots, x_{m}$ such that
+
+
+\begin{equation*}
+K \subset V_{x_{1}} \cup \cdots \cup V_{x_{m}} . \tag{60}
+\end{equation*}
+
+
+Put
+
+$$
+h=\min \left(g_{x_{1}}, \ldots, g_{x_{m}}\right) .
+$$
+
+By step 2, $h \in \mathscr{B}$, and (54) implies
+
+
+\begin{equation*}
+h(t)>f(t)-\varepsilon \quad(t \in K) \tag{61}
+\end{equation*}
+
+
+whereas (59) and (60) imply
+
+
+\begin{equation*}
+h(t)<f(t)+\varepsilon \quad(t \in K) . \tag{62}
+\end{equation*}
+
+
+Finally, (58) follows from (61) and (62).
+
+Theorem 7.32 does not hold for complex algebras. A counterexample is given in Exercise 21. However, the conclusion of the theorem does hold, even for complex algebras, if an extra condition is imposed on $\mathscr{A}$, namely, that $\mathscr{A}$ be self-adjoint. This means that for every $f \in \mathscr{A}$ its complex conjugate $\bar{f}$ must also belong to $\mathscr{A} ; \bar{f}$ is defined by $\bar{f}(x)=\overline{f(x)}$.\\
+7.33 Theorem Suppose $\mathscr{A}$ is a self-adjoint algebra of complex continuous functions on a compact set $K, \mathscr{A}$ separates points on $K$, and $\mathscr{A}$ vanishes at no point of $K$. Then the uniform closure $\mathscr{B}$ of $\mathscr{A}$ consists of all complex continuous functions on $K$. In other words, $\mathscr{A}$ is dense $\mathscr{C}(K)$.
+
+Proof Let $\mathscr{A}_{R}$ be the set of all real functions on $K$ which belong to $\mathscr{A}$.\\
+If $f \in \mathscr{A}$ and $f=u+i v$, with $u, v$ real, then $2 u=f+\bar{f}$, and since $\mathscr{A}$ is self-adjoint, we see that $u \in \mathscr{A}_{R}$. If $x_{1} \neq x_{2}$, there exists $f \in \mathscr{A}$ such that $f\left(x_{1}\right)=1, f\left(x_{2}\right)=0$; hence $0=u\left(x_{2}\right) \neq u\left(x_{1}\right)=1$, which shows that $\mathscr{A}_{R}$ separates points on $K$. If $x \in K$, then $g(x) \neq 0$ for some $g \in \mathscr{A}$, and there is a complex number $\lambda$ such that $\lambda g(x)>0$; if $f=\lambda g, f=u+i v$, it follows that $u(x)>0$; hence $\mathscr{A}_{R}$ vanishes at no point of $K$.
+
+Thus $\mathscr{A}_{R}$ satisfies the hypotheses of Theorem 7.32. It follows that every real continuous function on $K$ lies in the uniform closure of $\mathscr{A}_{R}$, hence lies in $\mathscr{B}$. If $f$ is a complex continuous function on $K, f=u+i v$, then $u \in \mathscr{B}, v \in \mathscr{B}$, hence $f \in \mathscr{B}$. This completes the proof.
+
+\section*{EXERCISES}
+\begin{enumerate}
+  \item Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+  \item If $\left\{f_{n}\right\}$ and $\left\{g_{n}\right\}$ converge uniformly on a set $E$, prove that $\left\{f_{n}+g_{n}\right\}$ converges uniformly on $E$. If, in addition, $\left\{f_{n}\right\}$ and $\left\{g_{n}\right\}$ are sequences of bounded functions, prove that $\left\{f_{n} g_{n}\right\}$ converges uniformly on $E$.
+  \item Construct sequences $\left\{f_{n}\right\},\left\{g_{n}\right\}$ which converge uniformly on some set $E$, but such that $\left\{f_{n} g_{n}\right\}$ does not converge uniformly on $E$ (of course, $\left\{f_{n} g_{n}\right\}$ must converge on E).
+  \item Consider
+\end{enumerate}
+
+$$
+f(x)=\sum_{n=1}^{\infty} \frac{1}{1+n^{2} x} .
+$$
+
+For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?\\
+5. Let
+
+$$
+f_{n}(x)= \begin{cases}0 & \left(x<\frac{1}{n+1}\right), \\ \sin ^{2} \frac{\pi}{x} & \left(\frac{1}{n+1} \leq x \leq \frac{1}{n}\right), \\ 0 & \left(\frac{1}{n}<x\right) .\end{cases}
+$$
+
+Show that $\left\{f_{n}\right\}$ converges to a continuous function, but not uniformly. Use the series $\Sigma f_{n}$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.\\
+6. Prove that the series
+
+$$
+\sum_{n=1}^{\infty}(-1)^{n} \frac{x^{2}+n}{n^{2}}
+$$
+
+converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.\\
+7. For $n=1,2,3, \ldots, x$ real, put
+
+$$
+f_{n}(x)=\frac{x}{1+n x^{2}}
+$$
+
+Show that $\left\{f_{n}\right\}$ converges uniformly to a function $f$, and that the equation
+
+$$
+f^{\prime}(x)=\lim _{n \rightarrow \infty} f_{n}^{\prime}(x)
+$$
+
+is correct if $x \neq 0$, but false if $x=0$.\\
+8. If
+
+$$
+I(x)= \begin{cases}0 & (x \leq 0), \\ 1 & (x>0),\end{cases}
+$$
+
+if $\left\{x_{n}\right\}$ is a sequence of distinct points of $(a, b)$, and if $\Sigma\left|c_{n}\right|$ converges, prove that the series
+
+$$
+f(x)=\sum_{n=1}^{\infty} c_{n} I\left(x-x_{n}\right) \quad(a \leq x \leq b)
+$$
+
+converges uniformly, and that $f$ is continuous for every $x \neq x_{n}$.\\
+9. Let $\left\{f_{n}\right\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
+
+$$
+\lim _{n \rightarrow \infty} f_{n}\left(x_{n}\right)=f(x)
+$$
+
+for every sequence of points $x_{n} \in E$ such that $x_{n} \rightarrow x$, and $x \in E$. Is the converse of this true?\\
+10. Letting $(x)$ denote the fractional part of the real number $x$ (see Exercise 16, Chap. 4, for the definition), consider the function
+
+$$
+f(x)=\sum_{n=1}^{\infty} \frac{(n x)}{n^{2}} \quad(x \text { real })
+$$
+
+Find all discontinuities of $f$, and show that they form a countable dense set. Show that $f$ is nevertheless Riemann-integrable on every bounded interval.\\
+11. Suppose $\left\{f_{n}\right\},\left\{g_{n}\right\}$ are defined on $E$, and\\
+(a) $\Sigma f_{n}$ has uniformly bounded partial sums;\\
+(b) $g_{n} \rightarrow 0$ uniformly on $E$;\\
+(c) $g_{1}(x) \geq g_{2}(x) \geq g_{3}(x) \geq \cdots$ for every $x \in E$.
+
+Prove that $\Sigma f_{n} g_{n}$ converges uniformly on $E$. Hint: Compare with Theorem 3.42.\\
+12. Suppose $g$ and $f_{n}(n=1,2,3, \ldots)$ are defined on ( $0, \infty$ ), are Riemann-integrable on $[t, T]$ whenever $0<t<T<\infty,\left|f_{n}\right| \leq g, f_{n} \rightarrow f$ uniformly on every compact subset of ( $0, \infty$ ), and
+
+$$
+\int_{0}^{\infty} g(x) d x<\infty
+$$
+
+Prove that
+
+$$
+\lim _{n \rightarrow \infty} \int_{0}^{\infty} f_{n}(x) d x=\int_{0}^{\infty} f(x) d x
+$$
+
+(See Exercises 7 and 8 of Chap. 6 for the relevant definitions.)\\
+This is a rather weak form of Lebesgue's dominated convergence theorem (Theorem 11.32). Even in the context of the Riemann integral, uniform convergence can be replaced by pointwise convergence if it is assumed that $f \in \mathscr{R}$. (See the articles by F. Cunningham in Math. Mag., vol. 40, 1967, pp. 179-186, and by H. Kestelman in Amer. Math. Monthly, vol. 77, 1970, pp. 182-187.)\\
+13. Assume that $\left\{f_{n}\right\}$ is a sequence of monotonically increasing functions on $R^{1}$ with $0 \leq f_{n}(x) \leq 1$ for all $x$ and all $n$.\\
+(a) Prove that there is a function $f$ and a sequence $\left\{n_{k}\right\}$ such that
+
+$$
+f(x)=\lim _{k \rightarrow \infty} f_{n_{k}}(x)
+$$
+
+for every $x \in R^{1}$. (The existence of such a pointwise convergent subsequence is usually called Helly's selection theorem.)\\
+(b) If, moreover, $f$ is continuous, prove that $f_{n_{k}} \rightarrow f$ uniformly on compact sets.
+
+Hint: (i) Some subsequence $\left\{f_{n_{i}}\right\}$ converges at all rational points $r$, say, to $f(r)$. (ii) Define $f(x)$, for any $x \in R^{1}$, to be $\sup f(r)$, the sup being taken over all $r \leq x$. (iii) Show that $f_{n_{t}}(x) \rightarrow f(x)$ at every $x$ at which $f$ is continuous. (This is where monotonicity is strongly used.) (iv) A subsequence of $\left\{f_{n_{i}}\right\}$ converges at every point of discontinuity of $f$ since there are at most countably many such points. This proves (a). To prove (b), modify your proof of (iii) appropriately.\\
+14. Let $f$ be a continuous real function on $R^{1}$ with the following properties: $0 \leq f(t) \leq 1, f(t+2)=f(t)$ for every $t$, and
+
+$$
+f(t)= \begin{cases}0 & \left(0 \leq t \leq \frac{1}{3}\right) \\ 1 & \left(\frac{2}{3} \leq t \leq 1\right) .\end{cases}
+$$
+
+Put $\Phi(t)=(x(t), y(t))$, where
+
+$$
+x(t)=\sum_{n=1}^{\infty} 2^{-n} f\left(3^{2 n-1} t\right), \quad y(t)=\sum_{n=1}^{\infty} 2^{-n} f\left(3^{2 n} t\right) .
+$$
+
+Prove that $\Phi$ is continuous and that $\Phi$ maps $I=[0,1]$ onto the unit square $I^{2} \subset R^{2}$. If fact, show that $\Phi$ maps the Cantor set onto $I^{2}$.
+
+Hint: Each $\left(x_{0}, y_{0}\right) \in I^{2}$ has the form
+
+$$
+x_{0}=\sum_{n=1}^{\infty} 2^{-n} a_{2 n-1}, \quad y_{0}=\sum_{n=1}^{\infty} 2^{-n} a_{2 n}
+$$
+
+where each $a_{i}$ is 0 or 1 . If
+
+$$
+t_{0}=\sum_{i=1}^{\infty} 3^{-i-1}\left(2 a_{i}\right)
+$$
+
+show that $f\left(3^{k} t_{0}\right)=a_{k}$, and hence that $x\left(t_{0}\right)=x_{0}, y\left(t_{0}\right)=y_{0}$.\\
+(This simple example of a so-called "space-filling curve" is due to I. J. Schoenberg, Bull. A.M.S., vol. 44, 1938, pp. 519.)\\
+15. Suppose $f$ is a real continuous function on $R^{1}, f_{n}(t)=f(n t)$ for $n=1,2,3, \ldots$, and $\left\{f_{n}\right\}$ is equicontinuous on $[0,1]$. What conclusion can you draw about $f$ ?\\
+16. Suppose $\left\{f_{n}\right\}$ is an equicontinuous sequence of functions on a compact set $K$, and $\left\{f_{n}\right\}$ converges pointwise on $K$. Prove that $\left\{f_{n}\right\}$ converges uniformly on $K$.\\
+17. Define the notions of uniform convergence and equicontinuity for mappings into any metric space. Show that Theorems 7.9 and 7.12 are valid for mappings into any metric space, that Theorems 7.8 and 7.11 are valid for mappings into any complete metric space, and that Theorems 7.10, 7.16, 7.17, 7.24, and 7.25 hold for vector-valued functions, that is, for mappings into any $R^{k}$.\\
+18. Let $\left\{f_{n}\right\}$ be a uniformly bounded sequence of functions which are Riemann-integrable on $[a, b]$, and put
+
+$$
+F_{n}(x)=\int_{a}^{x} f_{n}(t) d t \quad(a \leq x \leq b)
+$$
+
+Prove that there exists a subsequence $\left\{F_{n_{k}}\right\}$ which converges uniformly on $[a, b]$.\\
+19. Let $K$ be a compact metric space, let $S$ be a subset of $\mathscr{C}(K)$. Prove that $S$ is compact (with respect to the metric defined in Section 7.14) if and only if $S$ is uniformly closed, pointwise bounded, and equicontinuous. (If $S$ is not equicontinuous, then $S$ contains a sequence which has no equicontinuous subsequence, hence has no subsequence that converges uniformly on $K$.)\\
+20. If $f$ is continuous on $[0,1]$ and if
+
+$$
+\int_{0}^{1} f(x) x^{n} d x=0 \quad(n=0,1,2, \ldots)
+$$
+
+prove that $f(x)=0$ on $[0,1]$. Hint: The integral of the product of $f$ with any polynomial is zero. Use the Weierstrass theorem to show that $\int_{0}^{1} f^{2}(x) d x=0$.\\
+21. Let $K$ be the unit circle in the complex plane (i.e., the set of all $z$ with $|z|=1$ ), and let $\mathscr{A}$ be the algebra of all functions of the form
+
+$$
+f\left(e^{i \theta}\right)=\sum_{n=0}^{N} c_{n} e^{i n \theta} \quad(\theta \text { real })
+$$
+
+Then $\mathscr{A}$ separates points on $K$ and $\mathscr{A}$ vanishes at no point of $K$, but nevertheless there are continuous functions on $K$ which are not in the uniform closure of $\mathscr{A}$. Hint: For every $f \in \mathscr{A}$
+
+$$
+\int_{0}^{2 \pi} f\left(e^{i \theta}\right) e^{i \theta} d \theta=0
+$$
+
+and this is also true for every $f$ in the closure of $\mathscr{A}$.\\
+22. Assume $f \in \mathscr{R}(\alpha)$ on $[a, b]$, and prove that there are polynomials $P_{n}$ such that
+
+$$
+\lim _{n \rightarrow \infty} \int_{a}^{b}\left|f-P_{n}\right|^{2} d \alpha=0
+$$
+
+(Compare with Exercise 12, Chap. 6.)\\
+23. Put $P_{0}=0$, and define, for $n=0,1,2, \ldots$,
+
+$$
+P_{n+1}(x)=P_{n}(x)+\frac{x^{2}-P_{n}^{2}(x)}{2}
+$$
+
+Prove that
+
+$$
+\lim _{n \rightarrow \infty} P_{n}(x)=|x|
+$$
+
+uniformly on [ $-1,1$ ].\\
+(This makes it possible to prove the Stone-Weierstrass theorem without first proving Theorem 7.26.)
+
+Hint: Use the identity
+
+$$
+|x|-P_{n+1}(x)=\left[|x|-P_{n}(x)\right]\left[1-\frac{|x|+P_{n}(x)}{2}\right]
+$$
+
+to prove that $0 \leq P_{n}(x) \leq P_{n+1}(x) \leq|x|$ if $|x| \leq 1$, and that
+
+$$
+|x|-P_{n}(x) \leq|x|\left(1-\frac{|x|}{2}\right)^{n}<\frac{2}{n+1}
+$$
+
+if $|x| \leq 1$.\\
+24. Let $X$ be a metric space, with metric $d$. Fix a point $a \in X$. Assign to each $p \in X$ the function $f_{p}$ defined by
+
+$$
+f_{p}(x)=d(x, p)-d(x, a) \quad(x \in X)
+$$
+
+Prove that $\left|f_{p}(x)\right| \leq d(a, p)$ for all $x \in X$, and that therefore $f_{p} \in \mathscr{C}(X)$.\\
+Prove that
+
+$$
+\left\|f_{p}-f_{q}\right\|=d(p, q)
+$$
+
+for all $p, q \in X$.\\
+If $\Phi(p)=f_{p}$ it follows that $\Phi$ is an isometry (a distance-preserving mapping) of $X$ onto $\Phi(X) \subset \mathscr{C}(X)$.
+
+Let $Y$ be the closure of $\Phi(X)$ in $\mathscr{C}(X)$. Show that $Y$ is complete.\\
+Conclusion: $X$ is isometric to a dense subset of a complete metric space $Y$.\\
+(Exercise 24, Chap. 3 contains a different proof of this.)\\
+25. Suppose $\phi$ is a continuous bounded real function in the strip defined by $0 \leq x \leq 1,-\infty<y<\infty$. Prove that the initial-value problem
+
+$$
+y^{\prime}=\phi(x, y), \quad y(0)=c
+$$
+
+has a solution. (Note that the hypotheses of this existence theorem are less stringent than those of the corresponding uniqueness theorem; see Exercise 27, Chap. 5.)
+
+Hint: Fix $n$. For $i=0, \ldots, n$, put $x_{i}=i / n$. Let $f_{n}$ be a continuous function on $[0,1]$ such that $f_{n}(0)=c$,
+
+$$
+f_{n}^{\prime}(t)=\phi\left(x_{i}, f_{n}\left(x_{i}\right)\right) \quad \text { if } x_{i}<t<x_{i+1}
+$$
+
+and put
+
+$$
+\Delta_{n}(t)=f_{n}^{\prime}(t)-\phi\left(t, f_{n}(t)\right)
+$$
+
+except at the points $x_{i}$, where $\Delta_{n}(t)=0$. Then
+
+$$
+f_{n}(x)=c+\int_{0}^{x}\left[\phi\left(t, f_{n}(t)\right)+\Delta_{n}(t)\right] d t
+$$
+
+Choose $M<\infty$ so that $|\phi| \leq M$. Verify the following assertions.\\
+(a) $\left|f_{n}^{\prime}\right| \leq M,\left|\Delta_{n}\right| \leq 2 M, \Delta_{n} \in \mathscr{R}$, and $\left|f_{n}\right| \leq|c|+M=M_{1}$, say, on [ 0,1 ], for all $n$.\\
+(b) $\left\{f_{n}\right\}$ is equicontinuous on [ 0,1 ], since $\left|f_{n}^{\prime}\right| \leq M$.\\
+(c) Some $\left\{f_{n_{k}}\right\}$ converges to some $f$, uniformly on [ 0,1 ].\\
+(d) Since $\phi$ is uniformly continuous on the rectangle $0 \leq x \leq 1,|y| \leq M_{1}$,
+
+$$
+\phi\left(t, f_{n_{k}}(t)\right) \rightarrow \phi(t, f(t))
+$$
+
+uniformly on [ 0,1 ].\\
+(e) $\Delta_{n}(t) \rightarrow 0$ uniformly on $[0,1]$, since
+
+$$
+\Delta_{n}(t)=\phi\left(x_{i}, f_{n}\left(x_{i}\right)\right)-\phi\left(t, f_{n}(t)\right)
+$$
+
+in ( $x_{i}, x_{i+1}$ ).\\
+(f) Hence
+
+$$
+f(x)=c+\int_{0}^{x} \phi(t, f(t)) d t
+$$
+
+This $f$ is a solution of the given problem.\\
+26. Prove an analogous existence theorem for the initial-value problem
+
+$$
+\mathbf{y}^{\prime}=\Phi(x, \mathbf{y}), \quad \mathbf{y}(0)=\mathbf{c}
+$$
+
+where now $\mathbf{c} \in R^{k}, \mathbf{y} \in R^{k}$, and $\boldsymbol{\Phi}$ is a continuous bounded mapping of the part of $R^{k+1}$ defined by $0 \leq x \leq 1, y \in R^{k}$ into $R^{k}$. (Compare Exercise 28, Chap. 5.) Hint: Use the vector-valued version of Theorem 7.25.
+
+\section*{8}
+\section*{SOME SPECIAL FUNCTIONS}
+\section*{POWER SERIES}
+In this section we shall derive some properties of functions which are represented by power series, i.e., functions of the form
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} c_{n} x^{n} \tag{1}
+\end{equation*}
+
+
+or, more generally,
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} c_{n}(x-a)^{n} . \tag{2}
+\end{equation*}
+
+
+These are called analytic functions.\\
+We shall restrict ourselves to real values of $x$. Instead of circles of convergence (see Theorem 3.39) we shall therefore encounter intervals of convergence.
+
+If (1) converges for all $x$ in $(-R, R)$, for some $R>0$ ( $R$ may be $+\infty$ ), we say that $f$ is expanded in a power series about the point $x=0$. Similarly, if (2) converges for $|x-a|<R, f$ is said to be expanded in a power series about the point $x=a$. As a matter of convenience, we shall often take $a=0$ without any loss of generality.\\
+8.1 Theorem Suppose the series
+
+
+\begin{equation*}
+\sum_{n=0}^{\infty} c_{n} x^{n} \tag{3}
+\end{equation*}
+
+
+converges for $|x|<R$, and define
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} c_{n} x^{n} \quad(|x|<R) \tag{4}
+\end{equation*}
+
+
+Then (3) converges uniformly on [ $-R+\varepsilon, R-\varepsilon$ ], no matter which $\varepsilon>0$ is chosen. The function $f$ is continuous and differentiable in ( $-R, R$ ), and
+
+
+\begin{equation*}
+f^{\prime}(x)=\sum_{n=1}^{\infty} n c_{n} x^{n-1} \quad(|x|<R) \tag{5}
+\end{equation*}
+
+
+Proof Let $\varepsilon>0$ be given. For $|x| \leq R-\varepsilon$, we have
+
+$$
+\left|c_{n} x^{n}\right| \leq\left|c_{n}(R-\varepsilon)^{n}\right|
+$$
+
+and since
+
+$$
+\Sigma c_{n}(R-\varepsilon)^{n}
+$$
+
+converges absolutely (every power series converges absolutely in the interior of its interval of convergence, by the root test), Theorem 7.10 shows the uniform convergence of (3) on [ $-R+\varepsilon, R-\varepsilon$ ].
+
+Since $\sqrt[n]{n} \rightarrow 1$ as $n \rightarrow \infty$, we have
+
+$$
+\limsup _{n \rightarrow \infty} \sqrt[n]{n\left|c_{n}\right|}=\limsup _{n \rightarrow \infty} \sqrt[n]{\left|c_{n}\right|}
+$$
+
+so that the series (4) and (5) have the same interval of convergence.\\
+Since (5) is a power series, it converges uniformly in $[-R+\varepsilon$, $R-\varepsilon]$, for every $\varepsilon>0$, and we can apply Theorem 7.17 (for series instead of sequences). It follows that (5) holds if $|x| \leq R-\varepsilon$.
+
+But, given any $x$ such that $|x|<R$, we can find an $\varepsilon>0$ such that $|x|<R-\varepsilon$. This shows that (5) holds for $|x|<R$.
+
+Continuity of $f$ follows from the existence of $f^{\prime}$ (Theorem 5.2).\\
+Corollary Under the hypotheses of Theorem 8.1, $f$ has derivatives of all orders in $(-R, R)$, which are given by
+
+
+\begin{equation*}
+f^{(k)}(x)=\sum_{n=k}^{\infty} n(n-1) \cdots(n-k+1) c_{n} x^{n-k} \tag{6}
+\end{equation*}
+
+
+In particular,
+
+
+\begin{equation*}
+f^{(k)}(0)=k!c_{k} \quad(k=0,1,2, \ldots) \tag{7}
+\end{equation*}
+
+
+(Here $f^{(0)}$ means $f$, and $f^{(k)}$ is the $k$ th derivative of $f$, for $k=1,2,3, \ldots$ ).
+
+Proof Equation (6) follows if we apply Theorem 8.1 successively to $f$, $f^{\prime}, f^{\prime \prime}, \ldots$. Putting $x=0$ in (6), we obtain (7).
+
+Formula (7) is very interesting. It shows, on the one hand, that the coefficients of the power series development of $f$ are determined by the values of $f$ and of its derivatives at a single point. On the other hand, if the coefficients are given, the values of the derivatives of $f$ at the center of the interval of convergence can be read off immediately from the power series.
+
+Note, however, that although a function $f$ may have derivatives of all orders, the series $\Sigma c_{n} x^{n}$, where $c_{n}$ is computed by (7), need not converge to $f(x)$ for any $x \neq 0$. In this case, $f$ cannot be expanded in a power series about $x=0$. For if we had $f(x)=\Sigma a_{n} x^{n}$, we should have
+
+$$
+n!a_{n}=f^{(n)}(0) ;
+$$
+
+hence $a_{n}=c_{n}$. An example of this situation is given in Exercise 1.\\
+If the series (3) converges at an endpoint, say at $x=R$, then $f$ is continuous not only in $(-R, R)$, but also at $x=R$. This follows from Abel's theorem (for simplicity of notation, we take $R=1$ ):\\
+8.2 Theorem Suppose $\Sigma c_{n}$ converges. Put
+
+$$
+f(x)=\sum_{n=0}^{\infty} c_{n} x^{n} \quad(-1<x<1)
+$$
+
+Then
+
+
+\begin{equation*}
+\lim _{x \rightarrow 1} f(x)=\sum_{n=0}^{\infty} c_{n} . \tag{8}
+\end{equation*}
+
+
+Proof Let $s_{n}=c_{0}+\cdots+c_{n}, s_{-1}=0$. Then
+
+$$
+\sum_{n=0}^{m} c_{n} x^{n}=\sum_{n=0}^{m}\left(s_{n}-s_{n-1}\right) x^{n}=(1-x) \sum_{n=0}^{m-1} s_{n} x^{n}+s_{m} x^{m}
+$$
+
+For $|x|<1$, we let $m \rightarrow \infty$ and obtain
+
+
+\begin{equation*}
+f(x)=(1-x) \sum_{n=0}^{\infty} s_{n} x^{n} \tag{9}
+\end{equation*}
+
+
+Suppose $s=\lim _{n \rightarrow \infty} s_{n}$. Let $\varepsilon>0$ be given. Choose $N$ so that $n>N$ implies
+
+$$
+\left|s-s_{n}\right|<\frac{\varepsilon}{2} .
+$$
+
+Then, since
+
+$$
+(1-x) \sum_{n=0}^{\infty} x^{n}=1 \quad(|x|<1),
+$$
+
+we obtain from (9)
+
+$$
+|f(x)-s|=\left|(1-x) \sum_{n=0}^{\infty}\left(s_{n}-s\right) x^{n}\right| \leq(1-x) \sum_{n=0}^{N}\left|s_{n}-s\right||x|^{n}+\frac{\varepsilon}{2} \leq \varepsilon
+$$
+
+if $x>1-\delta$, for some suitably chosen $\delta>0$. This implies (8).\\
+As an application, let us prove Theorem 3.51, which asserts: If $\Sigma a_{n}, \Sigma b_{n}$, $\Sigma c_{n}$, converge to $A, B, C$, and if $c_{n}=a_{0} b_{n}+\cdots+a_{n} b_{0}$, then $C=A B$. We let
+
+$$
+f(x)=\sum_{n=0}^{\infty} a_{n} x^{n}, \quad g(x)=\sum_{n=0}^{\infty} b_{n} x^{n}, \quad h(x)=\sum_{n=0}^{\infty} c_{n} x^{n},
+$$
+
+for $0 \leq x \leq 1$. For $x<1$, these series converge absolutely and hence may be multiplied according to Definition 3.48; when the multiplication is carried out, we see that
+
+
+\begin{equation*}
+f(x) \cdot g(x)=h(x) \quad(0 \leq x<1) . \tag{10}
+\end{equation*}
+
+
+By Theorem 8.2,
+
+
+\begin{equation*}
+f(x) \rightarrow A, \quad g(x) \rightarrow B, \quad h(x) \rightarrow C \tag{11}
+\end{equation*}
+
+
+as $x \rightarrow 1$. Equations (10) and (11) imply $A B=C$.\\
+We now require a theorem concerning an inversion in the order of summation. (See Exercises 2 and 3.)\\
+8.3 Theorem Given a double sequence $\left\{a_{i j}\right\}, i=1,2,3, \ldots, j=1,2,3, \ldots$, suppose that
+
+
+\begin{equation*}
+\sum_{j=1}^{\infty}\left|a_{i j}\right|=b_{i} \quad(i=1,2,3, \ldots) \tag{12}
+\end{equation*}
+
+
+and $\Sigma b_{i}$ converges. Then
+
+
+\begin{equation*}
+\sum_{i=1}^{\infty} \sum_{j=1}^{\infty} a_{i j}=\sum_{j=1}^{\infty} \sum_{i=1}^{\infty} a_{i j} . \tag{13}
+\end{equation*}
+
+
+Proof We could establish (13) by a direct procedure similar to (although more involved than) the one used in Theorem 3.55. However, the following method seems more interesting.
+
+Let $E$ be a countable set, consisting of the points $x_{0}, x_{1}, x_{2}, \ldots$, and suppose $x_{n} \rightarrow x_{0}$ as $n \rightarrow \infty$. Define
+
+
+\begin{align*}
+f_{i}\left(x_{0}\right) & =\sum_{j=1}^{\infty} a_{i j} & & (i=1,2,3, \ldots),  \tag{14}\\
+f_{i}\left(x_{n}\right) & =\sum_{j=1}^{n} a_{i j} & & (i, n=1,2,3, \ldots),  \tag{15}\\
+g(x) & =\sum_{i=1}^{\infty} f_{i}(x) & & (x \in E) . \tag{16}
+\end{align*}
+
+
+Now, (14) and (15), together with (12), show that each $f_{i}$ is continuous at $x_{0}$. Since $\left|f_{i}(x)\right| \leq b_{i}$ for $x \in E$, (16) converges uniformly, so that $g$ is continuous at $x_{0}$ (Theorem 7.11). It follows that
+
+$$
+\begin{aligned}
+\sum_{i=1}^{\infty} \sum_{j=1}^{\infty} a_{i j} & =\sum_{i=1}^{\infty} f_{i}\left(x_{0}\right)=g\left(x_{0}\right)=\lim _{n \rightarrow \infty} g\left(x_{n}\right) \\
+& =\lim _{n \rightarrow \infty} \sum_{i=1}^{\infty} f_{i}\left(x_{n}\right)=\lim _{n \rightarrow \infty} \sum_{i=1}^{\infty} \sum_{j=1}^{n} a_{i j} \\
+& =\lim _{n \rightarrow \infty} \sum_{j=1}^{n} \sum_{i=1}^{\infty} a_{i j}=\sum_{j=1}^{\infty} \sum_{i=1}^{\infty} a_{i j} .
+\end{aligned}
+$$
+
+\subsection*{8.4 Theorem Suppose}
+$$
+f(x)=\sum_{n=0}^{\infty} c_{n} x^{n}
+$$
+
+the series converging in $|x|<R$. If $-R<a<R$, then $f$ can be expanded in a power series about the point $x=a$ which converges in $|x-a|<R-|a|$, and
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^{n} \quad(|x-a|<R-|a|) . \tag{17}
+\end{equation*}
+
+
+This is an extension of Theorem 5.15 and is also known as Taylor's theorem.
+
+Proof We have
+
+$$
+\begin{aligned}
+f(x) & =\sum_{n=0}^{\infty} c_{n}[(x-a)+a]^{n} \\
+& =\sum_{n=0}^{\infty} c_{n} \sum_{m=0}^{n}\binom{n}{m} a^{n-m}(x-a)^{m} \\
+& =\sum_{m=0}^{\infty}\left[\sum_{n=m}^{\infty}\binom{n}{m} c_{n} a^{n-m}\right](x-a)^{m} .
+\end{aligned}
+$$
+
+This is the desired expansion about the point $x=a$. To prove its validity, we have to justify the change which was made in the order of summation. Theorem 8.3 shows that this is permissible if
+
+
+\begin{equation*}
+\sum_{n=0}^{\infty} \sum_{m=0}^{n}\left|c_{n}\binom{n}{m} a^{n-m}(x-a)^{m}\right| \tag{18}
+\end{equation*}
+
+
+converges. But (18) is the same as
+
+
+\begin{equation*}
+\sum_{n=0}^{\infty}\left|c_{n}\right| \cdot(|x-a|+|a|)^{n} \tag{19}
+\end{equation*}
+
+
+and (19) converges if $|x-a|+|a|<R$.\\
+Finally, the form of the coefficients in (17) follows from (7).\\
+It should be noted that (17) may actually converge in a larger interval than the one given by $|x-a|<R-|a|$.
+
+If two power series converge to the same function in $(-R, R)$, (7) shows that the two series must be identical, i.e., they must have the same coefficients. It is interesting that the same conclusion can be deduced from much weaker hypotheses:\\
+8.5 Theorem Suppose the series $\Sigma a_{n} x^{n}$ and $\Sigma b_{n} x^{n}$ converge in the segment $S=(-R, R)$. Let $E$ be the set of all $x \in S$ at which
+
+
+\begin{equation*}
+\sum_{n=0}^{\infty} a_{n} x^{n}=\sum_{n=0}^{\infty} b_{n} x^{n} \tag{20}
+\end{equation*}
+
+
+If $E$ has a limit point in $S$, then $a_{n}=b_{n}$ for $n=0,1,2 \ldots$. Hence (20) holds for all $x \in S$.
+
+Proof Put $c_{n}=a_{n}-b_{n}$ and
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} c_{n} x^{n} \quad(x \in S) \tag{21}
+\end{equation*}
+
+
+Then $f(x)=0$ on $E$.\\
+Let $A$ be the set of all limit points of $E$ in $S$, and let $B$ consist of all other points of $S$. It is clear from the definition of "limit point" that $B$ is open. Suppose we can prove that $A$ is open. Then $A$ and $B$ are disjoint open sets. Hence they are separated (Definition 2.45). Since $S=A \cup B$, and $S$ is connected, one of $A$ and $B$ must be empty. By hypothesis, $A$ is not empty. Hence $B$ is empty, and $A=S$. Since $f$ is continuous in $S$, $A \subset E$. Thus $E=S$, and (7) shows that $c_{n}=0$ for $n=0,1,2, \ldots$, which is the desired conclusion.
+
+Thus we have to prove that $A$ is open. If $x_{0} \in A$, Theorem 8.4 shows that
+
+
+\begin{equation*}
+f(x)=\sum_{n=0}^{\infty} d_{n}\left(x-x_{0}\right)^{n} \quad\left(\left|x-x_{0}\right|<R-\left|x_{0}\right|\right) . \tag{22}
+\end{equation*}
+
+
+We claim that $d_{n}=0$ for all $n$. Otherwise, let $k$ be the smallest nonnegative integer such that $d_{k} \neq 0$. Then
+
+
+\begin{equation*}
+f(x)=\left(x-x_{0}\right)^{k} g(x) \quad\left(\left|x-x_{0}\right|<R-\left|x_{0}\right|\right), \tag{23}
+\end{equation*}
+
+
+where
+
+
+\begin{equation*}
+g(x)=\sum_{m=0}^{\infty} d_{k+m}\left(x-x_{0}\right)^{m} . \tag{24}
+\end{equation*}
+
+
+Since $g$ is continuous at $x_{0}$ and
+
+$$
+g\left(x_{0}\right)=d_{k} \neq 0,
+$$
+
+there exists a $\delta>0$ such that $g(x) \neq 0$ if $\left|x-x_{0}\right|<\delta$. It follows from (23) that $f(x) \neq 0$ if $0<\left|x-x_{0}\right|<\delta$. But this contradicts the fact that $x_{0}$ is a limit point of $E$.
+
+Thus $d_{n}=0$ for all $n$, so that $f(x)=0$ for all $x$ for which (22) holds, i.e., in a neighborhood of $x_{0}$. This shows that $A$ is open, and completes the proof.
+
+\section*{THE EXPONENTIAL AND LOGARITHMIC FUNCTIONS}
+We define
+
+
+\begin{equation*}
+E(z)=\sum_{n=0}^{\infty} \frac{z^{n}}{n!} \tag{25}
+\end{equation*}
+
+
+The ratio test shows that this series converges for every complex $z$. Applying Theorem 3.50 on multiplication of absolutely convergent series, we obtain
+
+$$
+\begin{aligned}
+E(z) E(w) & =\sum_{n=0}^{\infty} \frac{z^{n}}{n!} \sum_{m=0}^{\infty} \frac{w^{m}}{m!}=\sum_{n=0}^{\infty} \sum_{k=0}^{n} \frac{z^{k} w^{n-k}}{k!(n-k)!} \\
+& =\sum_{n=0}^{\infty} \frac{1}{n!} \sum_{k=0}^{n}\binom{n}{k} z^{k} w^{n-k}=\sum_{n=0}^{\infty} \frac{(z+w)^{n}}{n!},
+\end{aligned}
+$$
+
+which gives us the important addition formula
+
+
+\begin{equation*}
+E(z+w)=E(z) E(w) \quad(z, w \text { complex }) . \tag{26}
+\end{equation*}
+
+
+One consequence is that
+
+
+\begin{equation*}
+E(z) E(-z)=E(z-z)=E(0)=1 \quad(z \text { complex }) \tag{27}
+\end{equation*}
+
+
+This shows that $E(z) \neq 0$ for all $z$. By (25), $E(x)>0$ if $x>0$; hence (27) shows that $E(x)>0$ for all real $x$. By (25), $E(x) \rightarrow+\infty$ as $x \rightarrow+\infty$; hence (27) shows that $E(x) \rightarrow 0$ as $x \rightarrow-\infty$ along the real axis. By (25), $0<x<y$ implies that $E(x)<E(y)$; by (27), it follows that $E(-y)<E(-x)$; hence $E$ is strictly increasing on the whole real axis.
+
+The addition formula also shows that
+
+
+\begin{equation*}
+\lim _{h=0} \frac{E(z+h)-E(z)}{h}=E(z) \lim _{h=0} \frac{E(h)-1}{h}=E(z) ; \tag{28}
+\end{equation*}
+
+
+the last equality follows directly from (25).\\
+Iteration of (26) gives
+
+
+\begin{equation*}
+E\left(z_{1}+\cdots+z_{n}\right)=E\left(z_{1}\right) \cdots E\left(z_{n}\right) . \tag{29}
+\end{equation*}
+
+
+Let us take $z_{1}=\cdots=z_{n}=1$. Since $E(1)=e$, where $e$ is the number defined in Definition 3.30, we obtain
+
+
+\begin{equation*}
+E(n)=e^{n} \quad(n=1,2,3, \ldots) . \tag{30}
+\end{equation*}
+
+
+If $p=n / m$, where $n, m$ are positive integers, then
+
+
+\begin{equation*}
+[E(p)]^{m}=E(m p)=E(n)=e^{n}, \tag{31}
+\end{equation*}
+
+
+so that
+
+
+\begin{equation*}
+E(p)=e^{p} \quad(p>0, p \text { rational }) . \tag{32}
+\end{equation*}
+
+
+It follows from (27) that $E(-p)=e^{-p}$ if $p$ is positive and rational. Thus (32) holds for all rational $p$.
+
+In Exercise 6, Chap. 1, we suggested the definition
+
+
+\begin{equation*}
+x^{y}=\sup x^{p}, \tag{33}
+\end{equation*}
+
+
+where the sup is taken over all rational $p$ such that $p<y$, for any real $y$, and $x>1$. If we thus define, for any real $x$,
+
+
+\begin{equation*}
+e^{x}=\sup e^{p} \quad(p<x, p \text { rational }), \tag{34}
+\end{equation*}
+
+
+the continuity and monotonicity properties of $E$, together with (32), show that
+
+
+\begin{equation*}
+E(x)=e^{x} \tag{35}
+\end{equation*}
+
+
+for all real $x$. Equation (35) explains why $E$ is called the exponential function.\\
+The notation $\exp (x)$ is often used in place of $e^{x}$, expecially when $x$ is a complicated expression.
+
+Actually one may very well use (35) instead of (34) as the definition of $e^{x}$; (35) is a much more convenient starting point for the investigation of the properties of $e^{x}$. We shall see presently that (33) may also be replaced by a more convenient definition [see(43)].
+
+We now revert to the customary notation, $e^{x}$, in place of $E(x)$, and summarize what we have proved so far.\\
+8.6 Theorem Let $e^{x}$ be defined on $R^{1}$ by (35) and (25). Then\\
+(a) $e^{x}$ is continuous and differentiable for all $x$;\\
+(b) $\left(e^{x}\right)^{\prime}=e^{x}$;\\
+(c) $e^{x}$ is a strictly increasing function of $x$, and $e^{x}>0$;\\
+(d) $e^{x+y}=e^{x} e^{y}$;\\
+(e) $e^{x} \rightarrow+\infty$ as $x \rightarrow+\infty, e^{x} \rightarrow 0$ as $x \rightarrow-\infty$;\\
+(f) $\lim _{x \rightarrow+\infty} x^{n} e^{-x}=0$, for every $n$.
+
+Proof We have already proved (a) to (e); (25) shows that
+
+$$
+e^{x}>\frac{x^{n+1}}{(n+1)!}
+$$
+
+for $x>0$, so that
+
+$$
+x^{n} e^{-x}<\frac{(n+1)!}{x}
+$$
+
+and ( $f$ ) follows. Part ( $f$ ) shows that $e^{x}$ tends to $+\infty$ "faster" than any power of $x$, as $x \rightarrow+\infty$.
+
+Since $E$ is strictly increasing and differentiable on $R^{1}$, it has an inverse function $L$ which is also strictly increasing and differentiable and whose domain is $E\left(R^{1}\right)$, that is, the set of all positive numbers. $L$ is defined by
+
+
+\begin{equation*}
+E(L(y))=y \quad(y>0), \tag{36}
+\end{equation*}
+
+
+or, equivalently, by
+
+
+\begin{equation*}
+L(E(x))=x \quad(x \text { real }) . \tag{37}
+\end{equation*}
+
+
+Differentiating (37), we get (compare Theorem 5.5)
+
+$$
+L^{\prime}(E(x)) \cdot E(x)=1
+$$
+
+Writing $y=E(x)$, this gives us
+
+
+\begin{equation*}
+L^{\prime}(y)=\frac{1}{y} \quad(y>0) \tag{38}
+\end{equation*}
+
+
+Taking $x=0$ in (37), we see that $L(1)=0$. Hence (38) implies
+
+
+\begin{equation*}
+L(y)=\int_{1}^{y} \frac{d x}{x} \tag{39}
+\end{equation*}
+
+
+Quite frequently, (39) is taken as the starting point of the theory of the logarithm and the exponential function. Writing $u=E(x), v=E(y)$, (26) gives
+
+$$
+L(u v)=L(E(x) \cdot E(y))=L(E(x+y))=x+y,
+$$
+
+so that
+
+
+\begin{equation*}
+L(u v)=L(u)+L(v) \quad(u>0, v>0) \tag{40}
+\end{equation*}
+
+
+This shows that $L$ has the familiar property which makes logarithms useful tools for computation. The customary notation for $L(x)$ is of course $\log x$.
+
+As to the behavior of $\log x$ as $x \rightarrow+\infty$ and as $x \rightarrow 0$, Theorem 8.6(e) shows that
+
+$$
+\begin{array}{ll}
+\log x \rightarrow+\infty & \text { as } x \rightarrow+\infty, \\
+\log x \rightarrow-\infty & \text { as } x \rightarrow 0 .
+\end{array}
+$$
+
+It is easily seen that
+
+
+\begin{equation*}
+x^{n}=E(n L(x)) \tag{41}
+\end{equation*}
+
+
+if $x>0$ and $n$ is an integer. Similarly, if $m$ is a positive integer, we have
+
+
+\begin{equation*}
+x^{1 / m}=E\left(\frac{1}{m} L(x)\right) \tag{42}
+\end{equation*}
+
+
+since each term of (42), when raised to the $m$ th power, yields the corresponding term of (36). Combining (41) and (42), we obtain
+
+
+\begin{equation*}
+x^{\alpha}=E(\alpha L(x))=e^{\alpha \log x} \tag{43}
+\end{equation*}
+
+
+for any rational $\alpha$.\\
+We now define $x^{\alpha}$, for any real $\alpha$ and any $x>0$, by (43). The continuity and monotonicity of $E$ and $L$ show that this definition leads to the same result as the previously suggested one. The facts stated in Exercise 6 of Chap. 1, are trivial consequences of (43).
+
+If we differentiate (43), we obtain, by Theorem 5.5,
+
+
+\begin{equation*}
+\left(x^{\alpha}\right)^{\prime}=E(\alpha L(x)) \cdot \frac{\alpha}{x}=\alpha x^{\alpha-1} \tag{44}
+\end{equation*}
+
+
+Note that we have previously used (44) only for integral values of $\alpha$, in which case (44) follows easily from Theorem 5.3(b). To prove (44) directly from the definition of the derivative, if $x^{\alpha}$ is defined by (33) and $\alpha$ is irrational, is quite troublesome.
+
+The well-known integration formula for $x^{\alpha}$ follows from (44) if $\alpha \neq-1$, and from (38) if $\alpha=-1$. We wish to demonstrate one more property of $\log x$, namely,
+
+
+\begin{equation*}
+\lim _{x \rightarrow+\infty} x^{-\alpha} \log x=0 \tag{45}
+\end{equation*}
+
+
+for every $\alpha>0$. That is, $\log x \rightarrow+\infty$ "slower" than any positive power of $x$, as $x \rightarrow+\infty$.
+
+For if $0<\varepsilon<\alpha$, and $x>1$, then
+
+$$
+\begin{aligned}
+x^{-\alpha} \log x & =x^{-\alpha} \int_{1}^{x} t^{-1} d t<x^{-\alpha} \int_{1}^{x} t^{\varepsilon-1} d t \\
+& =x^{-\alpha} \cdot \frac{x^{\varepsilon}-1}{\varepsilon}<\frac{x^{\varepsilon-\alpha}}{\varepsilon}
+\end{aligned}
+$$
+
+and (45) follows. We could also have used Theorem 8.6(f) to derive (45).
+
+\section*{THE TRIGONOMETRIC FUNCTIONS}
+Let us define
+
+
+\begin{equation*}
+C(x)=\frac{1}{2}[E(i x)+E(-i x)], \quad S(x)=\frac{1}{2 i}[E(i x)-E(-i x)] \tag{46}
+\end{equation*}
+
+
+We shall show that $C(x)$ and $S(x)$ coincide with the functions $\cos x$ and $\sin x$, whose definition is usually based on geometric considerations. By (25), $E(\bar{z})= \overline{E(z)}$. Hence (46) shows that $C(x)$ and $S(x)$ are real for real $x$. Also,
+
+
+\begin{equation*}
+E(i x)=C(x)+i S(x) \tag{47}
+\end{equation*}
+
+
+Thus $C(x)$ and $S(x)$ are the real and imaginary parts, respectively, of $E(i x)$, if $x$ is real. By (27),
+
+$$
+|E(i x)|^{2}=E(i x) \overline{E(i x)}=E(i x) E(-i x)=1
+$$
+
+so that
+
+
+\begin{equation*}
+|E(i x)|=1 \quad(x \text { real }) \tag{48}
+\end{equation*}
+
+
+From (46) we can read off that $C(0)=1, S(0)=0$, and (28) shows that
+
+
+\begin{equation*}
+C^{\prime}(x)=-S(x), \quad S^{\prime}(x)=C(x) \tag{49}
+\end{equation*}
+
+
+We assert that there exist positive numbers $x$ such that $C(x)=0$. For suppose this is not so. Since $C(0)=1$, it then follows that $C(x)>0$ for all $x>0$, hence $S^{\prime}(x)>0$, by (49), hence $S$ is strictly increasing; and since $S(0)=0$, we have $S(x)>0$ if $x>0$. Hence if $0<x<y$, we have
+
+
+\begin{equation*}
+S(x)(y-x)<\int_{x}^{y} S(t) d t=C(x)-C(y) \leq 2 \tag{50}
+\end{equation*}
+
+
+The last inequality follows from (48) and (47). Since $S(x)>0$, (50) cannot be true for large $y$, and we have a contradiction.
+
+Let $x_{0}$ be the smallest positive number such that $C\left(x_{0}\right)=0$. This exists, since the set of zeros of a continuous function is closed, and $C(0) \neq 0$. We define the number $\pi$ by
+
+
+\begin{equation*}
+\pi=2 x_{0} . \tag{51}
+\end{equation*}
+
+
+Then $C(\pi / 2)=0$, and (48) shows that $S(\pi / 2)= \pm 1$. Since $C(x)>0$ in $(0, \pi / 2), S$ is increasing in $(0, \pi / 2)$; hence $S(\pi / 2)=1$. Thus
+
+$$
+E\left(\frac{\pi i}{2}\right)=i,
+$$
+
+and the addition formula gives
+
+
+\begin{equation*}
+E(\pi i)=-1, \quad E(2 \pi i)=1 ; \tag{52}
+\end{equation*}
+
+
+hence
+
+
+\begin{equation*}
+E(z+2 \pi i)=E(z) \quad(z \text { complex }) \tag{53}
+\end{equation*}
+
+
+\subsection*{8.7 Theorem}
+(a) The function $E$ is periodic, with period $2 \pi i$.\\
+(b) The functions $C$ and $S$ are periodic, with period $2 \pi$.\\
+(c) If $0<t<2 \pi$, then $E(i t) \neq 1$.\\
+(d) If $z$ is a complex number with $|z|=1$, there is a unique $t$ in $[0,2 \pi)$ such that $E(i t)=z$.
+
+Proof By (53), (a) holds; and (b) follows from (a) and (46).\\
+Suppose $0<t<\pi / 2$ and $E(i t)=x+i y$, with $x, y$ real. Our preceding work shows that $0<x<1,0<y<1$. Note that
+
+$$
+E(4 i t)=(x+i y)^{4}=x^{4}-6 x^{2} y^{2}+y^{4}+4 i x y\left(x^{2}-y^{2}\right) .
+$$
+
+If $E(4 i t)$ is real, it follows that $x^{2}-y^{2}=0$; since $x^{2}+y^{2}=1$, by (48), we have $x^{2}=y^{2}=\frac{1}{2}$, hence $E(4 i t)=-1$. This proves (c).
+
+If $0 \leq t_{1}<t_{2}<2 \pi$, then
+
+$$
+E\left(i t_{2}\right)\left[E\left(i t_{1}\right)\right]^{-1}=E\left(i t_{2}-i t_{1}\right) \neq 1,
+$$
+
+by (c). This establishes the uniqueness assertion in (d).\\
+To prove the existence assertion in (d), fix $z$ so that $|z|=1$. Write $z=x+i y$, with $x$ and $y$ real. Suppose first that $x \geq 0$ and $y \geq 0$. On $[0, \pi / 2], C$ decreases from 1 to 0 . Hence $C(t)=x$ for some $t \in[0, \pi / 2]$. Since $C^{2}+S^{2}=1$ and $S \geq 0$ on $[0, \pi / 2]$, it follows that $z=E(i t)$.
+
+If $x<0$ and $y \geq 0$, the preceding conditions are satisfied by $-i z$. Hence $-i z=E(i t)$ for some $t \in[0, \pi / 2]$, and since $i=E(\pi i / 2)$, we obtain $z=E(i(t+\pi / 2))$. Finally, if $y<0$, the preceding two cases show that\\
+$-z=E(i t)$ for some $t \in(0, \pi)$. Hence $z=-E(i t)=E(i(t+\pi))$. This proves (d), and hence the theorem.
+
+It follows from (d) and (48) that the curve $\gamma$ defined by
+
+
+\begin{equation*}
+\gamma(t)=E(i t) \quad(0 \leq t \leq 2 \pi) \tag{54}
+\end{equation*}
+
+
+is a simple closed curve whose range is the unit circle in the plane. Since $\gamma^{\prime}(t)=i E(i t)$, the length of $\gamma$ is
+
+$$
+\int_{0}^{2 \pi}\left|\gamma^{\prime}(t)\right| d t=2 \pi
+$$
+
+by Theorem 6.27. This is of course the expected result for the circumference of a circle of radius 1 . It shows that $\pi$, defined by (51), has the usual geometric significance.
+
+In the same way we see that the point $\gamma(t)$ describes a circular arc of length $t_{0}$ as $t$ increases from 0 to $t_{0}$. Consideration of the triangle whose vertices are
+
+$$
+z_{1}=0, \quad z_{2}=\gamma\left(t_{0}\right), \quad z_{3}=C\left(t_{0}\right)
+$$
+
+shows that $C(t)$ and $S(t)$ are indeed identical with $\cos t$ and $\sin t$, if the latter are defined in the usual way as ratios of the sides of a right triangle.
+
+It should be stressed that we derived the basic properties of the trigonometric functions from (46) and (25), without any appeal to the geometric notion of angle. There are other nongeometric approaches to these functions. The papers by W. F. Eberlein (Amer. Math. Monthly, vol. 74, 1967, pp. 1223-1225) and by G. B. Robison (Math. Mag., vol. 41, 1968, pp. 66-70) deal with these topics.
+
+\section*{THE ALGEBRAIC COMPLETENESS OF THE COMPLEX FIELD}
+We are now in a position to give a simple proof of the fact that the complex field is algebraically complete, that is to say, that every nonconstant polynomial with complex coefficients has a complex root.\\
+8.8 Theorem Suppose $a_{0}, \ldots, a_{n}$ are complex numbers, $n \geq 1, a_{n} \neq 0$,
+
+$$
+P(z)=\sum_{0}^{n} a_{k} z^{k}
+$$
+
+Then $P(z)=0$ for some complex number $z$.\\
+Proof Without loss of generality, assume $a_{n}=1$. Put
+
+
+\begin{equation*}
+\mu=\inf |P(z)| \quad(z \text { complex }) \tag{55}
+\end{equation*}
+
+
+If $|z|=R$, then
+
+
+\begin{equation*}
+|P(z)| \geq R^{n}\left[1-\left|a_{n-1}\right| R^{-1}-\cdots-\left|a_{0}\right| R^{-n}\right] . \tag{56}
+\end{equation*}
+
+
+The right side of (56) tends to $\infty$ as $R \rightarrow \infty$. Hence there exists $R_{0}$ such that $|P(z)|>\mu$ if $|z|>R_{0}$. Since $|P|$ is continuous on the closed disc with center at 0 and radius $R_{0}$, Theorem 4.16 shows that $\left|P\left(z_{0}\right)\right|=\mu$ for some $z_{0}$.
+
+We claim that $\mu=0$.\\
+If not, put $Q(z)=P\left(z+z_{0}\right) / P\left(z_{0}\right)$. Then $Q$ is a nonconstant polynomial, $Q(0)=1$, and $|Q(z)| \geq 1$ for all $z$. There is a smallest integer $k$, $1 \leq k \leq n$, such that
+
+
+\begin{equation*}
+Q(z)=1+b_{k} z^{k}+\cdots+b_{n} z^{n}, \quad b_{k} \neq 0 . \tag{57}
+\end{equation*}
+
+
+By Theorem 8.7(d) there is a real $\theta$ such that
+
+
+\begin{equation*}
+e^{i k \theta} b_{k}=-\left|b_{k}\right| . \tag{58}
+\end{equation*}
+
+
+If $r>0$ and $r^{k}\left|b_{k}\right|<1$, (58) implies
+
+$$
+\left|1+b_{k} r^{k} e^{i k \theta}\right|=1-r^{k}\left|b_{k}\right|,
+$$
+
+so that
+
+$$
+\left|Q\left(r e^{i \theta}\right)\right| \leq 1-r^{k}\left\{\left|b_{k}\right|-r\left|b_{k+1}\right|-\cdots-r^{n-k}\left|b_{n}\right|\right\} .
+$$
+
+For sufficiently small $r$, the expression in braces is positive; hence $\left|Q\left(r e^{i \theta}\right)\right|<1$, a contradiction.
+
+Thus $\mu=0$, that is, $P\left(z_{0}\right)=0$.\\
+Exercise 27 contains a more general result.
+
+\section*{FOURIER SERIES}
+8.9 Definition A trigonometric polynomial is a finite sum of the form
+
+
+\begin{equation*}
+f(x)=a_{0}+\sum_{n=1}^{N}\left(a_{n} \cos n x+b_{n} \sin n x\right) \quad(x \text { real }), \tag{59}
+\end{equation*}
+
+
+where $a_{0}, \ldots, a_{N}, b_{1}, \ldots, b_{N}$ are complex numbers. On account of the identities (46), (59) can also be written in the form
+
+
+\begin{equation*}
+f(x)=\sum_{-N}^{N} c_{n} e^{i n x} \quad(x \text { real }), \tag{60}
+\end{equation*}
+
+
+which is more convenient for most purposes. It is clear that every trigonometric polynomial is periodic, with period $2 \pi$.
+
+If $n$ is a nonzero integer, $e^{i n x}$ is the derivative of $e^{i n x} / i n$, which also has period $2 \pi$. Hence
+
+\[
+\frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{i n x} d x= \begin{cases}1 & (\text { if } n=0)  \tag{61}\\ 0 & (\text { if } n= \pm 1, \pm 2, \ldots)\end{cases}
+\]
+
+Let us multiply (60) by $e^{-i m x}$, where $m$ is an integer; if we integrate the product, (61) shows that
+
+
+\begin{equation*}
+c_{m}=\frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) e^{-i m x} d x \tag{62}
+\end{equation*}
+
+
+for $|m| \leq N$. If $|m|>N$, the integral in (62) is 0 .\\
+The following observation can be read off from (60) and (62): The trigonometric polynomial $f$, given by (60), is real if and only if $c_{-n}=\overline{c_{n}}$ for $n=0, \ldots, N$.
+
+In agreement with (60), we define a trigonometric series to be a series of the form
+
+
+\begin{equation*}
+\sum_{-\infty}^{\infty} c_{n} e^{i n x} \quad(x \text { real }) ; \tag{63}
+\end{equation*}
+
+
+the $N$ th partial sum of (63) is defined to be the right side of (60).\\
+If $f$ is an integrable function on $[-\pi, \pi]$, the numbers $c_{m}$ defined by (62) for all integers $m$ are called the Fourier coefficients of $f$, and the series (63) formed with these coefficients is called the Fourier series of $f$.
+
+The natural question which now arises is whether the Fourier series of $f$ converges to $f$, or, more generally, whether $f$ is determined by its Fourier series. That is to say, if we know the Fourier coefficients of a function, can we find the function, and if so, how?
+
+The study of such series, and, in particular, the problem of representing a given function by a trigonometric series, originated in physical problems such as the theory of oscillations and the theory of heat conduction (Fourier's "Théorie analytique de la chaleur" was published in 1822). The many difficult and delicate problems which arose during this study caused a thorough revision and reformulation of the whole theory of functions of a real variable. Among many prominent names, those of Riemann, Cantor, and Lebesgue are intimately connected with this field, which nowadays, with all its generalizations and ramifications, may well be said to occupy a central position in the whole of analysis.
+
+We shall be content to derive some basic theorems which are easily accessible by the methods developed in the preceding chapters. For more thorough investigations, the Lebesgue integral is a natural and indispensable tool.
+
+We shall first study more general systems of functions which share a property analogous to (61).\\
+8.10 Definition Let $\left\{\phi_{n}\right\}(n=1,2,3, \ldots)$ be a sequence of complex functions on $[a, b]$, such that
+
+
+\begin{equation*}
+\int_{a}^{b} \phi_{n}(x) \overline{\phi_{m}(x)} d x=0 \quad(n \neq m) \tag{64}
+\end{equation*}
+
+
+Then $\left\{\phi_{n}\right\}$ is said to be an orthogonal system of functions on $[a, b]$. If, in addition,
+
+
+\begin{equation*}
+\int_{a}^{b}\left|\phi_{n}(x)\right|^{2} d x=1 \tag{65}
+\end{equation*}
+
+
+for all $n,\left\{\phi_{n}\right\}$ is said to be orthonormal.\\
+For example, the functions $(2 \pi)^{-\frac{1}{2}} e^{i n x}$ form an orthonormal system on $[-\pi, \pi]$. So do the real functions
+
+$$
+\frac{1}{\sqrt{2 \pi}}, \frac{\cos x}{\sqrt{\pi}}, \frac{\sin x}{\sqrt{\pi}}, \frac{\cos 2 x}{\sqrt{\pi}}, \frac{\sin 2 x}{\sqrt{\pi}}, \cdots
+$$
+
+If $\left\{\phi_{n}\right\}$ is orthonormal on $[a, b]$ and if
+
+
+\begin{equation*}
+c_{n}=\int_{a}^{b} f(t) \overline{\phi_{n}(t)} d t \quad(n=1,2,3, \ldots) \tag{66}
+\end{equation*}
+
+
+we call $c_{n}$ the $n$th Fourier coefficient of $f$ relative to $\left\{\phi_{n}\right\}$. We write
+
+
+\begin{equation*}
+f(x) \sim \sum_{1}^{\infty} c_{n} \phi_{n}(x) \tag{67}
+\end{equation*}
+
+
+and call this series the Fourier series of $f$ (relative to $\left\{\phi_{n}\right\}$ ).\\
+Note that the symbol $\sim$ used in (67) implies nothing about the convergence of the series; it merely says that the coefficients are given by (66).
+
+The following theorems show that the partial sums of the Fourier series of $f$ have a certain minimum property. We shall assume here and in the rest of this chapter that $f \in \mathscr{R}$, although this hypothesis can be weakened.\\
+8.11 Theorem Let $\left\{\phi_{n}\right\}$ be orthonormal on $[a, b]$. Let
+
+
+\begin{equation*}
+s_{n}(x)=\sum_{m=1}^{n} c_{m} \phi_{m}(x) \tag{68}
+\end{equation*}
+
+
+be the nth partial sum of the Fourier series of $f$, and suppose
+
+
+\begin{equation*}
+t_{n}(x)=\sum_{m=1}^{n} \gamma_{m} \phi_{m}(x) \tag{69}
+\end{equation*}
+
+
+Then
+
+
+\begin{equation*}
+\int_{a}^{b}\left|f-s_{n}\right|^{2} d x \leq \int_{a}^{b}\left|f-t_{n}\right|^{2} d x \tag{70}
+\end{equation*}
+
+
+and equality holds if and only if
+
+
+\begin{equation*}
+\gamma_{m}=c_{m} \quad(m=1, \ldots, n) \tag{71}
+\end{equation*}
+
+
+That is to say, among all functions $t_{n}, s_{n}$ gives the best possible mean square approximation to $f$.
+
+Proof Let $\int$ denote the integral over $[a, b], \Sigma$ the sum from 1 to $n$. Then
+
+$$
+\int f \bar{t}_{n}=\int f \sum \bar{\gamma}_{m} \bar{\phi}_{m}=\sum c_{m} \bar{\gamma}_{m}
+$$
+
+by the definition of $\left\{c_{m}\right\}$,
+
+$$
+\int\left|t_{n}\right|^{2}=\int t_{n} \bar{t}_{n}=\int \sum \gamma_{m} \phi_{m} \sum \bar{\gamma}_{k} \bar{\phi}_{k}=\sum\left|\gamma_{m}\right|^{2}
+$$
+
+since $\left\{\phi_{m}\right\}$ is orthonormal, and so
+
+$$
+\begin{aligned}
+\int\left|f-t_{n}\right|^{2} & =\int|f|^{2}-\int f \bar{t}_{n}-\int \bar{f} t_{n}+\int\left|t_{n}\right|^{2} \\
+& =\int|f|^{2}-\sum c_{m} \bar{\gamma}_{m}-\sum \bar{c}_{m} \gamma_{m}+\sum \gamma_{m} \bar{\gamma}_{m} \\
+& =\int|f|^{2}-\sum\left|c_{m}\right|^{2}+\sum\left|\gamma_{m}-c_{m}\right|^{2}
+\end{aligned}
+$$
+
+which is evidently minimized if and only if $\gamma_{m}=c_{m}$.\\
+Putting $\gamma_{m}=c_{m}$ in this calculation, we obtain
+
+
+\begin{equation*}
+\int_{a}^{b}\left|s_{n}(x)\right|^{2} d x=\sum_{1}^{n}\left|c_{m}\right|^{2} \leq \int_{a}^{b}|f(x)|^{2} d x \tag{72}
+\end{equation*}
+
+
+since $\int\left|f-t_{n}\right|^{2} \geq 0$.\\
+8.12 Theorem If $\left\{\phi_{n}\right\}$ is orthonormal on $[a, b]$, and if
+
+$$
+f(x) \sim \sum_{n=1}^{\infty} c_{n} \phi_{n}(x)
+$$
+
+then
+
+
+\begin{equation*}
+\sum_{n=1}^{\infty}\left|c_{n}\right|^{2} \leq \int_{a}^{b}|f(x)|^{2} d x \tag{73}
+\end{equation*}
+
+
+In particular,
+
+
+\begin{equation*}
+\lim _{n \rightarrow \infty} c_{n}=0 \tag{74}
+\end{equation*}
+
+
+Proof Letting $n \rightarrow \infty$ in (72), we obtain (73), the so-called "Bessel inequality."\\
+8.13 Trigonometric series From now on we shall deal only with the trigonometric system. We shall consider functions $f$ that have period $2 \pi$ and that are Riemann-integrable on $[-\pi, \pi]$ (and hence on every bounded interval). The Fourier series of $f$ is then the series (63) whose coefficients $c_{n}$ are given by the integrals (62), and
+
+
+\begin{equation*}
+s_{N}(x)=s_{N}(f ; x)=\sum_{-N}^{N} c_{n} e^{i n x} \tag{75}
+\end{equation*}
+
+
+is the $N$ th partial sum of the Fourier series of $f$. The inequality (72) now takes the form
+
+
+\begin{equation*}
+\frac{1}{2 \pi} \int_{-\pi}^{\pi}\left|s_{N}(x)\right|^{2} d x=\sum_{-N}^{N}\left|c_{n}\right|^{2} \leq \frac{1}{2 \pi} \int_{-\pi}^{\pi}|f(x)|^{2} d x \tag{76}
+\end{equation*}
+
+
+In order to obtain an expression for $s_{N}$ that is more manageable than (75) we introduce the Dirichlet kernel
+
+
+\begin{equation*}
+D_{N}(x)=\sum_{n=-N}^{N} e^{i n x}=\frac{\sin \left(N+\frac{1}{2}\right) x}{\sin (x / 2)} \tag{77}
+\end{equation*}
+
+
+The first of these equalities is the definition of $D_{N}(x)$. The second follows if both sides of the identity
+
+$$
+\left(e^{i x}-1\right) D_{N}(x)=e^{i(N+1) x}-e^{-i N x}
+$$
+
+are multiplied by $e^{-i x / 2}$.\\
+By (62) and (75), we have
+
+$$
+\begin{aligned}
+s_{N}(f ; x) & =\sum_{-N}^{N} \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(t) e^{-i n t} d t e^{i n x} \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi} f(t) \sum_{-N}^{N} e^{i n(x-t)} d t
+\end{aligned}
+$$
+
+so that
+
+
+\begin{equation*}
+s_{N}(f ; x)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} f(t) D_{N}(x-t) d t=\frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x-t) D_{N}(t) d t \tag{78}
+\end{equation*}
+
+
+The periodicity of all functions involved shows that it is immaterial over which interval we integrate, as long as its length is $2 \pi$. This shows that the two integrals in (78) are equal.
+
+We shall prove just one theorem about the pointwise convergence of Fourier series.\\
+8.14 Theorem If, for some $x$, there are constants $\delta>0$ and $M<\infty$ such that
+
+
+\begin{equation*}
+|f(x+t)-f(x)| \leq M|t| \tag{79}
+\end{equation*}
+
+
+for all $t \in(-\delta, \delta)$, then
+
+
+\begin{equation*}
+\lim _{N \rightarrow \infty} s_{N}(f ; x)=f(x) \tag{80}
+\end{equation*}
+
+
+Proof Define
+
+
+\begin{equation*}
+g(t)=\frac{f(x-t)-f(x)}{\sin (t / 2)} \tag{81}
+\end{equation*}
+
+
+for $0<|t| \leq \pi$, and put $g(0)=0$. By the definition (77),
+
+$$
+\frac{1}{2 \pi} \int_{-\pi}^{\pi} D_{N}(x) d x=1
+$$
+
+Hence (78) shows that
+
+$$
+\begin{aligned}
+s_{N}(f ; x) & -f(x)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} g(t) \sin \left(N+\frac{1}{2}\right) t d t \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi}\left[g(t) \cos \frac{t}{2}\right] \sin N t d t+\frac{1}{2 \pi} \int_{-\pi}^{\pi}\left[g(t) \sin \frac{t}{2}\right] \cos N t d t
+\end{aligned}
+$$
+
+By (79) and (81), $g(t) \cos (t / 2)$ and $g(t) \sin (t / 2)$ are bounded. The last two integrals thus tend to 0 as $N \rightarrow \infty$, by (74). This proves (80).
+
+Corollary If $f(x)=0$ for all $x$ in some segment $J$, then $\lim s_{N}(f ; x)=0$ for every $x \in J$.
+
+Here is another formulation of this corollary:\\
+If $f(t)=g(t)$ for all $t$ in some neighborhood of $x$, then
+
+$$
+s_{N}(f ; x)-s_{N}(g ; x)=s_{N}(f-g ; x) \rightarrow 0 \text { as } N \rightarrow \infty .
+$$
+
+This is usually called the localization theorem. It shows that the behavior of the sequence $\left\{s_{N}(f ; x)\right\}$, as far as convergence is concerned, depends only on the values of $f$ in some (arbitrarily small) neighborhood of $x$. Two Fourier series may thus have the same behavior in one interval, but may behave in entirely different ways in some other interval. We have here a very striking contrast between Fourier series and power series (Theorem 8.5).
+
+We conclude with two other approximation theorems.\\
+8.15 Theorem If $f$ is continuous (with period $2 \pi$ ) and if $\varepsilon>0$, then there is a trigonometric polynomial $P$ such that
+
+$$
+|P(x)-f(x)|<\varepsilon
+$$
+
+for all real $x$.\\
+Proof If we identify $x$ and $x+2 \pi$, we may regard the $2 \pi$-periodic functions on $R^{1}$ as functions on the unit circle $T$, by means of the mapping $x \rightarrow e^{i x}$. The trigonometric polynomials, i.e., the functions of the form (60), form a self-adjoint algebra $\mathscr{A}$, which separates points on $T$, and which vanishes at no point of $T$. Since $T$ is compact, Theorem 7.33 tells us that $\mathscr{A}$ is dense in $\mathscr{C}(T)$. This is exactly what the theorem asserts.
+
+A more precise form of this theorem appears in Exercise 15.\\
+8.16 Parseval's theorem Suppose $f$ and $g$ are Riemann-integrable functions with period $2 \pi$, and
+
+
+\begin{equation*}
+f(x) \sim \sum_{-\infty}^{\infty} c_{n} e^{i n x}, \quad g(x) \sim \sum_{-\infty}^{\infty} \gamma_{n} e^{i n x} . \tag{82}
+\end{equation*}
+
+
+Then
+
+
+\begin{align*}
+\lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{-\pi}^{\pi}\left|f(x)-s_{N}(f ; x)\right|^{2} d x & =0  \tag{83}\\
+\frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) \overline{g(x)} d x & =\sum_{-\infty}^{\infty} c_{n} \bar{\gamma}_{n}  \tag{84}\\
+\frac{1}{2 \pi} \int_{-\pi}^{\pi}|f(x)|^{2} d x & =\sum_{-\infty}^{\infty}\left|c_{n}\right|^{2} \tag{85}
+\end{align*}
+
+
+Proof Let us use the notation
+
+
+\begin{equation*}
+\|h\|_{2}=\left\{\frac{1}{2 \pi} \int_{-\pi}^{\pi}|h(x)|^{2} d x\right\}^{1 / 2} . \tag{86}
+\end{equation*}
+
+
+Let $\varepsilon>0$ be given. Since $f \in \mathscr{R}$ and $f(\pi)=f(-\pi)$, the construction described in Exercise 12 of Chap. 6 yields a continuous $2 \pi$-periodic function $h$ with
+
+
+\begin{equation*}
+\|f-h\|_{2}<\varepsilon \tag{87}
+\end{equation*}
+
+
+By Theorem 8.15, there is a trigonometric polynomial $P$ such that $|h(x)-P(x)|<\varepsilon$ for all $x$. Hence $\|h-P\|_{2}<\varepsilon$. If $P$ has degree $N_{0}$, Theorem 8.11 shows that
+
+
+\begin{equation*}
+\left\|h-s_{N}(h)\right\|_{2} \leq\|h-P\|_{2}<\varepsilon \tag{88}
+\end{equation*}
+
+
+for all $N \geq N_{0}$. By (72), with $h-f$ in place of $f$,
+
+
+\begin{equation*}
+\left\|s_{N}(h)-s_{N}(f)\right\|_{2}=\left\|s_{N}(h-f)\right\|_{2} \leq\|h-f\|_{2}<\varepsilon . \tag{89}
+\end{equation*}
+
+
+Now the triangle inequality (Exercise 11, Chap. 6), combined with (87), (88), and (89), shows that
+
+
+\begin{equation*}
+\left\|f-s_{N}(f)\right\|_{2}<3 \varepsilon \quad\left(N \geq N_{0}\right) \tag{90}
+\end{equation*}
+
+
+This proves (83). Next,
+
+
+\begin{equation*}
+\frac{1}{2 \pi} \int_{-\pi}^{\pi} s_{N}(f) \bar{g} d x=\sum_{-N}^{N} c_{n} \frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{i n x} \overline{g(x)} d x=\sum_{-N}^{N} c_{n} \bar{\gamma}_{n} \tag{91}
+\end{equation*}
+
+
+and the Schwarz inequality shows that
+
+
+\begin{equation*}
+\left|\int f \bar{g}-\int s_{N}(f) \bar{g}\right| \leq \int\left|f-s_{N}(f) \| g\right| \leq\left\{\int\left|f-s_{N}\right|^{2} \int|g|^{2}\right\}^{1 / 2}, \tag{92}
+\end{equation*}
+
+
+which tends to 0 , as $N \rightarrow \infty$, by (83). Comparison of (91) and (92) gives (84). Finally, (85) is the special case $g=f$ of (84).
+
+A more general version of Theorem 8.16 appears in Chap. 11.
+
+\section*{THE GAMMA FUNCTION}
+This function is closely related to factorials and crops up in many unexpected places in analysis. Its origin, history, and development are very well described in an interesting article by P. J. Davis (Amer. Math. Monthly, vol. 66, 1959, pp. 849-869). Artin's book (cited in the Bibliography) is another good elementary introduction.
+
+Our presentation will be very condensed, with only a few comments after each theorem. This section may thus be regarded as a large exercise, and as an opportunity to apply some of the material that has been presented so far.\\
+8.17 Definition For $0<x<\infty$,
+
+
+\begin{equation*}
+\Gamma(x)=\int_{0}^{\infty} t^{x-1} e^{-t} d t \tag{93}
+\end{equation*}
+
+
+The integral converges for these $x$. (When $x<1$, both 0 and $\infty$ have to be looked at.)
+
+\subsection*{8.18 Theorem}
+(a) The functional equation
+
+$$
+\Gamma(x+1)=x \Gamma(x)
+$$
+
+holds if $0<x<\infty$.\\
+(b) $\Gamma(n+1)=n!$ for $n=1,2,3, \ldots$.\\
+(c) $\quad \log \Gamma$ is convex on $(0, \infty)$.
+
+Proof An integration by parts proves (a). Since $\Gamma(1)=1$, (a) implies (b), by induction. If $1<p<\infty$ and $(1 / p)+(1 / q)=1$, apply Hölder's inequality (Exercise 10, Chap. 6) to (93), and obtain
+
+$$
+\Gamma\left(\frac{x}{p}+\frac{y}{q}\right) \leq \Gamma(x)^{1 / p} \Gamma(y)^{1 / q} .
+$$
+
+This is equivalent to (c).\\
+It is a rather surprising fact, discovered by Bohr and Mollerup, that these three properties characterize $\Gamma$ completely.
+
+
+\end{document}

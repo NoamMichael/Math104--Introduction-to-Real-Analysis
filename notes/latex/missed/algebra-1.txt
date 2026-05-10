@@ -1,0 +1,85 @@
+Recall the *algebra* of functions 𝒞(X) consisting of the set of all real-valued, continuous, bounded functions with domain equal to some metric space X.
+
+It is an algebra because if f and g are both in 𝒞(f), then so are f+g, f*g, c*f for some constant c ∈ ℝ.
+
+It is also *uniformly closed*.
+
+Take any algebra 𝒜 of functions, we define its *uniform closure* as the union of 𝒜 with all limits of uniformly convergent sequences in 𝒜.
+
+Theorem
+
+The uniform closure of an algebra of bounded functions is a uniformly closed algebra.
+
+Proof
+
+We first show that it's an algebra.
+Let f_n → f, g_n → g uniformly. Since we are dealing with bounded functions, we can show that
+f_n + g_n → f + g uniformly, f_n g_n → f g uniformly, c f_n → c f uniformly
+
+By Theorem in a previous chapter, you can show that it is uniformly closed.
+
+Definition
+
+Let 𝒜 be a family of functions on a set E. Then 𝒜 is said to *separate points* on E if for every pair of points x_1, x_2 ∈ E, there exists f ∈ 𝒜 such that f(x_1) ≠ f(x_2);
+𝒜 is said to vanish at not point of E if for any x ∈ E there exists f ∈ 𝒜 such that f(x) ≠ 0.
+
+Theorem
+
+Suppose 𝒜 is an (ℝ-)algebra of functions on a set E such that 𝒜 separates points on E and 𝒜 vanishes at no point of E. Suppose x_1, x_2 are distinct points of E, and c_1, c_2 are constants (∈ ℝ). Then there exists f ∈ 𝒜 such that
+f(x_1) = c_1 and f(x_2) = c_2.
+
+Proof
+
+By the assumption, there are g, h, k ∈ 𝒜 such that
+g(x_1) ≠ g(x_2), h(x_1) ≠ 0, k(x_2) ≠ 0.
+Define 
+u(x) := g(x)k(x) - g(x_1)k(x),
+v(x) := g(x)h(x) - g(x_2)h(x).
+Since 𝒜 is an algebra, we have u, v ∈ 𝒜, and 
+u(x_1) = v(x_2) = 0, but u(x_2) ≠ 0 and v(x_1) ≠ 0.
+Therefore, 
+f(x) = c_1 v(x)/v(x_1) + c_2 u(x)/u(x_2) has the desired property.
+
+Recall from last time that every continuous function on a closed interval can be uniformly approximated by polynomials. Here we present a generalization of this.
+
+Stone's generalization of Weierstrass theorem
+
+Let 𝒜 be an algebra of real continuous functions on a compact set K. If 𝒜 separates points on K and if 𝒜 vanishes at no point of K, then the uniform closure of 𝒜 consists of all real continuous functions on K.
+
+We divide the proof into four steps.
+
+Step 1. f ∈ uniform closure ⇒ |f| ∈ uniform closure
+
+Use the polynomial approximation and triangle inequality.
+
+Step 2. f, g ∈ uniform closure, then max(f, g) and min(f, g) also ∈ uniform closure
+
+Express
+max(f, g) = (f+g)/2 + |f-g|/2
+min(f, g) = (f+g)/2 - |f-g|/2
+
+Step 3. For any real continuous function f on K, for any x ∈ K, for any ε > 0, there exists g_x in the uniform closure of 𝒜 such that
+g_x(x) = f(x) and
+g_x(t) > f(t) - ε for any t ∈ K.
+
+For any y ∈ K, by a previous theorem, we can find h_y ∈ uniform closure such that
+h_y(x) = f(x) and h_y(y) = f(y).
+By the continuity of h_y, there exists an open neighborhood J_y of y such that
+h_y(t) > f(t)-ε for t ∈ J_y.
+Since K is compact, K can be covered by finitely many J_y's.
+Let y_1,...,y_n index this finite cover.
+Let g_x = max(h_{y_1},...,h_{y_n}).
+
+Step 4. For any real continuous function f on K, for any x ∈ K, for any ε > 0, there exists g in the uniform closure of 𝒜 such that
+|g(x) - f(x)| < ε for any x ∈ K.
+Since the uniform closure of 𝒜 is uniformly closed, we essentially proved the theorem if we can prove this.
+
+For any x ∈ K, let g_x be chosen from Step 3. 
+There exists an open neighborhood of x such that
+g_x(t) < f(t) + ε for all t ∈ V_x.
+Again K can be covered by finitely many V_x's.
+Let h = min(g_{x_1},...,g_{x_n}).
+
+Remark
+
+In complex analysis, you would no longer have this, but you will have a holomorphic version of the Stone--Weierstrass theorem.

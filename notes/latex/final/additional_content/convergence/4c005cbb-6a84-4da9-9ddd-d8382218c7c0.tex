@@ -1,0 +1,160 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+
+\begin{document}
+by Theorem 3.20(b). Since (18) is true for every $\beta>\alpha$, we have
+
+$$
+\limsup _{n \rightarrow \infty} \sqrt[n]{c_{n}} \leq \alpha
+$$
+
+\section*{POWER SERIES}
+3.38 Definition Given a sequence $\left\{c_{n}\right\}$ of complex numbers, the series
+
+
+\begin{equation*}
+\sum_{n=0}^{\infty} c_{n} z^{n} \tag{19}
+\end{equation*}
+
+
+is called a power series. The numbers $c_{n}$ are called the coefficients of the series; $z$ is a complex number.
+
+In general, the series will converge or diverge, depending on the choice of $z$. More specifically, with every power series there is associated a circle, the circle of convergence, such that (19) converges if $z$ is in the interior of the circle and diverges if $z$ is in the exterior (to cover all cases, we have to consider the plane as the interior of a circle of infinite radius, and a point as a circle of radius zero). The behavior on the circle of convergence is much more varied and cannot be described so simply.\\
+3.39 Theorem Given the power series $\Sigma c_{n} z^{n}$, put
+
+$$
+\alpha=\limsup _{n \rightarrow \infty} \sqrt[n]{\left|c_{n}\right|}, \quad R=\frac{1}{\alpha}
+$$
+
+(If $\alpha=0, R=+\infty$; if $\alpha=+\infty, R=0$.) Then $\Sigma c_{n} z^{n}$ converges if $|z|<R$, and diverges if $|z|>R$.
+
+Proof Put $a_{n}=c_{n} z^{n}$, and apply the root test:
+
+$$
+\limsup _{n \rightarrow \infty} \sqrt[n]{\left|a_{n}\right|}=|z| \limsup _{n \rightarrow \infty} \sqrt[n]{\left|c_{n}\right|}=\frac{|z|}{R} .
+$$
+
+Note: R is called the radius of convergence of $\Sigma c_{n} z^{n}$.
+
+\subsection*{3.40 Examples}
+(a) The series $\Sigma n^{n} z^{n}$ has $R=0$.\\
+(b) The series $\sum \frac{z^{n}}{n!}$ has $R=+\infty$. (In this case the ratio test is easier to apply than the root test.)\\
+(c) The series $\Sigma z^{n}$ has $R=1$. If $|z|=1$, the series diverges, since $\left\{z^{n}\right\}$ does not tend to 0 as $n \rightarrow \infty$.\\
+(d) The series $\sum \frac{z^{n}}{n}$ has $R=1$. It diverges if $z=1$. It converges for all other $z$ with $|z|=1$. (The last assertion will be proved in Theorem 3.44.) (e) The series $\sum \frac{z^{n}}{n^{2}}$ has $R=1$. It converges for all $z$ with $|z|=1$, by the comparison test, since $\left|z^{n} / n^{2}\right|=1 / n^{2}$.
+
+\section*{SUMMATION BY PARTS}
+3.41 Theorem Given two sequences $\left\{a_{n}\right\},\left\{b_{n}\right\}$, put
+
+$$
+A_{n}=\sum_{k=0}^{n} a_{k}
+$$
+
+if $n \geq 0$; put $A_{-1}=0$. Then, if $0 \leq p \leq q$, we have
+
+
+\begin{equation*}
+\sum_{n=p}^{q} a_{n} b_{n}=\sum_{n=p}^{q-1} A_{n}\left(b_{n}-b_{n+1}\right)+A_{q} b_{q}-A_{p-1} b_{p} \tag{20}
+\end{equation*}
+
+
+Proof
+
+$$
+\sum_{n=p}^{q} a_{n} b_{n}=\sum_{n=p}^{q}\left(A_{n}-A_{n-1}\right) b_{n}=\sum_{n=p}^{q} A_{n} b_{n}-\sum_{n=p-1}^{q-1} A_{n} b_{n+1}
+$$
+
+and the last expression on the right is clearly equal to the right side of (20).
+
+Formula (20), the so-called "partial summation formula," is useful in the investigation of series of the form $\Sigma a_{n} b_{n}$, particularly when $\left\{b_{n}\right\}$ is monotonic. We shall now give applications.\\
+3.42 Theorem Suppose\\
+(a) the partial sums $A_{n}$ of $\Sigma a_{n}$ form a bounded sequence;\\
+(b) $b_{0} \geq b_{1} \geq b_{2} \geq \cdots$;\\
+(c) $\lim _{n \rightarrow \infty} b_{n}=0$.
+
+Then $\Sigma a_{n} b_{n}$ converges.
+
+Proof Choose $M$ such that $\left|A_{n}\right| \leq M$ for all $n$. Given $\varepsilon>0$, there is an integer $N$ such that $b_{N} \leq(\varepsilon / 2 M)$. For $N \leq p \leq q$, we have
+
+$$
+\begin{aligned}
+\left|\sum_{n=p}^{q} a_{n} b_{n}\right| & =\left|\sum_{n=p}^{q-1} A_{n}\left(b_{n}-b_{n+1}\right)+A_{q} b_{q}-A_{p-1} b_{p}\right| \\
+& \leq M\left|\sum_{n=p}^{q-1}\left(b_{n}-b_{n+1}\right)+b_{q}+b_{p}\right| \\
+& =2 M b_{p} \leq 2 M b_{N} \leq \varepsilon .
+\end{aligned}
+$$
+
+Convergence now follows from the Cauchy criterion. We note that the first inequality in the above chain depends of course on the fact that $b_{n}-b_{n+1} \geq 0$.\\
+3.43 Theorem Suppose\\
+(a) $\left|c_{1}\right| \geq\left|c_{2}\right| \geq\left|c_{3}\right| \geq \cdots$;\\
+(b) $c_{2 m-1} \geq 0, c_{2 m} \leq 0 \quad(m=1,2,3, \ldots)$;\\
+(c) $\lim _{n \rightarrow \infty} c_{n}=0$.
+
+Then $\Sigma c_{n}$ converges.\\
+Series for which (b) holds are called "alternating series"; the theorem was known to Leibnitz.
+
+Proof Apply Theorem 3.42, with $a_{n}=(-1)^{n+1}, b_{n}=\left|c_{n}\right|$.\\
+3.44 Theorem Suppose the radius of convergence of $\Sigma c_{n} z^{n}$ is 1 , and suppose $c_{0} \geq c_{1} \geq c_{2} \geq \cdots, \lim _{n \rightarrow \infty} c_{n}=0$. Then $\Sigma c_{n} z^{n}$ converges at every point on the circle $|z|=1$, except possibly at $z=1$.
+
+Proof Put $a_{n}=z^{n}, b_{n}=c_{n}$. The hypotheses of Theorem 3.42 are then satisfied, since
+
+$$
+\left|A_{n}\right|=\left|\sum_{m=0}^{n} z^{m}\right|=\left|\frac{1-z^{n+1}}{1-z}\right| \leq \frac{2}{|1-z|},
+$$
+
+if $|z|=1, z \neq 1$.
+
+\section*{ABSOLUTE CONVERGENCE}
+The series $\Sigma a_{n}$ is said to converge absolutely if the series $\Sigma\left|a_{n}\right|$ converges.\\
+3.45 Theorem If $\Sigma a_{n}$ converges absolutely, then $\Sigma a_{n}$ converges.
+
+Proof The assertion follows from the inequality
+
+$$
+\left|\sum_{k=n}^{m} a_{k}\right| \leq \sum_{k=n}^{m}\left|a_{k}\right|
+$$
+
+plus the Cauchy criterion.\\
+3.46 Remarks For series of positive terms, absolute convergence is the same as convergence.
+
+If $\Sigma a_{n}$ converges, but $\Sigma\left|a_{n}\right|$ diverges, we say that $\Sigma a_{n}$ converges nonabsolutely. For instance, the series
+
+$$
+\sum \frac{(-1)^{n}}{n}
+$$
+
+converges nonabsolutely (Theorem 3.43).\\
+The comparison test, as well as the root and ratio tests, is really a test for absolute convergence, and therefore cannot give any information about nonabsolutely convergent series. Summation by parts can sometimes be used to handle the latter. In particular, power series converge absolutely in the interior of the circle of convergence.
+
+We shall see that we may operate with absolutely convergent series very much as with finite sums. We may multiply them term by term and we may change the order in which the additions are carried out, without affecting the sum of the series. But for nonabsolutely convergent series this is no longer true, and more care has to be taken when dealing with them.
+
+\section*{ADDITION AND MULTIPLICATION OF SERIES}
+3.47 Theorem If $\Sigma a_{n}=A$, and $\Sigma b_{n}=B$, then $\Sigma\left(a_{n}+b_{n}\right)=A+B$, and $\Sigma c a_{n}=c A$, for any fixed $c$.
+
+Proof Let
+
+$$
+A_{n}=\sum_{k=0}^{n} a_{k}, \quad B_{n}=\sum_{k=0}^{n} b_{k} .
+$$
+
+Then
+
+$$
+A_{n}+B_{n}=\sum_{k=0}^{n}\left(a_{k}+b_{k}\right)
+$$
+
+Since $\lim _{n \rightarrow \infty} A_{n}=A$ and $\lim _{n \rightarrow \infty} B_{n}=B$, we see that
+
+$$
+\lim _{n \rightarrow \infty}\left(A_{n}+B_{n}\right)=A+B
+$$
+
+The proof of the second assertion is even simpler.
+
+
+\end{document}

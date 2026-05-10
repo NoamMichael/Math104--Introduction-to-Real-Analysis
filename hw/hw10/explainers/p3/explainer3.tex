@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+
+\title{Explainer: Problem 3 (Rudin 7.8) --- Step Function Series}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{What's going on?}
+We build a function by stacking up ``jumps.'' Each jump happens at a point $x_n$ and has size $c_n$:
+$$
+f(x) = \sum_{n=1}^{\infty} c_n\, I(x - x_n), \qquad I(t) = \begin{cases} 0 & t \leq 0 \\ 1 & t > 0 \end{cases}
+$$
+The function $I(x - x_n)$ is $0$ to the left of $x_n$ and $1$ to the right. So $c_n I(x - x_n)$ adds a jump of height $c_n$ at $x_n$.
+
+\section*{Visualizing a partial sum}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    \draw[->] (0,-0.3) -- (7,-0.3) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,3) node[above] {$f(x)$};
+
+    % Jump points
+    \foreach \x/\h/\label in {1/0.8/$x_1$, 2.5/0.5/$x_2$, 4/1.0/$x_3$, 5.5/0.4/$x_4$} {
+        \draw[dashed, gray] (\x,-0.3) -- (\x,2.5);
+        \node[below] at (\x,-0.3) {\small \label};
+    }
+
+    % Step function (cumulative)
+    \draw[thick, blue] (0,0) -- (1,0);
+    \draw[thick, blue] (1,0.8) -- (2.5,0.8);
+    \draw[thick, blue] (2.5,1.3) -- (4,1.3);
+    \draw[thick, blue] (4,2.3) -- (5.5,2.3);
+    \draw[thick, blue] (5.5,2.7) -- (6.8,2.7);
+
+    % Jump arrows
+    \draw[red, thick, ->] (1,0) -- (1,0.75) node[midway, right] {\small $c_1$};
+    \draw[red, thick, ->] (2.5,0.8) -- (2.5,1.25) node[midway, right] {\small $c_2$};
+    \draw[red, thick, ->] (4,1.3) -- (4,2.25) node[midway, right] {\small $c_3$};
+    \draw[red, thick, ->] (5.5,2.3) -- (5.5,2.65) node[midway, right] {\small $c_4$};
+
+    % Dots for open/closed
+    \foreach \x/\y in {1/0, 2.5/0.8, 4/1.3, 5.5/2.3} {
+        \fill[white] (\x,\y) circle (2pt);
+        \draw[blue] (\x,\y) circle (2pt);
+    }
+    \foreach \x/\y in {1/0.8, 2.5/1.3, 4/2.3, 5.5/2.7} {
+        \fill[blue] (\x,\y) circle (2pt);
+    }
+\end{tikzpicture}
+\end{center}
+
+At each $x_n$, the function jumps by $c_n$. Between jump points, the function is constant (hence continuous).
+
+\section*{Why $\sum |c_n| < \infty$ gives uniform convergence}
+
+The tool here is the \textbf{Weierstrass $M$-test}. Each term satisfies:
+$$
+|c_n\, I(x - x_n)| \leq |c_n| \quad \text{for all } x.
+$$
+Since $\sum |c_n| < \infty$, the $M$-test gives uniform convergence immediately.
+
+\textbf{That's it.} The $M$-test is the whole argument for uniform convergence.
+
+\section*{Why $f$ is continuous at $x \neq x_n$}
+
+Fix a point $x_0 \neq x_n$ for any $n$. Each individual term $c_n I(x - x_n)$ is continuous at $x_0$ (because $I$ only jumps at $x_n$, and $x_0$ is not any $x_n$). Since we have a uniformly convergent series of continuous functions, Theorem 7.12 tells us the sum $f$ is continuous at $x_0$.
+
+\section*{Why $f$ is discontinuous at each $x_n$ (when $c_n \neq 0$)}
+
+At $x = x_n$, the function $I(x - x_n)$ jumps from $0$ to $1$. The other terms $c_m I(x - x_m)$ for $m \neq n$ are continuous at $x_n$ (since the $x_m$ are distinct). So $f$ has a jump of size $c_n$ at $x_n$.
+
+\section*{Proof outline}
+\begin{enumerate}
+    \item Apply the Weierstrass $M$-test with $M_n = |c_n|$.
+    \item Cite Theorem 7.12: uniform limit of continuous functions is continuous.
+    \item Each term is continuous at $x \neq x_n$, so the sum is too.
+\end{enumerate}
+
+\end{document}

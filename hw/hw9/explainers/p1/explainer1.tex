@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+
+\title{Explainer: Problem 1 (Rudin 6.16) --- The Zeta Function via Integrals}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{What's going on?}
+The Riemann zeta function $\zeta(s) = \sum_{n=1}^{\infty} 1/n^s$ is a sum over integers. The problem asks us to express it as an integral. The trick is that the \emph{floor function} $[x]$ is piecewise constant (it equals $n$ on $[n, n+1)$), so integrals involving $[x]$ decompose into sums.
+
+\section*{The floor function}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \draw[->] (0,0) -- (5.5,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,4) node[above] {$[x]$};
+  \foreach \n in {0,1,2,3,4} {
+    \draw[thick, blue] (\n,\n) -- (\n+1,\n);
+    \fill[blue] (\n,\n) circle (2pt);
+    \draw[blue] (\n+1,\n) circle (2pt);
+  }
+  \foreach \n in {1,2,3,4,5} {
+    \draw[dashed, gray] (\n,0) -- (\n,\n-1);
+    \node[below] at (\n,0) {\small $\n$};
+  }
+  \foreach \n in {1,2,3,4} {
+    \node[left] at (0,\n) {\small $\n$};
+  }
+\end{tikzpicture}
+\end{center}
+On the interval $[n, n+1)$, $[x] = n$. So an integral like $\int_1^\infty \frac{[x]}{x^{s+1}} dx$ becomes a sum of pieces, each of which is easy: $\int_a^b x^{-s-1} dx$.
+
+\section*{Strategy for (a)}
+\begin{enumerate}
+  \item Break $[1, \infty)$ into $[n-1, n)$ pieces where $[x] = n-1$.
+  \item Evaluate each piece: $\int_{n-1}^{n} (n-1) x^{-s-1} dx$ gives a clean expression.
+  \item Sum up. The resulting series \textbf{telescopes} --- the coefficient of each $1/k^s$ collapses to $1$, recovering $\zeta(s)$.
+\end{enumerate}
+
+\textbf{Telescoping intuition:} When you have $\sum (n-1)(a_{n-1} - a_n)$, rewriting by collecting coefficients of each $a_k$ gives $[k - (k-1)] \cdot a_k = a_k$. That's the same trick as summation by parts.
+
+\section*{Strategy for (b)}
+Just write $x = [x] + (x - [x])$ and split the integral. The $[x]$ piece is $\zeta(s)/s$ by (a); the $x$ piece is an elementary integral giving $1/(s-1)$. Rearranging gives (b).
+
+\section*{Convergence of the integral in (b) for $s > 0$}
+Use that $0 \leq x - [x] < 1$, so the integrand is dominated by $1/x^{s+1}$, which has a finite integral on $[1, \infty)$ whenever $s > 0$. This is significant because the \emph{series} defining $\zeta(s)$ only converges for $s > 1$ --- formula (b) gives a way to extend $\zeta$ beyond $s=1$.
+
+\end{document}

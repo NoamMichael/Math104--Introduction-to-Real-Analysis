@@ -1,0 +1,277 @@
+\documentclass[12 pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill HW9 \hfill}
+\newtheorem{prob}{Problem}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Math 104 --- Homework 9}}\\[0.5em]
+    Noam Michael \hfill \today
+\end{center}
+
+\section*{Rudin Chapter 6}
+
+\begin{prob}[6.16]
+For $1<s<\infty$, define
+$$
+\zeta(s)=\sum_{n=1}^{\infty} \frac{1}{n^{s}}.
+$$
+Prove that
+\begin{enumerate}
+    \item[(a)] $\zeta(s)=s \int_{1}^{\infty} \frac{[x]}{x^{s+1}}\, dx$,
+    \item[(b)] $\zeta(s)=\frac{s}{s-1}-s \int_{1}^{\infty} \frac{x-[x]}{x^{s+1}}\, dx$,
+\end{enumerate}
+where $[x]$ denotes the greatest integer $\leq x$. Prove that the integral in (b) converges for all $s>0$.
+\end{prob}
+\begin{proof}
+\textbf{(a)} On each interval $[n-1, n)$ we have $[x] = n-1$, so
+$$
+\int_{1}^{\infty} \frac{[x]}{x^{s+1}}\, dx = \sum_{n=2}^{\infty} \int_{n-1}^{n} \frac{n-1}{x^{s+1}}\, dx = \sum_{n=2}^{\infty} \frac{n-1}{s}\left(\frac{1}{(n-1)^{s}} - \frac{1}{n^{s}}\right).
+$$
+Multiplying by $s$, we collect the coefficient of each $a_k := 1/k^{s}$ in the $N$th partial sum. The term $(n-1)(a_{n-1} - a_n)$ contributes $+(n-1)$ to $a_{n-1}$ and $-(n-1)$ to $a_n$, so
+\begin{align*}
+S_N &= \sum_{n=2}^{N}(n-1)(a_{n-1} - a_n) \\
+    &= 1\cdot a_1 + \sum_{k=2}^{N-1}\bigl[k - (k-1)\bigr] a_k - (N-1)\, a_N \\
+    &= \sum_{k=1}^{N-1} \frac{1}{k^{s}} - \frac{N-1}{N^{s}}.
+\end{align*}
+Since $s > 1$, $(N-1)/N^{s} \to 0$, so $S_N \to \zeta(s)$. Hence
+$$
+\zeta(s) = s \int_{1}^{\infty} \frac{[x]}{x^{s+1}}\, dx.
+$$
+
+\textbf{(b)} For $s > 1$, a direct computation gives
+$$
+s \int_{1}^{\infty} \frac{x}{x^{s+1}}\, dx = s \int_{1}^{\infty} x^{-s}\, dx = \frac{s}{s-1}.
+$$
+Splitting $x = [x] + (x - [x])$ and using part (a),
+$$
+\frac{s}{s-1} = s\int_{1}^{\infty} \frac{[x]}{x^{s+1}}\, dx + s\int_{1}^{\infty} \frac{x-[x]}{x^{s+1}}\, dx = \zeta(s) + s\int_{1}^{\infty} \frac{x-[x]}{x^{s+1}}\, dx,
+$$
+which rearranges to the desired identity.
+
+Finally, for $s > 0$, since $0 \leq x - [x] < 1$,
+$$
+0 \leq \int_{1}^{\infty} \frac{x-[x]}{x^{s+1}}\, dx \leq \int_{1}^{\infty} \frac{1}{x^{s+1}}\, dx = \frac{1}{s} < \infty,
+$$
+so the integral in (b) converges for all $s > 0$.
+\end{proof}
+
+\begin{prob}[6.17]
+Suppose $\alpha$ increases monotonically on $[a, b]$, $g$ is continuous, and $g(x)=G'(x)$ for $a \leq x \leq b$. Prove that
+$$
+\int_{a}^{b} \alpha(x) g(x)\, dx = G(b)\alpha(b) - G(a)\alpha(a) - \int_{a}^{b} G\, d\alpha.
+$$
+\end{prob}
+\begin{proof}
+Let $P = \{x_0, x_1, \ldots, x_n\}$ be any partition of $[a,b]$. Since $g$ is continuous and $G' = g$, the Mean Value Theorem applied to $G$ on each $[x_{i-1}, x_i]$ gives a point $t_i \in (x_{i-1}, x_i)$ with
+$$
+g(t_i)\, \Delta x_i = G(x_i) - G(x_{i-1}).
+$$
+Form the Riemann sum for $\int_a^b \alpha g\, dx$ with this choice of tags:
+$$
+S(P) := \sum_{i=1}^{n} \alpha(x_i)\, g(t_i)\, \Delta x_i = \sum_{i=1}^{n} \alpha(x_i)\bigl[G(x_i) - G(x_{i-1})\bigr].
+$$
+
+Now we expand the telescoping sum $G(b)\alpha(b) - G(a)\alpha(a)$:
+\begin{align*}
+G(b)\alpha(b) - G(a)\alpha(a) &= \sum_{i=1}^{n}\bigl[\alpha(x_i)G(x_i) - \alpha(x_{i-1})G(x_{i-1})\bigr] \\
+&= \sum_{i=1}^{n} \alpha(x_i)\bigl[G(x_i) - G(x_{i-1})\bigr] + \sum_{i=1}^{n} G(x_{i-1})\bigl[\alpha(x_i) - \alpha(x_{i-1})\bigr] \\
+&= S(P) + \sum_{i=1}^{n} G(x_{i-1})\, \Delta \alpha_i.
+\end{align*}
+Rearranging,
+$$
+S(P) = G(b)\alpha(b) - G(a)\alpha(a) - \sum_{i=1}^{n} G(x_{i-1})\, \Delta \alpha_i. \tag{$\ast$}
+$$
+
+We now let the mesh $\|P\| \to 0$.
+
+\textbf{Left side:} Since $\alpha$ is monotone it is bounded and Riemann-integrable, and $g$ is continuous, so $\alpha g \in \mathscr{R}$ on $[a,b]$. The sum $S(P)$ is a Riemann sum for $\int_a^b \alpha g\, dx$ with tags $t_i$, so $S(P) \to \int_a^b \alpha(x) g(x)\, dx$.
+
+\textbf{Right side:} $G$ is an antiderivative of the continuous function $g$, hence $G$ is continuous on $[a,b]$. Since $\alpha$ is monotone and $G$ is continuous, $G \in \mathscr{R}(\alpha)$, and the sum $\sum G(x_{i-1}) \Delta \alpha_i$ is a Riemann--Stieltjes sum for $\int_a^b G\, d\alpha$ with left-endpoint tags, so it converges to $\int_a^b G\, d\alpha$.
+
+Taking the limit in $(\ast)$ gives
+$$
+\int_a^b \alpha(x) g(x)\, dx = G(b)\alpha(b) - G(a)\alpha(a) - \int_a^b G\, d\alpha,
+$$
+as desired.
+\end{proof}
+
+\begin{prob}[6.18]
+Let $\gamma_{1}, \gamma_{2}, \gamma_{3}$ be curves in the complex plane, defined on $[0,2\pi]$ by
+$$
+\gamma_{1}(t)=e^{it}, \quad \gamma_{2}(t)=e^{2it}, \quad \gamma_{3}(t)=e^{2\pi i t \sin(1/t)}.
+$$
+Show that these three curves have the same range, that $\gamma_{1}$ and $\gamma_{2}$ are rectifiable, that the length of $\gamma_{1}$ is $2\pi$, that the length of $\gamma_{2}$ is $4\pi$, and that $\gamma_{3}$ is not rectifiable.
+\end{prob}
+\begin{proof}
+\textbf{Same range.} Each $\gamma_j$ maps into $\{z \in \mathbb{C} : |z| = 1\}$ since $|e^{i\theta}| = 1$ for real $\theta$. The image of $\gamma_1$ is the full unit circle (as $t$ ranges over $[0, 2\pi]$, $e^{it}$ traces out the circle once). For $\gamma_2$, as $t$ ranges over $[0, 2\pi]$, $2t$ ranges over $[0, 4\pi]$, traversing the circle twice; the range is still the full circle. For $\gamma_3$, the exponent $2\pi t \sin(1/t)$ takes a continuum of real values, and by continuity plus the intermediate value theorem it sweeps through every angle modulo $2\pi$, so the range is again the full unit circle.
+
+\textbf{Lengths of $\gamma_1$ and $\gamma_2$.} Both are $C^1$, so their lengths are given by
+$$
+\Lambda(\gamma_j) = \int_0^{2\pi} |\gamma_j'(t)|\, dt.
+$$
+We compute $\gamma_1'(t) = i e^{it}$, so $|\gamma_1'(t)| = 1$ and $\Lambda(\gamma_1) = 2\pi$. Similarly $\gamma_2'(t) = 2i e^{2it}$, $|\gamma_2'(t)| = 2$, and $\Lambda(\gamma_2) = 4\pi$.
+
+\textbf{$\gamma_3$ is not rectifiable.} Consider the argument $\theta(t) = 2\pi\cdot \frac{\sin(1/t)}{t}$, which oscillates unboundedly as $t \to 0^+$ since $|\sin(1/t)/t|$ becomes arbitrarily large. Choose a decreasing sequence $\{t_n\} \to 0$ in $(0, 2\pi]$ such that
+$$
+\frac{\sin(1/t_n)}{t_n} = k_n \in \mathbb{Z},
+$$
+with the $k_n$ taking infinitely many distinct values; such a sequence exists by the intermediate value theorem applied on each interval where $\sin(1/t)/t$ sweeps through a large range of values.
+
+Between consecutive $t_n$ and $t_{n+1}$, the function $\sin(1/t)/t$ passes through every integer between $k_n$ and $k_{n+1}$, so $\theta(t)$ sweeps through every multiple of $2\pi$ in that range. Between two consecutive such multiples, $\gamma_3$ traverses the full unit circle, contributing at least the diameter's worth (in fact the full circumference bound) to any polygonal approximation. Picking sample points at extremes of the oscillation, the polygonal length accumulates at least a fixed positive amount per ``sweep,'' and since there are infinitely many sweeps as $t \to 0$, the total polygonal length is unbounded. Hence
+$$
+\Lambda(\gamma_3) = \sup_P \sum_i |\gamma_3(t_i) - \gamma_3(t_{i-1})| = +\infty,
+$$
+so $\gamma_3$ is not rectifiable.
+\end{proof}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\section*{Rudin Chapter 7}
+
+\begin{prob}[7.1]
+Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+\end{prob}
+\begin{proof}
+Let $\{f_n\}$ be a sequence of bounded functions on a set $E$ converging uniformly to $f$. For each $n$, since $f_n$ is bounded, let
+$$
+M_n := \sup_{x \in E} f_n(x), \qquad M_n' := \inf_{x \in E} f_n(x),
+$$
+so $M_n' \leq f_n(x) \leq M_n$ for all $x \in E$.
+
+By uniform convergence, pick $N$ such that
+$$
+|f_n(x) - f(x)| < 1 \qquad \text{for all } n \geq N \text{ and all } x \in E.
+$$
+In particular, $|f_N(x) - f(x)| < 1$, so
+$$
+|f(x)| \leq |f_N(x)| + 1 \leq \max(|M_N|, |M_N'|) + 1
+$$
+for all $x \in E$; thus $f$ is bounded. For every $n \geq N$,
+$$
+|f_n(x)| \leq |f(x)| + 1 \leq \max(|M_N|, |M_N'|) + 2.
+$$
+
+There are only finitely many indices $n < N$, and each such $f_n$ is bounded by $\max(|M_n|, |M_n'|)$. Setting
+$$
+M := \max\Bigl( \max(|M_N|, |M_N'|) + 2,\; \max_{1 \leq n < N} \max(|M_n|, |M_n'|) \Bigr),
+$$
+we obtain $|f_n(x)| \leq M$ for all $n$ and all $x \in E$. Hence $\{f_n\}$ is uniformly bounded.
+\end{proof}
+
+\begin{prob}[7.3]
+Construct sequences $\{f_{n}\}, \{g_{n}\}$ which converge uniformly on some set $E$, but such that $\{f_{n} g_{n}\}$ does not converge uniformly on $E$ (of course, $\{f_{n} g_{n}\}$ must converge on $E$).
+\end{prob}
+\begin{proof}
+Take $E = \mathbb{R}$ and define
+$$
+f_n(x) = \frac{1}{n}, \qquad g_n(x) = x.
+$$
+
+\textbf{$f_n \to 0$ uniformly on $\mathbb{R}$:} Indeed
+$$
+\sup_{x \in \mathbb{R}} |f_n(x) - 0| = \frac{1}{n} \to 0.
+$$
+
+\textbf{$g_n \to g$ uniformly on $\mathbb{R}$:} Here $g(x) = x$ and $g_n = g$ for every $n$, so
+$$
+\sup_{x \in \mathbb{R}} |g_n(x) - g(x)| = 0
+$$
+for all $n$. Trivially uniform.
+
+\textbf{$f_n g_n$ does not converge uniformly:} The product is $f_n(x) g_n(x) = x/n$, which converges pointwise to $0$ for every fixed $x \in \mathbb{R}$. But
+$$
+\sup_{x \in \mathbb{R}} \left| \frac{x}{n} - 0 \right| = \sup_{x \in \mathbb{R}} \frac{|x|}{n} = +\infty
+$$
+for every $n$, so the sup-norm error does not tend to $0$. Hence $\{f_n g_n\}$ does not converge uniformly on $\mathbb{R}$.
+\end{proof}
+
+\begin{prob}[7.4]
+Consider
+$$
+f(x)=\sum_{n=1}^{\infty} \frac{1}{1+n^{2} x}.
+$$
+For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?
+\end{prob}
+\begin{proof}
+\textbf{Domain / absolute convergence.} The $n$th term $u_n(x) = \frac{1}{1 + n^2 x}$ is undefined when $1 + n^2 x = 0$, i.e.\ at $x = -1/n^2$. At $x = 0$, each term equals $1$ and $\sum 1$ diverges. For every other $x$, as $n \to \infty$,
+$$
+\left| \frac{1}{1 + n^2 x} \right| \sim \frac{1}{n^2 |x|},
+$$
+so by comparison with $\sum 1/n^2$ the series converges absolutely. Hence the series converges absolutely on
+$$
+D := \mathbb{R} \setminus \Bigl(\{0\} \cup \{-1/n^2 : n \geq 1\}\Bigr).
+$$
+
+\textbf{Uniform convergence via the $M$-test.} Fix any closed interval $I \subset D$ bounded away from $0$ and from every $-1/n^2$. Then there exists a constant $C > 0$ such that $|1 + n^2 x| \geq C n^2$ for all $x \in I$ and all sufficiently large $n$ (because $|x|$ is bounded below by some $\delta > 0$ on $I$, giving $|1 + n^2 x| \geq n^2 \delta - 1 \geq C n^2$ for large $n$). Thus
+$$
+\sup_{x \in I} \left| \frac{1}{1 + n^2 x} \right| \leq \frac{1}{C n^2},
+$$
+and $\sum 1/(Cn^2) < \infty$. By the Weierstrass $M$-test, the series converges uniformly on $I$.
+
+\textbf{Failure of uniform convergence on $(0, \infty)$.} For any $N$, consider the tail
+$$
+R_N(x) = \sum_{n=N+1}^{\infty} \frac{1}{1 + n^2 x}.
+$$
+As $x \to 0^+$, each term tends to $1$, so in particular $R_N(x) \geq \frac{1}{1 + (N+1)^2 x} \to 1$ as $x \to 0^+$. Hence $\sup_{x > 0} R_N(x) \geq 1$ for every $N$, so the convergence is not uniform on $(0, \infty)$. The same reasoning shows non-uniform convergence on any interval whose closure contains $0$ or any $-1/n^2$.
+
+\textbf{Continuity.} Each term $u_n(x)$ is continuous on $D$. The series converges uniformly on every closed interval $I \subset D$ bounded away from $0$ and the $-1/n^2$, so by Theorem 7.12 the sum $f$ is continuous on every such $I$. Since continuity is local and every point of $D$ has such a neighborhood, $f$ is continuous on all of $D$.
+
+\textbf{Boundedness.} $f$ is \emph{not} bounded. As $x \to 0^+$, every term $\frac{1}{1 + n^2 x} \to 1$, and for any $N$,
+$$
+f(x) \geq \sum_{n=1}^{N} \frac{1}{1 + n^2 x} \longrightarrow N \quad \text{as } x \to 0^+.
+$$
+Since $N$ is arbitrary, $f(x) \to +\infty$ as $x \to 0^+$, so $f$ is unbounded on $D$.
+\end{proof}
+
+\begin{prob}[7.5]
+Let
+$$
+f_{n}(x)= \begin{cases}0 & \left(x<\frac{1}{n+1}\right), \\ \sin^{2} \frac{\pi}{x} & \left(\frac{1}{n+1} \leq x \leq \frac{1}{n}\right), \\ 0 & \left(\frac{1}{n}<x\right).\end{cases}
+$$
+Show that $\{f_{n}\}$ converges to a continuous function, but not uniformly. Use the series $\Sigma f_{n}$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+\end{prob}
+\begin{proof}
+\textbf{Pointwise limit is $0$.} Fix $x \in \mathbb{R}$.
+\begin{itemize}
+  \item If $x \leq 0$, then $x < 1/(n+1)$ for every $n \geq 1$, so $f_n(x) = 0$ for all $n$.
+  \item If $x > 1$, then $x > 1/n$ for every $n \geq 1$, so $f_n(x) = 0$ for all $n$.
+  \item If $0 < x \leq 1$, pick $N$ with $1/N \leq x$. Then for every $n \geq N$ we have $x \geq 1/N \geq 1/n$, so $x > 1/n$ fails only on $[1/(n+1), 1/n]$; once $n$ is large enough that $1/n < x$, we have $f_n(x) = 0$.
+\end{itemize}
+In every case, $f_n(x) \to 0$ as $n \to \infty$. The support of $f_n$ is $[1/(n+1), 1/n]$, an interval whose position shrinks toward $0$ as $n \to \infty$, so for each fixed $x$ eventually $x$ lies outside the support and the error $|f_n(x) - 0| = 0$. Hence $f_n \to 0$ pointwise, and the limit $f \equiv 0$ is continuous.
+
+\textbf{Not uniform.} Inside the support $[1/(n+1), 1/n]$, the function $\sin^2(\pi/x)$ attains the value $1$: choose $x_n \in [1/(n+1), 1/n]$ with $\pi/x_n = \pi/2 + k\pi$ for an appropriate integer $k$, giving $\sin^2(\pi/x_n) = 1$. Such $x_n$ exists for every $n$ because the interval $[1/(n+1), 1/n]$ under the map $x \mapsto \pi/x$ becomes $[n\pi, (n+1)\pi]$, which has length $\pi$ and hence contains a point of the form $\pi/2 + k\pi$. Therefore
+$$
+\sup_{x \in \mathbb{R}} |f_n(x) - 0| = 1 \quad \text{for every } n,
+$$
+which does not tend to $0$. Hence $f_n \to 0$ is \emph{not} uniform.
+
+\textbf{The series $\sum f_n$.} For any fixed $x$, at most one of the disjoint supports $[1/(n+1), 1/n]$ contains $x$, so at most one term $f_n(x)$ is nonzero. In particular
+$$
+\sum_{n=1}^{\infty} |f_n(x)| \leq 1 < \infty,
+$$
+so the series converges absolutely for every $x \in \mathbb{R}$.
+
+However, the convergence is not uniform. Let $S(x) = \sum_{n=1}^{\infty} f_n(x)$ and let $S_N(x) = \sum_{n=1}^{N} f_n(x)$ be the $N$th partial sum. Then
+$$
+S(x) - S_N(x) = \sum_{n=N+1}^{\infty} f_n(x),
+$$
+and by the same argument as above, this tail agrees with $\sin^2(\pi/x)$ on each interval $[1/(n+1), 1/n]$ for $n \geq N+1$, hence attains the value $1$ on those intervals. Therefore
+$$
+\sup_{x \in \mathbb{R}} |S(x) - S_N(x)| = 1 \quad \text{for every } N,
+$$
+which never tends to $0$. So $\sum f_n$ converges absolutely but not uniformly, showing that absolute convergence does not imply uniform convergence.
+\end{proof}
+
+\vspace{2em}
+\hrule
+\vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

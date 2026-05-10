@@ -1,0 +1,253 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\begin{document}
+
+\section*{EXERCISES}
+\begin{enumerate}
+  \item Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+
+  \item If $\left\{f_{n}\right\}$ and $\left\{g_{n}\right\}$ converge uniformly on a set $E$, prove that $\left\{f_{n}+g_{n}\right\}$ converges uniformly on $E$. If, in addition, $\left\{f_{n}\right\}$ and $\left\{g_{n}\right\}$ are sequences of bounded functions, prove that $\left\{f_{n} g_{n}\right\}$ converges uniformly on $E$.
+
+  \item Construct sequences $\left\{f_{n}\right\},\left\{g_{n}\right\}$ which converge uniformly on some set $E$, but such that $\left\{f_{n} g_{n}\right\}$ does not converge uniformly on $E$ (of course, $\left\{f_{n} g_{n}\right\}$ must converge on $E$).
+
+  \item Consider
+  $$
+  f(x)=\sum_{n=1}^{\infty} \frac{1}{1+n^{2} x} .
+  $$
+  For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?
+
+  \item Let
+  $$
+  f_{n}(x)= \begin{cases}0 & \left(x<\frac{1}{n+1}\right), \\ \sin ^{2} \frac{\pi}{x} & \left(\frac{1}{n+1} \leq x \leq \frac{1}{n}\right), \\ 0 & \left(\frac{1}{n}<x\right) .\end{cases}
+  $$
+  Show that $\left\{f_{n}\right\}$ converges to a continuous function, but not uniformly. Use the series $\Sigma f_{n}$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+
+  \item Prove that the series
+  $$
+  \sum_{n=1}^{\infty}(-1)^{n} \frac{x^{2}+n}{n^{2}}
+  $$
+  converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+
+  \item For $n=1,2,3, \ldots, x$ real, put
+  $$
+  f_{n}(x)=\frac{x}{1+n x^{2}}
+  $$
+  Show that $\left\{f_{n}\right\}$ converges uniformly to a function $f$, and that the equation
+  $$
+  f^{\prime}(x)=\lim _{n \rightarrow \infty} f_{n}^{\prime}(x)
+  $$
+  is correct if $x \neq 0$, but false if $x=0$.
+
+  \item If
+  $$
+  I(x)= \begin{cases}0 & (x \leq 0), \\ 1 & (x>0),\end{cases}
+  $$
+  if $\left\{x_{n}\right\}$ is a sequence of distinct points of $(a, b)$, and if $\Sigma\left|c_{n}\right|$ converges, prove that the series
+  $$
+  f(x)=\sum_{n=1}^{\infty} c_{n} I\left(x-x_{n}\right) \quad(a \leq x \leq b)
+  $$
+  converges uniformly, and that $f$ is continuous for every $x \neq x_{n}$.
+
+  \item Let $\left\{f_{n}\right\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
+  $$
+  \lim _{n \rightarrow \infty} f_{n}\left(x_{n}\right)=f(x)
+  $$
+  for every sequence of points $x_{n} \in E$ such that $x_{n} \rightarrow x$, and $x \in E$. Is the converse of this true?
+
+  \item Letting $(x)$ denote the fractional part of the real number $x$ (see Exercise 16, Chap. 4, for the definition), consider the function
+  $$
+  f(x)=\sum_{n=1}^{\infty} \frac{(n x)}{n^{2}} \quad(x \text { real })
+  $$
+  Find all discontinuities of $f$, and show that they form a countable dense set. Show that $f$ is nevertheless Riemann-integrable on every bounded interval.
+
+  \item Suppose $\left\{f_{n}\right\},\left\{g_{n}\right\}$ are defined on $E$, and
+
+  (a) $\Sigma f_{n}$ has uniformly bounded partial sums;
+
+  (b) $g_{n} \rightarrow 0$ uniformly on $E$;
+
+  (c) $g_{1}(x) \geq g_{2}(x) \geq g_{3}(x) \geq \cdots$ for every $x \in E$.
+
+  Prove that $\Sigma f_{n} g_{n}$ converges uniformly on $E$. Hint: Compare with Theorem 3.42.
+
+  \item Suppose $g$ and $f_{n}(n=1,2,3, \ldots)$ are defined on $(0, \infty)$, are Riemann-integrable on $[t, T]$ whenever $0<t<T<\infty,\left|f_{n}\right| \leq g, f_{n} \rightarrow f$ uniformly on every compact subset of $(0, \infty)$, and
+  $$
+  \int_{0}^{\infty} g(x) d x<\infty
+  $$
+  Prove that
+  $$
+  \lim _{n \rightarrow \infty} \int_{0}^{\infty} f_{n}(x) d x=\int_{0}^{\infty} f(x) d x
+  $$
+  (See Exercises 7 and 8 of Chap. 6 for the relevant definitions.)
+
+  This is a rather weak form of Lebesgue's dominated convergence theorem (Theorem 11.32). Even in the context of the Riemann integral, uniform convergence can be replaced by pointwise convergence if it is assumed that $f \in \mathscr{R}$. (See the articles by F. Cunningham in Math. Mag., vol. 40, 1967, pp. 179-186, and by H. Kestelman in Amer. Math. Monthly, vol. 77, 1970, pp. 182-187.)
+
+  \item Assume that $\left\{f_{n}\right\}$ is a sequence of monotonically increasing functions on $R^{1}$ with $0 \leq f_{n}(x) \leq 1$ for all $x$ and all $n$.
+
+  (a) Prove that there is a function $f$ and a sequence $\left\{n_{k}\right\}$ such that
+  $$
+  f(x)=\lim _{k \rightarrow \infty} f_{n_{k}}(x)
+  $$
+  for every $x \in R^{1}$. (The existence of such a pointwise convergent subsequence is usually called Helly's selection theorem.)
+
+  (b) If, moreover, $f$ is continuous, prove that $f_{n_{k}} \rightarrow f$ uniformly on compact sets.
+
+  Hint: (i) Some subsequence $\left\{f_{n_{i}}\right\}$ converges at all rational points $r$, say, to $f(r)$. (ii) Define $f(x)$, for any $x \in R^{1}$, to be $\sup f(r)$, the sup being taken over all $r \leq x$. (iii) Show that $f_{n_{t}}(x) \rightarrow f(x)$ at every $x$ at which $f$ is continuous. (This is where monotonicity is strongly used.) (iv) A subsequence of $\left\{f_{n_{i}}\right\}$ converges at every point of discontinuity of $f$ since there are at most countably many such points. This proves (a). To prove (b), modify your proof of (iii) appropriately.
+
+  \item Let $f$ be a continuous real function on $R^{1}$ with the following properties: $0 \leq f(t) \leq 1, f(t+2)=f(t)$ for every $t$, and
+  $$
+  f(t)= \begin{cases}0 & \left(0 \leq t \leq \frac{1}{3}\right) \\ 1 & \left(\frac{2}{3} \leq t \leq 1\right) .\end{cases}
+  $$
+  Put $\Phi(t)=(x(t), y(t))$, where
+  $$
+  x(t)=\sum_{n=1}^{\infty} 2^{-n} f\left(3^{2 n-1} t\right), \quad y(t)=\sum_{n=1}^{\infty} 2^{-n} f\left(3^{2 n} t\right) .
+  $$
+  Prove that $\Phi$ is continuous and that $\Phi$ maps $I=[0,1]$ onto the unit square $I^{2} \subset R^{2}$. If fact, show that $\Phi$ maps the Cantor set onto $I^{2}$.
+
+  Hint: Each $\left(x_{0}, y_{0}\right) \in I^{2}$ has the form
+  $$
+  x_{0}=\sum_{n=1}^{\infty} 2^{-n} a_{2 n-1}, \quad y_{0}=\sum_{n=1}^{\infty} 2^{-n} a_{2 n}
+  $$
+  where each $a_{i}$ is 0 or 1. If
+  $$
+  t_{0}=\sum_{i=1}^{\infty} 3^{-i-1}\left(2 a_{i}\right)
+  $$
+  show that $f\left(3^{k} t_{0}\right)=a_{k}$, and hence that $x\left(t_{0}\right)=x_{0}, y\left(t_{0}\right)=y_{0}$.
+
+  (This simple example of a so-called ``space-filling curve'' is due to I. J. Schoenberg, Bull. A.M.S., vol. 44, 1938, pp. 519.)
+
+  \item Suppose $f$ is a real continuous function on $R^{1}, f_{n}(t)=f(n t)$ for $n=1,2,3, \ldots$, and $\left\{f_{n}\right\}$ is equicontinuous on $[0,1]$. What conclusion can you draw about $f$?
+
+  \item Suppose $\left\{f_{n}\right\}$ is an equicontinuous sequence of functions on a compact set $K$, and $\left\{f_{n}\right\}$ converges pointwise on $K$. Prove that $\left\{f_{n}\right\}$ converges uniformly on $K$.
+
+  \item Define the notions of uniform convergence and equicontinuity for mappings into any metric space. Show that Theorems 7.9 and 7.12 are valid for mappings into any metric space, that Theorems 7.8 and 7.11 are valid for mappings into any complete metric space, and that Theorems 7.10, 7.16, 7.17, 7.24, and 7.25 hold for vector-valued functions, that is, for mappings into any $R^{k}$.
+
+  \item Let $\left\{f_{n}\right\}$ be a uniformly bounded sequence of functions which are Riemann-integrable on $[a, b]$, and put
+  $$
+  F_{n}(x)=\int_{a}^{x} f_{n}(t) d t \quad(a \leq x \leq b)
+  $$
+  Prove that there exists a subsequence $\left\{F_{n_{k}}\right\}$ which converges uniformly on $[a, b]$.
+
+  \item Let $K$ be a compact metric space, let $S$ be a subset of $\mathscr{C}(K)$. Prove that $S$ is compact (with respect to the metric defined in Section 7.14) if and only if $S$ is uniformly closed, pointwise bounded, and equicontinuous. (If $S$ is not equicontinuous, then $S$ contains a sequence which has no equicontinuous subsequence, hence has no subsequence that converges uniformly on $K$.)
+
+  \item If $f$ is continuous on $[0,1]$ and if
+  $$
+  \int_{0}^{1} f(x) x^{n} d x=0 \quad(n=0,1,2, \ldots)
+  $$
+  prove that $f(x)=0$ on $[0,1]$. Hint: The integral of the product of $f$ with any polynomial is zero. Use the Weierstrass theorem to show that $\int_{0}^{1} f^{2}(x) d x=0$.
+
+  \item Let $K$ be the unit circle in the complex plane (i.e., the set of all $z$ with $|z|=1$), and let $\mathscr{A}$ be the algebra of all functions of the form
+  $$
+  f\left(e^{i \theta}\right)=\sum_{n=0}^{N} c_{n} e^{i n \theta} \quad(\theta \text { real })
+  $$
+  Then $\mathscr{A}$ separates points on $K$ and $\mathscr{A}$ vanishes at no point of $K$, but nevertheless there are continuous functions on $K$ which are not in the uniform closure of $\mathscr{A}$. Hint: For every $f \in \mathscr{A}$
+  $$
+  \int_{0}^{2 \pi} f\left(e^{i \theta}\right) e^{i \theta} d \theta=0
+  $$
+  and this is also true for every $f$ in the closure of $\mathscr{A}$.
+
+  \item Assume $f \in \mathscr{R}(\alpha)$ on $[a, b]$, and prove that there are polynomials $P_{n}$ such that
+  $$
+  \lim _{n \rightarrow \infty} \int_{a}^{b}\left|f-P_{n}\right|^{2} d \alpha=0
+  $$
+  (Compare with Exercise 12, Chap. 6.)
+
+  \item Put $P_{0}=0$, and define, for $n=0,1,2, \ldots$,
+  $$
+  P_{n+1}(x)=P_{n}(x)+\frac{x^{2}-P_{n}^{2}(x)}{2}
+  $$
+  Prove that
+  $$
+  \lim _{n \rightarrow \infty} P_{n}(x)=|x|
+  $$
+  uniformly on $[-1,1]$.
+
+  (This makes it possible to prove the Stone-Weierstrass theorem without first proving Theorem 7.26.)
+
+  Hint: Use the identity
+  $$
+  |x|-P_{n+1}(x)=\left[|x|-P_{n}(x)\right]\left[1-\frac{|x|+P_{n}(x)}{2}\right]
+  $$
+  to prove that $0 \leq P_{n}(x) \leq P_{n+1}(x) \leq|x|$ if $|x| \leq 1$, and that
+  $$
+  |x|-P_{n}(x) \leq|x|\left(1-\frac{|x|}{2}\right)^{n}<\frac{2}{n+1}
+  $$
+  if $|x| \leq 1$.
+
+  \item Let $X$ be a metric space, with metric $d$. Fix a point $a \in X$. Assign to each $p \in X$ the function $f_{p}$ defined by
+  $$
+  f_{p}(x)=d(x, p)-d(x, a) \quad(x \in X)
+  $$
+  Prove that $\left|f_{p}(x)\right| \leq d(a, p)$ for all $x \in X$, and that therefore $f_{p} \in \mathscr{C}(X)$.
+
+  Prove that
+  $$
+  \left\|f_{p}-f_{q}\right\|=d(p, q)
+  $$
+  for all $p, q \in X$.
+
+  If $\Phi(p)=f_{p}$ it follows that $\Phi$ is an isometry (a distance-preserving mapping) of $X$ onto $\Phi(X) \subset \mathscr{C}(X)$.
+
+  Let $Y$ be the closure of $\Phi(X)$ in $\mathscr{C}(X)$. Show that $Y$ is complete.
+
+  Conclusion: $X$ is isometric to a dense subset of a complete metric space $Y$.
+
+  (Exercise 24, Chap. 3 contains a different proof of this.)
+
+  \item Suppose $\phi$ is a continuous bounded real function in the strip defined by $0 \leq x \leq 1,-\infty<y<\infty$. Prove that the initial-value problem
+  $$
+  y^{\prime}=\phi(x, y), \quad y(0)=c
+  $$
+  has a solution. (Note that the hypotheses of this existence theorem are less stringent than those of the corresponding uniqueness theorem; see Exercise 27, Chap. 5.)
+
+  Hint: Fix $n$. For $i=0, \ldots, n$, put $x_{i}=i / n$. Let $f_{n}$ be a continuous function on $[0,1]$ such that $f_{n}(0)=c$,
+  $$
+  f_{n}^{\prime}(t)=\phi\left(x_{i}, f_{n}\left(x_{i}\right)\right) \quad \text { if } x_{i}<t<x_{i+1}
+  $$
+  and put
+  $$
+  \Delta_{n}(t)=f_{n}^{\prime}(t)-\phi\left(t, f_{n}(t)\right)
+  $$
+  except at the points $x_{i}$, where $\Delta_{n}(t)=0$. Then
+  $$
+  f_{n}(x)=c+\int_{0}^{x}\left[\phi\left(t, f_{n}(t)\right)+\Delta_{n}(t)\right] d t
+  $$
+  Choose $M<\infty$ so that $|\phi| \leq M$. Verify the following assertions.
+
+  (a) $\left|f_{n}^{\prime}\right| \leq M,\left|\Delta_{n}\right| \leq 2 M, \Delta_{n} \in \mathscr{R}$, and $\left|f_{n}\right| \leq|c|+M=M_{1}$, say, on $[0,1]$, for all $n$.
+
+  (b) $\left\{f_{n}\right\}$ is equicontinuous on $[0,1]$, since $\left|f_{n}^{\prime}\right| \leq M$.
+
+  (c) Some $\left\{f_{n_{k}}\right\}$ converges to some $f$, uniformly on $[0,1]$.
+
+  (d) Since $\phi$ is uniformly continuous on the rectangle $0 \leq x \leq 1,|y| \leq M_{1}$,
+  $$
+  \phi\left(t, f_{n_{k}}(t)\right) \rightarrow \phi(t, f(t))
+  $$
+  uniformly on $[0,1]$.
+
+  (e) $\Delta_{n}(t) \rightarrow 0$ uniformly on $[0,1]$, since
+  $$
+  \Delta_{n}(t)=\phi\left(x_{i}, f_{n}\left(x_{i}\right)\right)-\phi\left(t, f_{n}(t)\right)
+  $$
+  in $\left(x_{i}, x_{i+1}\right)$.
+
+  (f) Hence
+  $$
+  f(x)=c+\int_{0}^{x} \phi(t, f(t)) d t
+  $$
+  This $f$ is a solution of the given problem.
+
+  \item Prove an analogous existence theorem for the initial-value problem
+  $$
+  \mathbf{y}^{\prime}=\Phi(x, \mathbf{y}), \quad \mathbf{y}(0)=\mathbf{c}
+  $$
+  where now $\mathbf{c} \in R^{k}, \mathbf{y} \in R^{k}$, and $\boldsymbol{\Phi}$ is a continuous bounded mapping of the part of $R^{k+1}$ defined by $0 \leq x \leq 1, y \in R^{k}$ into $R^{k}$. (Compare Exercise 28, Chap. 5.) Hint: Use the vector-valued version of Theorem 7.25.
+\end{enumerate}
+
+\end{document}

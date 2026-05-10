@@ -1,0 +1,266 @@
+\documentclass[12 pt]{article}
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{myheadings}
+\markright{Noam Michael\hfill HW10 \hfill}
+\newtheorem{prob}{Problem}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Math 104 --- Homework 10}}\\[0.5em]
+    Noam Michael \hfill \today
+\end{center}
+
+\section*{Rudin Chapter 7}
+
+\begin{prob}[7.6]
+Prove that the series
+$$
+\sum_{n=1}^{\infty}(-1)^{n} \frac{x^{2}+n}{n^{2}}
+$$
+converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+\end{prob}
+\begin{proof}
+Split the $n$th term:
+$$
+(-1)^n \frac{x^2 + n}{n^2} = (-1)^n \frac{x^2}{n^2} + (-1)^n \frac{1}{n}.
+$$
+
+\textbf{Uniform convergence on $[-M, M]$.} For the first piece, on any bounded interval $|x| \leq M$,
+$$
+\left| (-1)^n \frac{x^2}{n^2} \right| \leq \frac{M^2}{n^2},
+$$
+and $\sum M^2/n^2 < \infty$, so by the Weierstrass $M$-test, $\sum (-1)^n x^2/n^2$ converges uniformly on $[-M, M]$.
+
+The second piece $\sum (-1)^n / n$ is the alternating harmonic series, a convergent constant (no $x$-dependence), so its partial sums trivially converge uniformly.
+
+The sum of two uniformly convergent series is uniformly convergent, so $\sum (-1)^n \frac{x^2 + n}{n^2}$ converges uniformly on $[-M, M]$.
+
+\textbf{No absolute convergence.} For any fixed $x$,
+$$
+\left| (-1)^n \frac{x^2 + n}{n^2} \right| = \frac{x^2 + n}{n^2} = \frac{x^2}{n^2} + \frac{1}{n}.
+$$
+The series $\sum x^2/n^2$ converges, but $\sum 1/n = \infty$. Hence
+$$
+\sum_{n=1}^{\infty} \left| (-1)^n \frac{x^2 + n}{n^2} \right| = \infty
+$$
+for every $x$, so the series does not converge absolutely for any $x$.
+\end{proof}
+
+\begin{prob}[7.7]
+For $n=1,2,3, \ldots$, $x$ real, put
+$$
+f_{n}(x)=\frac{x}{1+n x^{2}}.
+$$
+Show that $\{f_{n}\}$ converges uniformly to a function $f$, and that the equation
+$$
+f^{\prime}(x)=\lim _{n \rightarrow \infty} f_{n}^{\prime}(x)
+$$
+is correct if $x \neq 0$, but false if $x=0$.
+\end{prob}
+\begin{proof}
+\textbf{Uniform convergence to $f \equiv 0$.} By the AM--GM inequality, for $x \neq 0$,
+$$
+\frac{1}{x} + nx \geq 2\sqrt{n},
+$$
+so $|f_n(x)| = \frac{|x|}{1 + nx^2} = \frac{1}{1/|x| + n|x|} \leq \frac{1}{2\sqrt{n}}$. At $x = 0$, $f_n(0) = 0$. Equality holds when $x = \pm 1/\sqrt{n}$, so
+$$
+\|f_n\|_\infty = \frac{1}{2\sqrt{n}} \to 0.
+$$
+Hence $f_n \to 0$ uniformly, and $f \equiv 0$.
+
+\textbf{Derivative interchange.} A direct computation gives
+$$
+f_n'(x) = \frac{1 - nx^2}{(1 + nx^2)^2}.
+$$
+
+\emph{At $x = 0$:} $f_n'(0) = \frac{1}{1} = 1$ for every $n$, so $\lim_{n \to \infty} f_n'(0) = 1$. But $f'(0) = 0$, so $f'(0) \neq \lim f_n'(0)$.
+
+\emph{At $x \neq 0$:} For large $n$, the numerator is dominated by $-nx^2$ and the denominator by $n^2 x^4$, giving
+$$
+f_n'(x) = \frac{1 - nx^2}{(1 + nx^2)^2} \sim \frac{-nx^2}{n^2 x^4} = \frac{-1}{nx^2} \to 0.
+$$
+Since $f'(x) = 0$, we have $f'(x) = \lim_{n \to \infty} f_n'(x)$ for all $x \neq 0$.
+\end{proof}
+
+\begin{prob}[7.8]
+If
+$$
+I(x)= \begin{cases}0 & (x \leq 0), \\ 1 & (x>0),\end{cases}
+$$
+if $\{x_{n}\}$ is a sequence of distinct points of $(a, b)$, and if $\sum|c_{n}|$ converges, prove that the series
+$$
+f(x)=\sum_{n=1}^{\infty} c_{n} I(x-x_{n}) \quad(a \leq x \leq b)
+$$
+converges uniformly, and that $f$ is continuous for every $x \neq x_{n}$.
+\end{prob}
+\begin{proof}
+\textbf{Uniform convergence.} For every $x \in [a,b]$ and every $n$, $I(x - x_n) \in \{0, 1\}$, so
+$$
+|c_n\, I(x - x_n)| \leq |c_n|.
+$$
+Since $\sum |c_n| < \infty$, the Weierstrass $M$-test (with $M_n = |c_n|$) gives uniform convergence of $\sum c_n\, I(x - x_n)$ on $[a,b]$.
+
+\textbf{Continuity at $x \neq x_n$.} Fix $x_0 \neq x_n$ for all $n$. For each $n$, either $x_0 > x_n$ or $x_0 < x_n$. In either case, $I(x - x_n)$ is constant in a neighborhood of $x_0$ (equal to $1$ or $0$, respectively), so $c_n\, I(x - x_n)$ is continuous at $x_0$.
+
+Since each term is continuous at $x_0$ and the series converges uniformly, Theorem 7.12 implies $f$ is continuous at $x_0$.
+\end{proof}
+
+\begin{prob}[7.10]
+Letting $(x)$ denote the fractional part of the real number $x$, consider the function
+$$
+f(x)=\sum_{n=1}^{\infty} \frac{(n x)}{n^{2}} \quad(x \text{ real}).
+$$
+Find all discontinuities of $f$, and show that they form a countable dense set. Show that $f$ is nevertheless Riemann-integrable on every bounded interval.
+\end{prob}
+\begin{proof}
+\textbf{Uniform convergence.} Since $0 \leq (t) < 1$ for all $t$, we have $|(nx)/n^2| \leq 1/n^2$. Since $\sum 1/n^2 < \infty$, the Weierstrass $M$-test gives uniform convergence of the series on all of $\mathbb{R}$.
+
+\textbf{Discontinuities at rationals.} The fractional part function $(t)$ is discontinuous precisely at integer values of $t$. So the $n$th term $(nx)/n^2$ is discontinuous at $x = k/n$ for each integer $k$, i.e.\ at every rational with denominator dividing $n$. At a rational $x = p/q$ (in lowest terms), the term with $n = q$ has a jump discontinuity of size $1/q^2$, and this jump survives in the sum $f$ since the remaining terms are either continuous at $p/q$ or have jumps of the same sign (each $(t)$ jumps downward by $1$ at integers). Hence $f$ is discontinuous at every rational.
+
+\textbf{Continuity at irrationals.} If $x$ is irrational, then $nx$ is never an integer for any $n \geq 1$, so every term $(nx)/n^2$ is continuous at $x$. Since each term is continuous at $x$ and the series converges uniformly, Theorem 7.12 implies $f$ is continuous at $x$.
+
+\textbf{Countable dense set.} The set of discontinuities is exactly $\mathbb{Q}$, which is countable and dense in $\mathbb{R}$.
+
+\textbf{Riemann integrability.} Each partial sum $S_N(x) = \sum_{n=1}^N (nx)/n^2$ is a finite sum of bounded functions, each having only finitely many discontinuities in any bounded interval, so $S_N \in \mathscr{R}$ on every bounded interval. Since $S_N \to f$ uniformly, Theorem 7.16 implies $f \in \mathscr{R}$ on every bounded interval.
+\end{proof}
+
+\begin{prob}[7.13]
+Assume that $\{f_{n}\}$ is a sequence of monotonically increasing functions on $\mathbb{R}$ with $0 \leq f_{n}(x) \leq 1$ for all $x$ and all $n$.
+
+\begin{enumerate}
+    \item[(a)] Prove that there is a function $f$ and a sequence $\{n_{k}\}$ such that
+    $$
+    f(x)=\lim _{k \rightarrow \infty} f_{n_{k}}(x)
+    $$
+    for every $x \in \mathbb{R}$. (Helly's selection theorem.)
+
+    \item[(b)] If, moreover, $f$ is continuous, prove that $f_{n_{k}} \rightarrow f$ uniformly on compact sets.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+\textbf{(a)} Enumerate the rationals as $r_1, r_2, r_3, \ldots$ Since $\{f_n(r_1)\}$ is a sequence in $[0,1]$, the Bolzano--Weierstrass theorem gives a subsequence $\{f_{n_k^{(1)}}\}$ converging at $r_1$. From this, extract a further subsequence $\{f_{n_k^{(2)}}\}$ converging at $r_2$ (it still converges at $r_1$). Continuing, we obtain nested subsequences $\{f_{n_k^{(j)}}\}$, the $j$th converging at $r_1, \ldots, r_j$.
+
+Take the diagonal subsequence $g_k := f_{n_k^{(k)}}$. For each $j$, $\{g_k\}_{k \geq j}$ is a subsequence of $\{f_{n_k^{(j)}}\}$, so $g_k(r_j) \to g(r_j)$ for some value $g(r_j)$. Thus $\{g_k\}$ converges at every rational.
+
+Now define, for all $x \in \mathbb{R}$,
+$$
+f(x) = \sup\{g(r) : r \in \mathbb{Q},\; r \leq x\}.
+$$
+Since each $f_n$ is increasing and $0 \leq f_n \leq 1$, the limit $g$ is increasing and bounded on $\mathbb{Q}$, so $f$ is well-defined, increasing, and takes values in $[0,1]$.
+
+\emph{Convergence at continuity points of $f$.} Fix $x$ where $f$ is continuous. Given $\varepsilon > 0$, choose rationals $r < x < s$ with $f(s) - f(r) < \varepsilon$. Since each $g_k$ is increasing,
+$$
+g_k(r) \leq g_k(x) \leq g_k(s).
+$$
+As $k \to \infty$, $g_k(r) \to g(r) = f(r)$ and $g_k(s) \to g(s) = f(s)$. Also $f(r) \leq f(x) \leq f(s)$, so
+$$
+|g_k(x) - f(x)| \leq f(s) - f(r) + \varepsilon_k < \varepsilon + \varepsilon_k
+$$
+for large $k$, where $\varepsilon_k \to 0$. Hence $g_k(x) \to f(x)$.
+
+\emph{Convergence at discontinuity points.} Since $f$ is monotone, it has at most countably many discontinuities $\{d_1, d_2, \ldots\}$. Apply Bolzano--Weierstrass again: from $\{g_k\}$, extract a subsequence converging at $d_1$, then a further subsequence converging at $d_2$, and so on. A final diagonal argument yields a subsequence $\{f_{n_k}\}$ converging at every $d_j$ and (being a subsequence of $\{g_k\}$) at every continuity point of $f$ as well. Hence $f_{n_k}(x) \to f(x)$ for every $x \in \mathbb{R}$.
+
+\textbf{(b)} Suppose $f$ is continuous. Then the argument above applies at every point (there are no discontinuities to handle separately), and $g_k \to f$ pointwise on $\mathbb{R}$. Fix a compact set $[a,b]$. Given $\varepsilon > 0$, by uniform continuity of $f$ on $[a,b]$, choose rationals $a = r_0 < r_1 < \cdots < r_m = b$ with $f(r_i) - f(r_{i-1}) < \varepsilon$ for each $i$. For $x \in [r_{i-1}, r_i]$, monotonicity gives
+$$
+g_k(r_{i-1}) \leq g_k(x) \leq g_k(r_i),
+$$
+and $f(r_{i-1}) \leq f(x) \leq f(r_i)$. Since $g_k(r_j) \to f(r_j)$ for each of the finitely many $r_j$, there exists $K$ such that $|g_k(r_j) - f(r_j)| < \varepsilon$ for all $k \geq K$ and all $j$. Then for $x \in [r_{i-1}, r_i]$,
+$$
+|g_k(x) - f(x)| \leq f(r_i) - f(r_{i-1}) + 2\varepsilon < 3\varepsilon
+$$
+for all $k \geq K$, uniformly in $x \in [a,b]$.
+\end{proof}
+
+\begin{prob}[7.14]
+Let $f$ be a continuous real function on $\mathbb{R}$ with the following properties: $0 \leq f(t) \leq 1$, $f(t+2)=f(t)$ for every $t$, and
+$$
+f(t)= \begin{cases}0 & \left(0 \leq t \leq \tfrac{1}{3}\right), \\ 1 & \left(\tfrac{2}{3} \leq t \leq 1\right).\end{cases}
+$$
+Put $\Phi(t)=(x(t), y(t))$, where
+$$
+x(t)=\sum_{n=1}^{\infty} 2^{-n} f(3^{2 n-1} t), \quad y(t)=\sum_{n=1}^{\infty} 2^{-n} f(3^{2 n} t).
+$$
+Prove that $\Phi$ is continuous and that $\Phi$ maps $I=[0,1]$ onto the unit square $I^{2} \subset \mathbb{R}^{2}$. In fact, show that $\Phi$ maps the Cantor set onto $I^{2}$.
+\end{prob}
+\begin{proof}
+\textbf{Continuity.} Each term $2^{-n} f(3^k t)$ is continuous (composition of continuous functions, scaled by $2^{-n}$), and $|2^{-n} f(3^k t)| \leq 2^{-n}$ since $0 \leq f \leq 1$. Since $\sum 2^{-n} < \infty$, the Weierstrass $M$-test gives uniform convergence of both $x(t)$ and $y(t)$. By Theorem 7.12, $x(t)$ and $y(t)$ are continuous, hence $\Phi$ is continuous.
+
+\textbf{Surjectivity (onto $I^2$ via the Cantor set).} Let $(x_0, y_0) \in [0,1]^2$. Write binary expansions
+$$
+x_0 = \sum_{n=1}^{\infty} 2^{-n} a_{2n-1}, \qquad y_0 = \sum_{n=1}^{\infty} 2^{-n} a_{2n},
+$$
+where each $a_i \in \{0, 1\}$. Define
+$$
+t_0 = \sum_{i=1}^{\infty} \frac{2a_i}{3^{i+1}}.
+$$
+Since each digit $2a_i \in \{0, 2\}$, $t_0$ has only digits $0$ and $2$ in its base-3 expansion, so $t_0$ belongs to the Cantor set.
+
+We claim $f(3^k t_0) = a_k$ for every $k \geq 1$. Indeed,
+$$
+3^k t_0 = \sum_{i=1}^{\infty} \frac{2a_i}{3^{i+1-k}} = \sum_{i=1}^{k} 2a_i \cdot 3^{k-i-1} + \frac{2a_{k+1}}{3^2} + \frac{2a_{k+2}}{3^3} + \cdots
+$$
+The first sum is an even integer (call it $2m$), and the remaining tail lies in $[0, 2/9 + 2/27 + \cdots] = [0, 1/3]$. So the fractional part of $3^k t_0$ is $\frac{2a_{k+1}}{3^2} + \cdots$\,; but we need $f$ evaluated at $3^k t_0$.
+
+More precisely, $3^k t_0 = 2m + \frac{2a_k}{3} + r$ where $0 \leq r \leq 1/3$. Since $f$ has period $2$, $f(3^k t_0) = f(\frac{2a_k}{3} + r)$. If $a_k = 0$, then $\frac{2a_k}{3} + r \in [0, 1/3]$, so $f = 0 = a_k$. If $a_k = 1$, then $\frac{2a_k}{3} + r \in [2/3, 1]$, so $f = 1 = a_k$.
+
+Therefore
+$$
+x(t_0) = \sum_{n=1}^{\infty} 2^{-n} f(3^{2n-1} t_0) = \sum_{n=1}^{\infty} 2^{-n} a_{2n-1} = x_0,
+$$
+$$
+y(t_0) = \sum_{n=1}^{\infty} 2^{-n} f(3^{2n} t_0) = \sum_{n=1}^{\infty} 2^{-n} a_{2n} = y_0.
+$$
+So $\Phi(t_0) = (x_0, y_0)$, and since $t_0$ is in the Cantor set, $\Phi$ maps the Cantor set onto $I^2$.
+\end{proof}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+% \section*{Bonus Problems}
+
+% \begin{prob}[7.20]
+% Put $P_{0}=0$, and define, for $n=0,1,2, \ldots$,
+% $$
+% P_{n+1}(x)=P_{n}(x)+\frac{x^{2}-P_{n}^{2}(x)}{2}.
+% $$
+% Prove that
+% $$
+% \lim _{n \rightarrow \infty} P_{n}(x)=|x|
+% $$
+% uniformly on $[-1,1]$.
+% \end{prob}
+% \begin{proof}
+
+% \end{proof}
+
+% \begin{prob}[7.21]
+% Let $X$ be a metric space, with metric $d$. Fix a point $a \in X$. Assign to each $p \in X$ the function $f_{p}$ defined by
+% $$
+% f_{p}(x)=d(x, p)-d(x, a) \quad(x \in X).
+% $$
+% Prove that $|f_{p}(x)| \leq d(a, p)$ for all $x \in X$, and that therefore $f_{p} \in \mathscr{C}(X)$.
+
+% Prove that
+% $$
+% \|f_{p}-f_{q}\|=d(p, q)
+% $$
+% for all $p, q \in X$.
+
+% Let $Y$ be the closure of $\Phi(X)$ in $\mathscr{C}(X)$, where $\Phi(p)=f_{p}$. Show that $Y$ is complete.
+
+% Conclusion: $X$ is isometric to a dense subset of a complete metric space $Y$.
+% \end{prob}
+% \begin{proof}
+
+% \end{proof}
+
+% \vspace{2em}
+% \hrule
+% \vspace{1em}
+\noindent\textbf{AI Use Disclaimer:} Claude (Anthropic) was used in the preparation of this assignment. Claude served solely as a transcription and formatting tool, taking verbal dictation of my solutions and converting them into \LaTeX. Claude did not provide answers, solve problems, or generate proofs. It was used only as a guide to help structure my own reasoning, never as a solver.
+
+\end{document}

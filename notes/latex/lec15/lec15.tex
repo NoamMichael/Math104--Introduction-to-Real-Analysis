@@ -1,0 +1,174 @@
+\documentclass[../master/master.tex]{subfiles}
+
+\begin{document}
+
+%----------------------------------------------------------------------
+% LECTURE 15: Sequences of Functions
+% Date: April 14, 2026
+%----------------------------------------------------------------------
+\renewcommand{\lecturenum}{15}
+\renewcommand{\lecturedate}{April 14, 2026}
+\renewcommand{\lecturetopic}{Sequences of Functions}
+
+\section{Lecture \lecturenum : \lecturedate}
+
+\begin{lecturesummary}
+\textbf{Lecture Overview:}
+\end{lecturesummary}
+
+\subsection{Uniform Convergence}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+Recall from last time, we defined \defn{uniform convergence} in terms of a sequence of functions to converge uniformly.
+
+\begin{definition}
+Let $\{f_n\}$ be a sequence of functions defined on $E$. We say $\{f_n\}$ \defn{converges uniformly} on $E$ to a function $f$ if for all $\eps > 0$, there exists $N \in \N$ such that for all $n > N$,
+\[
+|f_n(x) - f(x)| < \eps \quad \text{for all } x \in E,
+\]
+or equivalently,
+\[
+\sup_{x \in E} |f_n(x) - f(x)| \leq \eps.
+\]
+\end{definition}
+
+\begin{definition}
+Let $X$ be a metric space. Let $\mathscr{C}(X)$ denote the set of complex (or real) continuous bounded functions with domain $X$.
+\end{definition}
+
+We can define a norm on $\mathscr{C}(X)$ by
+\[
+\|f\| = \sup_{x \in X} |f(x)|,
+\]
+which satisfies $\|f\| \geq 0$ with equality if and only if $f = 0$, and the triangle inequality. We verify all three norm conditions:
+
+\begin{proof}
+\textbf{(1) Nonnegativity.} Since $|f(x)| \geq 0$ for all $x \in X$, we have $\|f\| = \sup_{x \in X} |f(x)| \geq 0$. If $f = 0$, then $|f(x)| = 0$ for all $x$, so $\|f\| = 0$. Conversely, if $\|f\| = 0$, then $|f(x)| \leq 0$ for all $x \in X$, so $f(x) = 0$ for all $x$, i.e., $f = 0$.
+
+\textbf{(2) Scalar homogeneity.} For any scalar $c$,
+\[
+\|cf\| = \sup_{x \in X} |cf(x)| = \sup_{x \in X} |c||f(x)| = |c| \sup_{x \in X} |f(x)| = |c|\,\|f\|.
+\]
+
+\textbf{(3) Triangle inequality.} For any $f, g \in \mathscr{C}(X)$ and $x \in X$,
+\[
+|f(x) + g(x)| \leq |f(x)| + |g(x)| \leq \|f\| + \|g\|.
+\]
+Taking the supremum over $x \in X$ gives $\|f + g\| \leq \|f\| + \|g\|$.
+\end{proof}
+
+Define a metric on $\mathscr{C}(X)$ by
+\[
+d(f, g) = \|f - g\|.
+\]
+
+\begin{theorem}
+If $f_n \to f$ uniformly on $E$, then for all $x \in E'$, if $\lim_{t \to x} f_n(t)$ exists \ldots
+\end{theorem}
+
+\begin{theorem}
+If $f_n$ is continuous for all $n$, then
+\[
+f(x) = \lim_{n \to \infty} f_n(x) = \lim_{t \to x} f(t).
+\]
+\end{theorem}
+
+\begin{theorem}
+$\mathscr{C}(X)$ is a complete metric space.
+\end{theorem}
+
+Recall that \defn{complete} means that every Cauchy sequence converges.
+
+\begin{proof}
+Let $\{f_n\}$ be Cauchy in $\mathscr{C}(X)$. Let $f(x) = \lim_{n \to \infty} f_n(x)$. We will show $f \in \mathscr{C}(X)$.
+
+\textbf{(1) $f$ is continuous.} Since $\{f_n\}$ is Cauchy, for every $\eps > 0$ there exists $N$ such that for $n, m > N$, $\|f_n - f_m\| < \eps$, i.e., $|f_n(x) - f_m(x)| < \eps$ for all $x \in X$. Letting $m \to \infty$ gives $|f_n(x) - f(x)| \leq \eps$ for all $x \in X$ and $n > N$, so $f_n \to f$ uniformly on $X$. Since each $f_n$ is continuous, by the theorem above $f$ is continuous.
+
+\textbf{(2) $f$ is bounded.} Fix $\eps = 1$. By the uniform convergence above, there exists $N$ such that $\|f_N - f\| \leq 1$, i.e., $|f_N(x) - f(x)| \leq 1$ for all $x \in X$. Since $f_N \in \mathscr{C}(X)$, $f_N$ is bounded, so there exists $M$ with $|f_N(x)| \leq M$ for all $x$. Then
+\[
+|f(x)| \leq |f(x) - f_N(x)| + |f_N(x)| \leq 1 + M
+\]
+for all $x \in X$, so $f$ is bounded. Thus $f \in \mathscr{C}(X)$, and $f_n \to f$ in the metric $d$, proving $\mathscr{C}(X)$ is complete.
+\end{proof}
+
+\subsection{Uniform Convergence and Integration}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{theorem}
+Let $\alpha$ be monotonically increasing on $[a,b]$, and let $\mathscr{R}(\alpha)$ denote the set of Riemann--Stieltjes integrable functions on $[a,b]$ with respect to $\alpha$. Suppose $f_n \in \mathscr{R}(\alpha)$ for all $n$ and $f_n \to f$ uniformly on $[a,b]$. Then $f \in \mathscr{R}(\alpha)$ and
+\[
+\int_a^b f\,d\alpha = \lim_{n \to \infty} \int_a^b f_n\,d\alpha.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\eps_n = \sup_{x \in [a,b]} |f_n(x) - f(x)|$. Since $f_n \to f$ uniformly, $\eps_n \to 0$. For all $x \in [a,b]$,
+\[
+f_n(x) - \eps_n \leq f(x) \leq f_n(x) + \eps_n.
+\]
+Since $f_n \in \mathscr{R}(\alpha)$, integrating gives
+\[
+\int_a^b (f_n - \eps_n)\,d\alpha \leq \underline{\int_a^b} f\,d\alpha \leq \overline{\int_a^b} f\,d\alpha \leq \int_a^b (f_n + \eps_n)\,d\alpha,
+\]
+so
+\[
+0 \leq \overline{\int_a^b} f\,d\alpha - \underline{\int_a^b} f\,d\alpha \leq 2\eps_n [\alpha(b) - \alpha(a)].
+\]
+Since $\eps_n \to 0$, the upper and lower integrals of $f$ agree, so $f \in \mathscr{R}(\alpha)$. Moreover,
+\[
+\left| \int_a^b f\,d\alpha - \int_a^b f_n\,d\alpha \right| = \left| \int_a^b (f - f_n)\,d\alpha \right| \leq \eps_n [\alpha(b) - \alpha(a)] \to 0,
+\]
+so $\int_a^b f\,d\alpha = \lim_{n \to \infty} \int_a^b f_n\,d\alpha$.
+\end{proof}
+
+Recall the Fundamental Theorem of Calculus: if $F' = f \in \mathscr{R}$, then
+\[
+\int_a^b f = F(b) - F(a).
+\]
+
+\subsection{Uniform Convergence and Differentiation}
+
+\begin{summarybox}
+\textbf{Section Overview:}
+\end{summarybox}
+
+\begin{theorem}
+Suppose $f_n$ is differentiable for all $n$, $f_n'$ converges uniformly on $[a,b]$, and there exists some $x_0 \in [a,b]$ such that $f_n(x_0)$ converges. Then $f_n \to f$ uniformly on $[a,b]$ and $f_n' \to f'$.
+\end{theorem}
+
+\begin{proof}
+\textbf{(1) $f_n$ converges uniformly on $[a,b]$.} Let $\eps > 0$. Since $\{f_n(x_0)\}$ converges and $\{f_n'\}$ converges uniformly, both are Cauchy, so there exists $N$ such that for all $n, m > N$,
+\[
+|f_n(x_0) - f_m(x_0)| < \eps \quad \text{and} \quad \|f_n' - f_m'\| < \eps.
+\]
+Apply the Mean Value Theorem to $f_n - f_m$ on $[a,b]$: for any $x, t \in [a,b]$ with $x \neq t$, there exists $\xi$ between $x$ and $t$ with
+\[
+(f_n - f_m)(x) - (f_n - f_m)(t) = (x - t)(f_n' - f_m')(\xi).
+\]
+Hence $|(f_n - f_m)(x) - (f_n - f_m)(t)| \leq |x - t|\,\|f_n' - f_m'\| \leq (b - a)\eps$. Taking $t = x_0$,
+\[
+|f_n(x) - f_m(x)| \leq |f_n(x_0) - f_m(x_0)| + (b-a)\eps < \eps(1 + b - a)
+\]
+for all $x \in [a,b]$, so $\{f_n\}$ is uniformly Cauchy, hence converges uniformly to some $f$ on $[a,b]$.
+
+\textbf{(2) $f_n' \to f'$.} Fix $x \in [a,b]$. For $t \neq x$, define
+\[
+\varphi_n(t) = \frac{f_n(t) - f_n(x)}{t - x}, \qquad \varphi(t) = \frac{f(t) - f(x)}{t - x}.
+\]
+Then $\lim_{t \to x} \varphi_n(t) = f_n'(x)$. By the MVT estimate above, for $n, m > N$ and $t \neq x$,
+\[
+|\varphi_n(t) - \varphi_m(t)| = \left| \frac{(f_n - f_m)(t) - (f_n - f_m)(x)}{t - x} \right| \leq \|f_n' - f_m'\| < \eps,
+\]
+so $\{\varphi_n\}$ converges uniformly on $[a,b] \setminus \{x\}$. Since $\varphi_n \to \varphi$ pointwise on this set, the convergence is uniform. By the theorem on interchange of limits,
+\[
+f'(x) = \lim_{t \to x} \varphi(t) = \lim_{t \to x} \lim_{n \to \infty} \varphi_n(t) = \lim_{n \to \infty} \lim_{t \to x} \varphi_n(t) = \lim_{n \to \infty} f_n'(x).
+\]
+\end{proof}
+
+\end{document}
