@@ -1,0 +1,364 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% ============================================================
+% COVER PAGE
+% ============================================================
+\begin{center}
+{\Large \textbf{Math 104 --- Introduction to Real Analysis}}\\[6pt]
+{\large Spring 2026}\\[4pt]
+{\large \textbf{Practice Final Exam 3}}
+\end{center}
+
+\bigskip
+
+\textbf{Name:} \hrulefill
+
+\medskip
+
+\textbf{Student ID:} \hrulefill
+
+\bigskip
+
+This exam contains 9 problems totaling 70 points. Read each problem carefully and justify your answers unless stated otherwise.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Question: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & Total \\
+\hline
+Points: & 10 & 5 & 5 & 5 & 10 & 10 & 10 & 5 & 10 & 70 \\
+\hline
+Score: &  &  &  &  &  &  &  &  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+% ============================================================
+% TABLE OF CONTENTS
+% ============================================================
+\tableofcontents
+
+\newpage
+
+% ============================================================
+% PRACTICE EXAM
+% ============================================================
+\section{Practice Exam}
+
+% ------------------------------------------------------------
+\subsection{Question 1 \textnormal{(10 points)} --- Compactness and Connectedness}
+
+Let $E = \{1/n : n \in \N\} \subset \R$ with the standard metric.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Is $E$ compact? Is $\overline{E} = E \cup \{0\}$ compact? Justify your answers.
+  \item Is $E$ connected? Justify briefly.
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Question 2 \textnormal{(5 points)} --- Subsequential Limits}
+
+True or False (prove or give a counterexample):
+
+If $\{a_n\}$ is a \emph{bounded} sequence of real numbers and every convergent subsequence of $\{a_n\}$ converges to the same limit $L$, then $a_n \to L$.
+
+% ------------------------------------------------------------
+\subsection{Question 3 \textnormal{(5 points)} --- Special Subsets of $\R$}
+
+True or False (justify):
+
+There exists a subset of $\R$ that is closed, bounded, uncountable, and contains no open interval.
+
+% ------------------------------------------------------------
+\subsection{Question 4 \textnormal{(5 points)} --- Differentiability and Rolle's Theorem}
+
+Let $f$ and $g$ be continuous on $[a,b]$ and differentiable on $(a,b)$, with $f(a) = f(b)$ and $g(a) = g(b)$. Determine whether each statement is true or false, and justify briefly.
+
+\begin{enumerate}[label=(\alph*)]
+  \item There must exist $c \in (a,b)$ with $f'(c) = 0$.
+  \item $f'$ must be continuous on $(a,b)$.
+  \item There must exist $c \in (a,b)$ with $f'(c) = g'(c)$.
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Question 5 \textnormal{(10 points)} --- Pointwise vs.\ Uniform Convergence}
+
+Define $f_n(x) = n\,x^n(1-x)$ on $[0,1]$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Find the pointwise limit $f(x) = \lim_{n \to \infty} f_n(x)$ for each $x \in [0,1]$.
+  \item Does $f_n \to f$ uniformly on $[0,1]$? Justify.
+  \item Compute $\displaystyle\lim_{n \to \infty} \int_0^1 f_n(x)\,dx$. Does it equal $\displaystyle\int_0^1 f(x)\,dx$?
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Question 6 \textnormal{(10 points)} --- Equicontinuity and Arzel\`a--Ascoli}
+
+Let $\{f_n\}$ be a sequence of differentiable functions on $[0,1]$ satisfying $|f_n'(x)| \leq 3$ for all $n$ and all $x \in [0,1]$, and $f_n(0) = 0$ for all $n$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $\{f_n\}$ is equicontinuous on $[0,1]$.
+  \item Does $\{f_n\}$ necessarily have a uniformly convergent subsequence? Justify.
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Question 7 \textnormal{(10 points)} --- Riemann Integrability (Thomae's Function)}
+
+Define $f$ on $[0,1]$ by:
+$$
+f(x) = \begin{cases}
+1/q & \text{if } x = p/q \text{ in lowest terms, } q \geq 1, \\
+0 & \text{if } x \text{ is irrational,}
+\end{cases}
+$$
+with $f(0) = 1$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $f$ is continuous at every irrational point in $(0,1)$.
+  \item Is $f$ Riemann integrable on $[0,1]$? If so, compute $\displaystyle\int_0^1 f(x)\,dx$.
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Question 8 \textnormal{(5 points)} --- Riemann Sums}
+
+Compute the following limit by recognizing it as a Riemann sum:
+$$
+\lim_{n \to \infty} \sum_{k=1}^{n} \frac{1}{n+k}.
+$$
+
+% ------------------------------------------------------------
+\subsection{Question 9 \textnormal{(10 points)} --- Power Series}
+
+Consider the power series $\displaystyle f(x) = \sum_{n=1}^{\infty} \frac{x^n}{n^2}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Find the radius of convergence $R$.
+  \item Does the series converge at $x = 1$? At $x = -1$? Justify.
+  \item Is $f$ continuous on $[-1, 1]$? Justify.
+\end{enumerate}
+
+\newpage
+
+% ============================================================
+% ANSWER KEY
+% ============================================================
+\section{Answer Key}
+
+% ------------------------------------------------------------
+\subsection{Answer 1 --- Compactness and Connectedness}
+
+\textbf{(a)} $E = \{1/n : n \in \N\}$ is \textbf{not compact}.
+
+The point $0$ is a limit point of $E$ (since $1/n \to 0$), but $0 \notin E$. Therefore $E$ is not closed. In $\R^n$, compact implies closed, so $E$ is not compact.
+
+Alternatively, the open cover $\{B(1/n, \eps_n)\}$ with sufficiently small $\eps_n$ has no finite subcover, since $E$ is infinite and discrete (each point $1/n$ is isolated in $E$).
+
+$\overline{E} = E \cup \{0\}$ \textbf{is compact}. It is closed (by definition of closure) and bounded (contained in $[0,1]$). By the Heine--Borel theorem, closed and bounded subsets of $\R$ are compact.
+
+\medskip
+
+\textbf{(b)} $E$ is \textbf{not connected}.
+
+Let $A = E \cap (-\infty, 3/4)$ and $B = E \cap (3/4, \infty)$. Then $A = \{1/n : n \geq 2\}$ and $B = \{1\}$. Both are nonempty and $E = A \cup B$. Since $\overline{A} \cap B = [0, 3/4] \cap \{1\} = \emptyset$ and $A \cap \overline{B} = A \cap \{1\} = \emptyset$, the sets $A$ and $B$ are separated. Hence $E$ is not connected.
+
+More generally, $E$ is not an interval (e.g., $1/2, 1 \in E$ but $3/4 \notin E$), and connected subsets of $\R$ are precisely the intervals.
+
+% ------------------------------------------------------------
+\subsection{Answer 2 --- Subsequential Limits}
+
+\textbf{True.}
+
+\begin{proof}
+Since $\{a_n\}$ is bounded, the Bolzano--Weierstrass theorem guarantees that the set $E$ of subsequential limits is nonempty. By hypothesis, $E = \{L\}$.
+
+Recall that $\limsup a_n = \sup E$ and $\liminf a_n = \inf E$. Since $E = \{L\}$:
+$$
+\limsup_{n \to \infty} a_n = L = \liminf_{n \to \infty} a_n.
+$$
+Therefore $\lim_{n \to \infty} a_n = L$.
+\end{proof}
+
+\textit{Remark:} Boundedness is essential. The sequence $a_n = n$ has no convergent subsequence at all, so the hypothesis ``every convergent subsequence converges to $L$'' is vacuously true, yet $a_n$ does not converge.
+
+% ------------------------------------------------------------
+\subsection{Answer 3 --- Special Subsets of $\R$}
+
+\textbf{True.} The \textbf{Cantor ternary set} $C$ is such a set.
+
+\begin{itemize}
+  \item \textbf{Closed:} $C = \bigcap_{n=0}^{\infty} C_n$ is an intersection of closed sets, hence closed.
+  \item \textbf{Bounded:} $C \subseteq [0,1]$.
+  \item \textbf{Uncountable:} Every element of $C$ has a ternary expansion using only the digits $0$ and $2$. The map sending each such expansion to a binary number (replacing $2$'s with $1$'s) gives a surjection $C \to [0,1]$, so $|C| \geq |\R|$.
+  \item \textbf{Contains no open interval:} At stage $n$ of the construction, $C_n$ consists of $2^n$ intervals each of length $3^{-n}$, so the total length of $C_n$ is $(2/3)^n \to 0$. Any open interval has positive length, so no open interval fits inside $C$.
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection{Answer 4 --- Differentiability and Rolle's Theorem}
+
+\textbf{(a) True.} This is exactly \textbf{Rolle's Theorem}: $f$ is continuous on $[a,b]$, differentiable on $(a,b)$, and $f(a) = f(b)$. Therefore there exists $c \in (a,b)$ with $f'(c) = 0$.
+
+\medskip
+
+\textbf{(b) False.} A function can be differentiable everywhere on $(a,b)$ without $f'$ being continuous. For example, on $[0,1]$, define:
+$$
+f(x) = \begin{cases} x^2 \sin(1/x) & x \neq 0 \\ 0 & x = 0. \end{cases}
+$$
+Then $f$ is differentiable on $(0,1)$ (and at $0$ by a limit computation), but $f'(x) = 2x\sin(1/x) - \cos(1/x)$ oscillates as $x \to 0$, so $f'$ is not continuous at $0$.
+
+\medskip
+
+\textbf{(c) True.} Define $h = f - g$. Then $h$ is continuous on $[a,b]$, differentiable on $(a,b)$, and
+$$
+h(a) = f(a) - g(a), \quad h(b) = f(b) - g(b).
+$$
+Since $f(a) = f(b)$ and $g(a) = g(b)$, we get $h(a) = h(b)$. By Rolle's Theorem, there exists $c \in (a,b)$ with $h'(c) = 0$, i.e., $f'(c) - g'(c) = 0$, so $f'(c) = g'(c)$.
+
+% ------------------------------------------------------------
+\subsection{Answer 5 --- Pointwise vs.\ Uniform Convergence}
+
+\textbf{(a)} For $x \in [0,1)$: $x^n \to 0$, so $f_n(x) = n\,x^n(1-x) \to 0$ since $n\,x^n \to 0$ for any fixed $|x| < 1$ (exponential decay beats linear growth).
+
+At $x = 1$: $f_n(1) = n \cdot 1^n \cdot 0 = 0$ for all $n$.
+
+Therefore $f(x) = 0$ for all $x \in [0,1]$.
+
+\medskip
+
+\textbf{(b)} The convergence is \textbf{not uniform}.
+
+To find $\|f_n\|_\infty = \sup_{x \in [0,1]} |f_n(x)|$, we maximize $f_n(x) = nx^n(1-x)$. Setting $f_n'(x) = 0$:
+$$
+f_n'(x) = n\bigl[n\,x^{n-1}(1-x) - x^n\bigr] = n\,x^{n-1}\bigl[n(1-x) - x\bigr] = n\,x^{n-1}\bigl[n - (n+1)x\bigr].
+$$
+This is zero at $x^* = \dfrac{n}{n+1}$. The maximum value is:
+$$
+f_n(x^*) = n \left(\frac{n}{n+1}\right)^n \cdot \frac{1}{n+1} = \frac{n}{n+1} \cdot \left(\frac{n}{n+1}\right)^n \to 1 \cdot \frac{1}{e} = \frac{1}{e} \neq 0.
+$$
+Since $\|f_n - f\|_\infty \to 1/e \neq 0$, the convergence is not uniform.
+
+\medskip
+
+\textbf{(c)} We compute directly:
+$$
+\int_0^1 f_n(x)\,dx = n\int_0^1 x^n(1-x)\,dx = n\left[\frac{x^{n+1}}{n+1} - \frac{x^{n+2}}{n+2}\right]_0^1 = n\left(\frac{1}{n+1} - \frac{1}{n+2}\right) = \frac{n}{(n+1)(n+2)}.
+$$
+Therefore:
+$$
+\lim_{n \to \infty} \int_0^1 f_n(x)\,dx = \lim_{n \to \infty} \frac{n}{(n+1)(n+2)} = 0.
+$$
+And $\displaystyle\int_0^1 f(x)\,dx = \int_0^1 0\,dx = 0$.
+
+So $\displaystyle\lim_{n\to\infty}\int_0^1 f_n = \int_0^1 f$, even though convergence is not uniform. This shows that uniform convergence is \emph{sufficient} for interchanging limits and integrals, but not \emph{necessary}.
+
+% ------------------------------------------------------------
+\subsection{Answer 6 --- Equicontinuity and Arzel\`a--Ascoli}
+
+\textbf{(a)} Given any $\eps > 0$, set $\delta = \eps/3$. For any $n$ and any $x, y \in [0,1]$ with $|x - y| < \delta$, the Mean Value Theorem gives some $c$ between $x$ and $y$ with:
+$$
+|f_n(x) - f_n(y)| = |f_n'(c)|\,|x - y| \leq 3\,|x - y| < 3 \cdot \frac{\eps}{3} = \eps.
+$$
+Since $\delta = \eps/3$ works for \emph{all} $n$ and \emph{all} $x, y$, the family $\{f_n\}$ is equicontinuous.
+
+\medskip
+
+\textbf{(b) Yes.} We verify the hypotheses of the \textbf{Arzel\`a--Ascoli theorem}:
+
+\begin{itemize}
+  \item \emph{Domain is compact:} $[0,1]$ is compact.
+  \item \emph{Equicontinuous:} Shown in part (a).
+  \item \emph{Pointwise bounded:} For any $x \in [0,1]$,
+  $$
+  |f_n(x)| = |f_n(x) - f_n(0)| \leq 3\,|x - 0| \leq 3.
+  $$
+  So $|f_n(x)| \leq 3$ for all $n$ and all $x$.
+\end{itemize}
+
+By Arzel\`a--Ascoli, $\{f_n\}$ has a uniformly convergent subsequence.
+
+% ------------------------------------------------------------
+\subsection{Answer 7 --- Riemann Integrability (Thomae's Function)}
+
+\textbf{(a)} Let $\alpha \in (0,1)$ be irrational. We show $f$ is continuous at $\alpha$.
+
+Given $\eps > 0$, choose an integer $N$ with $1/N < \eps$. Consider all rationals $p/q$ in $[0,1]$ with $q \leq N$. There are only \emph{finitely many} such rationals (at most $N^2$ of them). Since $\alpha$ is irrational, $\alpha$ is not equal to any of them. Therefore we can choose $\delta > 0$ such that the interval $(\alpha - \delta, \alpha + \delta)$ contains none of these rationals.
+
+Now if $|x - \alpha| < \delta$:
+\begin{itemize}
+  \item If $x$ is irrational, then $|f(x) - f(\alpha)| = |0 - 0| = 0 < \eps$.
+  \item If $x = p/q$ in lowest terms, then $q > N$ (since all rationals with $q \leq N$ are excluded), so $|f(x) - f(\alpha)| = 1/q < 1/N < \eps$.
+\end{itemize}
+
+In both cases $|f(x) - f(\alpha)| < \eps$, so $f$ is continuous at $\alpha$.
+
+\medskip
+
+\textbf{(b)} $f$ \textbf{is Riemann integrable} on $[0,1]$, and $\displaystyle\int_0^1 f(x)\,dx = 0$.
+
+$f$ is discontinuous precisely at the rational points in $[0,1]$. The set $\Q \cap [0,1]$ is countable, hence a set of measure zero (given $\eps > 0$, cover the $k$-th rational with an interval of length $\eps/2^k$; total length $\leq \eps$).
+
+Since $f$ is bounded (by $1$) and its set of discontinuities has measure zero, $f \in \mathscr{R}[0,1]$.
+
+For the value: for any partition $P$, each subinterval contains irrational points where $f = 0$, so $m_i = \inf f = 0$ on every subinterval. Therefore $L(P, f) = 0$ for every partition, giving $\underline{\int}_0^1 f = 0$. Since $f \in \mathscr{R}$, the integral equals $0$.
+
+% ------------------------------------------------------------
+\subsection{Answer 8 --- Riemann Sums}
+
+Rewrite the sum by factoring out $1/n$:
+$$
+\sum_{k=1}^{n} \frac{1}{n+k} = \sum_{k=1}^{n} \frac{1}{n} \cdot \frac{1}{1 + k/n}.
+$$
+This is a Riemann sum for $\displaystyle\int_0^1 \frac{1}{1+x}\,dx$ with the partition $\{0, 1/n, 2/n, \ldots, 1\}$ and right endpoints $x_k = k/n$:
+$$
+\sum_{k=1}^{n} \frac{1}{n} \cdot \frac{1}{1 + k/n} \;\longrightarrow\; \int_0^1 \frac{dx}{1+x} = \bigl[\ln(1+x)\bigr]_0^1 = \ln 2 - \ln 1 = \boxed{\ln 2}.
+$$
+
+% ------------------------------------------------------------
+\subsection{Answer 9 --- Power Series}
+
+\textbf{(a)} Using the root test, $\limsup_{n \to \infty} |c_n|^{1/n} = \limsup (1/n^2)^{1/n}$. Since $n^{1/n} \to 1$, we have $(1/n^2)^{1/n} = (n^{1/n})^{-2} \to 1$. Therefore:
+$$
+R = \frac{1}{\limsup |c_n|^{1/n}} = \frac{1}{1} = 1.
+$$
+
+\medskip
+
+\textbf{(b)} At $x = 1$: the series becomes $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^2}$, which converges (it is a $p$-series with $p = 2 > 1$).
+
+At $x = -1$: the series becomes $\displaystyle\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$, which converges absolutely since $\displaystyle\sum \frac{|(-1)^n|}{n^2} = \sum \frac{1}{n^2} < \infty$.
+
+\medskip
+
+\textbf{(c) Yes}, $f$ is continuous on $[-1, 1]$.
+
+For all $x \in [-1,1]$ and all $n$:
+$$
+\left|\frac{x^n}{n^2}\right| \leq \frac{1}{n^2} \eqqcolon M_n.
+$$
+Since $\displaystyle\sum_{n=1}^{\infty} M_n = \sum \frac{1}{n^2} < \infty$, the \textbf{Weierstrass $M$-test} implies $\sum x^n/n^2$ converges \emph{uniformly} on $[-1,1]$.
+
+Each partial sum $S_N(x) = \sum_{n=1}^N x^n/n^2$ is a polynomial, hence continuous. Since the uniform limit of continuous functions is continuous (Theorem 7.12), $f$ is continuous on $[-1,1]$.
+
+\end{document}
